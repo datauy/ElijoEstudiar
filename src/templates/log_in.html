@@ -1,0 +1,35 @@
+<ion-modal-view class="new-report-modal">
+    <ion-content direction="y" class="new-report-scroll">
+        <div class="new-report-slide">
+          <div class="new-report-content">
+            <div class="category-header">
+              <h3>Ingresa tus datos si ya tienes cuenta en {{AppName}}:</h3>
+            </div>
+            <div class="list">
+              <div class="text-input-header">
+                <h3>Usuario *</h3>
+              </div>
+              <div class="text-input-container">
+                <input style="color: #ffffff; padding-left: 10px; padding-right: 10px;" class="text-input" type="usuario" placeholder="Tu nombre de usuario" ng-model="nonauth.user"/>
+              </div>
+              <div class="field-separator"></div>
+              <div class="text-input-header">
+                <h3>Contraseña *</h3>
+              </div>
+              <div class="text-input-container">
+                <input class="text-input" style="color: #ffffff; padding-left: 10px; padding-right: 10px; padding-top: 10px;" placeholder="Tu contraseña" type="password" ng-model="nonauth.password"/>
+              </div>
+              <div class="field-separator"></div>
+              <div id="error_container"></div>
+              <div class="padding">
+                <button class="form-button" ng-click="login_ok()">Acceder</button>
+                <div class="field-separator"></div>
+                <button class="form-button" ng-click="close_login_modal()">Cancelar</button>
+              </div>
+              <a ng-click="forgot_password()" style="color: #FFFFFF; font-size: 12pt;">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+        </div>
+    </ion-content>
+    <div id="spinner-inside-modal" class="modal-spinner"><h3>Aguarde por favor</h3><ion-spinner icon="spiral"></ion-spinner><h3 id="sent_label">Enviado: 100%</h3></div>
+</ion-modal-view>

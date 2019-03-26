@@ -1,0 +1,58 @@
+<ion-view title="Educación ALTEC" hide-nav-bar="true" class="">
+  <ion-content scroll="false">
+	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
+	    <ion-slide>
+        <div class="rombo_amarillo"></div>
+    		<div class="edad_title">Tu edad</div>
+        <div class="edad_controls">
+      		<div ng-click="restarEdad();" class="edad_menos">-</div>
+      		<div class="edad_text">{{form.edad}}</div>
+      		<div ng-click="sumarEdad();" class="edad_mas">+</div>
+        </div>
+    		<div class="ultimoNivelAprobado_title">Último nivel aprobado</div>
+        <div class="ultimoNivelControls">
+      		<div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel">Primaria</div>
+      		<div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">Secundaria</div>
+      		<div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">Terciario</div>
+      		<div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">Universitario</div>
+        </div>
+        <div class="rombo_azul"></div>
+        <div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
+        <select ng-model="form.ultimo_anio_aprobado" class="ultimoAnioAprobado_select">
+          <option value="" disabled selected>Selecciona un año</option>
+          <option>Primer año</option>
+          <option>Segundo año</option>
+          <option>Tercer año</option>
+          <option>Cuarto año</option>
+          <option>Quinto año</option>
+          <option>Sexto año</option>
+        </select>
+    		<button class="form_next_button" ng-click="next()">Continuar</button>
+	    </ion-slide>
+	    <ion-slide>
+        <div class="queQueresEstudiar_title">¿Qué querés estudiar?</div>
+        <input type="text" class="queQueresEstudiar_text" />
+    		<div class="dondeQueresEstudiar_title">¿Dónde querés estudiar?</div>
+    		<input type="text" class="dondeQueresEstudiar_text" />
+    		<div class="turno_title">Turno</div>
+    		<div class="turno_matutino">Matutino</div>
+    		<div class="turno_vespertino">Vespertino</div>
+    		<div class="turno_nocturno">Nocturno</div>
+    		<div class="dondeQueresEstudiar_title">¿Cuál es tu plan?</div>
+    		<input type="text" class="dondeQueresEstudiar_text" />
+    		<button ng-click="previous()">Atrás</button>
+    		<button ng-click="next()">Continuar</button>
+	    </ion-slide>
+	    <ion-slide>
+    		<div class="tuBusqueda_title">Esta es tu búsqueda</div>
+    		<input type="text" class="dondeQueresEstudiar_text" value="16 años, Aguas Corrientes, Primaria, Nocturno" />
+    		<button>Editar búsqueda</button>
+    		<button>Listado</button>
+    		<button ng-click="go_to_map()">Mapa</button>
+    		<div class="listado_liceo_title">Liceo Nº 1</div>
+    		<div class="listado_liceo_title">Liceo Nº 12</div>
+    		<div class="listado_liceo_title">Liceo Nº 135</div>
+	    </ion-slide>
+	  </ion-slide-box>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,15 @@
+[2K[G[2m[[22m[33m[1m[40mWARN[49m[22m[39m[2m][22m [1mionic.project[22m file found in [1m/home/datauy/educacion[22m--please rename it to 
+       [1mionic.config.json[22m, or your project directory will not be detected!
+[2K[GThe Ionic CLI has an update available ([36m3.20.0[39m => [36m4.1.2[39m)!
+[2K[G
+[2K[G[2m[[22m[33m[1m[40mWARN[49m[22m[39m[2m][22m [33mNo write permissions for global [1mnode_modules[22m--automatic CLI updates are [39m
+
+       disabled.
+       To fix, see [1mhttps://docs.npmjs.com/getting-started/fixing-npm-permissions[22m
+       
+       Or, install the CLI update manually:
+       
+       [32mnpm i -g ionic@latest[39m
+       
+
+[2K[G[2m[[22m[31m[1m[40mERROR[49m[22m[39m[2m][22m Sorry! [32mionic serve[39m can only be run in an Ionic project directory.

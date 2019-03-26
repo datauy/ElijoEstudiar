@@ -1,0 +1,110 @@
+body {
+	background: #ddf;
+	color:#669;
+	margin:20px;
+}
+
+h2,h3,h4,h5 {margin:6px 0}
+a {text-decoration: none;}
+p {margin:0 0 20px 0}
+ul {
+	font-size:.85em;
+	margin:0 0 10px 0;
+	padding:0;
+}
+li {
+	margin:0 0 2px 18px;
+}
+#map {
+	border:2px solid #669;
+	width:600px;
+	height:340px;
+	float:left;
+}
+#post-it {
+	position: absolute;
+	left:620px;
+	top: 80px; 
+	width:9em;
+	height:8em;
+	margin-left:2em;
+	padding:1em;
+	float:left;
+	background:#fbf5bf;
+	border:1px solid #c6bb58;
+	box-shadow: 2px 2px 6px #999;
+	color:#666;
+}
+#arrow {
+	display: block;
+	line-height: 380px;
+	font-size: 80px;
+	float: left;
+	text-align: center;
+	width: 50px;
+}
+#data {
+	display:block;
+	float:left;
+	width:220px;
+	height:380px;
+	background:#eee;
+	border:2px solid #669;
+	padding:2px;
+	font-size:.85em;
+	overflow:scroll;
+	margin:0;
+}
+#content,#refs {
+	float:left;
+	margin-right:1em;
+}
+#copy {
+	position:fixed;
+	z-index:1000;
+	right:150px;
+	top:-6px;
+	font-style:italic;
+	font-size:.85em;
+	padding:5px 8px;
+	background: #ccc;
+	border: 2px solid #3e5585;		
+	border-radius:.7em;
+	opacity: 0.8;		
+}
+#copy a {
+	color:#285585
+}
+#ribbon {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: 0;
+	filter: alpha(opacity=80);
+	-khtml-opacity: .8;
+	-moz-opacity: .8;
+	opacity: .8;		
+}
+#comments {
+	clear:both;
+}
+pre {
+	background-color: #fff;
+	color:#333;
+	line-height: 1.5em;
+	padding:10px;
+	float: left;
+	font-size: 12px;
+	border: 1px solid #aaa;
+	box-shadow:inset 2px 2px 4px #ccc
+}
+#loader {
+	display: none;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: url('examples/loader.gif') center center no-repeat rgba(255,255,255,0.5);
+}
+

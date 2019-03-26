@@ -1,0 +1,93 @@
+<ion-modal-view class="new-report-modal">
+    <ion-content class="new-report-scroll">
+        <div class="new-report-slide">
+          <div class="new-report-content">
+            <div class="category-header">
+              <h3>Editar perfil</h3>
+              <p>Estos son los datos de tu cuenta en {{AppName}}.</p>
+            </div>
+            <div class="list">
+              <div class="text-input-header">
+                <h3>Usuario: {{newuser.username}}</h3>
+              </div>
+              <div class="field-separator"></div>
+              <p>
+                <div style="background: url({{actual_photo}}) no-repeat center;" class="userpicture_inside_modal" />
+              </p>
+              <div class="field-separator"></div>
+              <div class="text-input-header">
+                <h3>Género *</h3>
+              </div>
+              <div class="text-input-container">
+                <select ng-model="newuser.gender">
+                  <option value="" disabled selected>Seleccione un género</option>
+                  <option value="Mujer">Mujer</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Otro">Otro</option>
+                  <option value="No responde">No responde</option>
+                </select>
+              </div>
+              <div class="field-separator"></div>
+              <div class="text-input-header">
+                <h3>Interesado en conocer: *</h3>
+              </div>
+              <div class="text-input-container">
+                <select ng-model="newuser.interested">
+                  <option value="" disabled selected>Seleccione una opción</option>
+                  <option value="Mujeres">Mujeres</option>
+                  <option value="Hombres">Hombres</option>
+                  <option value="Personas en general">Personas en general</option>
+                </select>
+              </div>
+              <div class="field-separator"></div>
+              <div class="text-input-header">
+                <h3>Tu estado: *</h3>
+              </div>
+              <div class="text-input-container">
+                <select ng-model="newuser.status">
+                  <option value="" disabled selected>Seleccione una opción</option>
+                  <option value="Disponible">Disponible</option>
+                  <option value="Durmiendo">Durmiendo</option>
+                  <option value="Con ganas de charlar">Con ganas de charlar</option>
+                  <option value="Me gustaría tomar algo">Me gustaría tomar algo</option>
+                  <option value="Me gustaría invitar a alguien">Me gustaría invitar a alguien</option>
+                </select>
+              </div>
+              <div class="field-separator"></div>
+              <div class="text-input-header">
+              <h3>Mostrar mi ubicación a otros usuarios: *</h3>
+            </div>
+            <div class="text-input-container">
+              <select ng-model="newuser.show_location">
+                  <option value="" disabled selected>Seleccione una opción</option>
+                  <option value="1">Sí, mostrar mi ubicación</option>
+                  <option value="0">No, sólo mostrarme en la lista general</option>
+                </select>
+            </div>
+            <div class="field-separator"></div>
+            <div class="foto-header">
+                <h3>Si deseas, puedes cambiar tu foto</h3>
+              </div>
+              <div class="foto-input-container">
+                <input type="file" id="upimgfile" name="uploadfile" onchange="angular.element(this).scope().readURL(this,1)" ng-model="newuser.picture_url">
+                <div class="preview-img"> <img id="myImage" width="150"   size="30" /> </div>
+              </div>
+              <div class="field-separator"></div>
+              <div class="foto-footer">
+                <h3>El archivo no puede pesar más de 2MB. (JPG)</h3>
+              </div>
+              <div class="field-separator"></div>
+              <div class="field-separator"></div>
+              <div id="error_container"></div>
+              <div class="padding">
+                <button class="form-button" ng-click="edit_profile_ok()">Guardar</button>
+                <div class="field-separator"></div>
+                <button class="form-button" ng-click="close_edit_profile_modal()">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="height: 200px"></div>
+    </ion-content>
+    <div id="spinner-inside-modal" class="modal-spinner"><h3>Aguarde por favor</h3><ion-spinner icon="spiral"></ion-spinner><h3 id="sent_label">Enviado: 100%</h3></div>
+</ion-modal-view>

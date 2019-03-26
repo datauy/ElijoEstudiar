@@ -1,0 +1,41 @@
+{
+  "name": "ElijoEstudiar",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.1.0"
+  },
+  "dependencies": {
+    "ngCordova": "~0.1.12-alpha",
+    "angular-leaflet-directive": "~0.8.8",
+    "Leaflet.EasyButton": "~1.1.2",
+    "underscore": "~1.8.3",
+    "ion-autocomplete": "master",
+    "Proj4Leaflet": "proj4leaflet#~0.7.2"
+  },
+  "version": "1.0.0",
+  "homepage": "http://educacion.freyja.datauy.org",
+  "authors": [
+    "DATA Uy <devops@datauy.org>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/lib",
+    "test",
+    "tests"
+  ],
+  "description": "Mobile APP for ElijoEstudiar website",
+  "main": "app.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "im",
+    "data",
+    "anep"
+  ],
+  "resolutions": {
+    "ion-autocomplete": "master"
+  }
+}

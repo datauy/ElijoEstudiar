@@ -1,0 +1,63 @@
+<ion-modal-view class="new-report-modal">
+    <ion-content class="new-report-scroll">
+        <div class="new-report-slide">
+          <div class="new-report-content">
+            <div class="category-header">
+              <h3>Regístrate y se parte</h3>
+              <p>Crea una cuenta en {{AppName}} y accede a todas las herramientas.</p>
+            </div>
+            <div class="list">
+              <div class="text-input-header">
+                <h3>Correo electrónico *</h3>
+              </div>
+              <div class="text-input-container">
+                <input style="color: #ffffff; padding-left: 10px; padding-right: 10px;" class="text-input" type="email" placeholder="Proporcionar un correo válido" ng-model="newuser.email">
+              </div>
+              <div class="field-separator"></div>
+              <div class="text-input-header">
+                <h3>Usuario *</h3>
+              </div>
+              <div class="text-input-container">
+                <input class="text-input" style="color: #ffffff; padding-left: 10px; padding-right: 10px; padding-top: 10px;" placeholder="Por favor, ingrese nombre de usuario" ng-model="newuser.username"/>
+              </div>
+              <div class="field-separator"></div>
+              <div class="text-input-header">
+                <h3>Contraseña *</h3>
+              </div>
+              <div class="text-input-container">
+                <input class="text-input" style="color: #ffffff; padding-left: 10px; padding-right: 10px; padding-top: 10px;" placeholder="Proporcione una contraseña" ng-model="newuser.password" type="password"/>
+              </div>
+              <div class="field-separator"></div>
+                <div class="text-input-header">
+                <h3>Repetir contraseña *</h3>
+              </div>
+              <div class="text-input-container">
+                <input class="text-input" style="color: #ffffff; padding-left: 10px; padding-right: 10px; padding-top: 10px;" placeholder="Repite la contraseña" ng-model="newuser.repassword" type="password"/>
+              </div>
+              <div class="field-separator"></div>            
+            <div class="foto-header">
+                <h3>Si deseas, puedes subir tu foto</h3>
+              </div>
+              <div class="foto-input-container">
+                <input type="file" id="upimgfile" name="uploadfile" onchange="angular.element(this).scope().readURL(this,1)" ng-model="newuser.picture_url">
+                <div class="preview-img"> <img id="myImage" width="150"   size="30" /> </div>
+              </div>
+              <div class="field-separator"></div>
+              <div class="foto-footer">
+                <h3>El archivo no puede pesar más de 2MB. (JPG)</h3>
+              </div>
+              <div class="field-separator"></div>
+              <div class="field-separator"></div>
+              <div id="error_container"></div>
+              <div class="padding">
+                <button class="form-button" ng-click="sign_up_ok()">Registrarse</button>
+                <div class="field-separator"></div>
+                <button class="form-button" ng-click="close_sign_up_modal()">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="height: 200px"></div>
+    </ion-content>
+    <div id="spinner-inside-modal" class="modal-spinner"><h3>Aguarde por favor</h3><ion-spinner icon="spiral"></ion-spinner><h3 id="sent_label">Enviado: 100%</h3></div>
+</ion-modal-view>

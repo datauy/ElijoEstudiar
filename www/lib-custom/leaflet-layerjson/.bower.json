@@ -1,0 +1,23 @@
+{
+  "name": "leaflet-layerjson",
+  "version": "0.1.7",
+  "main": "dist/leaflet-layerjson.min.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "examples"
+  ],
+  "homepage": "https://github.com/stefanocudini/leaflet-layerJSON",
+  "_release": "0.1.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.7",
+    "commit": "25a13fa5301dda1817cdce2cb17dba4f46a33efd"
+  },
+  "_source": "git://github.com/stefanocudini/leaflet-layerJSON.git",
+  "_target": "~0.1.7",
+  "_originalSource": "leaflet-layerjson",
+  "_direct": true
+}

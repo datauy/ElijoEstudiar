@@ -1,0 +1,64 @@
+{
+  "name": "ion-autocomplete",
+  "version": "0.4.0",
+  "description": "A configurable Ionic directive for an autocomplete dropdown",
+  "keywords": [
+    "AngularJS",
+    "angular",
+    "Ionic",
+    "ion",
+    "autocomplete"
+  ],
+  "homepage": "https://github.com/guylabs/ion-autocomplete",
+  "bugs": "https://github.com/guylabs/ion-autocomplete/issues",
+  "author": {
+    "name": "Danny Povolotski",
+    "email": "dannypovolotski@gmail.com",
+    "url": "https://github.com/israelidanny"
+  },
+  "contributors": [
+    {
+      "name": "Guy Brand",
+      "email": "admin@guylabs.org",
+      "url": "http://guylabs.ch"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guylabs/ion-autocomplete.git"
+  },
+  "devDependencies": {
+    "bower": "~1.8.0",
+    "coveralls": "~2.11.14",
+    "grunt": "~1.0.1",
+    "grunt-bower-install-simple": "~1.2.3",
+    "grunt-contrib-concat": "~1.0.1",
+    "grunt-contrib-cssmin": "~2.0.0",
+    "grunt-contrib-uglify": "~2.1.0",
+    "grunt-http-server": "~2.0.0",
+    "grunt-karma": "~2.0.0",
+    "grunt-protractor-runner": "~4.0.0",
+    "karma": "~1.5.0",
+    "karma-chrome-launcher": "~2.0.0",
+    "karma-coverage": "~1.1.1",
+    "karma-firefox-launcher": "~1.0.0",
+    "karma-jasmine": "~1.1.0",
+    "karma-ng-html2js-preprocessor": "~1.0.0",
+    "karma-phantomjs-launcher": "~1.0.2",
+    "load-grunt-tasks": "~3.5.2",
+    "time-grunt": "~1.4.0"
+  },
+  "dependencies": {},
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/guylabs/ion-autocomplete/blob/master/LICENSE"
+    }
+  ],
+  "main": "dist/ion-autocomplete.js",
+  "scripts": {
+    "start": "./node_modules/protractor/bin/webdriver-manager update && ./node_modules/protractor/bin/webdriver-manager start",
+    "test": "[ -d node_modules/protractor ] && ./node_modules/protractor/bin/webdriver-manager update && grunt build"
+  }
+}

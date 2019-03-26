@@ -1,0 +1,19 @@
+<ion-view title="{{AppName}}-Map" hide-nav-bar="true">
+
+<ion-nav-title>
+</ion-nav-title>
+
+<div id="spinner" class="intro-spinner"><ion-spinner icon="spiral"></ion-spinner></div>
+<div id="pinspinner" class="intro-spinner"><ion-spinner icon="spiral"></ion-spinner></div>
+
+<!--<div class="top-bar-imm">
+  <div class="white-bar-imm"></div>
+  <div class="icon-imm-top"/></div>
+</div>-->
+
+
+<ion-content data-tap-disabled="true">
+  <leaflet defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+</ion-content>
+
+</ion-view>
