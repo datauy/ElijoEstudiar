@@ -27,21 +27,26 @@
           <option>Quinto año</option>
           <option>Sexto año</option>
         </select>
-    		<button class="form_next_button" ng-click="next()">Continuar</button>
+    		<button class="estudiar_next form_next_button" ng-click="next()">Continuar</button>
 	    </ion-slide>
 	    <ion-slide>
-        <div class="queQueresEstudiar_title">¿Qué querés estudiar?</div>
-        <input type="text" class="queQueresEstudiar_text" />
-    		<div class="dondeQueresEstudiar_title">¿Dónde querés estudiar?</div>
-    		<input type="text" class="dondeQueresEstudiar_text" />
-    		<div class="turno_title">Turno</div>
-    		<div class="turno_matutino">Matutino</div>
-    		<div class="turno_vespertino">Vespertino</div>
-    		<div class="turno_nocturno">Nocturno</div>
-    		<div class="dondeQueresEstudiar_title">¿Cuál es tu plan?</div>
-    		<input type="text" class="dondeQueresEstudiar_text" />
-    		<button ng-click="previous()">Atrás</button>
-    		<button ng-click="next()">Continuar</button>
+        <div class="rombo_amarillo"></div>
+        <div class="estudiar_title">¿Qué querés estudiar?</div>
+        <input type="text" class="estudiar_input" />
+    		<div class="estudiar_title">¿Dónde querés estudiar?</div>
+    		<input type="text" class="estudiar_input" />
+    		<div class="estudiar_title">Turno</div>
+        <div class="turnos-wrapper">
+          <span class="turnos turno_matutino">Matutino</span>
+      		<span class="turnos turno_vespertino">Vespertino</span>
+      		<span class="turnos turno_nocturno">Nocturno</span>
+        </div>
+    		<div class="estudiar_title">¿Cuál es tu plan?</div>
+    		<input type="text" class="estudiar_input" />
+        <div class="button-wrapper">
+          <button class="form_next_button" ng-click="next()">Continuar</button>
+      		<button class="form_back_button" ng-click="previous()">Volver a comenzar</button>
+        </div>
 	    </ion-slide>
 	    <ion-slide>
     		<div class="tuBusqueda_title">Esta es tu búsqueda</div>

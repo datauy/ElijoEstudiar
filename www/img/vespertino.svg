@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="98" height="102" viewBox="0 0 98 102">
+    <defs>
+        <path id="b" d="M60.5 4.153l14 8.083A31 31 0 0 1 90 39.083v16.166a31 31 0 0 1-15.5 26.846l-14 8.083a31 31 0 0 1-31 0l-14-8.083A31 31 0 0 1 0 55.25V39.083a31 31 0 0 1 15.5-26.847l14-8.083a31 31 0 0 1 31 0z"/>
+        <filter id="a" width="116.7%" height="115.9%" x="-8.3%" y="-4.8%" filterUnits="objectBoundingBox">
+            <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.111611187 0"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g fill-rule="nonzero" transform="translate(4 1)">
+            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+            <use fill="#9ECBFF" xlink:href="#b"/>
+        </g>
+        <g transform="translate(25 19)">
+            <circle cx="17" cy="17" r="17" fill="#DEEDFF" opacity=".317"/>
+            <circle cx="17" cy="17" r="10" fill="#FFF"/>
+        </g>
+        <path fill="#DEEDFF" d="M16 70.908c3.333 5.333 8.333 9.333 15 12 10 4 7.5 6 15.5 6s13.5 1 27-9 14-13.5 14-15.5-12.5-10.5-31-4C44.167 64.74 30.667 68.24 16 70.908z"/>
+        <path fill="#FFF" d="M74.5 42a2.5 2.5 0 1 1 1.508 3.952V46H59.5a3.5 3.5 0 1 1 1.74-6.537 5.002 5.002 0 0 1 9.733 2.057A2.496 2.496 0 0 1 74.5 42z"/>
+    </g>
+</svg>
