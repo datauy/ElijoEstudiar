@@ -35,15 +35,15 @@
         <div class="rombo_azul_chico"></div>
 
         <div class="que estudiar_title">¿Qué querés estudiar?</div>
-        <input type="text" class="que estudiar_input" />
+        <input type="text" class="que estudiar_input" ng-model="que" ng-change="onSearchChangeQue()" />
         <div class="button_listado_completo">Ver listado completo</div>
     		<div class="donde estudiar_title">¿Dónde querés estudiar?</div>
-    		<input type="text" class="donde estudiar_input" />
+    		<input type="text" class="donde estudiar_input" ng-model="donde" ng-change="onSearchChangeDonde()" />
     		<div class="turno estudiar_title">Turno</div>
         <div class="turnos-wrapper">
-          <div class="turnos turno_matutino">Matutino</div>
-      		<div class="turnos turno_vespertino_off">Vespertino</div>
-      		<div class="turnos turno_nocturno_off">Nocturno</div>
+          <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino">Matutino</div>
+      		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino_off">Vespertino</div>
+      		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno_off">Nocturno</div>
         </div>
     		<!--<div class="plan estudiar_title">¿Cuál es tu plan?</div>
     		<input type="text" class="cual estudiar_input" />-->

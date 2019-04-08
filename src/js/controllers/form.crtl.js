@@ -4,10 +4,11 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   '$ionicPlatform',
   '$ionicPopup',
   'LocationsService',
+  'ApiObject',
   'DBService',
   '$ionicSlideBoxDelegate',
   '$ionicScrollDelegate',
-  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, DBService, $ionicSlideBoxDelegate,
+  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiObject, DBService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
     $scope.form = {};
@@ -16,7 +17,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.form.ultimo_anio_aprobado = "";
     $scope.form.plan = "";
     $scope.form.lugar = "";
-    $scope.form.turno = "";
+    $scope.form.que = "";
+    $scope.form.donde = "";
+    $scope.form.turno = "matutino";
 
     $scope.restarEdad = function(){
       if($scope.form.edad > 4){
@@ -37,6 +40,27 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var selected = document.getElementById(idNivel);
       selected.className = "nivel_"+selected.id +" nivel";
       $scope.form.ultimo_nivel_aprobado = idNivel;
+    }
+
+    $scope.select_turno = function(idTurno){
+      var x = document.getElementsByClassName("turnos");
+      var i;
+      for (i = 0; i < x.length; i++) {
+          x[i].className = "turnos turno_"+ x[i].id +"_off";
+      }
+      var selected = document.getElementById(idTurno);
+      selected.className = "turnos turno_"+ idTurno;
+      $scope.form.turno = idTurno;
+    }
+
+    $scope.onSearchChangeQue = function(){
+      ApiObject.searchQueEstudiar.then(function (response) {
+        console.log(response);
+      });
+    }
+
+    $scope.onSearchChangeDonde = function(){
+
     }
 
 	  $scope.next = function() {

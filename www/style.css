@@ -475,6 +475,7 @@ transform: translateX(-50%); /*or  transform: translateX(-50%);*/
 left: 50%;
 transform: translateX(-50%); /*or  transform: translateX(-50%);*/
 top: 399px;
+text-align:center;
 }
 
 .turnos{
@@ -482,9 +483,8 @@ top: 399px;
 	width: 90px;
   height: 117px;
   object-fit: contain;
-	position: relative;
 	margin-right: 10px;
-	float: left;
+  display: inline-block;
 	background-size:     90px 95px;
 	background-repeat:   no-repeat;
 	background-position: 0 0;
@@ -557,7 +557,25 @@ background-image:    url(./img/rombo_azul_chico.svg);
 }
 
 .button_listado_completo{
-
+	width: 118px;
+  height: 29px;
+  border-radius: 5px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.11);
+  background-color: #ffffff;
+	font-family: Nunito;
+font-size: 11px;
+font-weight: normal;
+font-style: normal;
+font-stretch: normal;
+line-height: normal;
+letter-spacing: normal;
+text-align: center;
+color: #122254;
+position: absolute;
+left: 50%;
+transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+top: 173px;
+padding-top: 7px;
 }
 /*End form*/
 
