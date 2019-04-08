@@ -121,6 +121,19 @@ background-repeat:   no-repeat;
 background-position: center center;
 }
 
+.rombo_amarillo_chico{
+	width: 84px;
+  height: 128px;
+	object-fit: contain;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image:    url(./img/rombo_amarillo_chico.svg);
+	background-size:     100% 100%;
+	background-repeat:   no-repeat;
+	background-position: center center;
+}
+
 /*Form step 1*/
 .rombo_amarillo{
 	width: 100.8px;
@@ -393,6 +406,154 @@ display: flex;
 justify-content: center; /* align horizontal */
 align-items: center;
 text-transform: uppercase;
+}
+
+.que.estudiar_title{
+	top: 94px;
+}
+
+.donde.estudiar_title{
+	top: 244px;
+}
+
+.turno.estudiar_title{
+	top: 354px;
+color: #122254;
+}
+
+.estudiar_title{
+	width: 230px;
+	height: 29px;
+	font-family: Nunito;
+   font-size: 20px;
+   font-weight: 300;
+   font-style: normal;
+   font-stretch: normal;
+   line-height: 1.45;
+   letter-spacing: normal;
+   text-align: center;
+   color: #000000;
+	position: absolute;
+left: 50%;
+transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+}
+
+.que.estudiar_input{
+	top: 130px;
+}
+
+.donde.estudiar_input{
+	top: 285px;
+}
+
+.estudiar_input{
+	width: 294.2px !important;
+ height: 35px !important;
+ border-bottom: solid 1px #4a90e2 !important;
+ border-top: none !important;
+ border-left: none !important;
+ border-right: none !important;
+ font-family: Nunito !important;
+  font-size: 15px !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-stretch: normal !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+  text-align: center !important;
+  color: #4a90e2 !important;
+	position: absolute;
+left: 50%;
+transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+}
+
+.turnos-wrapper{
+	width: calc(100% - 60px);
+ height: 117px;
+	position: absolute;
+left: 50%;
+transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+top: 0;
+}
+
+.turnos{
+	width: 90px;
+  height: 117px;
+  object-fit: contain;
+	position: relative;
+	margin-right: 19px;
+	background-size:     90px 95px;
+	background-repeat:   no-repeat;
+	background-position: 0 0;
+	font-family: Nunito;
+   font-size: 12px;
+   font-weight: 600;
+   font-style: normal;
+   font-stretch: normal;
+   line-height: normal;
+   letter-spacing: 0.3px;
+   text-align: center;
+   color: #122254;
+}
+
+.turno_matutino{
+	background-image:    url(./img/matutino.svg);
+}
+
+.turno_matutino_off{
+	background-image:    url(./img/matutino_off.svg);
+	font-weight: normal;
+	color: #bec1cb;
+}
+
+.turno_vespertino{
+	background-image:    url(./img/vespertino.svg);
+}
+
+.turno_vespertino_off{
+	background-image:    url(./img/vespertino_off.svg);
+	font-weight: normal;
+	color: #bec1cb;
+}
+
+.turno_nocturno{
+	background-image:    url(./img/nocturno.svg);
+}
+
+.turno_nocturno_off{
+	background-image:    url(./img/nocturno_off.svg);
+	font-weight: normal;
+	color: #bec1cb;
+}
+
+.rombo_amarillo_derecha{
+	width: 40px;
+   height: 269px;
+   object-fit: contain;
+	 position: absolute;
+	 top:94px;
+	 right: 0;
+	 background-size:     contain;
+ background-repeat:   no-repeat;
+ background-position: center center;
+ background-image:    url(./img/rombo_amarillo_derecha.svg);
+}
+
+.rombo_azul_chico{
+	width: 57px;
+  height: 161px;
+  object-fit: contain;
+	position: absolute;
+bottom:0;
+left: 0;
+background-size:     contain;
+background-repeat:   no-repeat;
+background-position: center center;
+background-image:    url(./img/rombo_azul_chico.svg);
+}
+
+.button_listado_completo{
+
 }
 /*End form*/
 
