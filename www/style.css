@@ -447,6 +447,7 @@ transform: translateX(-50%); /*or  transform: translateX(-50%);*/
 }
 
 .estudiar_input{
+	background: transparent;
 	width: 294.2px !important;
  height: 35px !important;
  border-bottom: solid 1px #4a90e2 !important;
@@ -468,20 +469,22 @@ transform: translateX(-50%); /*or  transform: translateX(-50%);*/
 }
 
 .turnos-wrapper{
-	width: calc(100% - 60px);
+	width: calc(100% - 20px);
  height: 117px;
 	position: absolute;
 left: 50%;
 transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-top: 0;
+top: 399px;
 }
 
 .turnos{
+	z-index: 99999;
 	width: 90px;
   height: 117px;
   object-fit: contain;
 	position: relative;
-	margin-right: 19px;
+	margin-right: 10px;
+	float: left;
 	background-size:     90px 95px;
 	background-repeat:   no-repeat;
 	background-position: 0 0;
@@ -494,7 +497,8 @@ top: 0;
    letter-spacing: 0.3px;
    text-align: center;
    color: #122254;
-}
+	 padding-top: 95px;
+ }
 
 .turno_matutino{
 	background-image:    url(./img/matutino.svg);
@@ -544,7 +548,7 @@ top: 0;
   height: 161px;
   object-fit: contain;
 	position: absolute;
-bottom:0;
+bottom:-20px;
 left: 0;
 background-size:     contain;
 background-repeat:   no-repeat;
