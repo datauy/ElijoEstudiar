@@ -129,61 +129,18 @@ pmb_im.controllers.controller('MapController', [
     $scope.loadPinsLayer = function(establecimientos){
       if(establecimientos!=null){
         //Recorrer los establicimientos y crear los pines
-      }else{
-        console.log("No hay establecimientos cargados");
-      }
-        /*document.getElementById("spinner").style.display = "block";
         leafletData.getMap().then(function(map) {
-          PinService.getAll().then(function (response) {
-            if(PinService.lastPinsResponse==null || (PinService.lastPinsResponse && PinService.lastPinsResponse!=response)){
-              if($scope.online_user_geo_array){
-                $scope.usersVisible = [];
-                $scope.online_user_geo_array.forEach(function(layer,key){
-                  map.removeLayer(layer);
-                })
-              }
-              PinService.lastPinsResponse = response;
-              $scope.reportsByState = {};
-              var pinsArray = response.data.features;
-              $scope.online_users_geo = response.data.features;
-              pinsArray.forEach(function(feature){
-                if (feature.properties) {
-                    var lon = feature.geometry.coordinates[0];
-                    var lat = feature.geometry.coordinates[1];
-                    if(lon&&lat){
-                      var onlineStatus = feature.properties.Online_status;
-                      var icon = feature.properties.Icon;
-                      if(icon=="anon"){
-                        icon = "./img/icon-user-anonymous.png";
-                      }
-                      var icon_shadow = './img/generic_pin_red.png';
-                      if(onlineStatus=="Online"){
-                        icon_shadow = './img/generic_pin_green.png';
-                      }
-                      var markerIcon = L.icon({
-                        shadowUrl: icon_shadow,
-                        shadowSize:   [100, 138],
-                        shadowAnchor: [44, 138],
-                        iconUrl: icon,
-                        iconSize: [46, 46],
-                        iconAnchor: [24, 120],
-                        popupAnchor: [0, -138]
-                      });
-                      var layer = L.marker([lat, lon], {icon: markerIcon});
-                      layer.feature = feature;
-                      $scope.online_user_geo_array[layer.feature.properties.Uid] = layer;
-                      if (feature.properties) {
-			//ACA SETEAR EL ONCLICK PARA LOS PINES (se puede abrir popup en el mapa o levantar un modal o lo que quieran)
-                      }
-                    }
-                  }
-              });
-              document.getElementById("spinner").style.display = "none";
-              $scope.hideOffScreenPins();
+          establecimientos.forEach(function(feature){
+            if(feature.lat && feature.lon){
+              var marker = L.marker([feature.lat, feature.lon]):
+              marker.bindPopup("<b>"+feature.nombre+"</b>").openPopup();
+              marker.addTo(map);
             }
-          });
-
-        });*/
+          })
+        })
+      }else{
+        //console.log("No hay establecimientos cargados");
+      }
     }
 
 

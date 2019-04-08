@@ -158,17 +158,18 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
               console.log(response);
               ApiService.lastSearchResponseEstablecimientos = response;
               //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
-              ApiService.updateMapPins();
               $scope.establecimientos = response;
+              ApiService.updateMapPins($scope.establecimientos);
             });
             if($scope.establecimientos==null){
               //ESTO SE PRECARGA PARA LA REUNION CON ROMANO EN CASO DE QUE NO ESTE LA API QUE RECIBE LOS FILTROS Y DEVUELVE LOS ESTABLECIMIENTOS
                $scope.establecimientos = [
-                 {nombre: "Liceo Nº 1", id: 1214},
-                 {nombre: "Liceo Nº 2", id: 2434},
+                 {nombre: "Liceo Nº 1", id: 1214, lat: -34.906346, lon: -56.172065 },
+                 {nombre: "Liceo Nº 2", id: 2434, lat: -34.902754, lon: -56.164127 },
                  {nombre: "Liceo Nº 7", id: 4324},
                  {nombre: "Liceo Juan Zorrilla", id: 5345}
                ];
+               ApiService.updateMapPins($scope.establecimientos);
             }
         }
       }

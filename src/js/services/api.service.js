@@ -62,8 +62,8 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
       }
     }
 
-    ApiObject.updateMapPins = function(){
-      ApiObject.mapScope.loadPinsLayer(ApiObject.lastSearchResponseEstablecimientos);
+    ApiObject.updateMapPins = function(establecimientos){
+      ApiObject.mapScope.loadPinsLayer(establecimientos);
     }
 
 
