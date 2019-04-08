@@ -1,9 +1,9 @@
 pmb_im.services.factory('ConfigService', ['$http', function($http) {
 
   var ConfigObj = {};
-  ConfigObj.baseURL = "http://backend.educacion.thor.datauy.org";
+  ConfigObj.baseURL = "http://ee_backend.development.datauy.org";
   if(ionic.Platform.isWebView()){
-    ConfigObj.baseURL = "http://backend.educacion.thor.datauy.org";
+    ConfigObj.baseURL = "http://ee_backend.development.datauy.org";
   } else {
     ConfigObj.baseURL = "/backend";
   }

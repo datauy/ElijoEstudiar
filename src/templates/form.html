@@ -35,10 +35,10 @@
         <div class="rombo_azul_chico"></div>
 
         <div class="que estudiar_title">¿Qué querés estudiar?</div>
-        <input type="text" class="que estudiar_input" ng-model="que" ng-change="onSearchChangeQue()" />
-        <div class="button_listado_completo">Ver listado completo</div>
+        <input type="text" id="que_estudiar" class="que estudiar_input" ng-model="form.searchQue" ng-change="onSearchChangeQue()" />
+        <div class="button_listado_completo" ng-click="listAllQueEstudiar()">Ver listado completo</div>
     		<div class="donde estudiar_title">¿Dónde querés estudiar?</div>
-    		<input type="text" class="donde estudiar_input" ng-model="donde" ng-change="onSearchChangeDonde()" />
+    		<input id="donde_estudiar" type="text" class="donde estudiar_input" ng-model="form.searchDonde" ng-change="onSearchChangeDonde()" />
     		<div class="turno estudiar_title">Turno</div>
         <div class="turnos-wrapper">
           <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino">Matutino</div>
@@ -51,16 +51,45 @@
           <button class="form_next_button" ng-click="next()">Continuar</button>
       		<!--<button class="form_back_button" ng-click="previous()">Volver a comenzar</button>-->
         </div>
+        <div id="SearchQueResults">
+          <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
+            <div class='subsistema_container' ng-repeat="subsistema in form.SearchQueResults track by $index">
+              <div class="subsistema_title">{{subsistema.subsis}}</div>
+              <div class='subsistema_curso' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos">
+                <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
+                <div class='curso_tag' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="str in curso.tag">
+                  {{str}}
+                </div>
+              </div>
+            </div>
+          </ion-scroll>
+        </div>
+        <div id="SearchDondeResults">
+          <ion-scroll id="searchDondeResults_scroll" scrollX="false" scrollY="true">
+            <div class='donde_container' ng-repeat="donde in form.SearchDondeResults track by $index">
+              <div class="donde_title" ng-click="selectDondeEstudiarItem({{donde}})">{{donde.loc_dep}}</div>
+            </div>
+          </ion-scroll>
+        </div>
 	    </ion-slide>
 	    <ion-slide>
-    		<div class="tuBusqueda_title">Esta es tu búsqueda</div>
+    		<!--<div class="tuBusqueda_title">Esta es tu búsqueda</div>
     		<input type="text" class="dondeQueresEstudiar_text" value="16 años, Aguas Corrientes, Primaria, Nocturno" />
     		<button>Editar búsqueda</button>
     		<button>Listado</button>
     		<button ng-click="go_to_map()">Mapa</button>
     		<div class="listado_liceo_title">Liceo Nº 1</div>
     		<div class="listado_liceo_title">Liceo Nº 12</div>
-    		<div class="listado_liceo_title">Liceo Nº 135</div>
+    		<div class="listado_liceo_title">Liceo Nº 135</div>-->
+        <div class="rombo_amarillo_chico"></div>
+        <div class="rombo_amarillo_derecha"></div>
+        <div class="que estudiar_title">Esta es tu búsqueda</div>
+        <div id="full_search_str" class="que estudiar_input">{{form.edad}} años, {{form.donde.loc_dep}}, {{form.ultimo_nivel_aprobado}}, {{form.turno}}</div>
+        <div class="button_listado_completo" ng-click="editSearch()">Editar búsqueda</div>
+        <div class="listAndMap-wrapper">
+          <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
+      		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
+        </div>
 	    </ion-slide>
 	  </ion-slide-box>
   </ion-content>

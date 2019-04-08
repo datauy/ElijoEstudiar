@@ -8,7 +8,7 @@
     },
     {
       "path": "/backend",
-      "proxyUrl": "http://backend.educacion.thor.datauy.org"
+      "proxyUrl": "http://ee_backend.development.datauy.org"
     }
   ],
   "gulpStartupTasks": [

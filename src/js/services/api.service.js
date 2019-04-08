@@ -18,6 +18,10 @@ pmb_im.services.factory('ApiService', ['$http', 'leafletData','ConfigService', f
     return $http.get(apiURL + 'search/' + str, {cache: false, params: {hash_id:Math.random()}});
   }
 
+  ApiObject.searchDondeEstudiar = function(str){
+    return $http.get(apiURL + 'searchByLocalidadDepartamento/' + str, {cache: false, params: {hash_id:Math.random()}});
+  }
+
     ApiObject.current = {};
 
 

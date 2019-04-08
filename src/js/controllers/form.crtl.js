@@ -4,22 +4,27 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   '$ionicPlatform',
   '$ionicPopup',
   'LocationsService',
-  'ApiObject',
+  'ApiService',
   'DBService',
   '$ionicSlideBoxDelegate',
   '$ionicScrollDelegate',
-  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiObject, DBService, $ionicSlideBoxDelegate,
+  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, DBService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
     $scope.form = {};
     $scope.form.edad = 16;
-    $scope.form.ultimo_nivel_aprobado = "";
+    $scope.form.ultimo_nivel_aprobado = "primaria";
     $scope.form.ultimo_anio_aprobado = "";
     $scope.form.plan = "";
     $scope.form.lugar = "";
     $scope.form.que = "";
-    $scope.form.donde = "";
+    $scope.form.donde = {};
     $scope.form.turno = "matutino";
+    $scope.form.SearchQueResults = {};
+    $scope.form.SearchDondeResults = {};
+    $scope.form.searchQue = "";
+    $scope.form.searchDonde = "";
+    $scope.form.option = "list";
 
     $scope.restarEdad = function(){
       if($scope.form.edad > 4){
@@ -53,14 +58,77 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form.turno = idTurno;
     }
 
+    $scope.select_option = function(idOption){
+      var x = document.getElementsByClassName("options");
+      var i;
+      for (i = 0; i < x.length; i++) {
+          x[i].className = "options option_"+ x[i].id +"_off";
+      }
+      var selected = document.getElementById(idOption);
+      selected.className = "options option_"+ idOption;
+      $scope.form.option = idOption;
+    }
+
     $scope.onSearchChangeQue = function(){
-      ApiObject.searchQueEstudiar.then(function (response) {
-        console.log(response);
-      });
+      var search = document.getElementById("que_estudiar");
+      var search_str = search.value.trim();
+      if(search_str.length>=3){
+        ApiService.searchQueEstudiar(search_str).then(function (response) {
+          //console.log(response);
+          $scope.form.SearchQueResults = response.data;
+          document.getElementById("SearchQueResults").style.display = "block";
+        });
+      }else{
+        $scope.hideSearchQueResults();
+      }
+    }
+
+    $scope.hideSearchQueResults = function(){
+      document.getElementById("SearchQueResults").style.display = "none";
+    }
+
+    $scope.selectQueEstudiarItem = function(curso){
+      $scope.form.que = curso;
+      $scope.hideSearchQueResults();
+      $scope.form.searchQue = curso.nombre;
+    }
+
+    $scope.listAllQueEstudiar = function(){
+      var search_str = "api-get-all";
+        ApiService.searchQueEstudiar(search_str).then(function (response) {
+          //console.log(response);
+          $scope.form.SearchQueResults = response.data;
+          document.getElementById("SearchQueResults").style.display = "block";
+        });
     }
 
     $scope.onSearchChangeDonde = function(){
+      var search = document.getElementById("donde_estudiar");
+      var search_str = search.value.trim();
+      if(search_str.length>=3){
+        ApiService.searchDondeEstudiar(search_str).then(function (response) {
+          //console.log(response);
+          $scope.form.SearchDondeResults = response.data;
+          document.getElementById("SearchDondeResults").style.display = "block";
+        });
+      }else{
+        $scope.hideSearchDondeResults();
+      }
+    }
 
+    $scope.hideSearchDondeResults = function(){
+      document.getElementById("SearchDondeResults").style.display = "none";
+    }
+
+    $scope.selectDondeEstudiarItem = function(donde){
+      $scope.form.donde = donde;
+      $scope.hideSearchDondeResults();
+      $scope.form.searchDonde = donde.loc_dep;
+    }
+
+    $scope.editSearch = function(){
+      $ionicSlideBoxDelegate.previous();
+      $ionicSlideBoxDelegate.previous();
     }
 
 	  $scope.next = function() {

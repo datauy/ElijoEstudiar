@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="65" viewBox="0 0 64 65">
+    <defs>
+        <path id="b" d="M38.24 5.95l19.148 19.148a9 9 0 0 1 0 12.728L38.24 56.973a9 9 0 0 1-12.728 0L6.364 37.826a9 9 0 0 1 0-12.728L25.512 5.95a9 9 0 0 1 12.728 0z"/>
+        <filter id="a" width="111.8%" height="112.6%" x="-5.9%" y="-1.9%" filterUnits="objectBoundingBox">
+            <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.111611187 0"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="nonzero" opacity=".437">
+        <g transform="translate(0 -2)">
+            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+            <use fill="#6DD4E3" xlink:href="#b"/>
+        </g>
+        <g fill="#FFF" transform="translate(22 24)">
+            <rect width="17.684" height="2.2" x="3.316" rx="1.1"/>
+            <rect width="2.211" height="2.2" rx="1.1"/>
+            <rect width="17.684" height="2.2" x="3.316" y="4.4" rx="1.1"/>
+            <rect width="2.211" height="2.2" y="4.4" rx="1.1"/>
+            <rect width="17.684" height="2.2" x="3.316" y="8.8" rx="1.1"/>
+            <rect width="2.211" height="2.2" y="8.8" rx="1.1"/>
+        </g>
+    </g>
+</svg>
