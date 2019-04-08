@@ -58,17 +58,6 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
     controller: 'AbsController'
   })
 
-.state('app.map', {
-    cache: false,
-    url: "/map",
-    views: {
-      'menuContent' :{
-        templateUrl: "templates/map.html",
-        controller : "MapController"
-      }
-    }
-  })
-
 .state('app.form', {
   cache: false,
   url: "/form",
@@ -76,6 +65,10 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
     'menuContent' :{
       templateUrl: "templates/form.html",
       controller : "FormCtrl"
+    },
+    'mapView' :{
+      templateUrl: "templates/map.html",
+      controller : "MapController"
     }
   }
 })

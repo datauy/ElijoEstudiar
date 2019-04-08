@@ -18,13 +18,14 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.form.plan = "";
     $scope.form.lugar = "";
     $scope.form.que = "";
-    $scope.form.donde = {};
+    $scope.form.donde = "";
     $scope.form.turno = "matutino";
     $scope.form.SearchQueResults = {};
     $scope.form.SearchDondeResults = {};
     $scope.form.searchQue = "";
     $scope.form.searchDonde = "";
     $scope.form.option = "list";
+    $scope.establecimientos = null;
 
     $scope.restarEdad = function(){
       if($scope.form.edad > 4){
@@ -67,6 +68,14 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var selected = document.getElementById(idOption);
       selected.className = "options option_"+ idOption;
       $scope.form.option = idOption;
+      if(idOption=="map"){
+        document.getElementById("map_container").style.visibility="visible";
+        document.getElementById("list_container").style.display="none";
+      }
+      if(idOption=="list"){
+        document.getElementById("list_container").style.display="block";
+        document.getElementById("map_container").style.visibility="hidden";
+      }
     }
 
     $scope.onSearchChangeQue = function(){
@@ -139,9 +148,35 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 	    $ionicSlideBoxDelegate.previous();
 	  };
 
-	  $scope.go_to_map = function(){
+    $scope.slideHasChanged = function(index){
+      $scope.select_option("list");
+      if(index==2){
+        //index 2 es el slide que tiene el botón del mapa y de el listado
+        ApiService.updateFilters($scope.form);
+        if(ApiService.filters!=null){
+            ApiService.getEstablecimientosByFilters().then(function (response) {
+              console.log(response);
+              ApiService.lastSearchResponseEstablecimientos = response;
+              //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
+              ApiService.updateMapPins();
+              $scope.establecimientos = response;
+            });
+            if($scope.establecimientos==null){
+              //ESTO SE PRECARGA PARA LA REUNION CON ROMANO EN CASO DE QUE NO ESTE LA API QUE RECIBE LOS FILTROS Y DEVUELVE LOS ESTABLECIMIENTOS
+               $scope.establecimientos = [
+                 {nombre: "Liceo Nº 1", id: 1214},
+                 {nombre: "Liceo Nº 2", id: 2434},
+                 {nombre: "Liceo Nº 7", id: 4324},
+                 {nombre: "Liceo Juan Zorrilla", id: 5345}
+               ];
+            }
+        }
+      }
+    }
+
+	  /*$scope.go_to_map = function(){
 	    $state.go("app.map");
-	  }
+	  }*/
 
   }
 ]);

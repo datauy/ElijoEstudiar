@@ -1,4 +1,4 @@
-<ion-view title="Educación ALTEC" hide-nav-bar="true" class="">
+<ion-view title="ElijoEstudiar" hide-nav-bar="true" class="">
   <ion-content scroll="false">
 	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
 	    <ion-slide>
@@ -73,14 +73,6 @@
         </div>
 	    </ion-slide>
 	    <ion-slide>
-    		<!--<div class="tuBusqueda_title">Esta es tu búsqueda</div>
-    		<input type="text" class="dondeQueresEstudiar_text" value="16 años, Aguas Corrientes, Primaria, Nocturno" />
-    		<button>Editar búsqueda</button>
-    		<button>Listado</button>
-    		<button ng-click="go_to_map()">Mapa</button>
-    		<div class="listado_liceo_title">Liceo Nº 1</div>
-    		<div class="listado_liceo_title">Liceo Nº 12</div>
-    		<div class="listado_liceo_title">Liceo Nº 135</div>-->
         <div class="rombo_amarillo_chico"></div>
         <div class="rombo_amarillo_derecha"></div>
         <div class="que estudiar_title">Esta es tu búsqueda</div>
@@ -89,6 +81,11 @@
         <div class="listAndMap-wrapper">
           <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
       		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
+        </div>
+        <div id="list_container">
+          <div class='establecimiento' ng-repeat="stablishment in establecimientos track by $index">
+            {{stablishment.nombre}}
+          </div>
         </div>
 	    </ion-slide>
 	  </ion-slide-box>

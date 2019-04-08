@@ -773,6 +773,45 @@ color: #000000;
 text-overflow: ellipsis;
 white-space: nowrap;
 }
+
+#map_container{
+	position: absolute;
+    width: 100%;
+    height: calc(100% - 370px);
+    top: 370px;
+    left: 0px;
+		visibility: hidden;
+}
+
+#list_container{
+	position: absolute;
+    width: 100%;
+    height: calc(100% - 370px);
+    top: 370px;
+    left: 0px;
+}
+
+.establecimiento{
+	width: 295px;
+	height: 49px;
+	border-radius: 5px;
+	border: solid 1px #4a90e2;
+	font-family: Nunito;
+	font-size: 14px;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 0.4px;
+	color: #4a90e2;
+	padding-top: 14.4px;
+	padding-left: 13px;
+	position: relative;
+	margin-top: 0;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 11px;
+}
 /*End form*/
 
 /*FIN EDUCACION*/

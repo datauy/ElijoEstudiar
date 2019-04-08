@@ -1,6 +1,7 @@
-pmb_im.services.factory('ApiService', ['$http', 'leafletData','ConfigService', function($http, leafletData, ConfigService) {
+pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http, ConfigService) {
 
   var apiURL = ConfigService.baseURL + "/api/";
+
 /**
    * Constructor, with class name
    */
@@ -8,11 +9,6 @@ pmb_im.services.factory('ApiService', ['$http', 'leafletData','ConfigService', f
     angular.extend(this, _data);
   }
 
-
-  /*ApiObject.getAllMessagesToUser = function(username,password,uid,author_uid){
-    var body = 'user='+username+'&password='+password+'&author_uid='+author_uid+'&uid='+uid+'&hash_id='+Math.random();
-    return $http.post(apiURL + 'get_all_messages_to_user', body,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
-  }*/
 
   ApiObject.searchQueEstudiar = function(str){
     return $http.get(apiURL + 'search/' + str, {cache: false, params: {hash_id:Math.random()}});
@@ -22,19 +18,53 @@ pmb_im.services.factory('ApiService', ['$http', 'leafletData','ConfigService', f
     return $http.get(apiURL + 'searchByLocalidadDepartamento/' + str, {cache: false, params: {hash_id:Math.random()}});
   }
 
-    ApiObject.current = {};
+    ApiObject.filters = null;
+    ApiObject.mapScope = null;
+    ApiObject.formScope = {};
+    ApiObject.lastSearchResponseEstablecimientos = null;
 
+    ApiObject.updateFilters = function(filtersObject){
+      ApiObject.filters = filtersObject;
+      if(ApiObject.mapScope != null){
+        ApiObject.mapScope.filtersUpdated();
+      }
+    }
 
-    /**
-     * Static method, assigned to class
-     * Instance ('this') is not available in static context
-     */
-    ApiObject.build = function(_data) {
+    ApiObject.createFilterParamsForGetRequest = function(){
+      var params = {
+        hash_id: Math.random(),
+        edad: ApiObject.filters.edad,
+        ultimo_nivel_aprobado: ApiObject.filters.ultimo_nivel_aprobado,
+        ultimo_anio_aprobado: ApiObject.filters.ultimo_anio_aprobado,
+        /*plan: ApiObject.filters.plan,
+        lugar: ApiObject.filters.lugar,*/
+        turno: ApiObject.filters.turno
+      };
+      if(ApiObject.filters.que!=""){
+        params.queEstudiarId = ApiObject.filters.que.id;
+        params.queEstudiarNombre = ApiObject.filters.que.nombre;
+        params.queEstudiarTagUno = ApiObject.filters.que.tag[0];
+        params.queEstudiarTagDos = ApiObject.filters.que.tag[1];
+      }
+      if(ApiObject.filters.donde!=""){
+        params.dondeEstudiarDepartamento = ApiObject.filters.donde.departamento;
+        params.dondeEstudiarLocalidad = ApiObject.filters.donde.localidad;
+        params.dondeEstudiarLat = ApiObject.filters.donde.coordenadas.lat;
+        params.dondeEstudiarLon = ApiObject.filters.donde.coordenadas.lon;
+      }
+      return params;
+    }
 
-      return new ApiObject(
-        _data
-      );
-    };
+    ApiObject.getEstablecimientosByFilters = function(){
+      if(ApiObject.filters!=null){
+        var parameters = ApiObject.createFilterParamsForGetRequest();
+        return $http.get(apiURL + 'getEstablecimientos/', {cache: false, params: parameters});
+      }
+    }
+
+    ApiObject.updateMapPins = function(){
+      ApiObject.mapScope.loadPinsLayer(ApiObject.lastSearchResponseEstablecimientos);
+    }
 
 
     /**
