@@ -132,7 +132,7 @@ pmb_im.controllers.controller('MapController', [
         leafletData.getMap().then(function(map) {
           establecimientos.forEach(function(feature){
             if(feature.lat && feature.lon){
-              var marker = L.marker([feature.lat, feature.lon]):
+              var marker = L.marker([feature.lat, feature.lon]);
               marker.bindPopup("<b>"+feature.nombre+"</b>").openPopup();
               marker.addTo(map);
             }

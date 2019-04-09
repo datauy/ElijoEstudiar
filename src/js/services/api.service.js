@@ -52,13 +52,20 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
         params.dondeEstudiarLat = ApiObject.filters.donde.coordenadas.lat;
         params.dondeEstudiarLon = ApiObject.filters.donde.coordenadas.lon;
       }
+      if ( ApiObject.filters.que.tipo == 'tipo' ) {
+        params = ApiObject.filters.que.id+'/all';
+      }
+      else {
+        params = 'all/'+ApiObject.filters.que.id;
+      }
       return params;
     }
 
     ApiObject.getEstablecimientosByFilters = function(){
       if(ApiObject.filters!=null){
         var parameters = ApiObject.createFilterParamsForGetRequest();
-        return $http.get(apiURL + 'getEstablecimientos/', {cache: false, params: parameters});
+        console.log(parameters);
+        return $http.get(apiURL + 'establecimiento-por-tipo/'+parameters);//, {cache: false, params: parameters});
       }
     }
 
