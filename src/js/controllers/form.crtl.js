@@ -28,13 +28,13 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.establecimientos = null;
 
     $scope.restarEdad = function(){
-      if($scope.form.edad > 4){
-        $scope.form.edad = $scope.form.edad - 1;
+      if(parseInt($scope.form.edad) > 4){
+        $scope.form.edad = parseInt($scope.form.edad) - 1;
       }
     };
 
     $scope.sumarEdad = function(){
-      $scope.form.edad = $scope.form.edad + 1;
+      $scope.form.edad = parseInt($scope.form.edad) + 1;
     };
 
     $scope.selectUltimoNivel = function(idNivel){
@@ -69,12 +69,18 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       selected.className = "options option_"+ idOption;
       $scope.form.option = idOption;
       if(idOption=="map"){
+        document.getElementById("map_wrapper").style.display="block";
+        document.getElementById("map_container").style.display="block";
         document.getElementById("map_container").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
+        document.getElementById("form_container").style.minHeight="370px";
       }
       if(idOption=="list"){
+        document.getElementById("map_wrapper").style.display="none";
         document.getElementById("list_container").style.display="block";
         document.getElementById("map_container").style.visibility="hidden";
+        document.getElementById("map_container").style.display="none";
+        document.getElementById("form_container").style.minHeight="640px";
       }
     }
 
@@ -152,6 +158,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.select_option("list");
       if(index==2){
         //index 2 es el slide que tiene el botón del mapa y de el listado
+        document.getElementById("map_container").style.display="none";
         ApiService.updateFilters($scope.form);
         if(ApiService.filters!=null){
             ApiService.getEstablecimientosByFilters().then(function (response) {

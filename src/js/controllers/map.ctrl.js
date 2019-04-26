@@ -10,6 +10,7 @@ pmb_im.controllers.controller('MapController', [
   'MapService',
   'ModalService',
   'ApiService',
+  '$timeout',
   function(
     $scope,
     _,
@@ -21,7 +22,8 @@ pmb_im.controllers.controller('MapController', [
     $location,
     MapService,
     ModalService,
-    ApiService
+    ApiService,
+    $timeout
   ) {
 
     /**
@@ -39,12 +41,13 @@ pmb_im.controllers.controller('MapController', [
       //DBService.initDB();
       ApiService.mapScope = $scope;
       $scope.create_online_map();
-    });
-
-    $scope.$on("$ionicView.afterEnter", function() {
-    	document.getElementById("spinner").style.display = "none";
+      document.getElementById("spinner").style.display = "none";
       document.getElementById("pinspinner").style.display = "none";
     });
+
+    /*$scope.$on("$ionicView.afterEnter", function() {
+      document.getElementById("map_wrapper").style.display="none";
+    });*/
 
     $scope.filtersUpdated = function(){
       console.log(ApiService.filters);
@@ -73,6 +76,9 @@ pmb_im.controllers.controller('MapController', [
           zoom: 16
         }
       };
+      $timeout(function() {
+        document.getElementById("map_wrapper").style.display="none";
+      },1000);
       /*leafletData.getMap().then(function(map) {
         map.on('moveend', $scope.hideOffScreenPins);
       });*/
@@ -127,6 +133,7 @@ pmb_im.controllers.controller('MapController', [
     }
 
     $scope.loadPinsLayer = function(establecimientos){
+      console.log(establecimientos);
       if(establecimientos!=null){
         //Recorrer los establicimientos y crear los pines
         leafletData.getMap().then(function(map) {

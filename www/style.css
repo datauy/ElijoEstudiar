@@ -197,11 +197,12 @@ color: #ffffff;
 display: flex;
 justify-content: center; /* align horizontal */
 align-items: center;
+cursor: pointer;
 }
 .edad_text{
 	width: 90px;
-  height: 94.3px;
-  object-fit: contain;
+  height: 94.3px !important;
+  object-fit: contain !important;
 	/*border-radius: 31px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.11);*/
  background-image:    url(./img/rombo_edad.svg);
@@ -211,18 +212,20 @@ align-items: center;
  position: absolute;
  left: 52px;
  top: 0px;
- font-family: Nunito;
- font-size: 27px;
- font-weight: bold;
- font-style: normal;
- font-stretch: normal;
- line-height: normal;
- letter-spacing: normal;
- text-align: center;
- color: #ffffff;
-display: flex;
-justify-content: center; /* align horizontal */
-align-items: center;
+ font-family: Nunito !important;
+ font-size: 27px !important;
+ font-weight: bold !important;
+ font-style: normal !important;
+ font-stretch: normal !important;
+ line-height: normal !important;
+ letter-spacing: normal !important;
+ text-align: center !important;
+ color: #ffffff !important;
+display: flex !important;
+justify-content: center !important;
+align-items: center !important;
+border: 0 !important;
+cursor: pointer;
 }
 .edad_mas{
 	width: 40.4px;
@@ -249,6 +252,7 @@ color: #ffffff;
 display: flex;
 justify-content: center; /* align horizontal */
 align-items: center;
+cursor: pointer;
 }
 .ultimoNivelAprobado_title{
 	width: 210px;
@@ -277,7 +281,7 @@ top: 300px;
 background-image:    url(./img/linea_niveles.svg);
 /*background-size:     100% 100%;*/
 background-repeat:   no-repeat;
-background-position: 20px 13px;
+background-position: 15px 13px;
 }
 .nivel.hidden{
 	background: transparent;
@@ -302,6 +306,7 @@ line-height: normal;
 letter-spacing: 0.4px;
 text-align: center;
 color: #4acee2;
+cursor: pointer;
 }
 .nivel_primaria{
 	position: absolute;
@@ -385,6 +390,7 @@ select {
 }
 .form_next_button{
 	width: calc(100% - 80px);
+	max-width: 295px;
   height: 58px;
   border-radius: 5px;
 	border: none;
@@ -478,6 +484,18 @@ top: 246px;
 text-align:center;
 }
 
+.clickable{
+	cursor: pointer;
+}
+
+.primary_button{
+	background-color: #4acee2;
+}
+
+.primary_button:hover{
+	background-color: #4a90e2;
+}
+
 .options{
 	z-index: 99999;
 	width: 64px;
@@ -499,6 +517,7 @@ text-align:center;
   text-align: center;
   color: #122254;
 	 padding-top: 76px;
+	 cursor: pointer;
  }
 
  .option_list{
@@ -549,6 +568,7 @@ text-align:center;
    text-align: center;
    color: #122254;
 	 padding-top: 95px;
+	 cursor: pointer;
  }
 
 .turno_matutino{
@@ -599,7 +619,7 @@ text-align:center;
   height: 161px;
   object-fit: contain;
 	position: absolute;
-bottom:-20px;
+bottom:-30px;
 left: 0;
 background-size:     contain;
 background-repeat:   no-repeat;
@@ -671,16 +691,15 @@ background-color: #ffffff;
 	left: 0;
 	width: 100%;
 	height: 38px;
-	background-color: #9ecbff;
-	font-family: Nunito;
-	font-size: 14px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: 0.4px;
-	text-align: left;
-	color: #fffafa;
+	background-color: #4a90e2;
+  font-family: Nunito;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  color: #ffffff;
 	padding-top: 9px;
 	padding-left: 14px;
 }
@@ -734,37 +753,46 @@ color: #000000;
 	top: 0px;
 	padding-left: 14px;
 	padding-top: 9px;
-	width: 48%;
+	width: 90%;
 	height: 22px;
- font-family: Nunito;
- font-size: 14px;
- font-weight: normal;
- font-style: normal;
- font-stretch: normal;
- line-height: normal;
- letter-spacing: 0.4px;
- text-align: left;
- color: #000000;
-}
-
-.curso_tag{
-	width: 48%;
-  border-radius: 12px;
-  border: solid 1px #4a90e2;
-	position: relative;
-	top: -25px;
-	left: 51%;
-	margin-bottom: 10px;
 	font-family: Nunito;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  letter-spacing: 0.3px;
-  text-align: center;
-  color: #4a90e2;
-	padding: 4px;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+.curso_tag_wrapper{
+	position: relative;
+	padding-left: 14px;
+	padding-top: 9px;
+	width: 100%;
+	height: 60px;
+}
+
+.curso_tag{
+	max-width: 48%;
+	min-height: 18px;
+  border-radius: 7px;
+  background-color: #eeeeee;
+	font-family: Nunito;
+	font-size: 9px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 0.3px;
+	text-align: center;
+	color: #4a90e2;
+	display: inline-block;
+	margin-right: 8px;
+	padding-left: 13px;
+	padding-right: 13px;
+
+	padding-top: 3px;
 }
 
 #full_search_str{
@@ -774,12 +802,20 @@ white-space: nowrap;
 }
 
 #map_container{
-	position: absolute;
+		position: absolute;
+		top: 0;
+		left: 0;
     width: 100%;
-    height: calc(100% - 370px);
-    top: 370px;
-    left: 0px;
+    height: 480px;
+    /*top: 370px;
+    left: 0px;*/
 		visibility: hidden;
+}
+
+#map_wrapper{
+	position: relative;
+	width: 100%;
+	height: 480px;
 }
 
 #list_container{
@@ -812,8 +848,123 @@ white-space: nowrap;
 	margin-right: auto;
 	margin-bottom: 11px;
 }
+
+#foot_container{
+	 position: relative;
+	 bottom: 0;
+	 width: 100%;
+	 height: 298px;
+	 background-color: #4a90e2;
+}
+
+#form_container{
+	position: relative;
+top: 0;
+width: 100%;
+min-height: 640px;
+}
+
+.menu-content.pane{
+  overflow: overlay !important;
+}
 /*End form*/
 
+
+.footer_share{
+	width: 100px;
+  height: 70px;
+  font-family: Nunito;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 3.5;
+  letter-spacing: normal;
+  color: #ffffff;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+	top: 30px;
+	text-align: center;
+}
+
+.footer_share_wrapper{
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+	top: 107px;
+	text-align: center;
+	width: 100px;
+  height: 20px;
+}
+
+.footer_fb{
+	background-size:     contain;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	background-image:    url(./img/fb.svg);
+	width: 9.3px;
+  height: 20px;
+	display: inline-block;
+}
+
+.footer_tw{
+	background-size:     contain;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	background-image:    url(./img/tw.svg);
+	width: 23px;
+  height: 18px;
+	display: inline-block;
+}
+
+.footer_credits{
+	width: 186px;
+  height: 70px;
+  font-family: Nunito;
+  font-size: 10px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 7;
+  letter-spacing: 5.9px;
+  color: #ffffff;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+	top: 142px;
+	text-align: center;
+}
+
+.footer_logos_wrapper{
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+	top: 212px;
+	text-align: center;
+	width: 200px;
+	height: 37px;
+}
+
+.footer_anep{
+	background-size:     contain;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	background-image:    url(./img/anep.svg);
+	width: 90px;
+  height: 37px;
+	display: inline-block;
+}
+
+.footer_data{
+	background-size:     contain;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	background-image:    url(./img/datauy.svg);
+	width: 85px;
+  height: 37px;
+	display: inline-block;
+}
 /*FIN EDUCACION*/
 
 

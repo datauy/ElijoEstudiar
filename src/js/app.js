@@ -84,6 +84,21 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
   }
 })
 
+.state('app.search', {
+  cache: false,
+  url: "/search",
+  views: {
+    'menuContent' :{
+      templateUrl: "templates/search.html",
+      controller : "SearchCtrl"
+    },
+    'mapView' :{
+      templateUrl: "templates/map.html",
+      controller : "MapController"
+    }
+  }
+})
+
 // if none of the above states are matched, use this as the fallback
 $urlRouterProvider.otherwise('/app/intro');
 
