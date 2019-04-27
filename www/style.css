@@ -894,8 +894,8 @@ min-height: 640px;
 	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
 	top: 107px;
 	text-align: center;
-	width: 100px;
-  height: 20px;
+	width: 130px;
+  height: 32px;
 }
 
 .footer_fb{
@@ -903,9 +903,10 @@ min-height: 640px;
 	background-repeat:   no-repeat;
 	background-position: center center;
 	background-image:    url(./img/fb.svg);
-	width: 9.3px;
-  height: 20px;
+	width: 32px;
+  height: 32px;
 	display: inline-block;
+	margin-right: 30px;
 }
 
 .footer_tw{
@@ -913,8 +914,8 @@ min-height: 640px;
 	background-repeat:   no-repeat;
 	background-position: center center;
 	background-image:    url(./img/tw.svg);
-	width: 23px;
-  height: 18px;
+	width: 32px;
+  height: 32px;
 	display: inline-block;
 }
 
@@ -942,8 +943,8 @@ min-height: 640px;
 	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
 	top: 212px;
 	text-align: center;
-	width: 200px;
-	height: 37px;
+	width: 250px;
+	height: 38px;
 }
 
 .footer_anep{
@@ -951,19 +952,25 @@ min-height: 640px;
 	background-repeat:   no-repeat;
 	background-position: center center;
 	background-image:    url(./img/anep.svg);
-	width: 90px;
-  height: 37px;
+	width: 98px;
+  height: 36px;
 	display: inline-block;
+	margin-right: 38px;
 }
 
 .footer_data{
 	background-size:     contain;
 	background-repeat:   no-repeat;
 	background-position: center center;
-	background-image:    url(./img/datauy.svg);
-	width: 85px;
-  height: 37px;
+	background-image:    url(./img/data.svg);
+	width: 98px;
+  height: 38px;
 	display: inline-block;
+}
+
+.establecimientoMarker{
+  width: 52px;
+  height: 60px;
 }
 /*FIN EDUCACION*/
 
@@ -1890,56 +1897,17 @@ body {
   margin-bottom: 25px;
 }
 
-.leaflet-marker-icon{
+/*.leaflet-marker-icon{
      border-radius: 50%;
-}
+}*/
 
-.img_inside_marker_popup{
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-
-.name_inside_marker_popup p{
-  text-align: center;
-}
-
-.lastupdate_inside_marker_popup{
-  color: grey;
-  font-size: 10pt;
-  margin-top: -10px;
-}
-
-.leaflet-popup-content p{
+/*.leaflet-popup-content p{
   margin: 10px 0; !important
-}
+}*/
 
-.leaflet-popup-content p.lastupdate_inside_marker_popup, .leaflet-popup-content p.gender_inside_marker_popup, .leaflet-popup-content p.interested_inside_marker_popup{
+/*.leaflet-popup-content p.lastupdate_inside_marker_popup, .leaflet-popup-content p.gender_inside_marker_popup, .leaflet-popup-content p.interested_inside_marker_popup{
   margin-top: -10px;
-}
-
-.status_inside_marker_popup{
-  color: black;
-  font-size: 12pt;
-}
-
-.gender_inside_marker_popup{
-  color: black;
-  font-size: 12pt;
-}
-
-.interested_inside_marker_popup{
-  color: green;
-  font-size: 12pt;
-  margin-top: -10px;
-}
-
-.userpicture_inside_modal{
-  width: 150px;
-  height: 150px;
-  border-radius: 25px;
-  background-size: cover !important;
-}
+}*/
 
 
 .message_icon_inside_marker_popup img{

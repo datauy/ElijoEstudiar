@@ -139,7 +139,16 @@ pmb_im.controllers.controller('MapController', [
         leafletData.getMap().then(function(map) {
           establecimientos.forEach(function(feature){
             if(feature.lat && feature.lon){
-              var marker = L.marker([feature.lat, feature.lon]);
+              var markerIcon = L.icon({
+                    iconUrl: './img/blue_pin.svg',
+                    //shadowUrl: 'leaf-shadow.png',
+                    iconSize:     [48, 65], // size of the icon
+                    //shadowSize:   [50, 64], // size of the shadow
+                    iconAnchor:   [24, 65], // point of the icon which will correspond to marker's location
+                    //shadowAnchor: [4, 62],  // the same for the shadow
+                    popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
+                });
+              var marker = L.marker([feature.lat, feature.lon], {icon: markerIcon});
               marker.bindPopup("<b>"+feature.nombre+"</b>").openPopup();
               marker.addTo(map);
             }

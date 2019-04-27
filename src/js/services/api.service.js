@@ -31,6 +31,7 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     }
 
     ApiObject.createFilterParamsForGetRequest = function(){
+      console.log(ApiObject.filters);
       var params = {
         hash_id: Math.random(),
         edad: ApiObject.filters.edad,
