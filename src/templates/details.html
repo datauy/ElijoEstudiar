@@ -1,0 +1,21 @@
+<ion-modal-view class="details_modal">
+  <div class="rombo_amarillo_chico"></div>
+  <div class="back_arrow clickable" ng-click="close_modal()"></div>
+  <div class="add_to_fav_icon_detail clickable" ng-click="add_to_fav('{{establecimiento.id}}')">Agregar a favoritos</div>
+  <div id="modal_map_container" class="modal_map_container" >
+      <leaflet id="secondary_map" data-tap-disabled="true" defaults="modal_map.defaults" center="modal_map.center" markers="modal_map.markers" ng-if="modal_map"></leaflet>
+  </div>
+  <div style="background-image: url('{{establecimiento.imagenes.src}}')" class="detail_photo"></div>
+  <div class="detail_depto">{{establecimiento.departamento}}</div>
+  <div class="detail_title">{{establecimiento.title}}</div>
+  <div class="detail_address detail_data">{{establecimiento.direccion}}</div>
+  <div class="detail_phone detail_data">{{establecimiento.telefono}}</div>
+  <div class="detail_web detail_data clickable" ng-click="openWebsite('{{establecimiento.web}}')">Sitio Web</div>
+  <!--<div class="detail_text">{{establecimiento.descripcion}}</div>-->
+  <div class="detail_text detail_data">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tincidunt semper nisi. Aliquam auctor id quam vel elementum. Fusce ut diam eget ante convallis sagittis eu in ex.
+    <br/>
+    Pellentesque sit amet elit auctor, molestie lectus nec, ullamcorper augue. Morbi placerat eleifend elit, at ultricies magna porta a. Vestibulum mollis vulputate lacinia. Sed venenatis imperdiet magna ut sodales. Quisque auctor elementum sapien quis suscipit.
+  </div>
+
+</ion-modal-view>

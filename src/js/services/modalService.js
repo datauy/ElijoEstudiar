@@ -7,6 +7,7 @@ pmb_im.services.factory('ModalService', [ function() {
     if(modalOBJ.activeModal){
       modalOBJ.activeModal.hide();
       modalOBJ.activeModal.remove();
+      modalOBJ.activeModal = null;
     }
   }
 

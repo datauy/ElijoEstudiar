@@ -4,10 +4,12 @@ pmb_im.controllers.controller('IntroCtrl', ['$scope', '$state',
   '$ionicPlatform',
   '$ionicPopup',
   'LocationsService',
-  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService) {
+  'ModalService',
+  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ModalService) {
 
     $scope.$on("$ionicView.beforeEnter", function() {
       document.getElementById("form_container").style.minHeight = "640px";
+      ModalService.checkNoModalIsOpen();
     });
 
     $scope.$on("$ionicView.afterEnter", function() {

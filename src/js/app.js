@@ -20,6 +20,18 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
   url: 'http://backend.educacion.thor.datauy.org'
 })
 
+.directive('select',function(){ //same as "ngSelect"
+    return {
+        restrict: 'E',
+        scope: false,
+        link: function (scope, ele) {
+            ele.on('touchmove touchstart',function(e){
+                e.stopPropagation();
+            })
+        }
+    }
+})
+
 
 .run(function($ionicPlatform, $rootScope, $cordovaKeyboard) {
   $rootScope.VERSION = window.VERSION;
@@ -27,12 +39,14 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-      cordova.plugins.Keyboard.disableScroll(false);
+      //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      //cordova.plugins.Keyboard.disableScroll(true);
     }
+    //window.Keyboard.hideKeyboardAccessoryBar(false);
+    //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
     //$cordovaKeyboard.hideAccessoryBar(false)
-    //$cordovaKeyboard.disableScroll(false)
-    ionic.Platform.isFullScreen = true;
+    //$cordovaKeyboard.disableScroll(true)
+    ionic.Platform.isFullScreen = false;
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
@@ -41,6 +55,11 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
 })
 
 .config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionicConfigProvider) {
+  if (ionic.Platform.isAndroid()) {
+    $ionicConfigProvider.scrolling.jsScrolling(false);
+    $ionicConfigProvider.platform.android.scrolling.jsScrolling(false);
+  }
+
   $compileProvider.debugInfoEnabled(false);
   //$ionicConfigProvider.scrolling.jsScrolling(true);
 

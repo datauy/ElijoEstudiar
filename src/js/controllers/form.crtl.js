@@ -163,10 +163,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         if(ApiService.filters!=null){
             ApiService.getEstablecimientosByFilters().then(function (response) {
               console.log(response);
-              ApiService.lastSearchResponseEstablecimientos = response.data;
+              //ApiService.lastSearchResponseEstablecimientos = response.data;
               //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
               $scope.establecimientos = response.data;
-              ApiService.updateMapPins($scope.establecimientos);
+              ApiService.updateMapPins(response.data);
             });
             /*if($scope.establecimientos==null){
               //ESTO SE PRECARGA PARA LA REUNION CON ROMANO EN CASO DE QUE NO ESTE LA API QUE RECIBE LOS FILTROS Y DEVUELVE LOS ESTABLECIMIENTOS
@@ -180,6 +180,14 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
             }*/
         }
       }
+    }
+
+    $scope.openDetailsModal = function(id){
+      ApiService.getEstablecimientoById(id).then(function (response) {
+        console.log(response);
+        response.data.establecimientos[0].id=id;
+        ApiService.openDetailsModal(response.data.establecimientos[0]);
+      });
     }
 
 	  /*$scope.go_to_map = function(){

@@ -70,8 +70,16 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
       }
     }
 
+    ApiObject.getEstablecimientoById = function(id){
+        return $http.get(apiURL + 'establecimientos-por-id/'+id, {cache: false, params: {hash_id:Math.random()}});
+    }
+
     ApiObject.updateMapPins = function(establecimientos){
       ApiObject.mapScope.loadPinsLayer(establecimientos);
+    }
+
+    ApiObject.openDetailsModal = function(establecimiento){
+      ApiObject.mapScope.openDetailsModal(establecimiento);
     }
 
 

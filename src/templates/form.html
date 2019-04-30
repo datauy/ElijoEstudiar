@@ -56,7 +56,7 @@
           <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
             <div class='subsistema_container' ng-repeat="subsistema in form.SearchQueResults track by $index">
               <div class="subsistema_title">{{subsistema.subsis}}</div>
-              <div class='subsistema_curso' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos">
+              <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos">
                 <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
                 <div class="curso_tag_wrapper">
                   <div class='curso_tag' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="str in curso.tag">
@@ -69,7 +69,7 @@
         </div>
         <div id="SearchDondeResults">
           <ion-scroll id="searchDondeResults_scroll" scrollX="false" scrollY="true">
-            <div class='donde_container' ng-repeat="donde in form.SearchDondeResults track by $index">
+            <div class='donde_container clickable' ng-repeat="donde in form.SearchDondeResults track by $index">
               <div class="donde_title" ng-click="selectDondeEstudiarItem({{donde}})">{{donde.loc_dep}}</div>
             </div>
           </ion-scroll>
@@ -86,7 +86,7 @@
       		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
         </div>
         <div id="list_container">
-          <div class='establecimiento' ng-repeat="stablishment in establecimientos track by $index">
+          <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
             {{stablishment.nombre}}
           </div>
         </div>
