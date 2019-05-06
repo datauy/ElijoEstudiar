@@ -71,7 +71,7 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
 
 .state('app', {
     cache: false,
-    url: "/app",
+    url: "/",
     abstract: true,
     templateUrl: "templates/menu.html",
     controller: 'AbsController'
@@ -79,7 +79,7 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
 
 .state('app.form', {
   cache: false,
-  url: "/form",
+  url: "form",
   views: {
     'menuContent' :{
       templateUrl: "templates/form.html",
@@ -94,7 +94,7 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
 
 .state('app.intro', {
   cache: false,
-  url: "/intro",
+  url: "intro",
   views: {
     'menuContent' :{
       templateUrl: "templates/intro.html",
@@ -105,7 +105,7 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
 
 .state('app.search', {
   cache: false,
-  url: "/search",
+  url: "search",
   views: {
     'menuContent' :{
       templateUrl: "templates/search.html",
@@ -119,6 +119,6 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
 })
 
 // if none of the above states are matched, use this as the fallback
-$urlRouterProvider.otherwise('/app/intro');
+$urlRouterProvider.otherwise('intro');
 
 });

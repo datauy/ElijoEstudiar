@@ -11,11 +11,10 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
 
 
   ApiObject.searchQueEstudiar = function(str){
-    return $http.get(apiURL + 'search/' + str, {cache: false, params: {hash_id:Math.random()}});
+    return $http.get(apiURL + 'search/' + str);
   }
-
   ApiObject.searchDondeEstudiar = function(str){
-    return $http.get(apiURL + 'searchByLocalidadDepartamento/' + str, {cache: false, params: {hash_id:Math.random()}});
+    return $http.get(apiURL + 'ubicaciones?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
   }
 
     ApiObject.filters = null;

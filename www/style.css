@@ -1,5 +1,19 @@
 /*EDUCACION*/
-
+body {
+	font-family: Nunito;
+}
+button {
+	margin-top: 16px;
+	float: left;
+	width: 100%;
+	height: 58px;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-align: center;
+	text-transform: uppercase;
+}
 .intro_rombo_azul{
 	width: 159.8px;
   height: 166.2px;
@@ -28,7 +42,6 @@
 .intro_que_buscas{
 	width: 230px;
 	 height: 22px;
-	 font-family: Nunito;
 	 font-size: 21px;
 	 font-weight: 300;
 	 font-style: normal;
@@ -50,7 +63,7 @@
 	top: 134px;
 	width: 196px;
 	height: 22px;
-	font-family: Nunito;
+
 	font-size: 12px;
 	font-weight: normal;
 	font-style: normal;
@@ -67,7 +80,7 @@
    height: 58px;
    border-radius: 4px;
    background-color: #4a90e2;
-	 font-family: Nunito;
+
 		font-size: 16px;
 		font-weight: normal;
 		font-style: normal;
@@ -90,7 +103,7 @@
 	height: 58px;
 	border-radius: 4px;
 	background-color: #4acee2;
-	font-family: Nunito;
+
 	 font-size: 16px;
 	 font-weight: normal;
 	 font-style: normal;
@@ -133,6 +146,25 @@ background-position: center center;
 	background-repeat:   no-repeat;
 	background-position: center center;
 }
+.form {
+	width: 60%;
+	float: left;
+	margin: 0 20%;
+	padding: 0 15%;
+}
+.form input {
+	background: transparent;
+	float: left;
+	width: 100%;
+	height: 35px !important;
+	border-bottom: solid 1px #4a90e2 !important;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	font-size: 15px !important;
+	text-align: center !important;
+	color: #4a90e2 !important;
+}
 
 /*Form step 1*/
 .rombo_amarillo{
@@ -150,7 +182,7 @@ background-position: center center;
 .edad_title{
 	width: 100px;
   height: 29px;
-  font-family: Nunito;
+
   font-size: 20px;
   font-weight: 300;
   font-style: normal;
@@ -185,7 +217,7 @@ background-position: center center;
  position: absolute;
  left: 0px;
  top: 29px;
- font-family: Nunito;
+
 font-size: 21px;
 font-weight: bold;
 font-style: normal;
@@ -240,7 +272,7 @@ cursor: pointer;
  position: absolute;
  right: 0px;
  top: 29px;
- font-family: Nunito;
+
 font-size: 21px;
 font-weight: bold;
 font-style: normal;
@@ -257,7 +289,7 @@ cursor: pointer;
 .ultimoNivelAprobado_title{
 	width: 210px;
   height: 29px;
-  font-family: Nunito;
+
   font-size: 20px;
   font-weight: 300;
   font-style: normal;
@@ -297,7 +329,7 @@ background-size:     40.4px 40.4px;
 background-repeat:   no-repeat;
 background-position: 9px 3px;
 padding-top: 50px;
-font-family: Nunito;
+
 font-size: 14px;
 font-weight: normal;
 font-style: normal;
@@ -346,7 +378,7 @@ bottom: 0;
 .ultimoAnioAprobado_title{
 	width: 220px;
   height: 29px;
-  font-family: Nunito;
+
   font-size: 20px;
   font-weight: 300;
   font-style: normal;
@@ -371,7 +403,7 @@ bottom: 150px;
 left: 50%;
 transform: translateX(-50%); /*or  transform: translateX(-50%);*/
 bottom: 100px;
-font-family: Nunito;
+
 font-size: 15px;
 font-weight: normal;
 font-style: normal;
@@ -388,30 +420,15 @@ background-color: transparent;
 select {
 	text-align-last: center;
 }
-.form_next_button{
-	width: calc(100% - 80px);
-	max-width: 295px;
-  height: 58px;
-  border-radius: 5px;
+.form_next_button {
 	border: none;
   background-color: #4acee2;
-	position: absolute;
-left: 50%;
-transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-bottom: 20px;
-font-family: Nunito;
-font-size: 16px;
-font-weight: bold;
-font-style: normal;
-font-stretch: normal;
-line-height: normal;
-letter-spacing: 2px;
-text-align: center;
-color: #ffffff;
-display: flex;
-justify-content: center; /* align horizontal */
-align-items: center;
-text-transform: uppercase;
+	color: #ffffff;
+}
+.form_back_button {
+	border: solid 1.5px #4acee2;
+	background-color: #ffffff;
+	color: #4acee2;
 }
 
 .que.estudiar_title{
@@ -427,51 +444,18 @@ text-transform: uppercase;
 color: #122254;
 }
 
-.estudiar_title{
-	width: 230px;
+.title{
 	height: 29px;
-	font-family: Nunito;
-   font-size: 20px;
-   font-weight: 300;
-   font-style: normal;
-   font-stretch: normal;
-   line-height: 1.45;
-   letter-spacing: normal;
-   text-align: center;
-   color: #000000;
-	position: absolute;
-left: 50%;
-transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+	margin-bottom: 12px;
+	font-size: 20px;
+	line-height: 1.45;
+	text-align: center;
+	color: #000000;
+	width: 100%;
 }
 
-.que.estudiar_input{
-	top: 130px;
-}
-
-.donde.estudiar_input{
-	top: 285px;
-}
-
-.estudiar_input{
-	background: transparent;
-	width: 294.2px !important;
- height: 35px !important;
- border-bottom: solid 1px #4a90e2 !important;
- border-top: none !important;
- border-left: none !important;
- border-right: none !important;
- font-family: Nunito !important;
-  font-size: 15px !important;
-  font-weight: normal !important;
-  font-style: normal !important;
-  font-stretch: normal !important;
-  line-height: normal !important;
-  letter-spacing: normal !important;
-  text-align: center !important;
-  color: #4a90e2 !important;
-	position: absolute;
-left: 50%;
-transform: translateX(-50%); /*or  transform: translateX(-50%);*/
+input.estudiar_input{
+	width: calc(100% - 40px);
 }
 
 .listAndMap-wrapper{
@@ -507,7 +491,7 @@ text-align:center;
 	background-size:     64px 64px;
 	background-repeat:   no-repeat;
 	background-position: 0 0;
-	font-family: Nunito;
+
   font-size: 13.2px;
   font-weight: normal;
   font-style: normal;
@@ -539,13 +523,9 @@ text-align:center;
 	 }
 
 .turnos-wrapper{
-	width: calc(100% - 20px);
- height: 117px;
-	position: absolute;
-left: 50%;
-transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-top: 399px;
-text-align:center;
+	width: 100%;
+ 	height: 117px;
+	text-align:center;
 }
 
 .turnos{
@@ -558,7 +538,7 @@ text-align:center;
 	background-size:     90px 95px;
 	background-repeat:   no-repeat;
 	background-position: 0 0;
-	font-family: Nunito;
+
    font-size: 12px;
    font-weight: 600;
    font-style: normal;
@@ -633,22 +613,13 @@ background-image:    url(./img/rombo_azul_chico.svg);
   border-radius: 5px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.11);
   background-color: #ffffff;
-	font-family: Nunito;
-font-size: 11px;
-font-weight: normal;
-font-style: normal;
-font-stretch: normal;
-line-height: normal;
-letter-spacing: normal;
-text-align: center;
-color: #122254;
-position: absolute;
-left: 50%;
-transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-top: 173px;
-padding-top: 7px;
+	font-size: 11px;
+	text-align: center;
+	color: #122254;
+	padding-top: 7px;
+	float: left;
+	margin: 10px calc(50% - 59px) 0;
 }
-
 #SearchQueResults{
 	display: none;
 	width: calc(100% - 28px);
@@ -684,7 +655,19 @@ background-color: #ffffff;
 	width: 100%;
   height: 200px;
 }
-
+.show-map {
+	background-image: url(./img/mapa.svg);
+	width: 40px;
+	height: 40px;
+	float: left;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.section {
+	margin-top: 42px;
+	width: 100%;
+	float: left;
+}
 .subsistema_title{
 	position: relative;
 	top: 0;
@@ -692,7 +675,7 @@ background-color: #ffffff;
 	width: 100%;
 	height: 38px;
 	background-color: #4a90e2;
-  font-family: Nunito;
+
   font-size: 13px;
   font-weight: normal;
   font-style: normal;
@@ -728,25 +711,6 @@ background-color: #ffffff;
 	max-height: 50px;
 }
 
-.donde_title{
-	position: relative;
-left: 0px;
-top: 0px;
-padding-left: 14px;
-padding-top: 9px;
-width: 90%;
-height: 22px;
-font-family: Nunito;
-font-size: 14px;
-font-weight: normal;
-font-style: normal;
-font-stretch: normal;
-line-height: normal;
-letter-spacing: 0.4px;
-text-align: left;
-color: #000000;
-}
-
 .curso_nombre{
 	position: relative;
 	left: 0px;
@@ -755,7 +719,7 @@ color: #000000;
 	padding-top: 9px;
 	width: 90%;
 	height: 22px;
-	font-family: Nunito;
+
   font-size: 16px;
   font-weight: normal;
   font-style: normal;
@@ -778,7 +742,7 @@ color: #000000;
 	min-height: 18px;
   border-radius: 7px;
   background-color: #eeeeee;
-	font-family: Nunito;
+
 	font-size: 9px;
 	font-weight: normal;
 	font-style: normal;
@@ -832,7 +796,7 @@ white-space: nowrap;
 	height: 49px;
 	border-radius: 5px;
 	border: solid 1px #4a90e2;
-	font-family: Nunito;
+
 	font-size: 14px;
 	font-weight: 600;
 	font-style: normal;
@@ -873,7 +837,7 @@ min-height: 640px;
 .footer_share{
 	width: 100px;
   height: 70px;
-  font-family: Nunito;
+
   font-size: 20px;
   font-weight: 300;
   font-style: normal;
@@ -922,7 +886,7 @@ min-height: 640px;
 .footer_credits{
 	width: 186px;
   height: 70px;
-  font-family: Nunito;
+
   font-size: 10px;
   font-weight: 300;
   font-style: normal;
@@ -994,7 +958,7 @@ left: 24px;
   border-radius: 4px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.11);
   background-color: #ffffff;
-	font-family: Nunito;
+
 font-size: 10px;
 font-weight: normal;
 font-style: normal;
@@ -1041,7 +1005,7 @@ left: 20px;
 height: 24px;
 border-radius: 5px;
 background-color: #ffffff;
-font-family: Nunito;
+
 font-size: 12px;
 font-weight: normal;
 font-style: normal;
@@ -1058,7 +1022,7 @@ left: 20px;
 }
 
 .detail_title{
-	font-family: Nunito;
+
 font-size: 19px;
 font-weight: bold;
 font-style: normal;
@@ -1076,7 +1040,7 @@ left: 20px;
 .detail_data{
 	width: 40%;
 	min-height: 40px;
-	font-family: Nunito;
+
 	font-size: 13px;
 	font-weight: normal;
 	font-style: normal;
@@ -1120,7 +1084,7 @@ background-image:    url(./img/web_icon.svg);
 	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.11);
 	background-color: #ffffff;
 	position: relative;
-	font-family: Nunito;
+
 	font-size: 14px;
 	line-height: 1.64;
 	letter-spacing: normal;

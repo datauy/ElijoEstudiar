@@ -16,7 +16,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.form.ultimo_nivel_aprobado = "primaria";
     $scope.form.ultimo_anio_aprobado = "";
     $scope.form.plan = "";
-    $scope.form.lugar = "";
+    //$scope.form.lugar = "";
+    $scope.form.depto = "";
+    $scope.form.localidad = "";
     $scope.form.que = "";
     $scope.form.donde = "";
     $scope.form.turno = "matutino";
@@ -27,6 +29,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.form.option = "list";
     $scope.establecimientos = null;
 
+    console.log($scope.departamentos);
+
     $scope.restarEdad = function(){
       if(parseInt($scope.form.edad) > 4){
         $scope.form.edad = parseInt($scope.form.edad) - 1;
@@ -35,6 +39,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
     $scope.sumarEdad = function(){
       $scope.form.edad = parseInt($scope.form.edad) + 1;
+      console.log("SUMA");
+      console.log($scope.departamentos.data);
     };
 
     $scope.selectUltimoNivel = function(idNivel){
@@ -138,7 +144,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.selectDondeEstudiarItem = function(donde){
       $scope.form.donde = donde;
       $scope.hideSearchDondeResults();
-      $scope.form.searchDonde = donde.loc_dep;
+      $scope.form.searchDonde = donde.nombre;
     }
 
     $scope.editSearch = function(){
