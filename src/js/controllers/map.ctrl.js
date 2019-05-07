@@ -2,6 +2,7 @@ pmb_im.controllers.controller('MapController', [
   '$scope',
   '_',
   '$cordovaGeolocation',
+  '$compile',
   'leafletData',
   'ConfigService',
   'PinService',
@@ -17,6 +18,7 @@ pmb_im.controllers.controller('MapController', [
     $scope,
     _,
     $cordovaGeolocation,
+    $compile,
     leafletData,
     ConfigService,
     PinService,
@@ -40,6 +42,7 @@ pmb_im.controllers.controller('MapController', [
     $scope.myIntervals = new Array();
     $scope.map = null;
     $scope.modal_map = null;
+    $scope.favs_map = null;
     $scope.establecimiento = [];
 
     $scope.$on("$ionicView.loaded", function() {
@@ -65,6 +68,7 @@ pmb_im.controllers.controller('MapController', [
             minZoom: 1,
             maxZoom: 18,
             zoomControlPosition: 'topleft',
+            keyboard: false,
           },
           markers: {},
           events: {
@@ -137,7 +141,17 @@ pmb_im.controllers.controller('MapController', [
                     popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
                 });
               var marker = L.marker([feature.lat, feature.lon], {icon: markerIcon});
-              marker.bindPopup("<b>"+feature.nombre+"</b>").openPopup();
+              var html = "<div class='custom_leflet_popup'><div class='popup_wrapper'><b class='text_inside_popup'>"
+                          +feature.nombre
+                          +"</b><a class='text_inside_popup' ng-click='viewPinDetails(\""
+                          +feature.id
+                          +"\")'>Ver detalle</a></div>"
+                          +"<div ng-click='add_to_fav("
+                          +JSON.stringify(feature)
+                          +")' class='popup_add_fav'></div></div>";
+              var compiled = $compile(html)($scope);
+              marker.bindPopup(compiled[0]);
+              //marker.bindPopup("<b>"+feature.nombre+"</b>").openPopup();
               map.addLayer(marker);
             }
           })
@@ -147,8 +161,58 @@ pmb_im.controllers.controller('MapController', [
       }
     }
 
+    $scope.viewFavs = function(){
+      $ionicModal.fromTemplateUrl('templates/favs.html', {
+        scope: $scope,
+        hardwareBackButtonClose: true,
+        animation: 'none',
+        //focusFirstInput: true
+      }).then(function(modal) {
+          //document.getElementById("spinner").style.display = "none";
+          ModalService.checkNoModalIsOpen();
+          ModalService.activeModal = modal;
+          ModalService.activeModal.show();
+          $scope.favs_map = {
+            defaults: {
+              tileLayer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+              minZoom: 15,
+              maxZoom: 18,
+              //zoomControlPosition: 'topleft',
+              zoomControl: false,
+              //dragging: false,
+            },
+            markers: {},
+            events: {
+              map: {
+                enable: ['context'],
+                logic: 'emit'
+              }
+            },
+            center: {
+              lat: -34.901113,
+              lng: -56.164531,
+              zoom: 16
+            }
+          };
+          leafletData.getMap("favs_map").then(function(map) {
+            //TODO: ACA TENGO QUE LEVANTAR LOS FAVS DE POUCH DB Y AGREGARLOS AL MAPA Y AL LISTADO
+          })
+      });
+    }
+
+    $scope.add_to_fav = function(establecimiento){
+      //TODO: ACA TENGO QUE GUARDAR EL FAV EN POUCH DB
+      ApiService.viewFavs();
+    }
+
+    $scope.viewPinDetails = function(id){
+      ApiService.getEstablecimientoById(id).then(function (response) {
+        response.data.establecimientos[0].id=id;
+        ApiService.openDetailsModal(response.data.establecimientos[0]);
+      });
+    }
+
     $scope.openDetailsModal = function(establecimiento){
-      console.log(establecimiento);
       if(establecimiento!=null){
         $scope.establecimiento = establecimiento;
         $ionicModal.fromTemplateUrl('templates/details.html', {
@@ -157,7 +221,6 @@ pmb_im.controllers.controller('MapController', [
           animation: 'none',
           //focusFirstInput: true
         }).then(function(modal) {
-            //document.getElementById("spinner").style.display = "none";
             ModalService.checkNoModalIsOpen();
             ModalService.activeModal = modal;
             ModalService.activeModal.show();
@@ -189,11 +252,7 @@ pmb_im.controllers.controller('MapController', [
                 zoom: 18
               }
             };
-            console.log("ESTABLECIMIENTO:");
-            console.log($scope.establecimiento);
             leafletData.getMap("secondary_map").then(function(map) {
-                  console.log("MAPA SECUNDARIO:");
-                  console.log(map);
                   var markerIcon = L.icon({
                         iconUrl: './img/blue_pin.svg',
                         //shadowUrl: 'leaf-shadow.png',

@@ -81,6 +81,14 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
       ApiObject.mapScope.openDetailsModal(establecimiento);
     }
 
+    ApiObject.add_to_fav = function(establecimiento){
+      ApiObject.mapScope.add_to_fav(establecimiento);
+    }
+
+    ApiObject.viewFavs = function(){
+      ApiObject.mapScope.viewFavs();
+    }
+
 
     /**
      * Return the constructor function
