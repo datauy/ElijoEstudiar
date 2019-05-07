@@ -1,0 +1,32 @@
+{
+  "name": "ElijoEstudiar",
+  "app_id": "ee41f0b9",
+  "proxies": [
+    {
+      "path": "/im",
+      "proxyUrl": "http://desa.imm.gub.uy:8080"
+    },
+    {
+      "path": "/backend",
+      "proxyUrl": "http://ee_backend.development.datauy.org"
+    }
+  ],
+  "gulpStartupTasks": [
+    "default",
+    "watch",
+    "sass"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ],
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ],
+  "integrations": {},
+  "type": "ionic1"
+}
