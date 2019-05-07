@@ -9,6 +9,9 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     angular.extend(this, _data);
   }
 
+  ApiObject.filters = null;
+  ApiObject.formScope = {};
+  ApiObject.lastSearchResponseEstablecimientos = null;
 
   ApiObject.searchQueEstudiar = function(str){
     return $http.get(apiURL + 'search/' + str);
@@ -16,20 +19,10 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
   ApiObject.searchDondeEstudiar = function(str){
     return $http.get(apiURL + 'ubicaciones?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
   }
-
-    ApiObject.filters = null;
-    ApiObject.mapScope = null;
-    ApiObject.formScope = {};
-    ApiObject.lastSearchResponseEstablecimientos = null;
-
-    ApiObject.updateFilters = function(filtersObject){
-      ApiObject.filters = filtersObject;
-      if(ApiObject.mapScope != null){
-        ApiObject.mapScope.filtersUpdated();
-      }
-    }
-
-    ApiObject.createFilterParamsForGetRequest = function(){
+  ApiObject.updateFilters = function(filtersObject){
+    ApiObject.filters = filtersObject;
+  }
+  ApiObject.createFilterParamsForGetRequest = function(){
       console.log(ApiObject.filters);
       var params = {
         hash_id: Math.random(),
@@ -48,9 +41,9 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
       }
       if(ApiObject.filters.donde!=""){
         params.dondeEstudiarDepartamento = ApiObject.filters.donde.departamento;
-        params.dondeEstudiarLocalidad = ApiObject.filters.donde.localidad;
-        params.dondeEstudiarLat = ApiObject.filters.donde.coordenadas.lat;
-        params.dondeEstudiarLon = ApiObject.filters.donde.coordenadas.lon;
+        params.dondeEstudiarLocalidad = ApiObject.filters.donde.nombre;
+        params.dondeEstudiarLat = ApiObject.filters.donde.lat;
+        params.dondeEstudiarLon = ApiObject.filters.donde.long;
       }
       if ( ApiObject.filters.que.tipo == 'tipo' ) {
         params = ApiObject.filters.que.id+'/all';
@@ -72,24 +65,6 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     ApiObject.getEstablecimientoById = function(id){
         return $http.get(apiURL + 'establecimientos-por-id/'+id, {cache: false, params: {hash_id:Math.random()}});
     }
-
-    ApiObject.updateMapPins = function(establecimientos){
-      ApiObject.mapScope.loadPinsLayer(establecimientos);
-    }
-
-    ApiObject.openDetailsModal = function(establecimiento){
-      ApiObject.mapScope.openDetailsModal(establecimiento);
-    }
-
-    ApiObject.add_to_fav = function(establecimiento){
-      ApiObject.mapScope.add_to_fav(establecimiento);
-    }
-
-    ApiObject.viewFavs = function(){
-      ApiObject.mapScope.viewFavs();
-    }
-
-
     /**
      * Return the constructor function
      */

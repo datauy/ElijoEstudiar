@@ -1,33 +1,29 @@
 pmb_im.controllers.controller('MapController', [
   '$scope',
   '_',
-  '$cordovaGeolocation',
-  '$compile',
   'leafletData',
   'ConfigService',
+  '$compile',
   'PinService',
   '$interval',
   '$location',
   'MapService',
   '$ionicModal',
   'ModalService',
-  'ApiService',
   '$timeout',
   '$cordovaInAppBrowser',
   function(
     $scope,
     _,
-    $cordovaGeolocation,
-    $compile,
     leafletData,
     ConfigService,
+    $compile,
     PinService,
     $interval,
     $location,
     MapService,
     $ionicModal,
     ModalService,
-    ApiService,
     $timeout,
     $cordovaInAppBrowser
   ) {
@@ -48,14 +44,14 @@ pmb_im.controllers.controller('MapController', [
     $scope.$on("$ionicView.loaded", function() {
       ModalService.checkNoModalIsOpen();
       //DBService.initDB();
-      ApiService.mapScope = $scope;
+      MapService.mapScope = $scope;
       $scope.create_online_map();
       document.getElementById("spinner").style.display = "none";
       document.getElementById("pinspinner").style.display = "none";
     });
 
     $scope.filtersUpdated = function(){
-      /*console.log(ApiService.filters);
+      /*
       $scope.loadPinsLayer();*/
     }
 
@@ -87,36 +83,6 @@ pmb_im.controllers.controller('MapController', [
           document.getElementById("map_wrapper").style.display="none";
         },1000);
       }
-    };
-
-
-
-      /**
-     * Center map on user's current position
-     */
-    $scope.locate = function() {
-
-      $cordovaGeolocation
-        .getCurrentPosition()
-        .then(function(position) {
-          $scope.map.center.lat = position.coords.latitude;
-          $scope.map.center.lng = position.coords.longitude;
-          $scope.map.center.zoom = 15;
-
-          $scope.map.markers.now = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-            message: "Estás aquí",
-            focus: true,
-            draggable: false
-          };
-
-        }, function(err) {
-          // error
-          //console.log("Location error!");
-          //console.log(err);
-        });
-
     };
 
     $scope.loadPinsLayer = function(establecimientos){
@@ -202,13 +168,13 @@ pmb_im.controllers.controller('MapController', [
 
     $scope.add_to_fav = function(establecimiento){
       //TODO: ACA TENGO QUE GUARDAR EL FAV EN POUCH DB
-      ApiService.viewFavs();
+      mapService.mapScope.viewFavs();
     }
 
     $scope.viewPinDetails = function(id){
-      ApiService.getEstablecimientoById(id).then(function (response) {
+      mapService.mapScope.getEstablecimientoById(id).then(function (response) {
         response.data.establecimientos[0].id=id;
-        ApiService.openDetailsModal(response.data.establecimientos[0]);
+        mapService.mapScope.openDetailsModal(response.data.establecimientos[0]);
       });
     }
 

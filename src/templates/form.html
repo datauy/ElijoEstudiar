@@ -3,14 +3,14 @@
 	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
 	    <ion-slide>
         <div class="rombo_amarillo"></div>
-    		<div class="edad_title">Tu edad</div>
+    		<div class="title">Tu edad</div>
         <div class="edad_controls">
       		<div ng-click="restarEdad();" class="edad_menos">-</div>
           <input type="text" class="edad_text" ng-model="form.edad" />
       		<!--<div class="edad_text">{{form.edad}}</div>-->
       		<div ng-click="sumarEdad();" class="edad_mas">+</div>
         </div>
-    		<div class="ultimoNivelAprobado_title">Último nivel aprobado</div>
+    		<div class="title">Último nivel aprobado</div>
         <div class="ultimoNivelControls">
       		<div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel">Primaria</div>
       		<div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">Secundaria</div>
@@ -18,7 +18,7 @@
       		<div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">Universitario</div>
         </div>
         <div class="rombo_azul"></div>
-        <div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
+        <!--<div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
         <select ng-model="form.ultimo_anio_aprobado" class="ultimoAnioAprobado_select clickable">
           <option value="" disabled selected>Selecciona un año</option>
           <option>Primer año</option>
@@ -27,8 +27,8 @@
           <option>Cuarto año</option>
           <option>Quinto año</option>
           <option>Sexto año</option>
-        </select>
-    		<button class="estudiar_next form_next_button primary_button clickable" ng-click="next()">Continuar</button>
+        </select>-->
+    		<button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
 	    </ion-slide>
 	    <ion-slide>
         <div class="rombo_amarillo_chico"></div>
@@ -58,7 +58,7 @@
       		<div class="section donde">
             <div class="title">¿Dónde vivís?</div>
             <input id="donde_estudiar" type="text" class="donde estudiar_input clickable" ng-model="form.searchDonde" ng-change="onSearchChangeDonde()" />
-            <div class="show-map clickable" ng-click=""></div>
+            <div class="show-map clickable" ng-click="openModal('map')"></div>
             <div id="SearchDondeResults">
               <ion-scroll id="searchDondeResults_scroll" scrollX="false" scrollY="true">
                 <div class='donde_container clickable' ng-repeat="donde in form.SearchDondeResults">
@@ -70,9 +70,9 @@
           <div class="section turno">
         		<div class="title">Turno</div>
             <div class="turnos-wrapper">
-              <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino">Matutino</div>
-          		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino_off">Vespertino</div>
-          		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno_off">Nocturno</div>
+              <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino selected">Matutino</div>
+          		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino selected">Vespertino</div>
+          		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno selected">Nocturno</div>
             </div>
         		<!--<div class="plan estudiar_title">¿Cuál es tu plan?</div>
         		<input type="text" class="cual estudiar_input" />-->
@@ -86,7 +86,7 @@
         <div class="rombo_amarillo_derecha"></div>
         <div class="que estudiar_title">Esta es tu búsqueda</div>
         <div id="full_search_str" class="que estudiar_input clickable">{{form.que.nombre}}, {{form.turno}}, {{form.donde.loc_dep}}, {{form.edad}} años, {{form.ultimo_nivel_aprobado}}</div>
-        <div id="edit_search_button" class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
+        <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
         <div class="listAndMap-wrapper">
           <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
       		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>

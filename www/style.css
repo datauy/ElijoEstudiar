@@ -199,10 +199,9 @@ background-position: center center;
 .edad_controls{
 	width: 194px;
   height: 94.3px;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	top: 113px;
+	position: relative;
+	float: left;
+	margin: 40px calc(50% - 97px);
 }
 .edad_menos{
 	width: 40.4px;
@@ -305,15 +304,13 @@ cursor: pointer;
 }
 .ultimoNivelControls{
 	width: 202px;
-height: 70px;
-position: absolute;
-left: 50%;
-transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-top: 300px;
-background-image:    url(./img/linea_niveles.svg);
-/*background-size:     100% 100%;*/
-background-repeat:   no-repeat;
-background-position: 15px 13px;
+	height: 70px;
+	background-image:    url(./img/linea_niveles.svg);
+	background-repeat:   no-repeat;
+	background-position: 15px 13px;
+	position: relative;
+	float: left;
+	margin: 6px calc(50% - 101px);
 }
 .nivel.hidden{
 	background: transparent;
@@ -366,14 +363,15 @@ cursor: pointer;
 }
 .rombo_azul{
 	width: 100%;
- height: calc(100% - 380px);
- max-height: 287px;
- background-image:    url(./img/rombo_azul.svg);
-background-size:     cover;
-background-repeat:   no-repeat;
-position: absolute;
-left: 0;
-bottom: 0;
+	height: calc(100% - 380px);
+	max-height: 287px;
+	background-image:    url(./img/rombo_azul.svg);
+	background-size:     cover;
+	background-repeat:   no-repeat;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
 }
 .ultimoAnioAprobado_title{
 	width: 220px;
@@ -452,10 +450,12 @@ color: #122254;
 	text-align: center;
 	color: #000000;
 	width: 100%;
+	float: left;
 }
 
 input.estudiar_input{
 	width: calc(100% - 40px);
+	padding-left: 40px;
 }
 
 .listAndMap-wrapper{
@@ -524,7 +524,6 @@ text-align:center;
 
 .turnos-wrapper{
 	width: 100%;
- 	height: 117px;
 	text-align:center;
 }
 
@@ -538,47 +537,41 @@ text-align:center;
 	background-size:     90px 95px;
 	background-repeat:   no-repeat;
 	background-position: 0 0;
-
-   font-size: 12px;
-   font-weight: 600;
-   font-style: normal;
-   font-stretch: normal;
-   line-height: normal;
-   letter-spacing: 0.3px;
-   text-align: center;
-   color: #122254;
-	 padding-top: 95px;
-	 cursor: pointer;
+	font-size: 12px;
+	letter-spacing: 0.3px;
+	text-align: center;
+	padding-top: 95px;
+	cursor: pointer;
+	font-weight: normal;
+	color: #bec1cb;
  }
+.turnos.selected{
+	font-weight: 600;
+	color: #122254;
 
+}
 .turno_matutino{
+	background-image:    url(./img/matutino_off.svg);
+}
+
+.turno_matutino.selected{
 	background-image:    url(./img/matutino.svg);
 }
 
-.turno_matutino_off{
-	background-image:    url(./img/matutino_off.svg);
-	font-weight: normal;
-	color: #bec1cb;
+.turno_vespertino{
+	background-image:    url(./img/vespertino_off.svg);
 }
 
-.turno_vespertino{
+.turno_vespertino.selected{
 	background-image:    url(./img/vespertino.svg);
 }
 
-.turno_vespertino_off{
-	background-image:    url(./img/vespertino_off.svg);
-	font-weight: normal;
-	color: #bec1cb;
-}
-
 .turno_nocturno{
-	background-image:    url(./img/nocturno.svg);
+	background-image:    url(./img/nocturno_off.svg);
 }
 
-.turno_nocturno_off{
-	background-image:    url(./img/nocturno_off.svg);
-	font-weight: normal;
-	color: #bec1cb;
+.turno_nocturno.selected{
+	background-image:    url(./img/nocturno.svg);
 }
 
 .rombo_amarillo_derecha{
@@ -659,9 +652,11 @@ background-color: #ffffff;
 	background-image: url(./img/mapa.svg);
 	width: 40px;
 	height: 40px;
-	float: left;
+	position: relative;
+	left: calc(100% - 40px);
 	background-size: cover;
 	background-repeat: no-repeat;
+	top: 40px;
 }
 .section {
 	margin-top: 42px;
@@ -819,17 +814,21 @@ white-space: nowrap;
 	 width: 100%;
 	 height: 298px;
 	 background-color: #4a90e2;
+	 float: left;
 }
 
 #form_container{
+	float: left;
+	height: inherit;
 	position: relative;
-top: 0;
-width: 100%;
-min-height: 640px;
+	top: 0;
+	width: 100%;
+	min-height: 640px;
 }
 
 .menu-content.pane{
-  overflow: overlay !important;
+	overflow-y: auto;
+  /*overflow: overlay !important;*/
 }
 /*End form*/
 
@@ -2188,7 +2187,9 @@ body {
       width: 100%;
       height: 100%;
   }
-
+	.form {
+		padding: 0;
+	}
   ion-modal-view {
 
           position: absolute;
@@ -2210,7 +2211,11 @@ body {
 	/*overflow: auto;*/
   }
 }
-
+@media (max-width: 680px){
+  .form{
+    padding: 0;
+  }
+}
 
 .img_message_inside_invitation{
   width: 30px;
@@ -2262,4 +2267,31 @@ margin-top: 10px;
   float: right;
   margin-top: -30px;
 
+}
+#modal-page {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.modal-close {
+	width: 23px;
+  height: 23px;
+  object-fit: contain;
+	background-image:    url(./img/close.svg);
+	background-size:     100% 100%;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	position: absolute;
+	right: 44px;
+	top: 64px;
+	z-index: 11;
+}
+#modal-page-content.intro_inside_rectangle {
+	top: 42px;
+	z-index: 10;
+	padding: 64px 4%;
+	height: 64%;
 }

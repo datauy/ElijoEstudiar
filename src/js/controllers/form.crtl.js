@@ -1,14 +1,14 @@
 pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
-  '$cordovaGeolocation',
   '$stateParams',
   '$ionicPlatform',
   '$ionicPopup',
   'LocationsService',
   'ApiService',
+  'MapService',
   'DBService',
   '$ionicSlideBoxDelegate',
   '$ionicScrollDelegate',
-  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, DBService, $ionicSlideBoxDelegate,
+  function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
     $scope.form = {};
@@ -20,16 +20,18 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.form.depto = "";
     $scope.form.localidad = "";
     $scope.form.que = "";
-    $scope.form.donde = "";
-    $scope.form.turno = "matutino";
+    $scope.form.donde = {};
+    $scope.form.turnos = {
+      "matutino":1,
+      "vespertino":1,
+      "nocturno":1
+    };
     $scope.form.SearchQueResults = {};
     $scope.form.SearchDondeResults = {};
     $scope.form.searchQue = "";
     $scope.form.searchDonde = "";
     $scope.form.option = "list";
     $scope.establecimientos = null;
-
-    console.log($scope.departamentos);
 
     $scope.restarEdad = function(){
       if(parseInt($scope.form.edad) > 4){
@@ -39,8 +41,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
     $scope.sumarEdad = function(){
       $scope.form.edad = parseInt($scope.form.edad) + 1;
-      console.log("SUMA");
-      console.log($scope.departamentos.data);
     };
 
     $scope.selectUltimoNivel = function(idNivel){
@@ -55,14 +55,13 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.select_turno = function(idTurno){
-      var x = document.getElementsByClassName("turnos");
-      var i;
-      for (i = 0; i < x.length; i++) {
-          x[i].className = "turnos turno_"+ x[i].id +"_off";
+      if ($scope.form.turnos[idTurno]) {
+        $scope.form.turnos[idTurno] = 0;
       }
-      var selected = document.getElementById(idTurno);
-      selected.className = "turnos turno_"+ idTurno;
-      $scope.form.turno = idTurno;
+      else {
+        $scope.form.turnos[idTurno] = 1;
+      }
+      document.getElementById(idTurno).classList.toggle('selected');;
     }
 
     $scope.select_option = function(idOption){
@@ -166,13 +165,16 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         //index 2 es el slide que tiene el botón del mapa y de el listado
         document.getElementById("map_container").style.display="none";
         ApiService.updateFilters($scope.form);
+        if(MapService.mapScope != null){
+          MapService.mapScope.filtersUpdated();
+        }
         if(ApiService.filters!=null){
             ApiService.getEstablecimientosByFilters().then(function (response) {
               console.log(response);
               //ApiService.lastSearchResponseEstablecimientos = response.data;
               //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
               $scope.establecimientos = response.data;
-              ApiService.updateMapPins(response.data);
+              MapService.mapScope.loadPinsLayer(response.data);
             });
             /*if($scope.establecimientos==null){
               //ESTO SE PRECARGA PARA LA REUNION CON ROMANO EN CASO DE QUE NO ESTE LA API QUE RECIBE LOS FILTROS Y DEVUELVE LOS ESTABLECIMIENTOS
@@ -192,10 +194,35 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       ApiService.getEstablecimientoById(id).then(function (response) {
         console.log(response);
         response.data.establecimientos[0].id=id;
-        ApiService.openDetailsModal(response.data.establecimientos[0]);
+        MapService.mapScope.openDetailsModal(response.data.establecimientos[0]);
       });
     }
-
+    $scope.openModal = function(modal){
+      var modalContent = document.getElementById('modal-page-content');
+      if ( modal == "map") {
+        modalContent.appendChild(
+          document.getElementById('map_wrapper')
+        );
+        document.getElementById("map_wrapper").style.display="block";
+        document.getElementById("map_container").style.display="block";
+        document.getElementById("map_container").style.visibility="visible";
+        MapService.goToPlace("primary_map", "Confirmar", $scope);
+        modalContent.classList.add("intro_inside_rectangle");
+      }
+      document.getElementById("modal-page").style.display="block";
+      console.log('modal opened');
+    }
+    $scope.ubicacion = function(longlat){
+      document.getElementById("map_wrapper").style.display="none";
+      document.getElementById("donde_estudiar").value = "Ubicado en mapa"
+      $scope.form.donde = {
+        "departamento": "NA",
+        "nombre": "Localizado en mapa",
+        "lat": longlat[0],
+        "long": longlat[1]
+      };
+      document.getElementById("modal-page").style.display="none";
+    }
 	  /*$scope.go_to_map = function(){
 	    $state.go("app.map");
 	  }*/
