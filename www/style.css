@@ -167,6 +167,12 @@ background-position: center center;
 }
 
 /*Form step 1*/
+.form-pagina {
+  width: 80%;
+  padding: 0 15%;
+  margin: 42px 10% 0 10%;
+}
+
 .rombo_amarillo{
 	width: 100.8px;
   height: 157.6px;

@@ -1,6 +1,7 @@
 {
   "name": "ElijoEstudiar",
-  "app_id": "ee41f0b9",
+  "integrations": {},
+  "type": "ionic1",
   "proxies": [
     {
       "path": "/im",
@@ -27,6 +28,5 @@
       "version": "12.41.296.5"
     }
   ],
-  "integrations": {},
-  "type": "ionic1"
+  "id": "ee41f0b9"
 }
