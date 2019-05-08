@@ -86,16 +86,20 @@
 	    <ion-slide>
         <div class="rombo_amarillo_chico"></div>
         <div class="rombo_amarillo_derecha"></div>
-        <div class="que estudiar_title">Esta es tu búsqueda</div>
-        <div id="full_search_str" class="que estudiar_input clickable">{{form.que.nombre}}, {{form.turno}}, {{form.donde.loc_dep}}, {{form.edad}} años, {{form.ultimo_nivel_aprobado}}</div>
-        <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
-        <div class="listAndMap-wrapper">
-          <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
-      		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
-        </div>
-        <div id="list_container">
-          <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
-            {{stablishment.nombre}}
+        <div class="form">
+          <div class="que section">
+            <div class="que estudiar_title">Esta es tu búsqueda</div>
+            <div id="full_search_str" class="que estudiar_input clickable">{{form.que.nombre}}, {{form.turno}}, {{form.donde.loc_dep}}, {{form.edad}} años, {{form.ultimo_nivel_aprobado}}</div>
+            <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
+          </div>
+          <div class="listAndMap-wrapper">
+            <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
+        		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
+          </div>
+          <div id="list_container">
+            <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
+              {{stablishment.nombre}}
+            </div>
           </div>
         </div>
 	    </ion-slide>
