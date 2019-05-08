@@ -2308,3 +2308,13 @@ margin-top: 10px;
 	padding: 64px 4%;
 	height: 64%;
 }
+.results-wrapper {
+	float: left;
+	width: 100%;
+}
+.info-curso {
+	height: 44px;
+	width: 52%;
+	margin: 24px 24% 0;
+	font-size: 12px;
+}

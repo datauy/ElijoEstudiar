@@ -3,6 +3,7 @@
 	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
 	    <ion-slide>
         <div class="rombo_amarillo"></div>
+<<<<<<< HEAD
         <div class="form-pagina">
           <div class="title">Tu edad</div>
           <div class="edad_controls">
@@ -46,7 +47,34 @@
             <option>Sexto año</option>
           </select>-->
           <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>  
+=======
+    		<div class="title">Tu edad</div>
+        <div class="edad_controls">
+      		<div ng-click="restarEdad();" class="edad_menos">-</div>
+          <input type="text" class="edad_text" ng-model="form.edad" />
+      		<!--<div class="edad_text">{{form.edad}}</div>-->
+      		<div ng-click="sumarEdad();" class="edad_mas">+</div>
         </div>
+    		<div class="title">Último nivel aprobado</div>
+        <div class="ultimoNivelControls">
+      		<div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel">Primaria</div>
+      		<div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">Secundaria</div>
+      		<div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">Terciario</div>
+      		<div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">Universitario</div>
+>>>>>>> 83108d0443235643e98faf872e4682851aa33c47
+        </div>
+        <div class="rombo_azul"></div>
+        <!--<div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
+        <select ng-model="form.ultimo_anio_aprobado" class="ultimoAnioAprobado_select clickable">
+          <option value="" disabled selected>Selecciona un año</option>
+          <option>Primer año</option>
+          <option>Segundo año</option>
+          <option>Tercer año</option>
+          <option>Cuarto año</option>
+          <option>Quinto año</option>
+          <option>Sexto año</option>
+        </select>-->
+    		<button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
 	    </ion-slide>
 	    <ion-slide>
         <div class="rombo_amarillo_chico"></div>
@@ -104,17 +132,20 @@
         <div class="rombo_amarillo_derecha"></div>
         <div class="form">
           <div class="que section">
-            <div class="que estudiar_title">Esta es tu búsqueda</div>
+            <div class="title">Esta es tu búsqueda</div>
             <div id="full_search_str" class="que estudiar_input clickable">{{form.que.nombre}}, {{form.turno}}, {{form.donde.loc_dep}}, {{form.edad}} años, {{form.ultimo_nivel_aprobado}}</div>
             <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
           </div>
+          <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
           <div class="listAndMap-wrapper">
             <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
         		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
           </div>
-          <div id="list_container">
-            <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
-              {{stablishment.nombre}}
+          <div class="results-wrapper">
+            <div id="list_container">
+              <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
+                {{stablishment.nombre}}
+              </div>
             </div>
           </div>
         </div>
