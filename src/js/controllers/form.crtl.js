@@ -48,11 +48,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var i;
       for (i = 0; i < x.length; i++) {
           x[i].className = "nivel_"+x[i].id +" nivel hidden";
-          x[i].childNodes[1].style.display = "block";
       }
       var selected = document.getElementById(idNivel);
       selected.className = "nivel_"+selected.id +" nivel";
-      selected.childNodes[1].style.display = "none";
       $scope.form.ultimo_nivel_aprobado = idNivel;
     }
 
@@ -76,7 +74,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       selected.className = "options option_"+ idOption;
       $scope.form.option = idOption;
       if(idOption=="map"){
-        document.getElementById("map_wrapper").style.display="block";
+        var estList = document.getElementById("list_container");
+        var wrapper = document.getElementById("map_wrapper");
+        estList.parentNode.insertBefore(wrapper, estList.nextSibling);
+        wrapper.style.display="block";
         document.getElementById("map_container").style.display="block";
         document.getElementById("map_container").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
@@ -131,15 +132,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         ApiService.searchDondeEstudiar(search_str).then(function (response) {
           //console.log(response);
           $scope.form.SearchDondeResults = response.data;
-          $scope.form.SearchDondeResults.forEach(function(element) {
-            var nombre = element.nombre;
-            nombre = nombre.toLowerCase().split(' ');
-            nombre.forEach(function(word, index, array) {
-              word = word.charAt(0).toUpperCase() + word.substring(1);
-              array[index] = word;
-            });
-            element.nombre = nombre.join(' ');
-          });
           document.getElementById("SearchDondeResults").style.display = "block";
         });
       }else{
@@ -154,7 +146,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.selectDondeEstudiarItem = function(donde){
       $scope.form.donde = donde;
       $scope.hideSearchDondeResults();
-      $scope.form.searchDonde = donde.nombre.toUpperCase();
+      $scope.form.searchDonde = donde.nombre;
     }
 
     $scope.editSearch = function(){
@@ -181,11 +173,27 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         }
         if(ApiService.filters!=null){
             ApiService.getEstablecimientosByFilters().then(function (response) {
-              console.log(response);
               //ApiService.lastSearchResponseEstablecimientos = response.data;
               //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
-              $scope.establecimientos = response.data;
-              MapService.mapScope.loadPinsLayer(response.data);
+              $scope.cursos = response.data;
+              console.log($scope.cursos);
+              var est = {};
+              $scope.cursos.forEach(function(curso) {
+                for ( var k in curso.oferta ){
+                  if (curso.oferta.hasOwnProperty(k)) {
+                    if ( !est.hasOwnProperty(k) ) {
+                      est[k] = {
+                        nombre: curso.oferta[k].nombre,
+                        lat: curso.oferta[k].lat,
+                        lon: curso.oferta[k].long
+                      }
+                    }
+                    //est[k][curso.año]
+                  }
+                }
+              });
+              $scope.establecimientos = Object.values(est);
+              MapService.mapScope.loadPinsLayer(Object.values(est));
             });
             /*if($scope.establecimientos==null){
               //ESTO SE PRECARGA PARA LA REUNION CON ROMANO EN CASO DE QUE NO ESTE LA API QUE RECIBE LOS FILTROS Y DEVUELVE LOS ESTABLECIMIENTOS
