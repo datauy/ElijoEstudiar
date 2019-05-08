@@ -48,7 +48,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var i;
       for (i = 0; i < x.length; i++) {
           x[i].className = "nivel_"+x[i].id +" nivel hidden";
-<<<<<<< HEAD
           x[i].childNodes[1].style.display = "block";
           x[i].childNodes[3].style.display = "none";
       }
@@ -56,11 +55,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       selected.className = "nivel_"+selected.id +" nivel";
       selected.childNodes[1].style.display = "none";
       selected.childNodes[3].style.display = "block";
-=======
-      }
-      var selected = document.getElementById(idNivel);
-      selected.className = "nivel_"+selected.id +" nivel";
->>>>>>> 83108d0443235643e98faf872e4682851aa33c47
       $scope.form.ultimo_nivel_aprobado = idNivel;
     }
 
