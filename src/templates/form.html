@@ -13,10 +13,22 @@
           </div>
           <div class="title">Último nivel aprobado</div>
           <div class="ultimoNivelControls">
-            <div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel">Primaria</div>
-            <div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">Secundaria</div>
-            <div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">Terciario</div>
-            <div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">Universitario</div>
+            <div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel">
+              <div class="nivel_punto" style="display:none;"></div>
+              Primaria
+            </div>
+            <div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">
+              <div class="nivel_punto"></div>
+              Secundaria
+            </div>
+            <div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">
+              <div class="nivel_punto"></div>
+              Terciario
+            </div>
+            <div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">
+              <div class="nivel_punto"></div>
+              Universitario
+            </div>
           </div>
           <div class="rombo_azul"></div>
           <!--<div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>

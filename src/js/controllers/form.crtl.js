@@ -48,9 +48,11 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var i;
       for (i = 0; i < x.length; i++) {
           x[i].className = "nivel_"+x[i].id +" nivel hidden";
+          x[i].childNodes[1].style.display = "block";
       }
       var selected = document.getElementById(idNivel);
       selected.className = "nivel_"+selected.id +" nivel";
+      selected.childNodes[1].style.display = "none";
       $scope.form.ultimo_nivel_aprobado = idNivel;
     }
 
@@ -129,6 +131,15 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         ApiService.searchDondeEstudiar(search_str).then(function (response) {
           //console.log(response);
           $scope.form.SearchDondeResults = response.data;
+          $scope.form.SearchDondeResults.forEach(function(element) {
+            var nombre = element.nombre;
+            nombre = nombre.toLowerCase().split(' ');
+            nombre.forEach(function(word, index, array) {
+              word = word.charAt(0).toUpperCase() + word.substring(1);
+              array[index] = word;
+            });
+            element.nombre = nombre.join(' ');
+          });
           document.getElementById("SearchDondeResults").style.display = "block";
         });
       }else{
@@ -143,7 +154,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.selectDondeEstudiarItem = function(donde){
       $scope.form.donde = donde;
       $scope.hideSearchDondeResults();
-      $scope.form.searchDonde = donde.nombre;
+      $scope.form.searchDonde = donde.nombre.toUpperCase();
     }
 
     $scope.editSearch = function(){
