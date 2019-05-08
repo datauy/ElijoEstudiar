@@ -49,10 +49,12 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       for (i = 0; i < x.length; i++) {
           x[i].className = "nivel_"+x[i].id +" nivel hidden";
           x[i].childNodes[1].style.display = "block";
+          x[i].childNodes[3].style.display = "none";
       }
       var selected = document.getElementById(idNivel);
       selected.className = "nivel_"+selected.id +" nivel";
       selected.childNodes[1].style.display = "none";
+      selected.childNodes[3].style.display = "block";
       $scope.form.ultimo_nivel_aprobado = idNivel;
     }
 

@@ -314,7 +314,7 @@ cursor: pointer;
   background-image: url(./img/linea-niveles-new.svg);
   background-size: 100% auto;
 	background-repeat: no-repeat;
-	background-position: 20px 13px;
+	background-position: 9px 13px;
 	position: relative;
 	float: left;
 	margin: 6px calc(50% - 101px);
@@ -327,54 +327,56 @@ cursor: pointer;
   background-image: url(./img/punto-niveles-new.svg);
   height: 14px;
   width: 14px;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: -38px;
   margin-bottom: 25px;
 }
 .nivel{
-	width: 58px;
+	width: 80px;
   height: 70px;
   object-fit: contain;
 	background-image:    url(./img/nivel_.svg);
-background-size:     40.4px 40.4px;
-background-repeat:   no-repeat;
-background-position: 9px 3px;
-padding-top: 50px;
+  background-size:     40.4px 40.4px;
+  background-repeat:   no-repeat;
+  background-position: 0 3px;
+  padding-top: 50px;
 
-font-size: 14px;
-font-weight: normal;
-font-style: normal;
-font-stretch: normal;
-line-height: normal;
-letter-spacing: 0.4px;
-text-align: center;
-color: #4acee2;
-cursor: pointer;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: #4acee2;
+  cursor: pointer;
 }
-.nivel_primaria{
+.nivel_title {
+  margin-left: -37px;
+}
+.nivel_ninguno {
 	position: absolute;
 	left: 0%;
 	top: 0;
 }
+.nivel_primaria{
+	position: absolute;
+	left: 25%;
+	top: 0;
+}
 .nivel_secundaria{
 	position: absolute;
-	left: 55px;
+	left: 50%;
 	top: 0;
-	background-position: 15px 3px !important;
-	width: 75px !important;
 }
 .nivel_terceario{
 	position: absolute;
-	left: 120px;
+	left: 75%;
 	top: 0;
 }
 .nivel_universitario{
 	position: absolute;
-	left: 155px;
+	left: 98%;
 	top: 0;
-	background-position: 20px 3px !important;
-	width: 85px !important;
 }
 .rombo_azul{
 	width: 100%;
@@ -632,7 +634,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	position: absolute;
 left: 50%;
 transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-top: 169px;
+top: 119px;
 border-radius: 6px;
 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
 background-color: #ffffff;
