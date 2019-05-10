@@ -53,7 +53,7 @@
         <div class="rombo_amarillo_derecha"></div>
         <div class="rombo_azul_chico"></div>
         <div class="form">
-          <div class="section que">
+          <div id="que" class="section que">
             <div class="title">¿Qué querés estudiar?</div>
             <input type="text" id="que_estudiar" class="clickable" ng-model="form.searchQue" ng-change="onSearchChangeQue()" />
             <div class="button_listado_completo clickable" ng-click="listAllQueEstudiar()">Ver listado completo</div>
@@ -76,7 +76,7 @@
       		<div class="section donde">
             <div class="title">¿Dónde vivís?</div>
             <input id="donde_estudiar" type="text" class="donde estudiar_input clickable" ng-model="form.searchDonde" ng-change="onSearchChangeDonde()" />
-            <div class="show-map clickable" ng-click="openModal('map')"></div>
+            <div class="show-map clickable" ng-click="openModal('modal-map', 'map_wrapper')"></div>
             <div id="SearchDondeResults">
               <ion-scroll id="searchDondeResults_scroll" scrollX="false" scrollY="true">
                 <div class='donde_container clickable' ng-repeat="donde in form.SearchDondeResults">

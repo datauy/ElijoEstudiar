@@ -100,10 +100,12 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var search = document.getElementById("que_estudiar");
       var search_str = search.value.trim();
       if(search_str.length>=3){
+        $scope.activateLoading('que_estudiar', 'mini');
         ApiService.searchQueEstudiar(search_str).then(function (response) {
           //console.log(response);
           $scope.form.SearchQueResults = response.data;
           document.getElementById("SearchQueResults").style.display = "block";
+          document.getElementById("loading").style.display = "none";
         });
       }else{
         $scope.hideSearchQueResults();
@@ -111,7 +113,11 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.hideSearchQueResults = function(){
-      document.getElementById("SearchQueResults").style.display = "none";
+      var results = document.getElementById("SearchQueResults");
+      results.style.display = "none";
+      //Move back just in case
+      document.getElementById("modal-page").style.display="none";
+      document.getElementById('que').appendChild(results);
     }
 
     $scope.selectQueEstudiarItem = function(curso){
@@ -121,22 +127,26 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.listAllQueEstudiar = function(){
-      var search_str = "api-get-all";
-        ApiService.searchQueEstudiar(search_str).then(function (response) {
-          //console.log(response);
-          $scope.form.SearchQueResults = response.data;
-          document.getElementById("SearchQueResults").style.display = "block";
-        });
+      $scope.activateLoading('modal-page-content', 'full');
+      $scope.openModal('buscando', 'loading');
+      ApiService.searchQueEstudiar("api-get-all").then(function (response) {
+        //console.log(response);
+        $scope.form.SearchQueResults = response.data;
+        $scope.openModal('full', 'SearchQueResults');
+        document.getElementById("loading").style.display = "none";
+      });
     }
 
     $scope.onSearchChangeDonde = function(){
       var search = document.getElementById("donde_estudiar");
       var search_str = search.value.trim();
       if(search_str.length>=3){
+        $scope.activateLoading('donde_estudiar', 'mini');
         ApiService.searchDondeEstudiar(search_str).then(function (response) {
           //console.log(response);
           $scope.form.SearchDondeResults = response.data;
           document.getElementById("SearchDondeResults").style.display = "block";
+          document.getElementById("loading").style.display = "none";
         });
       }else{
         $scope.hideSearchDondeResults();
@@ -169,6 +179,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.slideHasChanged = function(index){
       $scope.select_option("list");
       if(index==2){
+        $scope.openModal('buscando', 'loading');
         //index 2 es el slide que tiene el botón del mapa y de el listado
         document.getElementById("map_container").style.display="none";
         ApiService.updateFilters($scope.form);
@@ -189,7 +200,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
                       est[k] = {
                         nombre: curso.oferta[k].nombre,
                         lat: curso.oferta[k].lat,
-                        lon: curso.oferta[k].long
+                        lon: curso.oferta[k].long,
+                        id: k
                       }
                     }
                     //est[k][curso.año]
@@ -198,6 +210,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
               });
               $scope.establecimientos = Object.values(est);
               MapService.mapScope.loadPinsLayer(Object.values(est));
+              document.getElementById("modal-page").style.display="none";
             });
             /*if($scope.establecimientos==null){
               //ESTO SE PRECARGA PARA LA REUNION CON ROMANO EN CASO DE QUE NO ESTE LA API QUE RECIBE LOS FILTROS Y DEVUELVE LOS ESTABLECIMIENTOS
@@ -220,21 +233,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         MapService.mapScope.openDetailsModal(response.data.establecimientos[0]);
       });
     }
-    $scope.openModal = function(modal){
-      var modalContent = document.getElementById('modal-page-content');
-      if ( modal == "map") {
-        modalContent.appendChild(
-          document.getElementById('map_wrapper')
-        );
-        document.getElementById("map_wrapper").style.display="block";
-        document.getElementById("map_container").style.display="block";
-        document.getElementById("map_container").style.visibility="visible";
-        MapService.goToPlace("primary_map", "Confirmar", $scope);
-        modalContent.classList.add("intro_inside_rectangle");
-      }
-      document.getElementById("modal-page").style.display="block";
-      console.log('modal opened');
-    }
+    /**
+    * Función para cerrar modal de ubicación
+    */
     $scope.ubicacion = function(longlat){
       document.getElementById("map_wrapper").style.display="none";
       document.getElementById("donde_estudiar").value = "Ubicado en mapa"
@@ -246,9 +247,42 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       };
       document.getElementById("modal-page").style.display="none";
     }
+    /**
+    * Función para abrir modal html
+    */
+    $scope.openModal = function(style, content){
+      var modalContent = document.getElementById('modal-page-content');
+      //Clean classes
+      modalContent.className = "intro_inside_rectangle";
+      modalContent.classList.add(style);
+      if ( style == "modal-map") {
+        document.getElementById("map_container").style.display="block";
+        document.getElementById("map_container").style.visibility="visible";
+        MapService.goToPlace("primary_map", "Confirmar", $scope);
+      }
+      if ( style == "buscando") {
+        $scope.activateLoading(content, style);
+      }
+      if ( style != "noLoad") {
+        modalContent.appendChild(
+          document.getElementById(content)
+        );
+        document.getElementById(content).style.display="block";
+      }
+      document.getElementById("modal-page").style.display="block";
+      console.log("Modal open");
+    }
+
+    $scope.activateLoading = function(container, style) {
+      var cont = document.getElementById( container );
+      var loading = document.getElementById("loading");
+      loading.className = style;
+      cont.parentNode.insertBefore( loading, cont.nextSibling );
+      loading.style.display="block";
+      console.log("Loading open");
+    }
 	  /*$scope.go_to_map = function(){
 	    $state.go("app.map");
 	  }*/
-
   }
 ]);

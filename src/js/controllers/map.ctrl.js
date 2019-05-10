@@ -62,7 +62,7 @@ pmb_im.controllers.controller('MapController', [
           defaults: {
             tileLayer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             minZoom: 1,
-            maxZoom: 18,
+            maxZoom: 16,
             zoomControlPosition: 'topleft',
             keyboard: false,
           },
@@ -74,9 +74,9 @@ pmb_im.controllers.controller('MapController', [
             }
           },
           center: {
-            lat: -34.901113,
-            lng: -56.164531,
-            zoom: 16
+            lat: -32.564420,
+            lng: -56.028243,
+            zoom: 6
           }
         };
         $timeout(function() {
