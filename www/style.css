@@ -6,10 +6,16 @@ img {
 	width: 100%;
 }
 #loading {
-	float: left;
 	font-size: 18px;
 	text-align: center;
 }
+
+.buscando img {
+  display: block;
+  margin: auto;
+  width: 15%;
+}
+
 #loading.mini {
 	width: 36px;
   height: 36px;
