@@ -85,7 +85,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         document.getElementById("map_container").style.display="block";
         document.getElementById("map_container").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
-        document.getElementById("form_container").style.minHeight="370px";
+        document.getElementById("form_container").style.minHeight="1000px";
       }
       if(idOption=="list"){
         document.getElementById("map_wrapper").style.display="none";
