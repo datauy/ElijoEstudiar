@@ -57,6 +57,48 @@
       map.setView(new L.LatLng(lat, lng),zoom);
      });
    }
+   mapService.loadPinsLayer = function(establecimientos, scope){
+     if(establecimientos!=null){
+       //Recorrer los establicimientos y crear los pines
+       leafletData.getMap("primary_map").then(function(map) {
+         // TODO: Guardar ubicación de usuario???
+         map.eachLayer(function(marker) {
+            if(marker._url){
+            }else{
+              map.removeLayer(marker);
+            }
+         })
+         establecimientos.forEach(function(feature){
+           if(feature.lat && feature.lon){
+             var markerIcon = L.icon({
+                   iconUrl: './img/blue_pin.svg',
+                   //shadowUrl: 'leaf-shadow.png',
+                   iconSize:     [48, 65], // size of the icon
+                   //shadowSize:   [50, 64], // size of the shadow
+                   iconAnchor:   [24, 65], // point of the icon which will correspond to marker's location
+                   //shadowAnchor: [4, 62],  // the same for the shadow
+                   popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
+               });
+             var marker = L.marker([feature.lat, feature.lon], {icon: markerIcon});
+             var html = "<div class='custom_leflet_popup'><div class='popup_wrapper'><b class='text_inside_popup'>"
+                         +feature.nombre
+                         +"</b><a class='text_inside_popup' ng-click='openDetailsModal(\""
+                         +feature.id
+                         +"\")'>Ver detalle</a></div>"
+                         +"<div ng-click='add_to_fav("
+                         +JSON.stringify(feature)
+                         +")' class='popup_add_fav'></div></div>";
+             var compiled = $compile(html)(scope);
+             marker.bindPopup(compiled[0]);
+             //marker.bindPopup("<b>"+feature.nombre+"</b>").openPopup();
+             map.addLayer(marker);
+           }
+         })
+       })
+     }else{
+       //console.log("No hay establecimientos cargados");
+     }
+   }
 
    return mapService;
 

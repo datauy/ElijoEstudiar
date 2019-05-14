@@ -190,7 +190,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
               //ApiService.lastSearchResponseEstablecimientos = response.data;
               //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
               $scope.cursos = response.data;
-              console.log($scope.cursos);
               var est = {};
               $scope.cursos.forEach(function(curso) {
                 for ( var k in curso.oferta ){
@@ -200,7 +199,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
                         nombre: curso.oferta[k].nombre,
                         lat: curso.oferta[k].lat,
                         lon: curso.oferta[k].long,
-                        id: k
+                        id: curso.oferta[k].id,
                       }
                     }
                     //est[k][curso.año]
@@ -208,7 +207,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
                 }
               });
               $scope.establecimientos = Object.values(est);
-              MapService.mapScope.loadPinsLayer(Object.values(est));
+              MapService.loadPinsLayer(Object.values(est), $scope);
               document.getElementById("modal-page").style.display="none";
             });
             /*if($scope.establecimientos==null){
@@ -226,10 +225,11 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.openDetailsModal = function(id){
+      $scope.openModal('buscando', 'loading');
       ApiService.getEstablecimientoById(id).then(function (response) {
-        console.log(response);
         response.data.establecimientos[0].id=id;
         MapService.mapScope.openDetailsModal(response.data.establecimientos[0]);
+        document.getElementById("modal-page").style.display="none";
       });
     }
     /**

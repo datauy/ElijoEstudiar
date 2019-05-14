@@ -85,48 +85,6 @@ pmb_im.controllers.controller('MapController', [
       }
     };
 
-    $scope.loadPinsLayer = function(establecimientos){
-      if(establecimientos!=null){
-        //Recorrer los establicimientos y crear los pines
-        leafletData.getMap("primary_map").then(function(map) {
-          map.eachLayer(function(marker) {
-             if(marker._url){
-             }else{
-               map.removeLayer(marker);
-             }
-          })
-          establecimientos.forEach(function(feature){
-            if(feature.lat && feature.lon){
-              var markerIcon = L.icon({
-                    iconUrl: './img/blue_pin.svg',
-                    //shadowUrl: 'leaf-shadow.png',
-                    iconSize:     [48, 65], // size of the icon
-                    //shadowSize:   [50, 64], // size of the shadow
-                    iconAnchor:   [24, 65], // point of the icon which will correspond to marker's location
-                    //shadowAnchor: [4, 62],  // the same for the shadow
-                    popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
-                });
-              var marker = L.marker([feature.lat, feature.lon], {icon: markerIcon});
-              var html = "<div class='custom_leflet_popup'><div class='popup_wrapper'><b class='text_inside_popup'>"
-                          +feature.nombre
-                          +"</b><a class='text_inside_popup' ng-click='viewPinDetails(\""
-                          +feature.id
-                          +"\")'>Ver detalle</a></div>"
-                          +"<div ng-click='add_to_fav("
-                          +JSON.stringify(feature)
-                          +")' class='popup_add_fav'></div></div>";
-              var compiled = $compile(html)($scope);
-              marker.bindPopup(compiled[0]);
-              //marker.bindPopup("<b>"+feature.nombre+"</b>").openPopup();
-              map.addLayer(marker);
-            }
-          })
-        })
-      }else{
-        //console.log("No hay establecimientos cargados");
-      }
-    }
-
     $scope.viewFavs = function(){
       $ionicModal.fromTemplateUrl('templates/favs.html', {
         scope: $scope,
@@ -168,13 +126,13 @@ pmb_im.controllers.controller('MapController', [
 
     $scope.add_to_fav = function(establecimiento){
       //TODO: ACA TENGO QUE GUARDAR EL FAV EN POUCH DB
-      mapService.mapScope.viewFavs();
+      MapService.mapScope.viewFavs();
     }
 
     $scope.viewPinDetails = function(id){
-      mapService.mapScope.getEstablecimientoById(id).then(function (response) {
+      MapService.getEstablecimientoById(id).then(function (response) {
         response.data.establecimientos[0].id=id;
-        mapService.mapScope.openDetailsModal(response.data.establecimientos[0]);
+        $scope.openDetailsModal(response.data.establecimientos[0]);
       });
     }
 
