@@ -250,7 +250,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     */
     $scope.openModal = function(style, content){
       var modalContent = document.getElementById('modal-page-content');
-      //Clean classes
+      //Clean classes and nodes
+      for (i = 0; i <= modalContent.length - 1; i++) {
+        modalContent[i].style.display = "none";
+      }
       modalContent.className = "intro_inside_rectangle";
       modalContent.classList.add(style);
       if ( style == "modal-map") {
@@ -270,7 +273,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       document.getElementById("modal-page").style.display="block";
       console.log("Modal open");
     }
-
     $scope.activateLoading = function(container, style) {
       var cont = document.getElementById( container );
       var loading = document.getElementById("loading-mini");
