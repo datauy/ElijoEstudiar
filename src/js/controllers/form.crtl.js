@@ -105,7 +105,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
           //console.log(response);
           $scope.form.SearchQueResults = response.data;
           document.getElementById("SearchQueResults").style.display = "block";
-          document.getElementById("loading").style.display = "none";
+          document.getElementById("loading-mini").style.display = "none";
         });
       }else{
         $scope.hideSearchQueResults();
@@ -127,9 +127,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.listAllQueEstudiar = function(){
-      $scope.activateLoading('modal-page-content', 'full');
       $scope.openModal('buscando', 'loading');
-      ApiService.searchQueEstudiar("api-get-all").then(function (response) {
+      ApiService.searchQueEstudiar("all").then(function (response) {
         //console.log(response);
         $scope.form.SearchQueResults = response.data;
         $scope.openModal('full', 'SearchQueResults');
@@ -146,7 +145,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
           //console.log(response);
           $scope.form.SearchDondeResults = response.data;
           document.getElementById("SearchDondeResults").style.display = "block";
-          document.getElementById("loading").style.display = "none";
+          document.getElementById("loading-mini").style.display = "none";
         });
       }else{
         $scope.hideSearchDondeResults();
@@ -261,7 +260,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         MapService.goToPlace("primary_map", "Confirmar", $scope);
       }
       if ( style == "buscando") {
-        $scope.activateLoading(content, style);
+        document.getElementById('loading').style.display="block";
       }
       if ( style != "noLoad") {
         modalContent.appendChild(
@@ -275,7 +274,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
     $scope.activateLoading = function(container, style) {
       var cont = document.getElementById( container );
-      var loading = document.getElementById("loading");
+      var loading = document.getElementById("loading-mini");
       loading.className = style;
       cont.parentNode.insertBefore( loading, cont.nextSibling );
       loading.style.display="block";

@@ -16,10 +16,15 @@ img {
   width: 15%;
 }
 
-#loading.mini {
-	width: 36px;
-  height: 36px;
-  margin-left: -36px;
+#loading-mini {
+	float: left;
+	width: 56px;
+  height: 26px;
+  margin-left: -56px;
+	margin-top: 6px;
+}
+.buscando #loading {
+	width: 100%;
 }
 .buscando #loading img{
 	width: 20%;
