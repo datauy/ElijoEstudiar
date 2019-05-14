@@ -164,7 +164,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
     $scope.editSearch = function(){
       $ionicSlideBoxDelegate.previous();
-      $ionicSlideBoxDelegate.previous();
     }
 
 	  $scope.next = function() {
