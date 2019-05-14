@@ -14,9 +14,6 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
   ApiObject.lastSearchResponseEstablecimientos = null;
 
   ApiObject.searchQueEstudiar = function(str){
-    if ( str == 'all' ) {
-      return $http.get(apiURL + '../cursos.json');
-    }
     return $http.get(apiURL + 'search/' + str);
   }
   ApiObject.searchDondeEstudiar = function(str){
