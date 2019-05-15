@@ -2263,6 +2263,10 @@ body {
   height: 100%;
 	/*overflow: auto;*/
   }
+
+  #SearchQueResults, #SearchDondeResults {
+    width: 500px;
+  }
 }
 @media (max-width: 1024px){
 	.form{
