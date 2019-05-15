@@ -5,27 +5,48 @@
    //proj4.defs('EPSG:32721', '+proj=utm +zone=21 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs');
 
 
-   var mapService = {};
-   mapService.mapScope = null;
-
+   var MapService = {};
+   MapService.mapScope = null;
+   MapService.modal_map = {
+     defaults: {
+       tileLayer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+       minZoom: 18,
+       maxZoom: 18,
+       //zoomControlPosition: 'topleft',
+       zoomControl: false,
+       //dragging: false,
+     },
+     markers: {},
+     events: {
+       map: {
+         enable: ['context'],
+         logic: 'emit'
+       }
+     },
+     center: {
+       lat: -34.901113,
+       lng: -56.164531,
+       zoom: 18
+     }
+   };
    /**
   * Center map on user's current position
   */
-  mapService.goToPlace = function(mapName,name,scope) {
+  MapService.goToPlace = function(mapName,name,scope) {
     $cordovaGeolocation
       .getCurrentPosition()
       .then(function(ubication) {
-        mapService.createMarker(mapName,name,scope,[ubication.coords.latitude, ubication.coords.longitude]);
+        MapService.createMarker(mapName,name,scope,[ubication.coords.latitude, ubication.coords.longitude]);
      }, function(err) {
       leafletData.getMap(mapName).then(function(map) {
         map.setView([-32.564420, -56.028243], 6);
         map.on('click', function(e) {
-          mapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
+          MapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
         });
       });
     });
   }
-  mapService.createMarker = function(mapName,name,scope,position) {
+  MapService.createMarker = function(mapName,name,scope,position) {
     leafletData.getMap(mapName).then(function(map) {
       //Remove layers (other markers)
       map.eachLayer(function (layer) {
@@ -48,16 +69,16 @@
       });
       map.setView(position, 16);
       map.on('click', function(e) {
-        mapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
+        MapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
       });
    });
   }
-  mapService.centerMapOnCoords = function(lat,lng,zoom) {
+  MapService.centerMapOnCoords = function(lat,lng,zoom) {
    leafletData.getMap().then(function(map) {
       map.setView(new L.LatLng(lat, lng),zoom);
      });
    }
-   mapService.loadPinsLayer = function(establecimientos, scope){
+   MapService.loadPinsLayer = function(establecimientos, scope){
      if(establecimientos!=null){
        //Recorrer los establicimientos y crear los pines
        leafletData.getMap("primary_map").then(function(map) {
@@ -100,6 +121,31 @@
      }
    }
 
-   return mapService;
+   MapService.getMarker = function(establecimiento){
+     L.Map.prototype.panToOffset = function (latlng, offset, options) {
+         var x = this.latLngToContainerPoint(latlng).x - offset[0]
+         var y = this.latLngToContainerPoint(latlng).y - offset[1]
+         var point = this.containerPointToLatLng([x, y])
+         return this.setView(point, 18, { pan: options })
+     }
+     leafletData.getMap("secondary_map").then(function(map) {
+           var markerIcon = L.icon({
+                 iconUrl: './img/pin.svg',
+                 //shadowUrl: 'leaf-shadow.png',
+                 iconSize:     [25, 34], // size of the icon
+                 //shadowSize:   [50, 64], // size of the shadow
+                 iconAnchor:   [12, 34], // point of the icon which will correspond to marker's location
+                 //shadowAnchor: [4, 62],  // the same for the shadow
+                 popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
+             });
+           var marker = L.marker([establecimiento.lat, establecimiento.long], {icon: markerIcon});
+           marker.bindPopup("<b>"+establecimiento.title+"</b>").openPopup();
+           map.addLayer(marker);
+           var paddingX = window.innerWidth / 4;
+           map.panToOffset([establecimiento.lat, establecimiento.long],[paddingX,25],{});
+     });
+   }
+
+   return MapService;
 
  }]);

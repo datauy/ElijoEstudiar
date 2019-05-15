@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="35px" height="47px" viewBox="0 0 35 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 14</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-64.0%" y="-38.2%" width="228.0%" height="200.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.11 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M18.75,1.63670183 L18.8555946,1.696305 C22.6520128,3.83920316 25,7.86073866 25,12.2201885 L25,12.2201885 C25,16.797044 23.4974356,21.2473334 20.723104,24.8874831 L12.5,35.6768668 L4.27689604,24.8874831 C1.50256436,21.2473334 9.69846261e-15,16.797044 7.10542736e-15,12.2201885 L7.10542736e-15,12.2201885 C4.63556409e-15,7.86073866 2.34798725,3.83920316 6.14440536,1.696305 L6.25,1.63670183 C10.1290252,-0.552824141 14.8709748,-0.552824141 18.75,1.63670183 Z" id="path-2"></path>
+        <filter x="-30.0%" y="-13.2%" width="160.0%" height="149.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.111611187 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="03---02-copy" transform="translate(-177.000000, -455.000000)" fill-rule="nonzero">
+            <g id="Group-14" filter="url(#filter-1)" transform="translate(182.000000, 457.000000)">
+                <g id="Polygon-Copy-2">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use fill="#4A90E2" xlink:href="#path-2"></use>
+                </g>
+                <circle id="Oval" fill="#FFFFFF" cx="12.375" cy="12.9181818" r="5.5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

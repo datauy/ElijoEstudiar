@@ -69,7 +69,7 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-.state('app', {
+  .state('app', {
     cache: false,
     url: "/",
     abstract: true,
@@ -77,46 +77,51 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
     controller: 'AbsController'
   })
 
-.state('app.form', {
-  cache: false,
-  url: "form",
-  views: {
-    'menuContent' :{
-      templateUrl: "templates/form.html",
-      controller : "FormCtrl"
-    },
-    'mapView' :{
-      templateUrl: "templates/map.html",
-      controller : "MapController"
+  .state('app.form', {
+    cache: false,
+    url: "form",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/form.html",
+        controller : "FormCtrl"
+      }
     }
-  }
-})
+  })
+  .state('app.centro', {
+    cache: false,
+    url: "centro/:id",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/details.html",
+        controller : "routesController"
+      }
+    }
+  })
+  .state('app.intro', {
+    cache: false,
+    url: "intro",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/intro.html",
+        controller : "IntroCtrl"
+      }
+    }
+  })
 
-.state('app.intro', {
-  cache: false,
-  url: "intro",
-  views: {
-    'menuContent' :{
-      templateUrl: "templates/intro.html",
-      controller : "IntroCtrl"
+  .state('app.search', {
+    cache: false,
+    url: "search",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/search.html",
+        controller : "SearchCtrl"
+      },
+      'mapView' :{
+        templateUrl: "templates/map.html",
+        controller : "MapController"
+      }
     }
-  }
-})
-
-.state('app.search', {
-  cache: false,
-  url: "search",
-  views: {
-    'menuContent' :{
-      templateUrl: "templates/search.html",
-      controller : "SearchCtrl"
-    },
-    'mapView' :{
-      templateUrl: "templates/map.html",
-      controller : "MapController"
-    }
-  }
-})
+  })
 
 // if none of the above states are matched, use this as the fallback
 $urlRouterProvider.otherwise('intro');

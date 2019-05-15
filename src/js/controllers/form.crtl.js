@@ -2,13 +2,15 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   '$stateParams',
   '$ionicPlatform',
   '$ionicPopup',
+  '$ionicModal',
   'LocationsService',
+  'ModalService',
   'ApiService',
   'MapService',
   'DBService',
   '$ionicSlideBoxDelegate',
   '$ionicScrollDelegate',
-  function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
+  function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
     $scope.form = {};
@@ -32,6 +34,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.form.searchDonde = "";
     $scope.form.option = "list";
     $scope.establecimientos = null;
+
+    $scope.$on("$ionicView.loaded", function() {
+      $scope.map = MapService.modal_map;
+    });
 
     $scope.restarEdad = function(){
       if(parseInt($scope.form.edad) > 4){
@@ -226,10 +232,27 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.openDetailsModal = function(id){
       $scope.openModal('buscando', 'loading');
       ApiService.getEstablecimientoById(id).then(function (response) {
+        // TODO: Handle empty response, Pass Id in API not this:
         response.data.establecimientos[0].id=id;
-        MapService.mapScope.openDetailsModal(response.data.establecimientos[0]);
-        document.getElementById("modal-page").style.display="none";
+        $scope.establecimiento = response.data.establecimientos[0];
+        $ionicModal.fromTemplateUrl('templates/details.html', {
+          scope: $scope,
+          hardwareBackButtonClose: true,
+          animation: 'none',
+          //focusFirstInput: true
+        }).then(function(modal) {
+          ModalService.checkNoModalIsOpen();
+          ModalService.activeModal = modal;
+          ModalService.activeModal.show();
+          $scope.modal_map = MapService.modal_map;
+          MapService.getMarker(response.data.establecimientos[0]);
+          document.getElementById("modal-page").style.display="none";
+        });
       });
+    }
+
+    $scope.close_modal = function(){
+      ModalService.checkNoModalIsOpen();
     }
     /**
     * Función para cerrar modal de ubicación
@@ -271,7 +294,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         document.getElementById(content).style.display="block";
       }
       document.getElementById("modal-page").style.display="block";
-      console.log("Modal open");
     }
     $scope.activateLoading = function(container, style) {
       var cont = document.getElementById( container );

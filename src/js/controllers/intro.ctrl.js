@@ -8,12 +8,7 @@ pmb_im.controllers.controller('IntroCtrl', ['$scope', '$state',
   function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ModalService) {
 
     $scope.$on("$ionicView.beforeEnter", function() {
-      document.getElementById("form_container").style.minHeight = "640px";
       ModalService.checkNoModalIsOpen();
-    });
-
-    $scope.$on("$ionicView.afterEnter", function() {
-      document.getElementById("map_wrapper").style.display="none";
     });
 
 
@@ -31,12 +26,10 @@ pmb_im.controllers.controller('IntroCtrl', ['$scope', '$state',
     };
 
   $scope.go_to_form = function(){
-    document.getElementById("map_wrapper").style.display="block";
     $state.go("app.form");
   }
 
   $scope.go_to_search = function(){
-    document.getElementById("map_wrapper").style.display="block";
     $state.go("app.search");
   }
 
