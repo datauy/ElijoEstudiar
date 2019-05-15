@@ -67,7 +67,9 @@
           draggable: 'true'
         }).bindPopup(compiled[0]).addTo(map).openPopup();
       });
-      map.setView(position, 16);
+      map.setView(position, 15);
+      //Resize de map en caso que se requiera
+      map.invalidateSize();
       map.on('click', function(e) {
         MapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
       });
@@ -106,6 +108,7 @@
            var marker = L.marker([mainLocation.lat, mainLocation.long], {icon: markerIcon});
            marker.bindPopup("<b>Ubicación elegida</b>").openPopup();
            map.addLayer(marker);
+           //map.setView([mainLocation.lat, mainLocation.long], 10);
          }
          var markerIcon = L.icon({
            iconUrl: './img/blue_pin.svg',
@@ -138,6 +141,8 @@
              map.addLayer(marker);
            }
          });
+         //Resize de map en caso que se requiera
+         map.invalidateSize();
          if ( markerCounter ) {
            var bounds = new L.LatLngBounds(bounds_arr);
            map.fitBounds(bounds);

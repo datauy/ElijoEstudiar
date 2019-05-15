@@ -266,8 +266,12 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       for (i = 0; i <= childs.length - 1; i++) {
         childs[i].style.display = "none";
       }
+      //Realizamos modificaciones antes para el resize del mapa
       modalContent.className = "intro_inside_rectangle";
       modalContent.classList.add(style);
+      modalContent.appendChild(
+        document.getElementById(content)
+      );
       if ( style == "modal-map") {
         document.getElementById("map_container").style.display="block";
         document.getElementById("map_container").style.visibility="visible";
@@ -276,14 +280,12 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       if ( style == "buscando") {
         document.getElementById('loading').style.display="block";
       }
-      if ( style != "noLoad") {
-        modalContent.appendChild(
-          document.getElementById(content)
-        );
-        document.getElementById(content).style.display="block";
-      }
+      document.getElementById(content).style.display="block";
       document.getElementById("modal-page").style.display="block";
     }
+    /**
+    * Función para activar miniloading a la derecha de inputs
+    */
     $scope.activateLoading = function(container, style) {
       var cont = document.getElementById( container );
       var loading = document.getElementById("loading-mini");

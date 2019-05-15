@@ -105,7 +105,13 @@
         <div class="form">
           <div class="que section">
             <div class="title">Esta es tu búsqueda</div>
-            <div id="full_search_str" class="que estudiar_input clickable">{{form.que.nombre}}, {{form.turno}}, {{form.donde.loc_dep}}, {{form.edad}} años, {{form.ultimo_nivel_aprobado}}</div>
+            <div id="full_search_str" class="que estudiar_input clickable">
+              {{form.edad ? form.edad+'años, ' : ''}}
+              {{form.ultimo_nivel_aprobado ? form.ultimo_nivel_aprobado+', ' : ''}}
+              {{form.que.nombre ? form.que.nombre+', ':''}}
+              {{form.donde.nombre ? form.donde.nombre+', ' : ''}}
+              {{form.turnos ? form.turnos :''}}
+              </div>
             <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
           </div>
           <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
@@ -119,16 +125,16 @@
                 {{stablishment.nombre}}
               </div>
             </div>
+            <div id="map_wrapper" >
+              <div id="map_container" >
+                <ion-view hide-nav-bar="true">
+                  <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+                </ion-view>
+              </div>
+            </div>
           </div>
         </div>
 	    </ion-slide>
 	  </ion-slide-box>
   </ion-content>
 </ion-view>
-<div id="map_wrapper" >
-  <div id="map_container" >
-    <ion-view hide-nav-bar="true">
-      <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
-    </ion-view>
-  </div>
-</div>
