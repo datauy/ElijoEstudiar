@@ -849,6 +849,18 @@ background-color: #ffffff;
 		overflow-y: auto;
 }
 
+@media (min-width: 314px) {
+  #list_container {
+    height: calc(100vh - 410px);
+  }
+}
+
+@media (max-width: 313px) {
+  #list_container {
+    height: calc(100vh - 510px);
+  }
+}
+
 .establecimiento{
 	width: 100%;
 	height: auto;
