@@ -10,8 +10,8 @@
    MapService.modal_map = {
      defaults: {
        tileLayer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-       minZoom: 18,
-       maxZoom: 18,
+       minZoom: 6,
+       maxZoom: 16,
        //zoomControlPosition: 'topleft',
        zoomControl: false,
        //dragging: false,
@@ -24,9 +24,9 @@
        }
      },
      center: {
-       lat: -34.901113,
-       lng: -56.164531,
-       zoom: 18
+       lat: -32.564420,
+       lng: -56.028243,
+       zoom: 6
      }
    };
    /**
@@ -78,7 +78,7 @@
       map.setView(new L.LatLng(lat, lng),zoom);
      });
    }
-   MapService.loadPinsLayer = function(establecimientos, scope){
+   MapService.loadPinsLayer = function(establecimientos, scope, mainLocation){
      if(establecimientos!=null){
        //Recorrer los establicimientos y crear los pines
        leafletData.getMap("primary_map").then(function(map) {
@@ -89,18 +89,38 @@
               map.removeLayer(marker);
             }
          })
+         var bounds_arr = [];
+         var markerCounter = 0;
+         //Ubicación de usuario
+         if (mainLocation != null) {
+           bounds_arr.push([mainLocation.lat, mainLocation.long]);
+           var markerIcon = L.icon({
+                 iconUrl: './img/pin.svg',
+                 //shadowUrl: 'leaf-shadow.png',
+                 iconSize:     [35, 47], // size of the icon
+                 //shadowSize:   [50, 64], // size of the shadow
+                 iconAnchor:   [17, 47], // point of the icon which will correspond to marker's location
+                 //shadowAnchor: [4, 62],  // the same for the shadow
+                 popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
+             });
+           var marker = L.marker([mainLocation.lat, mainLocation.long], {icon: markerIcon});
+           marker.bindPopup("<b>Ubicación elegida</b>").openPopup();
+           map.addLayer(marker);
+         }
+         var markerIcon = L.icon({
+           iconUrl: './img/blue_pin.svg',
+           //shadowUrl: 'leaf-shadow.png',
+           iconSize:     [48, 65], // size of the icon
+           shadowSize:   [34, 13], // size of the shadow
+           iconAnchor:   [24, 65], // point of the icon which will correspond to marker's location
+           //shadowAnchor: [4, 62],  // the same for the shadow
+           popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
+         });
          establecimientos.forEach(function(feature){
            if(feature.lat && feature.lon){
-             var markerIcon = L.icon({
-                   iconUrl: './img/blue_pin.svg',
-                   //shadowUrl: 'leaf-shadow.png',
-                   iconSize:     [48, 65], // size of the icon
-                   //shadowSize:   [50, 64], // size of the shadow
-                   iconAnchor:   [24, 65], // point of the icon which will correspond to marker's location
-                   //shadowAnchor: [4, 62],  // the same for the shadow
-                   popupAnchor:  [0, -65] // point from which the popup should open relative to the iconAnchor
-               });
+             markerCounter = markerCounter + 1;
              var marker = L.marker([feature.lat, feature.lon], {icon: markerIcon});
+             bounds_arr.push([feature.lat, feature.lon]);
              var html = "<div class='custom_leflet_popup'><div class='popup_wrapper'><b class='text_inside_popup'>"
                          +feature.nombre
                          +"</b><a class='text_inside_popup' ng-click='openDetailsModal(\""
@@ -114,8 +134,12 @@
              //marker.bindPopup("<b>"+feature.nombre+"</b>").openPopup();
              map.addLayer(marker);
            }
-         })
-       })
+         });
+         if ( markerCounter ) {
+           var bounds = new L.LatLngBounds(bounds_arr);
+           map.fitBounds(bounds);
+         }
+       });
      }else{
        //console.log("No hay establecimientos cargados");
      }
@@ -132,16 +156,17 @@
            var markerIcon = L.icon({
                  iconUrl: './img/pin.svg',
                  //shadowUrl: 'leaf-shadow.png',
-                 iconSize:     [25, 34], // size of the icon
+                 iconSize:     [35, 47], // size of the icon
                  //shadowSize:   [50, 64], // size of the shadow
-                 iconAnchor:   [12, 34], // point of the icon which will correspond to marker's location
+                 iconAnchor:   [17, 47], // point of the icon which will correspond to marker's location
                  //shadowAnchor: [4, 62],  // the same for the shadow
                  popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
              });
            var marker = L.marker([establecimiento.lat, establecimiento.long], {icon: markerIcon});
            marker.bindPopup("<b>"+establecimiento.title+"</b>").openPopup();
            map.addLayer(marker);
-           var paddingX = window.innerWidth / 4;
+           var paddingX = 0;//window.innerWidth / 4;
+           map.setZoom(16);
            map.panToOffset([establecimiento.lat, establecimiento.long],[paddingX,25],{});
      });
    }

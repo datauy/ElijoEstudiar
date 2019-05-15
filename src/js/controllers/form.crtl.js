@@ -91,14 +91,12 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         document.getElementById("map_container").style.display="block";
         document.getElementById("map_container").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
-        document.getElementById("form_container").style.minHeight="1000px";
       }
       if(idOption=="list"){
         document.getElementById("map_wrapper").style.display="none";
         document.getElementById("list_container").style.display="block";
         document.getElementById("map_container").style.visibility="hidden";
         document.getElementById("map_container").style.display="none";
-        document.getElementById("form_container").style.minHeight="755px";
       }
     }
 
@@ -191,40 +189,30 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
           MapService.mapScope.filtersUpdated();
         }
         if(ApiService.filters!=null){
-            ApiService.getEstablecimientosByFilters().then(function (response) {
-              //ApiService.lastSearchResponseEstablecimientos = response.data;
-              //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
-              $scope.cursos = response.data;
-              var est = {};
-              $scope.cursos.forEach(function(curso) {
-                for ( var k in curso.oferta ){
-                  if (curso.oferta.hasOwnProperty(k)) {
-                    if ( !est.hasOwnProperty(k) ) {
-                      est[k] = {
-                        nombre: curso.oferta[k].nombre,
-                        lat: curso.oferta[k].lat,
-                        lon: curso.oferta[k].long,
-                        id: curso.oferta[k].id,
-                      }
+          ApiService.getEstablecimientosByFilters().then(function (response) {
+            //ApiService.lastSearchResponseEstablecimientos = response.data;
+            //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
+            $scope.cursos = response.data;
+            var est = {};
+            $scope.cursos.forEach(function(curso) {
+              for ( var k in curso.oferta ){
+                if (curso.oferta.hasOwnProperty(k)) {
+                  if ( !est.hasOwnProperty(k) ) {
+                    est[k] = {
+                      nombre: curso.oferta[k].nombre,
+                      lat: curso.oferta[k].lat,
+                      lon: curso.oferta[k].long,
+                      id: curso.oferta[k].id,
                     }
-                    //est[k][curso.año]
                   }
+                  //est[k][curso.año]
                 }
-              });
-              $scope.establecimientos = Object.values(est);
-              MapService.loadPinsLayer(Object.values(est), $scope);
-              document.getElementById("modal-page").style.display="none";
+              }
             });
-            /*if($scope.establecimientos==null){
-              //ESTO SE PRECARGA PARA LA REUNION CON ROMANO EN CASO DE QUE NO ESTE LA API QUE RECIBE LOS FILTROS Y DEVUELVE LOS ESTABLECIMIENTOS
-               $scope.establecimientos = [
-                 {nombre: "Liceo Nº 1", id: 1214, lat: -34.906346, lon: -56.172065 },
-                 {nombre: "Liceo Nº 2", id: 2434, lat: -34.902754, lon: -56.164127 },
-                 {nombre: "Liceo Nº 7", id: 4324},
-                 {nombre: "Liceo Juan Zorrilla", id: 5345}
-               ];
-               ApiService.updateMapPins($scope.establecimientos);
-            }*/
+            $scope.establecimientos = Object.values(est);
+            MapService.loadPinsLayer(Object.values(est), $scope, $scope.form.donde);
+            document.getElementById("modal-page").style.display="none";
+          });
         }
       }
     }
@@ -274,8 +262,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.openModal = function(style, content){
       var modalContent = document.getElementById('modal-page-content');
       //Clean classes and nodes
-      for (i = 0; i <= modalContent.length - 1; i++) {
-        modalContent[i].style.display = "none";
+      var childs = modalContent.children;
+      for (i = 0; i <= childs.length - 1; i++) {
+        childs[i].style.display = "none";
       }
       modalContent.className = "intro_inside_rectangle";
       modalContent.classList.add(style);
