@@ -84,13 +84,11 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       selected.className = "options option_"+ idOption;
       $scope.form.option = idOption;
       if(idOption=="map"){
-        var estList = document.getElementById("list_container");
-        var wrapper = document.getElementById("map_wrapper");
-        estList.parentNode.insertBefore(wrapper, estList.nextSibling);
-        wrapper.style.display="block";
+        document.getElementById("map_wrapper").style.display="block";
         document.getElementById("map_container").style.display="block";
         document.getElementById("map_container").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
+        MapService.invalidateSize("primary_map");
       }
       if(idOption=="list"){
         document.getElementById("map_wrapper").style.display="none";
@@ -183,12 +181,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       if(index==2){
         $scope.openModal('buscando', 'loading');
         //index 2 es el slide que tiene el botón del mapa y de el listado
-        document.getElementById("map_container").style.display="none";
+        var estList = document.getElementById("list_container");
+        estList.parentNode.insertBefore(document.getElementById("map_wrapper"), estList.nextSibling);
         ApiService.updateFilters($scope.form);
-        if(MapService.mapScope != null){
-          MapService.mapScope.filtersUpdated();
-        }
-        if(ApiService.filters!=null){
+        if( ApiService.filters!=null ){
           ApiService.getEstablecimientosByFilters().then(function (response) {
             //ApiService.lastSearchResponseEstablecimientos = response.data;
             //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
@@ -273,9 +269,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         document.getElementById(content)
       );
       if ( style == "modal-map") {
-        document.getElementById("map_container").style.display="block";
-        document.getElementById("map_container").style.visibility="visible";
-        MapService.goToPlace("primary_map", "Confirmar", $scope);
+        document.getElementById("ubicacion").style.display="block";
+        MapService.goToPlace("ubicacion_map", "Confirmar", $scope);
       }
       if ( style == "buscando") {
         document.getElementById('loading').style.display="block";

@@ -76,7 +76,7 @@
       		<div class="section donde">
             <div class="title">¿Dónde vivís?</div>
             <input id="donde_estudiar" type="text" class="donde estudiar_input clickable" ng-model="form.searchDonde" ng-change="onSearchChangeDonde()" />
-            <div class="show-map clickable" ng-click="openModal('modal-map', 'map_wrapper')"></div>
+            <div class="show-map clickable" ng-click="openModal('modal-map', 'ubicacion')"></div>
             <div id="SearchDondeResults">
               <ion-scroll id="searchDondeResults_scroll" scrollX="false" scrollY="true">
                 <div class='donde_container clickable' ng-repeat="donde in form.SearchDondeResults">
@@ -136,5 +136,8 @@
         </div>
 	    </ion-slide>
 	  </ion-slide-box>
+    <div id="ubicacion">
+      <leaflet data-tap-disabled="true" id="ubicacion_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+    </div>
   </ion-content>
 </ion-view>

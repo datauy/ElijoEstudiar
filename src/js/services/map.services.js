@@ -6,7 +6,6 @@
 
 
    var MapService = {};
-   MapService.mapScope = null;
    MapService.modal_map = {
      defaults: {
        tileLayer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -68,8 +67,6 @@
         }).bindPopup(compiled[0]).addTo(map).openPopup();
       });
       map.setView(position, 15);
-      //Resize de map en caso que se requiera
-      map.invalidateSize();
       map.on('click', function(e) {
         MapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
       });
@@ -84,7 +81,6 @@
      if(establecimientos!=null){
        //Recorrer los establicimientos y crear los pines
        leafletData.getMap("primary_map").then(function(map) {
-         // TODO: Guardar ubicación de usuario???
          map.eachLayer(function(marker) {
             if(marker._url){
             }else{
@@ -141,11 +137,11 @@
              map.addLayer(marker);
            }
          });
-         //Resize de map en caso que se requiera
-         map.invalidateSize();
          if ( markerCounter ) {
            var bounds = new L.LatLngBounds(bounds_arr);
            map.fitBounds(bounds);
+           //Resize de map en caso que se requiera
+           //map.invalidateSize();
          }
        });
      }else{
@@ -178,7 +174,11 @@
            map.panToOffset([establecimiento.lat, establecimiento.long],[paddingX,25],{});
      });
    }
-
+   MapService.invalidateSize = function(mapName) {
+     leafletData.getMap(mapName).then(function(map) {
+       map.invalidateSize();
+     });
+   }
    return MapService;
 
  }]);
