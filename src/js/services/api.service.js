@@ -19,6 +19,9 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
   ApiObject.searchDondeEstudiar = function(str){
     return $http.get(apiURL + 'ubicaciones?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
   }
+  ApiObject.searchEstablecimiento = function(str){
+    return $http.get(apiURL + 'establecimiento-por-nombre?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
+  }
   ApiObject.updateFilters = function(filtersObject){
     ApiObject.filters = filtersObject;
   }

@@ -119,8 +119,11 @@
          establecimientos.forEach(function(feature){
            if(feature.lat && feature.lon){
              markerCounter = markerCounter + 1;
+             //Only bound to first 4
+             if ( markerCounter < 5 ) {
+               bounds_arr.push([feature.lat, feature.lon]);
+             }
              var marker = L.marker([feature.lat, feature.lon], {icon: markerIcon});
-             bounds_arr.push([feature.lat, feature.lon]);
              var html = "<div class='custom_leflet_popup'><div class='popup_wrapper'><b class='text_inside_popup'>"
                          +feature.nombre
                          +"</b><a class='text_inside_popup' ng-click='openDetailsModal(\""
