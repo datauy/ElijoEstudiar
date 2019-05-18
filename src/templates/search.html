@@ -2,27 +2,21 @@
   <ion-content scroll="false">
         <div class="rombo_amarillo_chico"></div>
         <div class="rombo_amarillo_derecha"></div>
-        <div class="que estudiar_title">Buscar Liceo o UTU</div>
-        <input type="text" id="search_input" class="que estudiar_input clickable" ng-model="form.nombre_centro" ng-change="onSearchChange()" />
-        <div id="search_view_map_button" class="button_listado_completo clickable" ng-click="showMap()">Ver en mapa</div>
-        <div id="search_view_list_button" style="display: none;" class="button_listado_completo clickable" ng-click="showList()">Ver en listado</div>
-    	  <!--<div class="button-wrapper">
-          <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
-        </div>-->
-        <div id="SearchQueResults">
-          <!--<ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
-            <div class='subsistema_container' ng-repeat="subsistema in form.SearchQueResults track by $index">
-              <div class="subsistema_title">{{subsistema.subsis}}</div>
-              <div class='subsistema_curso' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos">
-                <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
-                <div class="curso_tag_wrapper">
-                  <div class='curso_tag' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="str in curso.tag">
-                    {{str}}
-                  </div>
-                </div>
+        <div class="form">
+          <div class="title">Buscar establecimiento</div>
+          <input type="text" id="search_input" class="que estudiar_input clickable" ng-model="nombre" ng-change="onSearchChange()" />
+          <div id="search_view_map_button" class="button_listado_completo clickable" ng-click="showMap()">Ver en mapa</div>
+          <div id="search_view_list_button" style="display: none;" class="button_listado_completo clickable" ng-click="showList()">Ver en listado</div>
+      	  <!--<div class="button-wrapper">
+            <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
+          </div>-->
+          <div id="list_container">
+            <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
+              <div class='establecimiento clickable' ng-click="searchSelect('{{est.id}}');" ng-repeat="est in establecimientos">
+                {{est.nombre}}
               </div>
-            </div>
-          </ion-scroll>-->
+            </ion-scroll>
+          </div>
         </div>
   </ion-content>
 </ion-view>

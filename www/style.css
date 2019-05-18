@@ -754,16 +754,17 @@ background-color: #ffffff;
 
 .donde_container{
 	width: 100%;
-	/* height: auto; */
-	/* display: block; */
-  padding: 13px;
-	/* padding-bottom: 13px; */
+	/* height: auto;
+	display: block;
+	padding-bottom: 13px; */
 	border-bottom: solid 2px #efefef;
 	margin: 0 0 0 0;
 	position: relative;
 	max-height: 50px;
 }
-
+.donde_title {
+	padding: 13px;
+}
 .curso_nombre{
 	position: relative;
 	left: 0px;
