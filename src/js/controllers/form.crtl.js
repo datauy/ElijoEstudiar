@@ -99,6 +99,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.onSearchChangeQue = function(){
+      //delete previous selection
+      $scope.form.que = {};
       var search = document.getElementById("que_estudiar");
       var search_str = search.value.trim();
       if(search_str.length>=3){
@@ -139,6 +141,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.onSearchChangeDonde = function(){
+      //delete previous selection
+      $scope.form.donde = {};
       var search = document.getElementById("donde_estudiar");
       var search_str = search.value.trim();
       if(search_str.length>=3){
