@@ -8,9 +8,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   'ApiService',
   'MapService',
   'DBService',
+  'ErrorService',
   '$ionicSlideBoxDelegate',
   '$ionicScrollDelegate',
-  function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
+  function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, ErrorService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
     $scope.form = {};
@@ -21,7 +22,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     //$scope.form.lugar = "";
     $scope.form.depto = "";
     $scope.form.localidad = "";
-    $scope.form.que = "";
+    $scope.form.que = {};
     $scope.form.donde = {};
     $scope.form.turnos = {
       "matutino":1,
@@ -88,7 +89,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         document.getElementById("map_container").style.display="block";
         document.getElementById("map_container").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
-        MapService.invalidateSize("primary_map");
+        //MapService.invalidateSize("primary_map");
       }
       if(idOption=="list"){
         document.getElementById("map_wrapper").style.display="none";
@@ -173,7 +174,14 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
 	  $scope.next = function() {
-	    $ionicSlideBoxDelegate.next();
+      if ( $ionicSlideBoxDelegate.currentIndex() == 1 && angular.equals($scope.form.que, {}) ) {
+        console.log('Error');
+        ErrorService.showError('Por favor, seleccione un curso de la lista.')
+      }
+      else {
+        $ionicSlideBoxDelegate.next();
+        ErrorService.hideError();
+      }
 	  };
 
 	  $scope.previous = function() {
@@ -183,6 +191,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.slideHasChanged = function(index){
       $scope.select_option("list");
       if(index==2){
+
         $scope.openModal('buscando', 'loading');
         //index 2 es el slide que tiene el botón del mapa y de el listado
         var estList = document.getElementById("list_container");

@@ -2,6 +2,8 @@ pmb_im.controllers.controller('AbsController',
 ['$scope','$cordovaInAppBrowser',
 function($scope,$cordovaInAppBrowser) {
 
+  $scope.show_error = "hidden";
+
   $scope.openWebsite = function(url) {
     var options = {
       location: 'no',
@@ -18,5 +20,8 @@ function($scope,$cordovaInAppBrowser) {
   }
   $scope.modalPageClose = function() {
     document.getElementById("modal-page").style.display="none";
+  }
+  $scope.errorClose = function() {
+    document.getElementById("error").style.visibility="hidden";
   }
 }]);

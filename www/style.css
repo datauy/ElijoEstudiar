@@ -2415,3 +2415,37 @@ margin-top: 10px;
 	margin: 24px 24% 0;
 	font-size: 12px;
 }
+#error {
+	height: 56px;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: #c00005;
+	z-index: 11;
+	visibility: hidden;
+}
+.error-content {
+	width: 40%;
+	height: 58px;
+	margin: 0 auto;
+	padding: 19px 0 19px 38px;
+	vertical-align: middle;
+	font-size: 15px;
+	color: #fff;
+	color: #fff;
+	background: url(./img/noun-warning.svg);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+#error-content {
+	width: calc(100% - 22px);
+	float: left;
+}
+.error-close {
+	width: 22px;
+	height: 22px;
+	float: right;
+	background: url(./img/close.svg);
+	background-repeat: no-repeat;
+}

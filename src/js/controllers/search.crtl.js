@@ -5,10 +5,11 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
   '$ionicPopup',
   'LocationsService',
   'ApiService',
+  'MapService',
   'DBService',
   '$ionicSlideBoxDelegate',
   '$ionicScrollDelegate',
-  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, DBService, $ionicSlideBoxDelegate,
+  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
     $scope.nombre = '';
@@ -25,8 +26,9 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         ApiService.searchEstablecimiento(search_str).then(function (response) {
           //console.log(response);
           console.log('Vuelve de buscar: ');
-          console.log(response.data);
-          $scope.establecimientos = response.data;
+          console.log(response.data.establecimientos);
+          $scope.establecimientos = response.data.establecimientos;
+          MapService.loadPinsLayer(response.data.establecimientos, $scope);
           document.getElementById("list_container").style.display = "block";
         });
       }

@@ -10,7 +10,7 @@
       	  <!--<div class="button-wrapper">
             <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
           </div>-->
-          <div id="list_container">
+          <div id="list_container" style="display: none;">
             <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
               <div class='establecimiento clickable' ng-click="searchSelect('{{est.id}}');" ng-repeat="est in establecimientos">
                 {{est.nombre}}

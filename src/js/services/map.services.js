@@ -93,7 +93,7 @@
          if (mainLocation != null) {
            bounds_arr.push([mainLocation.lat, mainLocation.long]);
            var markerIcon = L.icon({
-                 iconUrl: './img/pin.svg',
+                 iconUrl: './img/oval.svg',
                  //shadowUrl: 'leaf-shadow.png',
                  iconSize:     [35, 47], // size of the icon
                  //shadowSize:   [50, 64], // size of the shadow
