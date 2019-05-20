@@ -2449,3 +2449,155 @@ margin-top: 10px;
 	background: url(./img/close.svg);
 	background-repeat: no-repeat;
 }
+
+
+/* Estilos del menú */
+  .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+    margin-left: auto;
+    z-index: 5;
+  }
+
+   .menu-icon .navicon {
+    background: black;
+    display: block;
+    height: 5px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 32px;
+  }
+
+   .menu-icon .navicon:before,
+   .menu-icon .navicon:after {
+    background: black;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 50%;
+  }
+
+  ion-header-bar {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .menu-icon .navicon:before {
+    top: 10px;
+  }
+
+   .menu-icon .navicon:after {
+    top: -10px;
+    left: 50%;
+  }
+
+  /* menu btn */
+
+   .menu-btn {
+    display: none;
+  }
+
+   .menu-btn:checked ~ .menu {
+    max-height: 240px;
+  }
+
+   .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+
+   .menu-btn:checked ~ .menu-icon .navicon:before {
+    background: white;
+    transform: rotate(-45deg);
+    width: 100%;
+  }
+
+   .menu-btn:checked ~ .menu-icon .navicon:after {
+    background: white;
+    transform: rotate(45deg);
+    width: 100%;
+    left: 0;
+  }
+
+   .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+   .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+
+  .menu-btn:checked ~ .navbar .navbar-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #4a90e2;
+    position: absolute;
+    padding-top: 65px;
+    z-index: 4;
+    margin-left: 5%;
+    width: 100%;
+  }
+
+  .navbar-items {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20%;
+  }
+
+  .nav-item {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px 0;
+  }
+
+  .nav-item a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .navbar {
+    width: 100%;
+  }
+
+  .navbar-wrapper {
+    display: none;
+  }
+
+  .navbar {
+    position: absolute;
+    flex-direction: column;
+  }
+
+  .navbar-right {
+    margin-left: 0;
+  }
+
+  .nav-icon {
+    padding: 10% 0;
+    float: left;
+    position: relative;
+    padding-right: 5%;
+  }
+  .icon-color {
+    width: 32px;
+    height: 32px;
+    float: left;
+  }
+  .fa-facebook {
+    background-image: url(/img/ic-facebook.svg), none;
+  }
+  .fa-instagram {
+    background-image: url(/img/ic-instagram.svg), none;
+  }
+  .fa-linkedin {
+    background-image: url(/img/ic-linkedin.svg), none;
+  }
+  .fa-twitter {
+    background-image: url(/img/ic-twitter.svg), none;
+  }
+  .fa-youtube-play {
+    background-image: url(/img/ic-youtube.svg), none;
+  }
+  

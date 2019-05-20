@@ -9,7 +9,51 @@
       </div>
     </div>
     <div id="form_container">
-      <ion-nav-view name="menuContent"></ion-nav-view>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <div class="navbar">
+  
+          <div class="navbar-wrapper">
+            <nav class="navbar-items">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#/form">Dónde estudiar</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#/search">Centro de estudio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Sobre el proyecto</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Derechos del estudiante</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Favoritos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Ayuda</a>
+                </li>
+              </ul>
+            </nav>
+            <nav class="navbar-items navbar-right">
+              <ul class="nav navbar-nav navbar-expand-sm">
+                <li class="nav-icon">
+                  <a href="https://www.facebook.com/" target="_blank">
+                    <i class="fa fa-facebook fa-stack-1x icon-color"></i>
+                  </a>
+                </li>
+                <li class="nav-icon">
+                  <a href="https://twitter.com/" target="_blank">
+                    <i class="fa fa-twitter fa-stack-1x icon-color"></i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>  
+      <ion-nav-view name="menuContent">
+      </ion-nav-view>
     </div>
     <div id="modal-page">
       <div id="modal-page-close" ng-click="modalPageClose()" class="modal-close clickable"></div>
