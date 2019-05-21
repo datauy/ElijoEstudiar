@@ -19,8 +19,8 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
   ApiObject.searchDondeEstudiar = function(str){
     return $http.get(apiURL + 'ubicaciones?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
   }
-  ApiObject.searchEstablecimiento = function(str){
-    return $http.get(apiURL + 'establecimiento-por-nombre?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
+  ApiObject.searchEstablecimiento = function(parameters){
+    return $http.get(apiURL + 'busca-establecimientos', {cache: false, params: parameters});//, {cache: false, params: {hash_id:Math.random()}});
   }
   ApiObject.updateFilters = function(filtersObject){
     ApiObject.filters = filtersObject;
@@ -60,12 +60,41 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
       return params;
     }
 
-    ApiObject.getEstablecimientosByFilters = function(){
-      if(ApiObject.filters!=null){
-        var parameters = ApiObject.createFilterParamsForGetRequest();
-        console.log(parameters);
-        return $http.get(apiURL + 'cursos', {cache: false, params: parameters});
+    ApiObject.getEstablecimientosByFilters = function(parameters){
+      if ( parameters === undefined ) {
+        console.log('Parameters undef');
+        if( ApiObject.filters != null ){
+          parameters = ApiObject.createFilterParamsForGetRequest();
+          console.log(parameters);
+        }
+        else {
+          return 0;
+        }
       }
+      console.log(parameters);
+      return $http.get(apiURL + 'cursos', {cache: false, params: parameters}).then(function (response) {
+        var result = {
+          cursos: response.data
+        }
+        var est = {};
+        response.data.forEach(function(curso) {
+          for ( var k in curso.oferta ){
+            if (curso.oferta.hasOwnProperty(k)) {
+              if ( !est.hasOwnProperty(k) ) {
+                est[k] = {
+                  nombre: curso.oferta[k].nombre,
+                  lat: curso.oferta[k].lat,
+                  lon: curso.oferta[k].long,
+                  id: curso.oferta[k].id,
+                }
+              }
+              //est[k][curso.año]
+            }
+          }
+        });
+        result.establecimientos = Object.values(est);
+        return result;
+      });
     }
 
     ApiObject.getEstablecimientoById = function(id){

@@ -97,6 +97,16 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
       }
     }
   })
+  .state('app.search_cursos', {
+    cache: false,
+    url: "busco/cursos/:edad/:ultimo_nivel_aprobado/:tipoId/:turnos/:donde/:queId",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/search_cursos.html",
+        controller : "routesController"
+      }
+    }
+  })
   .state('app.intro', {
     cache: false,
     url: "intro",
@@ -108,18 +118,24 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
     }
   })
 
-  .state('app.search', {
+  .state('app.search_centros', {
     cache: false,
-    url: "search",
+    url: "centros",
     views: {
       'menuContent' :{
-        templateUrl: "templates/search.html",
+        templateUrl: "templates/search_centros.html",
         controller : "SearchCtrl"
       },
-      'mapView' :{
-        templateUrl: "templates/map.html",
-        controller : "MapController"
-      }
+    }
+  })
+  .state('app.centros', {
+    cache: false,
+    url: "busco/centros/:subsis/:ubicacion/:nombre",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/search_establecimientos.html",
+        controller : "SearchCtrl"
+      },
     }
   })
 

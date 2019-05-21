@@ -90,7 +90,7 @@
          var bounds_arr = [];
          var markerCounter = 0;
          //Ubicación de usuario
-         if (mainLocation != null) {
+         if (mainLocation !== undefined) {
            bounds_arr.push([mainLocation.lat, mainLocation.long]);
            var markerIcon = L.icon({
                  iconUrl: './img/oval.svg',
@@ -106,6 +106,7 @@
            map.addLayer(marker);
            //map.setView([mainLocation.lat, mainLocation.long], 10);
          }
+         console.log('PASA MAIN');
          var markerIcon = L.icon({
            iconUrl: './img/blue_pin.svg',
            //shadowUrl: 'leaf-shadow.png',
@@ -179,6 +180,30 @@
        map.invalidateSize();
      });
    }
+   MapService.selectOption = function(optionId) {
+     //// TODO: mejorar?
+     var x = document.getElementsByClassName("options");
+     var i;
+     for (i = 0; i < x.length; i++) {
+         x[i].className = "options option_"+ x[i].id +"_off";
+     }
+     var selected = document.getElementById(optionId);
+     selected.className = "options option_"+ optionId;
+     if(optionId=="map"){
+       document.getElementById("map_wrapper").style.display="block";
+       document.getElementById("map_container").style.display="block";
+       document.getElementById("map_container").style.visibility="visible";
+       document.getElementById("list_container").style.display="none";
+       //MapService.invalidateSize("primary_map");
+     }
+     if(optionId=="list"){
+       document.getElementById("map_wrapper").style.display="none";
+       document.getElementById("list_container").style.display="block";
+       document.getElementById("map_container").style.visibility="hidden";
+       document.getElementById("map_container").style.display="none";
+     }
+   }
+
    return MapService;
 
  }]);

@@ -75,28 +75,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       document.getElementById(idTurno).classList.toggle('selected');;
     }
 
-    $scope.select_option = function(idOption){
-      var x = document.getElementsByClassName("options");
-      var i;
-      for (i = 0; i < x.length; i++) {
-          x[i].className = "options option_"+ x[i].id +"_off";
-      }
-      var selected = document.getElementById(idOption);
-      selected.className = "options option_"+ idOption;
-      $scope.form.option = idOption;
-      if(idOption=="map"){
-        document.getElementById("map_wrapper").style.display="block";
-        document.getElementById("map_container").style.display="block";
-        document.getElementById("map_container").style.visibility="visible";
-        document.getElementById("list_container").style.display="none";
-        //MapService.invalidateSize("primary_map");
-      }
-      if(idOption=="list"){
-        document.getElementById("map_wrapper").style.display="none";
-        document.getElementById("list_container").style.display="block";
-        document.getElementById("map_container").style.visibility="hidden";
-        document.getElementById("map_container").style.display="none";
-      }
+    $scope.select_option = function(optionId){
+      MapService.selectOption(optionId);
     }
 
     $scope.onSearchChangeQue = function(){
@@ -185,13 +165,13 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 	  };
 
 	  $scope.previous = function() {
+      ErrorService.hideError();
 	    $ionicSlideBoxDelegate.previous();
 	  };
 
     $scope.slideHasChanged = function(index){
-      $scope.select_option("list");
       if(index==2){
-
+        $scope.select_option("list");
         $scope.openModal('buscando', 'loading');
         //index 2 es el slide que tiene el botón del mapa y de el listado
         var estList = document.getElementById("list_container");
@@ -199,27 +179,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         ApiService.updateFilters($scope.form);
         if( ApiService.filters!=null ){
           ApiService.getEstablecimientosByFilters().then(function (response) {
-            //ApiService.lastSearchResponseEstablecimientos = response.data;
-            //EL SERVICIO DE LA API ACTUALIZA AL CONTROLADOR DEL MAPA
-            $scope.cursos = response.data;
-            var est = {};
-            $scope.cursos.forEach(function(curso) {
-              for ( var k in curso.oferta ){
-                if (curso.oferta.hasOwnProperty(k)) {
-                  if ( !est.hasOwnProperty(k) ) {
-                    est[k] = {
-                      nombre: curso.oferta[k].nombre,
-                      lat: curso.oferta[k].lat,
-                      lon: curso.oferta[k].long,
-                      id: curso.oferta[k].id,
-                    }
-                  }
-                  //est[k][curso.año]
-                }
-              }
-            });
-            $scope.establecimientos = Object.values(est);
-            MapService.loadPinsLayer(Object.values(est), $scope, $scope.form.donde);
+            $scope.cursos = response.cursos;
+            $scope.establecimientos = response.establecimientos;
+            MapService.loadPinsLayer(response.establecimientos, $scope, $scope.form.donde);
             document.getElementById("modal-page").style.display="none";
           });
         }

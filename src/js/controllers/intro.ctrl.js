@@ -30,7 +30,7 @@ pmb_im.controllers.controller('IntroCtrl', ['$scope', '$state',
   }
 
   $scope.go_to_search = function(){
-    $state.go("app.search");
+    $state.go("app.search_centros");
   }
 
    /*$scope.$on('$ionicView.enter', function(){

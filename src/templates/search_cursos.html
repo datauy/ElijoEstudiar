@@ -1,0 +1,32 @@
+<ion-view title="ElijoEstudiar | Búsqueda" >
+  <div class="rombo_amarillo_chico"></div>
+  <div class="rombo_amarillo_derecha"></div>
+  <div class="form">
+    <div class="que section">
+      <div class="title">Esta es tu búsqueda</div>
+      <div id="full_search_str" class="que estudiar_input clickable">
+        {{search_str}}
+        </div>
+      <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
+    </div>
+    <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
+    <div class="listAndMap-wrapper">
+      <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
+      <div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
+    </div>
+    <div class="results-wrapper">
+      <div id="list_container">
+        <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
+          {{stablishment.nombre}}
+        </div>
+      </div>
+      <div id="map_wrapper" >
+        <div id="map_container" >
+          <ion-view hide-nav-bar="true">
+            <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+          </ion-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-view>
