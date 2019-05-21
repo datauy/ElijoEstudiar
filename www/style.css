@@ -893,7 +893,9 @@ background-color: #ffffff;
 
 .establecimiento:hover{
 	background-color: #4a90e2;
-	color: #ffffff;
+  color: #ffffff;
+}
+
 @media (min-width: 314px) {
   #list_container {
     height: calc(100vh - 410px);
