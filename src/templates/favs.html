@@ -1,0 +1,30 @@
+<ion-modal-view class="favs_modal">
+    <div class="rombo_amarillo_chico"></div>
+    <div class="back_arrow clickable" ng-click="close_modal()"></div>
+    <div class="rombo_amarillo_derecha"></div>
+    <div class="form">
+      <div class="section mapa_favoritos">
+        <div class="title">Favoritos</div>
+        <div class="favs_map_container" >
+            <leaflet id="favs_map" data-tap-disabled="true" defaults="favs_map.defaults" center="favs_map.center" markers="favs_map.markers" ng-if="favs_map"></leaflet>
+        </div>
+      </div>
+      <div class="section listado_favoritos">
+        <!--<div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
+          {{stablishment.nombre}}
+        </div>-->
+        <div class='establecimiento clickable'>
+          LICEO Nº 1
+        </div>
+        <div class='establecimiento clickable'>
+          LICEO Nº 5
+        </div>
+        <div class='establecimiento clickable'>
+          LICEO Nº 7
+        </div>
+        <div class='establecimiento clickable'>
+          LICEO Nº 11
+        </div>
+      </div>
+    </div>
+</ion-modal-view>

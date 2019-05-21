@@ -9,56 +9,54 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     angular.extend(this, _data);
   }
 
+  ApiObject.filters = null;
+  ApiObject.formScope = {};
+  ApiObject.lastSearchResponseEstablecimientos = null;
 
   ApiObject.searchQueEstudiar = function(str){
-    return $http.get(apiURL + 'search/' + str, {cache: false, params: {hash_id:Math.random()}});
+    return $http.get(apiURL + 'search/' + str);
   }
-
   ApiObject.searchDondeEstudiar = function(str){
-    return $http.get(apiURL + 'searchByLocalidadDepartamento/' + str, {cache: false, params: {hash_id:Math.random()}});
+    return $http.get(apiURL + 'ubicaciones?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
   }
-
-    ApiObject.filters = null;
-    ApiObject.mapScope = null;
-    ApiObject.formScope = {};
-    ApiObject.lastSearchResponseEstablecimientos = null;
-
-    ApiObject.updateFilters = function(filtersObject){
-      ApiObject.filters = filtersObject;
-      if(ApiObject.mapScope != null){
-        ApiObject.mapScope.filtersUpdated();
-      }
-    }
-
-    ApiObject.createFilterParamsForGetRequest = function(){
+  ApiObject.searchEstablecimiento = function(str){
+    return $http.get(apiURL + 'establecimiento-por-nombre?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
+  }
+  ApiObject.updateFilters = function(filtersObject){
+    ApiObject.filters = filtersObject;
+  }
+  ApiObject.createFilterParamsForGetRequest = function(){
       console.log(ApiObject.filters);
       var params = {
-        hash_id: Math.random(),
         edad: ApiObject.filters.edad,
         ultimo_nivel_aprobado: ApiObject.filters.ultimo_nivel_aprobado,
-        ultimo_anio_aprobado: ApiObject.filters.ultimo_anio_aprobado,
-        /*plan: ApiObject.filters.plan,
+        tipo: ApiObject.filters.que.tipoId,
+        /*ultimo_anio_aprobado: ApiObject.filters.ultimo_anio_aprobado,
         lugar: ApiObject.filters.lugar,*/
-        turno: ApiObject.filters.turno
       };
+      var turnos = [];
+      for (var k in ApiObject.filters.turnos){
+        if ( ApiObject.filters.turnos[k] === 1 ) {
+          turnos.push(k);
+        }
+      }
+      if (turnos.length) {
+        params.turnos = turnos.join(",");
+      }
+      /* TIENE QUE TRAER QUÉ
       if(ApiObject.filters.que!=""){
         params.queEstudiarId = ApiObject.filters.que.id;
         params.queEstudiarNombre = ApiObject.filters.que.nombre;
         params.queEstudiarTagUno = ApiObject.filters.que.tag[0];
         params.queEstudiarTagDos = ApiObject.filters.que.tag[1];
+      }*/
+      if( ApiObject.filters.donde.lat != "undefined" ){
+        params.ubicacion = ApiObject.filters.donde.lat+','+ApiObject.filters.donde.long;
       }
-      if(ApiObject.filters.donde!=""){
-        params.dondeEstudiarDepartamento = ApiObject.filters.donde.departamento;
-        params.dondeEstudiarLocalidad = ApiObject.filters.donde.localidad;
-        params.dondeEstudiarLat = ApiObject.filters.donde.coordenadas.lat;
-        params.dondeEstudiarLon = ApiObject.filters.donde.coordenadas.lon;
+      if ( ApiObject.filters.que.tipoId != ApiObject.filters.que.id ) {
+        params.orientacion = ApiObject.filters.que.id;
       }
-      if ( ApiObject.filters.que.tipo == 'tipo' ) {
-        params = ApiObject.filters.que.id+'/all';
-      }
-      else {
-        params = 'all/'+ApiObject.filters.que.id;
-      }
+
       return params;
     }
 
@@ -66,23 +64,13 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
       if(ApiObject.filters!=null){
         var parameters = ApiObject.createFilterParamsForGetRequest();
         console.log(parameters);
-        return $http.get(apiURL + 'establecimiento-por-tipo/'+parameters);//, {cache: false, params: parameters});
+        return $http.get(apiURL + 'cursos', {cache: false, params: parameters});
       }
     }
 
     ApiObject.getEstablecimientoById = function(id){
         return $http.get(apiURL + 'establecimientos-por-id/'+id, {cache: false, params: {hash_id:Math.random()}});
     }
-
-    ApiObject.updateMapPins = function(establecimientos){
-      ApiObject.mapScope.loadPinsLayer(establecimientos);
-    }
-
-    ApiObject.openDetailsModal = function(establecimiento){
-      ApiObject.mapScope.openDetailsModal(establecimiento);
-    }
-
-
     /**
      * Return the constructor function
      */

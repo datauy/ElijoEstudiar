@@ -3,94 +3,141 @@
 	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
 	    <ion-slide>
         <div class="rombo_amarillo"></div>
-    		<div class="edad_title">Tu edad</div>
-        <div class="edad_controls">
-      		<div ng-click="restarEdad();" class="edad_menos">-</div>
-          <input type="text" class="edad_text" ng-model="form.edad" />
-      		<!--<div class="edad_text">{{form.edad}}</div>-->
-      		<div ng-click="sumarEdad();" class="edad_mas">+</div>
+        <div class="form-pagina">
+          <div class="title">Tu edad</div>
+          <div class="edad_controls">
+            <div ng-click="restarEdad();" class="edad_menos">-</div>
+            <input type="text" class="edad_text" ng-model="form.edad" maxlength="2"/>
+            <!--<div class="edad_text">{{form.edad}}</div>-->
+            <div ng-click="sumarEdad();" class="edad_mas">+</div>
+          </div>
+          <div class="title">Último nivel aprobado</div>
+          <div class="ultimoNivelControls">
+            <div ng-click="selectUltimoNivel('ninguno');" id="ninguno" class="nivel_ninguno nivel">
+              <div class="nivel_punto" style="display:none;"></div>
+              <div class="nivel_title">Ninguno</div>
+            </div>
+            <div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel hidden">
+              <div class="nivel_punto"></div>
+              <div class="nivel_title">Primaria</div>
+            </div>
+            <div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">
+              <div class="nivel_punto"></div>
+              <div class="nivel_title">Media básica</div>
+            </div>
+            <div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">
+              <div class="nivel_punto"></div>
+              <div class="nivel_title">Media superior</div>
+            </div>
+            <div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">
+              <div class="nivel_punto"></div>
+              <div class="nivel_title">Terciaria</div>
+            </div>
+          </div>
+          <div class="rombo_azul"></div>
+          <!--<div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
+          <select ng-model="form.ultimo_anio_aprobado" class="ultimoAnioAprobado_select clickable">
+            <option value="" disabled selected>Selecciona un año</option>
+            <option>Primer año</option>
+            <option>Segundo año</option>
+            <option>Tercer año</option>
+            <option>Cuarto año</option>
+            <option>Quinto año</option>
+            <option>Sexto año</option>
+          </select>-->
+          <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
         </div>
-    		<div class="ultimoNivelAprobado_title">Último nivel aprobado</div>
-        <div class="ultimoNivelControls">
-      		<div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel">Primaria</div>
-      		<div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">Secundaria</div>
-      		<div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">Terciario</div>
-      		<div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">Universitario</div>
-        </div>
-        <div class="rombo_azul"></div>
-        <div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
-        <select ng-model="form.ultimo_anio_aprobado" class="ultimoAnioAprobado_select clickable">
-          <option value="" disabled selected>Selecciona un año</option>
-          <option>Primer año</option>
-          <option>Segundo año</option>
-          <option>Tercer año</option>
-          <option>Cuarto año</option>
-          <option>Quinto año</option>
-          <option>Sexto año</option>
-        </select>
-    		<button class="estudiar_next form_next_button primary_button clickable" ng-click="next()">Continuar</button>
 	    </ion-slide>
 	    <ion-slide>
         <div class="rombo_amarillo_chico"></div>
         <div class="rombo_amarillo_derecha"></div>
         <div class="rombo_azul_chico"></div>
-
-        <div class="que estudiar_title">¿Qué querés estudiar?</div>
-        <input type="text" id="que_estudiar" class="que estudiar_input clickable" ng-model="form.searchQue" ng-change="onSearchChangeQue()" />
-        <div class="button_listado_completo clickable" ng-click="listAllQueEstudiar()">Ver listado completo</div>
-    		<div class="donde estudiar_title">¿Dónde vivís?</div>
-    		<input id="donde_estudiar" type="text" class="donde estudiar_input clickable" ng-model="form.searchDonde" ng-change="onSearchChangeDonde()" />
-    		<div class="turno estudiar_title">Turno</div>
-        <div class="turnos-wrapper">
-          <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino">Matutino</div>
-      		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino_off">Vespertino</div>
-      		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno_off">Nocturno</div>
-        </div>
-    		<!--<div class="plan estudiar_title">¿Cuál es tu plan?</div>
-    		<input type="text" class="cual estudiar_input" />-->
-        <div class="button-wrapper">
-          <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
-      		<!--<button class="form_back_button" ng-click="previous()">Volver a comenzar</button>-->
-        </div>
-        <div id="SearchQueResults">
-          <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
-            <div class='subsistema_container' ng-repeat="subsistema in form.SearchQueResults track by $index">
-              <div class="subsistema_title">{{subsistema.subsis}}</div>
-              <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos">
-                <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
-                <div class="curso_tag_wrapper">
-                  <div class='curso_tag' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="str in curso.tag">
-                    {{str}}
+        <div class="form">
+          <div id="que" class="section que">
+            <div class="title">¿Qué querés estudiar?</div>
+            <input type="text" id="que_estudiar" class="clickable" ng-model="form.searchQue" ng-change="onSearchChangeQue()" />
+            <div class="button_listado_completo clickable" ng-click="listAllQueEstudiar()">Ver listado completo</div>
+            <div id="SearchQueResults">
+              <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
+                <div class='subsistema_container' ng-repeat="subsistema in form.SearchQueResults track by $index">
+                  <div class="subsistema_title">{{subsistema.subsis}}</div>
+                  <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos">
+                    <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
+                    <div class="curso_tag_wrapper">
+                      <div class='curso_tag' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="str in curso.tag">
+                        {{str}}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ion-scroll>
             </div>
-          </ion-scroll>
-        </div>
-        <div id="SearchDondeResults">
-          <ion-scroll id="searchDondeResults_scroll" scrollX="false" scrollY="true">
-            <div class='donde_container clickable' ng-repeat="donde in form.SearchDondeResults track by $index">
-              <div class="donde_title" ng-click="selectDondeEstudiarItem({{donde}})">{{donde.loc_dep}}</div>
+          </div>
+      		<div class="section donde">
+            <div class="title">¿Dónde vivís?</div>
+            <input id="donde_estudiar" type="text" class="donde estudiar_input clickable" ng-model="form.searchDonde" ng-change="onSearchChangeDonde()" />
+            <div class="show-map clickable" ng-click="openModal('modal-map', 'ubicacion')"></div>
+            <div id="SearchDondeResults">
+              <ion-scroll id="searchDondeResults_scroll" scrollX="false" scrollY="true">
+                <div class='donde_container clickable' ng-repeat="donde in form.SearchDondeResults">
+                  <div class="donde_title" ng-click="selectDondeEstudiarItem({{donde}})">{{donde.nombre}}</div>
+                </div>
+              </ion-scroll>
             </div>
-          </ion-scroll>
+          </div>
+          <div class="section turno">
+        		<div class="title">Turno</div>
+            <div class="turnos-wrapper">
+              <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino selected">Matutino</div>
+          		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino selected">Vespertino</div>
+          		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno selected">Nocturno</div>
+            </div>
+        		<!--<div class="plan estudiar_title">¿Cuál es tu plan?</div>
+        		<input type="text" class="cual estudiar_input" />-->
+          </div>
+          <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
+          <button class="form_back_button" ng-click="previous()">Volver a comenzar</button>
         </div>
 	    </ion-slide>
 	    <ion-slide>
         <div class="rombo_amarillo_chico"></div>
         <div class="rombo_amarillo_derecha"></div>
-        <div class="que estudiar_title">Esta es tu búsqueda</div>
-        <div id="full_search_str" class="que estudiar_input clickable">{{form.que.nombre}}, {{form.turno}}, {{form.donde.loc_dep}}, {{form.edad}} años, {{form.ultimo_nivel_aprobado}}</div>
-        <div id="edit_search_button" class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
-        <div class="listAndMap-wrapper">
-          <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
-      		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
-        </div>
-        <div id="list_container">
-          <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
-            {{stablishment.nombre}}
+        <div class="form">
+          <div class="que section">
+            <div class="title">Esta es tu búsqueda</div>
+            <div id="full_search_str" class="que estudiar_input clickable">
+              {{form.edad ? form.edad+'años, ' : ''}}
+              {{form.ultimo_nivel_aprobado ? form.ultimo_nivel_aprobado+', ' : ''}}
+              {{form.que.nombre ? form.que.nombre+', ':''}}
+              {{form.donde.nombre ? form.donde.nombre+', ' : ''}}
+              {{form.turnos ? form.turnos :''}}
+              </div>
+            <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
+          </div>
+          <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
+          <div class="listAndMap-wrapper">
+            <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
+        		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
+          </div>
+          <div class="results-wrapper">
+            <div id="list_container">
+              <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
+                {{stablishment.nombre}}
+              </div>
+            </div>
+            <div id="map_wrapper" >
+              <div id="map_container" >
+                <ion-view hide-nav-bar="true">
+                  <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+                </ion-view>
+              </div>
+            </div>
           </div>
         </div>
 	    </ion-slide>
 	  </ion-slide-box>
+    <div id="ubicacion">
+      <leaflet data-tap-disabled="true" id="ubicacion_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+    </div>
   </ion-content>
 </ion-view>

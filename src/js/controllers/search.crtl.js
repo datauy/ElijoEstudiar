@@ -5,16 +5,14 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
   '$ionicPopup',
   'LocationsService',
   'ApiService',
+  'MapService',
   'DBService',
   '$ionicSlideBoxDelegate',
   '$ionicScrollDelegate',
-  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, DBService, $ionicSlideBoxDelegate,
+  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
-    $scope.form = {};
-    $scope.form.lugar = "";
-    $scope.form.nombre_centro = "";
-    $scope.form.option = "list";
+    $scope.nombre = '';
     $scope.establecimientos = null;
 
     $scope.$on("$ionicView.beforeEnter", function() {
@@ -22,21 +20,21 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     });
 
     $scope.onSearchChange = function(){
-      /*var search = document.getElementById("que_estudiar");
-      var search_str = search.value.trim();
-      if(search_str.length>=3){
-        ApiService.searchQueEstudiar(search_str).then(function (response) {
+      var search_str = document.getElementById("search_input").value.trim();
+      if( search_str.length >= 3 ){
+        console.log('Buscando por: '+search_str);
+        ApiService.searchEstablecimiento(search_str).then(function (response) {
           //console.log(response);
-          $scope.form.SearchQueResults = response.data;
-          document.getElementById("SearchQueResults").style.display = "block";
+          console.log('Vuelve de buscar: ');
+          console.log(response.data.establecimientos);
+          $scope.establecimientos = response.data.establecimientos;
+          MapService.loadPinsLayer(response.data.establecimientos, $scope);
+          document.getElementById("list_container").style.display = "block";
         });
-      }else{
-        $scope.hideSearchQueResults();
-      }*/
+      }
     }
-
-    $scope.hideSearchQueResults = function(){
-      document.getElementById("SearchQueResults").style.display = "none";
+    $scope.searchSelect = function(id){
+      $state.go( "app.centro", {"id": id} );
     }
 
     $scope.showMap = function(){

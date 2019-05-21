@@ -2,13 +2,66 @@
   <ion-side-menu-content scroll="true">
     <!--<ion-nav-bar class="bar-stable">
     </ion-nav-bar>-->
-    <div id="form_container">
-      <ion-nav-view name="menuContent"></ion-nav-view>
+    <div id="error">
+      <div class="error-content">
+        <div id="error-content"></div>
+        <div class="error-close clickable" ng-click="errorClose()"></div>
+      </div>
     </div>
-    <div id="map_wrapper" >
-      <ion-nav-view name="mapView">
+    <div id="form_container">
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <div class="navbar">
+  
+          <div class="navbar-wrapper">
+            <nav class="navbar-items">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#/form">Dónde estudiar</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#/search">Centro de estudio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Sobre el proyecto</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Derechos del estudiante</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Favoritos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Ayuda</a>
+                </li>
+              </ul>
+            </nav>
+            <nav class="navbar-items navbar-right">
+              <ul class="nav navbar-nav navbar-expand-sm">
+                <li class="nav-icon">
+                  <a href="https://www.facebook.com/" target="_blank">
+                    <i class="fa fa-facebook fa-stack-1x icon-color"></i>
+                  </a>
+                </li>
+                <li class="nav-icon">
+                  <a href="https://twitter.com/" target="_blank">
+                    <i class="fa fa-twitter fa-stack-1x icon-color"></i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>  
+      <ion-nav-view name="menuContent">
       </ion-nav-view>
     </div>
+    <div id="modal-page">
+      <div id="modal-page-close" ng-click="modalPageClose()" class="modal-close clickable"></div>
+      <div id="modal-page-content" class="intro_inside_rectangle">
+        <div id="loading" style="display: none;"><img src="img/loading.gif" alt="Loading"></div>
+      </div>
+    </div>
+    <div id="loading-mini" style="display: none;"><img src="img/small_loading1.gif" alt="Loading"></div>
     <div id="foot_container">
       <div class="footer_share">Compartir</div>
       <div class="footer_share_wrapper">
