@@ -45,8 +45,9 @@
             <option>Quinto año</option>
             <option>Sexto año</option>
           </select>-->
-          <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
         </div>
+        <!-- TODO: Estaba mal armado el html, según el diseño el botón tien que ir debajo, hice un very hot fix :) -->
+        <button class="form_next_button primary_button full-width clickable" ng-click="next()">Continuar</button>
 	    </ion-slide>
 	    <ion-slide>
         <div class="rombo_amarillo_chico"></div>
@@ -100,40 +101,6 @@
         </div>
 	    </ion-slide>
 	    <ion-slide>
-        <div class="rombo_amarillo_chico"></div>
-        <div class="rombo_amarillo_derecha"></div>
-        <div class="form">
-          <div class="que section">
-            <div class="title">Esta es tu búsqueda</div>
-            <div id="full_search_str" class="que estudiar_input clickable">
-              {{form.edad ? form.edad+'años, ' : ''}}
-              {{form.ultimo_nivel_aprobado ? form.ultimo_nivel_aprobado+', ' : ''}}
-              {{form.que.nombre ? form.que.nombre+', ':''}}
-              {{form.donde.nombre ? form.donde.nombre+', ' : ''}}
-              {{form.turnos ? form.turnos :''}}
-              </div>
-            <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
-          </div>
-          <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
-          <div class="listAndMap-wrapper">
-            <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
-        		<div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
-          </div>
-          <div class="results-wrapper">
-            <div id="list_container">
-              <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
-                {{stablishment.nombre}}
-              </div>
-            </div>
-            <div id="map_wrapper" >
-              <div id="map_container" >
-                <ion-view hide-nav-bar="true">
-                  <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
-                </ion-view>
-              </div>
-            </div>
-          </div>
-        </div>
 	    </ion-slide>
 	  </ion-slide-box>
     <div id="ubicacion">

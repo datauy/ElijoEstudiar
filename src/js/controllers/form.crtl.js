@@ -75,10 +75,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       document.getElementById(idTurno).classList.toggle('selected');;
     }
 
-    $scope.select_option = function(optionId){
-      MapService.selectOption(optionId);
-    }
-
     $scope.onSearchChangeQue = function(){
       //delete previous selection
       $scope.form.que = {};
@@ -170,21 +166,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 	  };
 
     $scope.slideHasChanged = function(index){
+      console.log(index);
       if(index==2){
-        $scope.select_option("list");
-        $scope.openModal('buscando', 'loading');
-        //index 2 es el slide que tiene el botón del mapa y de el listado
-        var estList = document.getElementById("list_container");
-        estList.parentNode.insertBefore(document.getElementById("map_wrapper"), estList.nextSibling);
         ApiService.updateFilters($scope.form);
-        if( ApiService.filters!=null ){
-          ApiService.getEstablecimientosByFilters().then(function (response) {
-            $scope.cursos = response.cursos;
-            $scope.establecimientos = response.establecimientos;
-            MapService.loadPinsLayer(response.establecimientos, $scope, $scope.form.donde);
-            document.getElementById("modal-page").style.display="none";
-          });
-        }
+        $state.go( "app.search_cursos");
       }
     }
 

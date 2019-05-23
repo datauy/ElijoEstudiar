@@ -76,14 +76,43 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
     templateUrl: "templates/menu.html",
     controller: 'AbsController'
   })
-
-  .state('app.form', {
+  .state('app.intro', {
     cache: false,
-    url: "form",
+    url: "intro",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/intro.html",
+        controller : "IntroCtrl"
+      }
+    }
+  })
+  .state('app.cursos', {
+    cache: false,
+    url: "cursos",
     views: {
       'menuContent' :{
         templateUrl: "templates/form.html",
         controller : "FormCtrl"
+      }
+    }
+  })
+  .state('app.search_centros', {
+    cache: false,
+    url: "centros",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/search_centros.html",
+        controller : "SearchCtrl"
+      },
+    }
+  })
+  .state('app.search_cursos', {
+    cache: false,
+    url: "busco/cursos",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/search_cursos.html",
+        controller : "SearchCtrl"
       }
     }
   })
@@ -97,35 +126,14 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
       }
     }
   })
-  .state('app.search_cursos', {
+  .state('app.search_cursos_result', {
     cache: false,
     url: "busco/cursos/:edad/:ultimo_nivel_aprobado/:tipoId/:turnos/:donde/:queId",
     views: {
       'menuContent' :{
         templateUrl: "templates/search_cursos.html",
-        controller : "routesController"
-      }
-    }
-  })
-  .state('app.intro', {
-    cache: false,
-    url: "intro",
-    views: {
-      'menuContent' :{
-        templateUrl: "templates/intro.html",
-        controller : "IntroCtrl"
-      }
-    }
-  })
-
-  .state('app.search_centros', {
-    cache: false,
-    url: "centros",
-    views: {
-      'menuContent' :{
-        templateUrl: "templates/search_centros.html",
         controller : "SearchCtrl"
-      },
+      }
     }
   })
   .state('app.centros', {

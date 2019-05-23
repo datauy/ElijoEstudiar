@@ -25,6 +25,35 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     };
     $scope.$on("$ionicView.beforeEnter", function() {
       $scope.map = MapService.modal_map;
+      // TODO: Acomodar bien
+      if ( $state.current.name == "app.search_cursos_result" || $state.current.name == "app.search_cursos") {
+        if ( angular.equals(ApiService.filters, {}) ) {
+          //Saco parámetros de la URL
+          console.log($state.params);
+          var params = {
+            edad: $state.params.edad,
+            ultimo_nivel_aprobado: $state.params.ultimo_nivel_aprobado,
+            tipo: $state.params.tipoId,
+            turnos: $state.params.turnos,
+            ubicacion: $state.params.donde,
+            orientacion: $state.params.queId
+          }
+          // TODO: Resolver cómo se levantan los datos
+          var search_str = $state.params.edad != 'all' ? $state.params.edad+' años, ' : '' +
+            $state.params.ultimo_nivel_aprobado != 'all' ? $state.params.ultimo_nivel_aprobado+', ' : ''+
+            $state.params.queId != 'all' ? $state.params.queId+', ' : ''+
+            $state.params.donde != 'all' ? $state.params.donde+', ' : ''+
+            $state.params.turnos != 'all' ? $state.params.turnos : '';
+          $scope.params = params;
+          $scope.search_str = search_str;
+        }
+        ApiService.getCursosByFilters($scope.params).then(function (response) {
+          $scope.cursos = response.cursos;
+          $scope.establecimientos = response.establecimientos;
+          MapService.loadPinsLayer(response.establecimientos, $scope, $state.params.donde);
+          document.getElementById("modal-page").style.display="none";
+        });
+      }
     });
 
     $scope.onSearchChange = function(){
@@ -57,7 +86,27 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     }
 
     $scope.select_option = function(optionId){
-      MapService.selectOption(optionId);
+      //// TODO: mejorar?
+      var x = document.getElementsByClassName("options");
+      var i;
+      for (i = 0; i < x.length; i++) {
+          x[i].className = "options option_"+ x[i].id +"_off";
+      }
+      var selected = document.getElementById(optionId);
+      selected.className = "options option_"+ optionId;
+      if(optionId=="map"){
+        document.getElementById("map_wrapper").style.display="block";
+        document.getElementById("map_container").style.display="block";
+        document.getElementById("map_container").style.visibility="visible";
+        document.getElementById("list_container").style.display="none";
+        //MapService.invalidateSize("primary_map");
+      }
+      if(optionId=="list"){
+        document.getElementById("map_wrapper").style.display="none";
+        document.getElementById("list_container").style.display="block";
+        document.getElementById("map_container").style.visibility="hidden";
+        document.getElementById("map_container").style.display="none";
+      }
     }
 
     $scope.openDetailsModal = function(id) {

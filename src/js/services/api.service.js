@@ -60,7 +60,7 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
       return params;
     }
 
-    ApiObject.getEstablecimientosByFilters = function(parameters){
+    ApiObject.getCursosByFilters = function(parameters){
       if ( parameters === undefined ) {
         console.log('Parameters undef');
         if( ApiObject.filters != null ){

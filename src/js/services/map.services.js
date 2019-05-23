@@ -32,12 +32,14 @@
   * Center map on user's current position
   */
   MapService.goToPlace = function(mapName,name,scope) {
+    leafletData.getMap(mapName).then(function(map) {map.invalidateSize();});
     $cordovaGeolocation
       .getCurrentPosition()
       .then(function(ubication) {
         MapService.createMarker(mapName,name,scope,[ubication.coords.latitude, ubication.coords.longitude]);
      }, function(err) {
       leafletData.getMap(mapName).then(function(map) {
+        map.invalidateSize();
         map.setView([-32.564420, -56.028243], 6);
         map.on('click', function(e) {
           MapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
@@ -180,30 +182,7 @@
        map.invalidateSize();
      });
    }
-   MapService.selectOption = function(optionId) {
-     //// TODO: mejorar?
-     var x = document.getElementsByClassName("options");
-     var i;
-     for (i = 0; i < x.length; i++) {
-         x[i].className = "options option_"+ x[i].id +"_off";
-     }
-     var selected = document.getElementById(optionId);
-     selected.className = "options option_"+ optionId;
-     if(optionId=="map"){
-       document.getElementById("map_wrapper").style.display="block";
-       document.getElementById("map_container").style.display="block";
-       document.getElementById("map_container").style.visibility="visible";
-       document.getElementById("list_container").style.display="none";
-       //MapService.invalidateSize("primary_map");
-     }
-     if(optionId=="list"){
-       document.getElementById("map_wrapper").style.display="none";
-       document.getElementById("list_container").style.display="block";
-       document.getElementById("map_container").style.visibility="hidden";
-       document.getElementById("map_container").style.display="none";
-     }
-   }
-
+   
    return MapService;
 
  }]);
