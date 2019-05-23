@@ -26,7 +26,7 @@ pmb_im.controllers.controller('IntroCtrl', ['$scope', '$state',
     };
 
   $scope.go_to_form = function(){
-    $state.go("app.form");
+    $state.go("app.cursos");
   }
 
   $scope.go_to_search = function(){

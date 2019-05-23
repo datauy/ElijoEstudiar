@@ -55,7 +55,9 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         });
       }
     });
-
+    /*$scope.$on("$ionicView.loaded", function() {
+      document.getElementById("map_wrapper").style.display="none";
+    });*/
     $scope.onSearchChange = function(){
       //Process subsis
       var params = {};
@@ -79,6 +81,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       ApiService.searchEstablecimiento(params).then(function (response) {
         $scope.establecimientos = response.data.establecimientos;
         MapService.loadPinsLayer(response.data.establecimientos, $scope);
+        //MapService.invalidateSize();
       });
     }
     $scope.searchSelect = function(id){
@@ -95,17 +98,15 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       var selected = document.getElementById(optionId);
       selected.className = "options option_"+ optionId;
       if(optionId=="map"){
+        document.getElementById("map_wrapper").style.position="relative";
         document.getElementById("map_wrapper").style.display="block";
-        document.getElementById("map_container").style.display="block";
-        document.getElementById("map_container").style.visibility="visible";
+        document.getElementById("map_wrapper").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
         //MapService.invalidateSize("primary_map");
       }
       if(optionId=="list"){
         document.getElementById("map_wrapper").style.display="none";
         document.getElementById("list_container").style.display="block";
-        document.getElementById("map_container").style.visibility="hidden";
-        document.getElementById("map_container").style.display="none";
       }
     }
 

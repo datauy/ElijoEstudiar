@@ -5,6 +5,9 @@ body {
 img {
 	width: 100%;
 }
+ion-nav-view {
+	background-color: #000;
+}
 .main.view-container {
 	position: relative;
 	float: left;
@@ -12,6 +15,12 @@ img {
 .modal {
 	float: left;
 	position: relative;
+	display: flex;
+}
+.slider-slide {
+	height: auto;
+}
+.slider-slides {
 	display: flex;
 }
 #loading {
@@ -80,15 +89,14 @@ button {
 }
 
 .intro_inside_rectangle{
-	width: calc(100% - 46px);
-  height: calc(100% - 210px);
+	width: 84%;
+  height: 403px;
   border-radius: 6px;
   box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.12);
   background-color: #ffffff;
-	position: absolute;
-	left: 50%;
-  transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	top: 105px;
+	position: relative;
+	float: left;
+	margin: 105px 8% 60px;
 }
 
 .intro_que_buscas{
@@ -837,7 +845,10 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	font-size: 13px;
 	color: #4a90e2;
 }
-
+[nav-view-transition="ios"][nav-view-direction="forward"],
+[nav-view-transition="ios"][nav-view-direction="back"] {
+	background-color: #fff;
+}
 #ubicacion-wrapper {
 	position: relative;
 	width: 100%;
@@ -854,37 +865,27 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	position: relative;
 }
 #map_wrapper{
-	position: relative;
-	width: 100%;
-	height: 480px;
+	position: absolute;
+	width: 100vw;
+	margin-left: -40px;
+	height: 360px;
+	visibility: hidden;
 }
 #map_container{
 		position: absolute;
 		top: 0;
 		left: 0;
     width: 100%;
-    height: 480px;
+    height: 360px;
     /*top: 370px;
-    left: 0px;*/
-		visibility: hidden;
+    left: 0px;
+		*/
 }
 
-#list_container{
-    width: 100%;
-    height: calc(100vh - 448px);
-		overflow-y: auto;
-}
-
-@media (min-width: 314px) {
-  #list_container {
-    height: calc(100vh - 410px);
-  }
-}
-
-@media (max-width: 313px) {
-  #list_container {
-    height: calc(100vh - 510px);
-  }
+#list_container {
+  width: 100%;
+  height: 360px;
+	overflow-y: auto;
 }
 
 .establecimiento{
@@ -2076,13 +2077,6 @@ button.full-width {
   color: red;
 }
 
-#form_container < .details_modal {
-  height: initial;
-}
-
-.slider-slide {
-	height: 100vh;
-}
 .leaflet-control-attribution{
   display: none;
 }
