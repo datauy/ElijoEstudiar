@@ -3,14 +3,16 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
   '$stateParams',
   '$ionicPlatform',
   '$ionicPopup',
+  'ModalService',
   'LocationsService',
   'ApiService',
   'MapService',
   'DBService',
   '$ionicSlideBoxDelegate',
   '$ionicScrollDelegate',
-  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
-  $ionicScrollDelegate) {
+  '$ionicHistory',
+  function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, ModalService, LocationsService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
+  $ionicScrollDelegate, $ionicHistory) {
 
     $scope.establecimientos = null;
     $scope.filters = {
@@ -27,6 +29,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       $scope.map = MapService.modal_map;
       // TODO: Acomodar bien
       if ( $state.current.name == "app.search_cursos_result" || $state.current.name == "app.search_cursos") {
+        console.log(ApiService.filters);
+        ModalService.openModal('buscando', 'loading');
         if ( angular.equals(ApiService.filters, {}) ) {
           //Saco parámetros de la URL
           console.log($state.params);
@@ -55,10 +59,15 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         });
       }
     });
+    $scope.$on("$ionicView.loaded", function() {
+      console.log('VIEW LOADED');
+      console.log(ApiService.filters);
+    });
     /*$scope.$on("$ionicView.loaded", function() {
       document.getElementById("map_wrapper").style.display="none";
     });*/
     $scope.onSearchChange = function(){
+      ModalService.activateLoading('search_input', 'mini');
       //Process subsis
       var params = {};
       var subsis = [];
@@ -81,6 +90,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       ApiService.searchEstablecimiento(params).then(function (response) {
         $scope.establecimientos = response.data.establecimientos;
         MapService.loadPinsLayer(response.data.establecimientos, $scope);
+        document.getElementById("loading-mini").style.display = "none";
         //MapService.invalidateSize();
       });
     }
@@ -114,5 +124,11 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       $state.go( "app.centro", {"id": id} );
     }
 
+    $scope.editSearch = function(){
+      console.log('HISTORY');
+      //$ionicSlideBoxDelegate.previous();
+      //$ionicHistory.goBack()
+      $state.go( "app.cursos", {"status": "po"} );
+    }
   }
 ]);

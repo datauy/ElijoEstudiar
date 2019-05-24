@@ -32,12 +32,14 @@
   * Center map on user's current position
   */
   MapService.goToPlace = function(mapName,name,scope) {
+    leafletData.getMap(mapName).then(function(map) {map.invalidateSize();});
     $cordovaGeolocation
       .getCurrentPosition()
       .then(function(ubication) {
         MapService.createMarker(mapName,name,scope,[ubication.coords.latitude, ubication.coords.longitude]);
      }, function(err) {
       leafletData.getMap(mapName).then(function(map) {
+        map.invalidateSize();
         map.setView([-32.564420, -56.028243], 6);
         map.on('click', function(e) {
           MapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);

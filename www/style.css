@@ -17,6 +17,16 @@ ion-nav-view {
 	position: relative;
 	display: flex;
 }
+.inside_rectangle{
+	width: 84%;
+  height: 403px;
+  border-radius: 6px;
+  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.12);
+  background-color: #ffffff;
+	position: relative;
+	float: left;
+	/*margin: 105px 8% 60px;*/
+}
 .slider-slide {
 	height: auto;
 }
@@ -51,7 +61,7 @@ ion-nav-view {
 .buscando #loading::after {
 	content: 'Buscando';
 }
-.intro_inside_rectangle.buscando {
+.inside_rectangle.buscando {
 	background-image: url(./img/buscando.svg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -61,7 +71,6 @@ ion-nav-view {
 	position: absolute;
 	top: 0;
 	font-size: 18px;
-
 }
 button {
 	margin-top: 16px;
@@ -83,20 +92,15 @@ button {
 	background-size:     100% 100%;
 	background-repeat:   no-repeat;
 	background-position: center center;
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 }
 
-.intro_inside_rectangle{
-	width: 84%;
-  height: 403px;
-  border-radius: 6px;
-  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.12);
-  background-color: #ffffff;
-	position: relative;
-	float: left;
+.intro.inside_rectangle{
 	margin: 105px 8% 60px;
+	z-index: 2;
+	height: calc(100vh - 463px);
 }
 
 .intro_que_buscas{
@@ -185,7 +189,7 @@ button {
 	width: 187px;
   height: 216px;
   object-fit: contain;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	right: 0;
 	background-image:    url(./img/intro_rombo_amarillo.svg);
@@ -212,9 +216,8 @@ background-position: center center;
 	margin: 36px 20%;
 	padding: 0 10%;
 	z-index: 1;
-	height: 100%;
 }
-.form input {
+.form input:not(.edad_text) {
 	background: transparent;
 	float: left;
 	width: 100%;
@@ -230,9 +233,11 @@ background-position: center center;
 
 /*Form step 1*/
 .form-pagina {
-  width: 80%;
+  width: 60%;
   padding: 0 10%;
-  margin: 42px 10% 0 10%;
+  margin: 36px 20%;
+	float: left;
+	z-index: 1;
 }
 
 .rombo_amarillo{
@@ -866,7 +871,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 }
 #map_wrapper{
 	position: absolute;
-	width: 100vw;
+	width: calc(100% + 80px);
 	margin-left: -40px;
 	height: 360px;
 	visibility: hidden;
@@ -2408,16 +2413,18 @@ margin-top: 10px;
 	top: 64px;
 	z-index: 11;
 }
-.intro_inside_rectangle.modal-map {
+.inside_rectangle.modal-map {
+	width: calc(100% - 40px);
 	top: 42px;
 	z-index: 10;
 	padding: 64px 4%;
 	/* TODO:  Revisar tamaño del mapa*/
 	height: 608px;
+	margin: 0 20px;
 }
-.intro_inside_rectangle.full {
+.inside_rectangle.full {
 	height: calc(100% - 40px);
-	top: 20px;
+	top: -80px;
 }
 .full #SearchQueResults {
 	height: calc(100% - 60px);

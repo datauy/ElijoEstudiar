@@ -23,7 +23,10 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     return $http.get(apiURL + 'busca-establecimientos', {cache: false, params: parameters});//, {cache: false, params: {hash_id:Math.random()}});
   }
   ApiObject.updateFilters = function(filtersObject){
+    console.log("Filters Updated");
+    console.log(filtersObject);
     ApiObject.filters = filtersObject;
+    return 1;
   }
   ApiObject.createFilterParamsForGetRequest = function(){
       console.log(ApiObject.filters);
@@ -61,6 +64,8 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     }
 
     ApiObject.getCursosByFilters = function(parameters){
+      console.log('Cursos BY FILTERS');
+      console.log(parameters);
       if ( parameters === undefined ) {
         console.log('Parameters undef');
         if( ApiObject.filters != null ){
@@ -71,7 +76,6 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
           return 0;
         }
       }
-      console.log(parameters);
       return $http.get(apiURL + 'cursos', {cache: false, params: parameters}).then(function (response) {
         var result = {
           cursos: response.data

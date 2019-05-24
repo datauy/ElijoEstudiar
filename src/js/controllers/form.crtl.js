@@ -14,30 +14,35 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, ErrorService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
-    $scope.form = {};
-    $scope.form.edad = 16;
-    $scope.form.ultimo_nivel_aprobado = "primaria";
-    $scope.form.ultimo_anio_aprobado = "";
-    $scope.form.plan = "";
-    //$scope.form.lugar = "";
-    $scope.form.depto = "";
-    $scope.form.localidad = "";
-    $scope.form.que = {};
-    $scope.form.donde = {};
-    $scope.form.turnos = {
-      "matutino":1,
-      "vespertino":1,
-      "nocturno":1
-    };
-    $scope.form.SearchQueResults = {};
-    $scope.form.SearchDondeResults = {};
-    $scope.form.searchQue = "";
-    $scope.form.searchDonde = "";
-    $scope.form.option = "list";
-    $scope.establecimientos = null;
+    if ( ApiService.filters != null ) {
+      $scope.form = ApiService.filters;
+    }
+    else {
+
+      $scope.form = {};
+      $scope.form.edad = 16;
+      $scope.form.ultimo_nivel_aprobado = "primaria";
+      $scope.form.ultimo_anio_aprobado = "";
+      $scope.form.plan = "";
+      //$scope.form.lugar = "";
+      $scope.form.depto = "";
+      $scope.form.localidad = "";
+      $scope.form.que = {};
+      $scope.form.donde = {};
+      $scope.form.turnos = {
+        "matutino":1,
+        "vespertino":1,
+        "nocturno":1
+      };
+      $scope.form.SearchQueResults = {};
+      $scope.form.SearchDondeResults = {};
+      $scope.form.searchQue = "";
+      $scope.form.searchDonde = "";
+    }
 
     $scope.$on("$ionicView.loaded", function() {
       $scope.map = MapService.modal_map;
+      console.log($state.params);
     });
 
     $scope.restarEdad = function(){
@@ -81,7 +86,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var search = document.getElementById("que_estudiar");
       var search_str = search.value.trim();
       if(search_str.length>=3){
-        $scope.activateLoading('que_estudiar', 'mini');
+        ModalService.activateLoading('que_estudiar', 'mini');
         ApiService.searchQueEstudiar(search_str).then(function (response) {
           //console.log(response);
           $scope.form.SearchQueResults = response.data;
@@ -108,11 +113,11 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.listAllQueEstudiar = function(){
-      $scope.openModal('buscando', 'loading');
+      ModalService.openModal('buscando', 'loading');
       ApiService.searchQueEstudiar("all").then(function (response) {
         //console.log(response);
         $scope.form.SearchQueResults = response.data;
-        $scope.openModal('full', 'SearchQueResults');
+        ModalService.openModal('full', 'SearchQueResults');
         document.getElementById("loading").style.display = "none";
       });
     }
@@ -123,7 +128,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var search = document.getElementById("donde_estudiar");
       var search_str = search.value.trim();
       if(search_str.length>=3){
-        $scope.activateLoading('donde_estudiar', 'mini');
+        ModalService.activateLoading('donde_estudiar', 'mini');
         ApiService.searchDondeEstudiar(search_str).then(function (response) {
           //console.log(response);
           $scope.form.SearchDondeResults = response.data;
@@ -145,10 +150,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form.searchDonde = donde.nombre;
     }
 
-    $scope.editSearch = function(){
-      $ionicSlideBoxDelegate.previous();
-    }
-
 	  $scope.next = function() {
       if ( $ionicSlideBoxDelegate.currentIndex() == 1 && angular.equals($scope.form.que, {}) ) {
         console.log('Error');
@@ -166,43 +167,23 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 	  };
 
     $scope.slideHasChanged = function(index){
-      console.log(index);
       if(index==2){
-        ApiService.updateFilters($scope.form);
-        $state.go( "app.search_cursos");
+        ApiService.updateFilters($scope.form).then(function (response) {
+          //console.log(response);
+          $state.go( "app.search_cursos");
+        });
       }
     }
-
-    $scope.openDetailsModal = function(id){
-      $scope.openModal('buscando', 'loading');
-      ApiService.getEstablecimientoById(id).then(function (response) {
-        // TODO: Handle empty response, Pass Id in API not this:
-        response.data.establecimientos[0].id=id;
-        $scope.establecimiento = response.data.establecimientos[0];
-        $ionicModal.fromTemplateUrl('templates/details.html', {
-          scope: $scope,
-          hardwareBackButtonClose: true,
-          animation: 'none',
-          //focusFirstInput: true
-        }).then(function(modal) {
-          ModalService.checkNoModalIsOpen();
-          ModalService.activeModal = modal;
-          ModalService.activeModal.show();
-          $scope.modal_map = MapService.modal_map;
-          MapService.getMarker(response.data.establecimientos[0]);
-          document.getElementById("modal-page").style.display="none";
-        });
-      });
-    }
-
-    $scope.close_modal = function(){
-      ModalService.checkNoModalIsOpen();
+    $scope.openModal = function(style, content) {
+      ModalService.openModal(style, content);
+      if ( style == "modal-map") {
+        MapService.goToPlace("ubicacion_map", "Confirmar", $scope);
+      }
     }
     /**
     * Función para cerrar modal de ubicación
     */
     $scope.ubicacion = function(longlat){
-      document.getElementById("map_wrapper").style.display="none";
       document.getElementById("donde_estudiar").value = "Ubicado en mapa"
       $scope.form.donde = {
         "departamento": "NA",
@@ -212,45 +193,5 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       };
       document.getElementById("modal-page").style.display="none";
     }
-    /**
-    * Función para abrir modal html
-    */
-    $scope.openModal = function(style, content){
-      var modalContent = document.getElementById('modal-page-content');
-      //Clean classes and nodes
-      var childs = modalContent.children;
-      for (i = 0; i <= childs.length - 1; i++) {
-        childs[i].style.display = "none";
-      }
-      //Realizamos modificaciones antes para el resize del mapa
-      modalContent.className = "intro_inside_rectangle";
-      modalContent.classList.add(style);
-      modalContent.appendChild(
-        document.getElementById(content)
-      );
-      if ( style == "modal-map") {
-        document.getElementById("ubicacion").style.display="block";
-        MapService.goToPlace("ubicacion_map", "Confirmar", $scope);
-      }
-      if ( style == "buscando") {
-        document.getElementById('loading').style.display="block";
-      }
-      document.getElementById(content).style.display="block";
-      document.getElementById("modal-page").style.display="block";
-    }
-    /**
-    * Función para activar miniloading a la derecha de inputs
-    */
-    $scope.activateLoading = function(container, style) {
-      var cont = document.getElementById( container );
-      var loading = document.getElementById("loading-mini");
-      loading.className = style;
-      cont.parentNode.insertBefore( loading, cont.nextSibling );
-      loading.style.display="block";
-      console.log("Loading open");
-    }
-	  /*$scope.go_to_map = function(){
-	    $state.go("app.map");
-	  }*/
   }
 ]);
