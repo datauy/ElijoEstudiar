@@ -28,17 +28,22 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.$on("$ionicView.beforeEnter", function() {
       $scope.map = MapService.modal_map;
       // TODO: Acomodar bien
+      console.log('BEFORE ENTER');
       if ( $state.current.name == "app.search_cursos_result" || $state.current.name == "app.search_cursos") {
-        console.log(ApiService.filters);
         ModalService.openModal('buscando', 'loading');
-        if ( angular.equals(ApiService.filters, {}) ) {
+        console.log('NO HAY API?');
+        var filters = ApiService.filters;
+        if ( !filters ) {
+          console.log('NO HAY API');
           //Saco parámetros de la URL
           console.log($state.params);
+          // TODO: ACOMODAR PARÁMETROS
           var params = {
             edad: $state.params.edad,
             ultimo_nivel_aprobado: $state.params.ultimo_nivel_aprobado,
             tipo: $state.params.tipoId,
             turnos: $state.params.turnos,
+            // TODO: Donde debieran de ser lat / long
             ubicacion: $state.params.donde,
             orientacion: $state.params.queId
           }
@@ -51,10 +56,28 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           $scope.params = params;
           $scope.search_str = search_str;
         }
+        else {
+          var search_str = filters.edad != '' ? filters.edad+' años, ' : '' +
+            filters.ultimo_nivel_aprobado != '' ? filters.ultimo_nivel_aprobado+', ' : ''+
+            filters.queId != '' ? filters.queId+', ' : ''+
+            filters.donde.nombre != '' ? filters.donde.nombre+', ' : ''+
+            filters.turnos != '' ? filters.turnos : '';
+            $scope.search_str = search_str;
+        }
+
         ApiService.getCursosByFilters($scope.params).then(function (response) {
+          console.log('VUELVE DE CURSOS');
           $scope.cursos = response.cursos;
           $scope.establecimientos = response.establecimientos;
-          MapService.loadPinsLayer(response.establecimientos, $scope, $state.params.donde);
+          // TODO: Arreglar con los parámetros
+          if ( filters ){
+            console.log('HAY DONDE');
+            MapService.loadPinsLayer(response.establecimientos, $scope, filters.donde);
+          }
+          else {
+            console.log('NO HAY DONDE');
+            MapService.loadPinsLayer(response.establecimientos, $scope);
+          }
           document.getElementById("modal-page").style.display="none";
         });
       }

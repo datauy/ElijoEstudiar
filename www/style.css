@@ -378,13 +378,18 @@ cursor: pointer;
 .ultimoNivelControls{
 	width: 90%;
 	height: 70px;
-  background-image: url(./img/linea-niveles-new.svg);
-  background-size: 100% 3px;
-	background-repeat: no-repeat;
-	background-position: 9px 18px;
 	position: relative;
 	float: left;
 	margin: 6px 5%;
+}
+.ultimoNivelControls::before {
+	content: '';
+  position: absolute;
+  top: 20px;
+  left: 0;
+  border-top: 1px solid #4A90E2;
+  width: 100%;
+  transform: translateY(-50%);
 }
 .nivel.hidden{
 	background: transparent;
@@ -416,6 +421,7 @@ cursor: pointer;
   text-align: center;
   color: #4acee2;
   cursor: pointer;
+	margin-left: -4px;
 }
 .nivel_title {
   margin-left: -37px;
@@ -699,7 +705,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 #SearchQueResults{
 	display: none;
 	width: calc(100% + 40px);
-	height: 36vh;
+	height: 50vh;
 	position: relative;
 	float: left;
 	border-radius: 6px;
@@ -2413,6 +2419,7 @@ margin-top: 10px;
 	top: 64px;
 	z-index: 11;
 }
+.inside_rectangle.full,
 .inside_rectangle.modal-map {
 	width: calc(100% - 40px);
 	top: 42px;
@@ -2424,7 +2431,6 @@ margin-top: 10px;
 }
 .inside_rectangle.full {
 	height: calc(100% - 40px);
-	top: -80px;
 }
 .full #SearchQueResults {
 	height: calc(100% - 60px);

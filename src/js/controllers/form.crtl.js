@@ -168,10 +168,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
     $scope.slideHasChanged = function(index){
       if(index==2){
-        ApiService.updateFilters($scope.form).then(function (response) {
-          //console.log(response);
-          $state.go( "app.search_cursos");
-        });
+        ApiService.updateFilters($scope.form);/*.then(function (response) {
+          console.log("VUELVE DE UPDATE");
+        });*/
+        $state.go( "app.search_cursos");
       }
     }
     $scope.openModal = function(style, content) {

@@ -29,7 +29,6 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     return 1;
   }
   ApiObject.createFilterParamsForGetRequest = function(){
-      console.log(ApiObject.filters);
       var params = {
         edad: ApiObject.filters.edad,
         ultimo_nivel_aprobado: ApiObject.filters.ultimo_nivel_aprobado,

@@ -93,6 +93,8 @@
          var markerCounter = 0;
          //Ubicación de usuario
          if (mainLocation !== undefined) {
+           console.log(mainLocation);
+           console.log('ENTRA MAIN');
            bounds_arr.push([mainLocation.lat, mainLocation.long]);
            var markerIcon = L.icon({
                  iconUrl: './img/oval.svg',
@@ -142,9 +144,9 @@
          });
          if ( markerCounter ) {
            var bounds = new L.LatLngBounds(bounds_arr);
+           map.invalidateSize();
            map.fitBounds(bounds);
            //Resize de map en caso que se requiera
-           //map.invalidateSize();
          }
        });
      }else{
