@@ -8,6 +8,7 @@ $brown-grey: #9b9b9b;
 
 // padding from the edges of the screen
 $spacing: 20px;
+$spacingSmall: 10px;
 
 // Utility classes
 .Shaded {
@@ -116,10 +117,6 @@ $spacing: 20px;
     text-transform: capitalize;
   }
 
-  &__Data {
-
-  }
-
   &__DataItem {
     border-bottom: 1px solid $light-gray;
     display: flex;
@@ -128,7 +125,7 @@ $spacing: 20px;
     text-transform: capitalize;
 
     & > .Icon {
-      margin-right: 10px;
+      margin-right: $spacingSmall;
     }
 
     &__Group {
@@ -167,7 +164,7 @@ $spacing: 20px;
 
     // Overwrite ionic’s default style
     &.activated {
-      background: $dark-blue;
+      background: unset;
     }
 
     &--Active {
@@ -185,7 +182,7 @@ $spacing: 20px;
 
   &__Header {
     align-items: center;
-    background: $dark-blue;
+    background: $dark-blue !important;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -215,6 +212,44 @@ $spacing: 20px;
         flex-shrink: 0;
         margin-left: 4px;
       }
+    }
+  }
+
+  &__SubItem {
+    align-items: center;
+    display: flex;
+    padding: $spacing;
+    justify-content: space-between;
+
+    &__Header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__Title {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    &__Subtitle {
+      color: $gray;
+      font-size: 14px;
+      line-height: 1.36;
+    }
+
+    &__Container {
+
+      & + & {
+        border-top: 1px solid $brown-grey;
+      }
+    }
+
+    &__Item {
+      border-top: 1px solid $brown-grey;
+      color: $gray;
+      font-size: 14px;
+      line-height: 1.36;
+      padding: $spacingSmall $spacing;
     }
   }
 }

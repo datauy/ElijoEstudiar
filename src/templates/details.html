@@ -101,7 +101,7 @@
     <ion-list class="Details__Items">
       <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('oferta')" ng-class="{Details__Item--Active: isGroupShown('oferta')}">
         Oferta
-        <div ng-class="isGroupShown('oferta') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></div>
+        <span ng-class="isGroupShown('oferta') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
       </ion-item>
 
       <ion-item class="Details__Item" ng-show="isGroupShown('oferta')">
@@ -147,9 +147,53 @@
         </ul>
       </ion-item>
 
+      <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('cursos')" ng-class="{Details__Item--Active: isGroupShown('cursos')}">
+        Cursos
+        <span ng-class="isGroupShown('cursos') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+      </ion-item>
+
+      <ion-item class="Details__Item" ng-show="isGroupShown('cursos')">
+        <ul class="Unstyled">
+          <li class="Accordion__SubItem__Container">
+            <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-1')">
+              <div class="Accordion__SubItem__Header">
+                <span class="Accordion__SubItem__Title">Ciclo Básico, 1º año</span>
+                <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
+              </div>
+              <span ng-class="isSubGroupShown('cursos-1') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+            </ion-item>
+
+            <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-1')">
+              <ul class="Unstyled">
+                <li class="Accordion__SubItem__Item">Matutino</li>
+                <li class="Accordion__SubItem__Item">Matutino extendido</li>
+                <li class="Accordion__SubItem__Item">Vespertino</li>
+              </ul>
+            </ion-item>
+          </li>
+          <li class="Accordion__SubItem__Container">
+            <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-2')">
+              <div class="Accordion__SubItem__Header">
+                <span class="Accordion__SubItem__Title">Ciclo Básico, 2º año</span>
+                <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
+              </div>
+              <span ng-class="isSubGroupShown('cursos-2') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+            </ion-item>
+
+            <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-2')">
+              <ul class="Unstyled">
+                <li class="Accordion__SubItem__Item">Matutino</li>
+                <li class="Accordion__SubItem__Item">Matutino extendido</li>
+                <li class="Accordion__SubItem__Item">Vespertino</li>
+              </ul>
+            </ion-item>
+          </li>
+        </ul>
+      </ion-item>
+
       <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('especial')" ng-class="{Details__Item--Active: isGroupShown('especial')}">
         Educación Especial
-        <div ng-class="isGroupShown('especial') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></div>
+        <span ng-class="isGroupShown('especial') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
       </ion-item>
 
       <ion-item class="Details__Item" ng-show="isGroupShown('especial')">
