@@ -1,0 +1,220 @@
+// Colors
+$black: #030303;
+$gray: #737373;
+$dark-blue: #4a90e2;
+$bright-blue: #4acee2;
+$light-gray: #f4f4f4;
+$brown-grey: #9b9b9b;
+
+// padding from the edges of the screen
+$spacing: 20px;
+
+// Utility classes
+.Shaded {
+  box-shadow: 0 3px 4px rgba(0, 0, 0, .11);
+}
+
+.Icon {
+  align-items: center;
+  color: $dark-blue;
+  display: flex;
+  fill: currentColor;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+
+  &--Stroked {
+    stroke: currentColor;
+  }
+
+  &--Small {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.Link {
+  color: $dark-blue;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: underline;
+
+  &:hover {
+    color: $bright-blue;
+    text-decoration: none;
+  }
+}
+
+.Unstyled {
+  @at-root ul#{&} {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Details Page
+
+.Details {
+  color: $black;
+  // Make room for the app-header
+  margin-top: 154px;
+  width: 100vw !important;
+
+  &__Header {
+    position: relative;
+  }
+
+  &__Info {
+    bottom: -14px;
+    left: $spacing;
+    position: absolute;
+    z-index: 2;
+  }
+
+  &__Map {
+    background: lightgray;
+    height: 140px;
+    pointer-events: none;
+    // Bump size so map center is offset
+    width: 125%;
+    z-index: 1;
+
+    @media (min-width: 576px) {
+      width: 100%;
+    }
+  }
+
+  &__Image {
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    height: 140px;
+    justify-content: center;
+    margin-bottom: 12px;
+    padding: 24px;
+    position: relative;
+    width: 160px;
+  }
+
+  &__Depto {
+    background: white;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    padding: 4px $spacing;
+  }
+
+  &__Title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 32px 0;
+    padding: 0 $spacing;
+    text-transform: capitalize;
+  }
+
+  &__Data {
+
+  }
+
+  &__DataItem {
+    border-bottom: 1px solid $light-gray;
+    display: flex;
+    font-size: 13px;
+    padding: 16px $spacing;
+    text-transform: capitalize;
+
+    & > .Icon {
+      margin-right: 10px;
+    }
+
+    &__Group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__Title {
+      color: $gray;
+      font-size: 14px;
+      line-height: 1.36;
+    }
+
+    &__Value {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+  }
+
+  &__Description {
+    margin: 0;
+    padding: 16px $spacing;
+  }
+
+  &__Items {
+    // Overwrite ionic’s default style
+    & > .list {
+      padding: 0;
+    }
+  }
+
+  &__Item {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    // Overwrite ionic’s default style
+    &.activated {
+      background: $dark-blue;
+    }
+
+    &--Active {
+      background: $dark-blue;
+    }
+
+    &__Title {
+      color: white;
+    }
+  }
+}
+
+// Accordion
+.Accordion {
+
+  &__Header {
+    align-items: center;
+    background: $dark-blue;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing;
+  }
+
+  &__Item {
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    justify-content: space-between;
+    line-height: 1.2;
+    padding: $spacing;
+    white-space: normal;
+    word-break: break-word;
+
+    & + & {
+      border-top: 1px solid $brown-grey;
+    }
+
+    & > span:first-child {
+      align-items: center;
+      display: flex;
+      margin-right: $spacing;
+
+      & > .Icon {
+        flex-shrink: 0;
+        margin-left: 4px;
+      }
+    }
+  }
+}
