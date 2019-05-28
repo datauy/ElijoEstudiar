@@ -34,4 +34,15 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
     return $scope.shownGroup[group];
   };
 
+  $scope.toggleSubGroup = function(item) {
+    if ($scope.isSubGroupShown(item)) {
+      $scope.shownChild = null;
+    } else {
+      $scope.shownChild = item;
+    }
+  }
+
+  $scope.isSubGroupShown = function(item) {
+    return $scope.shownChild === item;
+  }
 }]);

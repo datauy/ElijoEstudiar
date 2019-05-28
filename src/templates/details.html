@@ -1,63 +1,250 @@
 <ion-modal-view title="ElijoEstudiar | Centro" class="details_modal">
+  <!-- Icons -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="map-pin-icon" viewBox="0 0 20 24">
+      <path fill="none" stroke-width="2" d="M9.5 23S18 13.619 18 9.129 14.194 1 9.5 1 1 4.64 1 9.129C1 13.619 9.5 23 9.5 23z" />
+    </symbol>
+
+    <symbol id="clock-icon" viewBox="0 0 20 20">
+      <path d="M9.99 0C4.47 0 0 4.48 0 10s4.47 10 9.99 10C15.52 20 20 15.52 20 10S15.52 0 9.99 0zM10 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H9v6l5.25 3.15.75-1.23-4.5-2.67V5z" />
+    </symbol>
+
+    <symbol id="external-link-icon" viewBox="0 0 20 20">
+      <path stroke-width=".25" d="M11.88 2.582H17.2l-.783-.783V7.12c0 .409.36.802.783.783.425-.02.783-.345.783-.783V5.326 2.454 1.8a.794.794 0 0 0-.783-.783H11.88c-.409 0-.802.36-.783.783.018.422.343.783.783.783z" />
+      <path stroke-width=".25" d="M8.923 11.185l.88-.88 2.11-2.11 2.552-2.552 2.206-2.206c.358-.358.72-.71 1.073-1.073l.015-.015c.29-.29.311-.822 0-1.108-.313-.288-.798-.31-1.108 0l-.879.879-2.11 2.11-2.552 2.554L8.904 8.99c-.358.358-.72.71-1.073 1.073l-.016.016c-.29.29-.31.822 0 1.108.314.283.8.307 1.108-.002z" />
+      <path stroke-width=".25" d="M16.42 10.646v4.551c0 .245.02.501-.013.746.01-.068.02-.139.027-.207a1.49 1.49 0 0 1-.09.328l.078-.187a1.497 1.497 0 0 1-.18.31l.124-.158a1.54 1.54 0 0 1-.253.253l.159-.124c-.096.073-.2.134-.312.18.063-.025.126-.052.188-.078a1.461 1.461 0 0 1-.329.09c.069-.01.14-.02.208-.027-.16.021-.327.014-.49.014H4.746c-.498 0-.995.003-1.49 0a1.37 1.37 0 0 1-.2-.014c.068.01.139.02.207.027a1.49 1.49 0 0 1-.328-.09l.187.079a1.497 1.497 0 0 1-.31-.18l.158.123a1.54 1.54 0 0 1-.253-.253l.124.159a1.449 1.449 0 0 1-.18-.311l.078.187a1.461 1.461 0 0 1-.09-.328c.01.068.02.139.027.207-.021-.16-.014-.327-.014-.49v-.907-3.03V7.83v-3.17c0-.498-.003-.995 0-1.49 0-.067.004-.133.014-.2-.01.069-.02.14-.027.208a1.49 1.49 0 0 1 .09-.33l-.078.189c.046-.112.107-.214.18-.312l-.124.159a1.54 1.54 0 0 1 .253-.252l-.159.123c.096-.073.2-.133.311-.18l-.187.078c.105-.043.215-.072.328-.09-.068.01-.139.02-.207.027.207-.027.423-.013.63-.013H8.352c.409 0 .802-.36.783-.783-.02-.425-.345-.783-.783-.783H3.319c-.6 0-1.184.21-1.607.648-.397.413-.61.959-.61 1.53v11.878c0 .37-.016.74.044 1.106.069.413.304.822.603 1.11.153.147.333.284.527.376.272.127.51.194.808.225.112.012.221.01.333.01H15.812c.587-.002 1.176-.231 1.58-.666.14-.153.275-.329.363-.519a2.418 2.418 0 0 0 .231-1.049v-2.073-2.513-.43c0-.41-.36-.803-.783-.784-.424.02-.783.345-.783.785z" />
+    </symbol>
+
+    <symbol id="phone-icon" viewBox="0 0 22 22">
+      <path d="M20.197 14.91l-4.143-2.134A1.483 1.483 0 0 0 14 13.54l-.478 1.188a.38.38 0 0 1-.237.223.397.397 0 0 1-.336-.041 18.145 18.145 0 0 1-3.26-2.6 18.172 18.172 0 0 1-2.6-3.258.395.395 0 0 1-.04-.336.38.38 0 0 1 .222-.237l1.19-.478a1.483 1.483 0 0 0 .765-2.055L7.091 1.804a1.475 1.475 0 0 0-1.451-.798 5.949 5.949 0 0 0-1.613.394 4.777 4.777 0 0 0-1.573 1.04c-2.867 2.866-1.363 9.036 3.354 13.752C8.905 19.288 12.628 21 15.63 21c1.572 0 2.948-.469 3.933-1.454.447-.45.8-.985 1.037-1.573a5.86 5.86 0 0 0 .39-1.56 1.504 1.504 0 0 0-.793-1.504zm-.573 2.665a3.681 3.681 0 0 1-.806 1.226c-2.457 2.456-7.958.952-12.265-3.354C2.247 11.142.743 5.641 3.2 3.185a3.727 3.727 0 0 1 1.226-.81 4.887 4.887 0 0 1 1.363-.323.42.42 0 0 1 .366.235L8.29 6.43a.43.43 0 0 1-.222.595l-1.19.477c-.394.158-.699.483-.83.887a1.45 1.45 0 0 0 .147 1.22 19.223 19.223 0 0 0 2.749 3.447 19.199 19.199 0 0 0 3.45 2.75c.365.227.812.28 1.22.147.403-.132.728-.436.886-.83l.478-1.19a.43.43 0 0 1 .595-.221l4.142 2.134a.44.44 0 0 1 .229.448c-.047.44-.154.87-.319 1.28z" />
+    </symbol>
+
+    <symbol id="mail-icon" viewBox="0 0 382 382">
+      <path d="M336.764,45.945H45.354C20.346,45.945,0,65.484,0,89.5v203.117c0,24.016,20.346,43.555,45.354,43.555h291.41 c25.008,0,45.353-19.539,45.353-43.555V89.5C382.117,65.484,361.772,45.945,336.764,45.945z M336.764,297.72H45.354 c-3.676,0-6.9-2.384-6.9-5.103V116.359l131.797,111.27c2.702,2.282,6.138,3.538,9.676,3.538l22.259,0.001 c3.536,0,6.974-1.257,9.677-3.539l131.803-111.274v176.264C343.664,295.336,340.439,297.72,336.764,297.72z M191.059,192.987 L62.87,84.397h256.378L191.059,192.987z" />
+    </symbol>
+
+    <symbol id="info-icon" viewBox="0 0 15 15">
+      <path d="M7 0C3.136 0 0 3.136 0 7s3.136 7 7 7 7-3.136 7-7-3.136-7-7-7zm.7 10.5H6.3V6.3h1.4v4.2zm0-5.6H6.3V3.5h1.4v1.4z" />
+    </symbol>
+  </svg>
+
   <div class="rombo_amarillo_chico"></div>
   <div class="back_arrow clickable" ng-click="close_modal()"></div>
-  <div class="add_to_fav_icon_detail clickable" ng-click="add_to_fav('{{establecimiento.id}}')">Agregar a favoritos</div>
-  <div id="modal_map_container" class="modal_map_container" >
-      <leaflet id="secondary_map" data-tap-disabled="true" defaults="modal_map.defaults" center="modal_map.center" markers="modal_map.markers" ng-if="modal_map"></leaflet>
+
+  <div class="add_to_fav_icon_detail clickable" ng-click="add_to_fav('{{establecimiento.id}}')">
+    Agregar a favoritos
   </div>
-  <div class="form full">
-    <div class="main-details">
-      <div class="photo-wrapper">
-        <img src="{{establecimiento.imagenes.src}}" class="detail_photo"/>
+
+  <div class="Details">
+    <div class="Details__Header">
+      <div class="Details__Info">
+        <div class="Shaded Details__Image">
+          <img
+            alt="{{establecimiento.imagenes.alt || establecimiento.title.toLowerCase()}}"
+            src="{{establecimiento.imagenes.src}}"
+          >
+        </div>
+
+        <span class="Details__Depto">{{establecimiento.departamento}}</span>
       </div>
-      <div class="detail_depto">{{establecimiento.departamento}}</div>
-      <div class="detail_title">{{establecimiento.title}}</div>
-      <div class="detail_address detail_data">{{establecimiento.direccion}}, </div>
-      <div class="detail_phone detail_data">{{establecimiento.telefono}}</div>
-      <div class="detail_web detail_data clickable" ng-click="openWebsite('{{establecimiento.web}}')">Sitio Web</div>
-      <!--<div class="detail_text">{{establecimiento.descripcion}}</div>-->
+      <div class="Details__Map">
+        <leaflet id="secondary_map" data-tap-disabled="true" defaults="modal_map.defaults" center="modal_map.center" markers="modal_map.markers" ng-if="modal_map"></leaflet>
+      </div>
     </div>
-    <div class="detail_text detail_data">
+
+    <h1 class="Details__Title">{{establecimiento.title.toLowerCase()}}</h1>
+
+    <ul class="Details__Data">
+      <li ng-if=!!establecimiento.direccion class="Details__DataItem">
+        <svg class="Icon Icon--Stroked">
+          <use xlink:href="#map-pin-icon" />
+        </svg>
+        {{establecimiento.direccion.toLowerCase()}}
+      </li>
+      <li ng-if=!!establecimiento.web class="Details__DataItem">
+        <svg class="Icon Icon--Stroked">
+          <use xlink:href="#external-link-icon" />
+        </svg>
+        <a class="Link" ng-click="openWebsite('{{establecimiento.web}}')">Sitio Web</a>
+      </li>
+      <li ng-if=!!establecimiento.correo class="Details__DataItem">
+        <svg class="Icon">
+          <use xlink:href="#mail-icon" />
+        </svg>
+        <a class="Link" href="mailto:{{establecimiento.correo}}">{{establecimiento.correo}}</a>
+      </li>
+      <!-- TODO: example data missing -->
+      <!-- <li ng-if=!!establecimiento.horario class="Details__DataItem"> -->
+      <li ng-if=true class="Details__DataItem">
+        <svg class="Icon">
+          <use xlink:href="#clock-icon" />
+        </svg>
+        <div class="Details__DataItem__Group">
+          <span class="Details__DataItem__Title">Lunes a Viernes</span>
+          <span class="Details__DataItem__Value">8:30 - 19:30</span>
+        </div>
+      </li>
+      <li ng-if=!!establecimiento.telefono class="Details__DataItem">
+        <svg class="Icon Icon--Stroked">
+          <use xlink:href="#phone-icon" />
+        </svg>
+        <!-- These should be links -->
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Creating_a_phone_link -->
+        {{establecimiento.telefono}}
+      </li>
+    </ul>
+
+    <p ng-if=establecimiento.descripcion class="Details__Description">
       {{establecimiento.descripcion}}
-    </div>
-    <ion-list>
+    </p>
 
-      <ion-item class="list-header" ng-click="toggleGroup('oferta')" ng-class="{active: isGroupShown('oferta')}">
-        <div class="section-main">Oferta</div>
-        <div class="icon arrow-icon" ng-class="isGroupShown('oferta') ? 'arrow-up' : 'arrow-down'"></div>
-      </ion-item>
-      <ion-item class="item-accordion" ng-show="isGroupShown('oferta')">
-        <ion-checkbox>Urbano</ion-checkbox>
-        <ion-checkbox>Rural</ion-checkbox>
+    <ion-list class="Details__Items">
+      <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('oferta')" ng-class="{Details__Item--Active: isGroupShown('oferta')}">
+        Oferta
+        <span ng-class="isGroupShown('oferta') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
       </ion-item>
 
-      <ion-item class="list-header" ng-click="toggleGroup('info')" ng-class="{active: isGroupShown('info')}">
-        <div class="section-main">Información general</div>
-        <div class="icon arrow-icon" ng-class="isGroupShown('info') ? 'arrow-up' : 'arrow-down'"></div>
-      </ion-item>
-      <ion-item class="item-accordion" ng-show="isGroupShown('info')">
-        <div class="info">Comparte local con otros centros</div>
-        <ion-checkbox>2011</ion-checkbox>
+      <ion-item class="Details__Item" ng-show="isGroupShown('oferta')">
+        <ul class="Unstyled">
+          <li class="Accordion__Item">
+            <span>
+              Categoría
+              <svg class="Icon Icon--Small">
+                <use xlink:href="#info-icon" />
+              </svg>
+            </span>
+            <strong>Tiempo extendido</strong>
+          </li>
+          <li class="Accordion__Item">
+            <span>Grados</span>
+            <strong>1º Ciclo Básico a 6º Bachillerato</strong>
+          </li>
+          <li class="Accordion__Item">
+            <span>Turnos</span>
+            <strong>Matutino, Vespertino, Nocturno</strong>
+          </li>
+          <li class="Accordion__Item">
+            <span>Comparte local c/otros centros</span>
+            <strong>CEIP 12</strong>
+          </li>
+          <li class="Accordion__Item">
+            <span>Bilingüe</span>
+            <strong>Si</strong>
+          </li>
+          <li class="Accordion__Item">
+            <span>
+              Modalidades
+              <svg class="Icon Icon--Small">
+                <use xlink:href="#info-icon" />
+              </svg>
+            </span>
+            <strong>Presencial</strong>
+          </li>
+          <li class="Accordion__Item">
+            <span>Convenios</span>
+            <strong>UDELAR</strong>
+          </li>
+        </ul>
       </ion-item>
 
-      <ion-item class="list-header" ng-click="toggleGroup('datos')" ng-class="{active: isGroupShown('datos')}">
-        <div class="section-main">Información</div>
-        <div class="icon arrow-icon" ng-class="isGroupShown('datos') ? 'arrow-up' : 'arrow-down'"></div>
-      </ion-item>
-      <ion-item class="item-accordion" ng-show="isGroupShown('datos')">
-        <ion-checkbox>Urbano</ion-checkbox>
-        <ion-checkbox>Rural</ion-checkbox>
+      <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('cursos')" ng-class="{Details__Item--Active: isGroupShown('cursos')}">
+        Cursos
+        <span ng-class="isGroupShown('cursos') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
       </ion-item>
 
-      <ion-item class="list-header" ng-click="toggleGroup('otros')" ng-class="{active: isGroupShown('otros')}">
-        <div class="section-main">Otra info</div>
-        <div class="icon arrow-icon" ng-class="isGroupShown('otros') ? 'arrow-up' : 'arrow-down'"></div>
+      <ion-item class="Details__Item" ng-show="isGroupShown('cursos')">
+        <ul class="Unstyled">
+          <li class="Accordion__SubItem__Container">
+            <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-1')">
+              <div class="Accordion__SubItem__Header">
+                <span class="Accordion__SubItem__Title">Ciclo Básico, 1º año</span>
+                <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
+              </div>
+              <span ng-class="isSubGroupShown('cursos-1') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+            </ion-item>
+
+            <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-1')">
+              <ul class="Unstyled">
+                <li class="Accordion__SubItem__Item">Matutino</li>
+                <li class="Accordion__SubItem__Item">Matutino extendido</li>
+                <li class="Accordion__SubItem__Item">Vespertino</li>
+              </ul>
+            </ion-item>
+          </li>
+          <li class="Accordion__SubItem__Container">
+            <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-2')">
+              <div class="Accordion__SubItem__Header">
+                <span class="Accordion__SubItem__Title">Ciclo Básico, 2º año</span>
+                <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
+              </div>
+              <span ng-class="isSubGroupShown('cursos-2') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+            </ion-item>
+
+            <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-2')">
+              <ul class="Unstyled">
+                <li class="Accordion__SubItem__Item">Matutino</li>
+                <li class="Accordion__SubItem__Item">Matutino extendido</li>
+                <li class="Accordion__SubItem__Item">Vespertino</li>
+              </ul>
+            </ion-item>
+          </li>
+        </ul>
       </ion-item>
-      <ion-item class="item-accordion" ng-show="isGroupShown('otros')">
-        <ion-checkbox>Urbano</ion-checkbox>
-        <ion-checkbox>Rural</ion-checkbox>
+
+      <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('especial')" ng-class="{Details__Item--Active: isGroupShown('especial')}">
+        Educación Especial
+        <span ng-class="isGroupShown('especial') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+      </ion-item>
+
+      <ion-item class="Details__Item" ng-show="isGroupShown('especial')">
+        <ul class="Unstyled">
+          <li class="Accordion__Item">
+            <span>
+              Clases especiales
+              <svg class="Icon Icon--Small">
+                <use xlink:href="#info-icon" />
+              </svg>
+            </span>
+            <span class="ion-checkmark"></span>
+          </li>
+          <li class="Accordion__Item">
+            <span>
+              Profesores/as especiales
+              <svg class="Icon Icon--Small">
+                <use xlink:href="#info-icon" />
+              </svg>
+            </span>
+            <span class="ion-checkmark"></span>
+          </li>
+          <li class="Accordion__Item">
+            <span>
+              Intérprete LSU
+              <svg class="Icon Icon--Small">
+                <use xlink:href="#info-icon" />
+              </svg>
+            </span>
+            <span class="ion-checkmark"></span>
+          </li>
+          <li class="Accordion__Item">
+            <span>
+              Acompañante terapéutico
+              <svg class="Icon Icon--Small">
+                <use xlink:href="#info-icon" />
+              </svg>
+            </span>
+            <span class="ion-checkmark"></span>
+          </li>
+          <li class="Accordion__Item">
+            <span>
+              Centro Mandela
+              <svg class="Icon Icon--Small">
+                <use xlink:href="#info-icon" />
+              </svg>
+            </span>
+            <span class="ion-checkmark"></span>
+          </li>
+        </ul>
       </ion-item>
     </ion-list>
   </div>
-
 </ion-modal-view>
