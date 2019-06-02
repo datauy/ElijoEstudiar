@@ -15,7 +15,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
   $ionicScrollDelegate, $ionicHistory) {
 
     $scope.establecimientos = null;
-    $scope.filters = {
+    $scope.filters_centros = {
       nombre: "",
       subsis: {
       CEIP:true,
@@ -25,6 +25,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       },
       ubicacion: ""
     };
+    $scope.curso = {};
+
     $scope.$on("$ionicView.beforeEnter", function() {
       $scope.map = MapService.modal_map;
       // TODO: Acomodar bien
@@ -48,11 +50,11 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
             orientacion: $state.params.queId
           }
           // TODO: Resolver cómo se levantan los datos
-          var search_str = $state.params.edad != 'all' ? $state.params.edad+' años, ' : '' +
-            $state.params.ultimo_nivel_aprobado != 'all' ? $state.params.ultimo_nivel_aprobado+', ' : ''+
-            $state.params.queId != 'all' ? $state.params.queId+', ' : ''+
-            $state.params.donde != 'all' ? $state.params.donde+', ' : ''+
-            $state.params.turnos != 'all' ? $state.params.turnos : '';
+          var search_str = params.edad != 'all' ? params.edad+' años, ' : '';
+          search_str += params.ultimo_nivel_aprobado != 'all' ? params.ultimo_nivel_aprobado+', ' : '';
+          search_str += params.orientacion != 'all' ? params.orientacion+', ' : '';
+          search_str += 'En mapa, ';
+          search_str += params.turnos != 'all' ? $state.params.turnos : '';
           $scope.params = params;
           $scope.search_str = search_str;
         }
@@ -64,10 +66,25 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
             filters.turnos != '' ? filters.turnos : '';
             $scope.search_str = search_str;
         }
-
         ApiService.getCursosByFilters($scope.params).then(function (response) {
           console.log('VUELVE DE CURSOS');
           $scope.cursos = response.cursos;
+          console.log($scope.cursos);
+          //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
+          $scope.cursos.forEach(function(current_curso){
+            console.log(current_curso.field_nivel);
+            /*$scope.curso.año = current_curso.año;
+            $scope.curso.nivel = current_curso.field_nivel;
+            //// TODO: corregir ORIENTACIONES PARA TODOS EN BACKEND
+            $scope.curso.tipo = current_curso.field_tipo_curso;
+            $scope.curso.orientaci_n = current_curso.field_orientaci_n ? current_curso.field_orientaci_n : current_curso.field_tipo_curso;
+            $scope.curso.planes[curso.plan] = {
+              oferta: curso.oferta,
+              nombre: curso.plan,
+              url:  '#'
+            };*/
+          });
+          console.log($scope.curso);
           $scope.establecimientos = response.establecimientos;
           // TODO: Arreglar con los parámetros
           if ( filters ){
@@ -89,13 +106,14 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     /*$scope.$on("$ionicView.loaded", function() {
       document.getElementById("map_wrapper").style.display="none";
     });*/
+    // TODO: Manejador dinámico de ofertas
     $scope.onSearchChange = function(){
       ModalService.activateLoading('search_input', 'mini');
       //Process subsis
       var params = {};
       var subsis = [];
-      for (var k in $scope.filters.subsis){
-        if ( $scope.filters.subsis[k] === true ) {
+      for (var k in $scope.filters_centros.subsis){
+        if ( $scope.filters_centros.subsis[k] === true ) {
           subsis.push(k);
         }
       }
@@ -107,7 +125,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       if( search_str.length >= 3 ){
         params.nombre = search_str;
       }
-      console.log($scope.filters);
+      console.log($scope.filters_centros);
       console.log(params);
       // TODO: Ordenar en API falta location
       ApiService.searchEstablecimiento(params).then(function (response) {
@@ -151,7 +169,12 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       console.log('HISTORY');
       //$ionicSlideBoxDelegate.previous();
       //$ionicHistory.goBack()
-      $state.go( "app.cursos", {"status": "po"} );
+
+      $state.go( "app.cursos" );
+    }
+    $scope.openUrl = function(url) {
+      // TODO: Agregar funcion
+      console.log('Open: '+url);
     }
   }
 ]);

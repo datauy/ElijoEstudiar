@@ -28,6 +28,35 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     ApiObject.filters = filtersObject;
     return 1;
   }
+  ApiObject.createCursoSearchFromParams = function(){
+    var params = {
+      edad: ApiObject.filters.edad,
+      ultimo_nivel_aprobado: ApiObject.filters.ultimo_nivel_aprobado,
+      que: { tipoId: ApiObject.filters.tipo},
+      /*ultimo_anio_aprobado: ApiObject.filters.ultimo_anio_aprobado,
+      lugar: ApiObject.filters.lugar,*/
+    };
+    var turnos = {};
+    for (var k in ApiObject.filters.turnos.split(",")){
+      turnos[k] = 1;
+    }
+    params.turnos = turnos;
+    /* TIENE QUE TRAER QUÉ
+    if(ApiObject.filters.que!=""){
+      params.queEstudiarId = ApiObject.filters.que.id;
+      params.queEstudiarNombre = ApiObject.filters.que.nombre;
+      params.queEstudiarTagUno = ApiObject.filters.que.tag[0];
+      params.queEstudiarTagDos = ApiObject.filters.que.tag[1];
+    }*/
+    if( ApiObject.filters.donde.lat != "undefined" ){
+      params.ubicacion = ApiObject.filters.donde.lat+','+ApiObject.filters.donde.long;
+    }
+    if ( ApiObject.filters.que.tipoId != ApiObject.filters.que.id ) {
+      params.orientacion = ApiObject.filters.que.id;
+    }
+
+    return params;
+  }
   ApiObject.createFilterParamsForGetRequest = function(){
       var params = {
         edad: ApiObject.filters.edad,

@@ -42,6 +42,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
     $scope.$on("$ionicView.loaded", function() {
       $scope.map = MapService.modal_map;
+      //// TODO: Cargar datos en caso que sea de editar búsqueda
       console.log($state.params);
     });
 
@@ -171,7 +172,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         ApiService.updateFilters($scope.form);/*.then(function (response) {
           console.log("VUELVE DE UPDATE");
         });*/
-        $state.go( "app.search_cursos");
+        var params = ApiService.createFilterParamsForGetRequest();
+        $state.go( "app.search_cursos_result", params );
       }
     }
     $scope.openModal = function(style, content) {

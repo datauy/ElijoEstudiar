@@ -100,7 +100,6 @@ button {
 .intro.inside_rectangle{
 	margin: 105px 8% 60px;
 	z-index: 2;
-	height: calc(100vh - 463px);
 }
 
 .intro_que_buscas{
@@ -543,9 +542,8 @@ color: #122254;
 	float: left;
 }
 
-input.estudiar_input{
+.form input.estudiar_input{
 	width: calc(100% - 40px);
-	padding-left: 40px;
 }
 
 .listAndMap-wrapper{
@@ -2377,7 +2375,6 @@ margin-top: 10px;
 	font-size: 12px;
 }
 #error {
-	height: 56px;
 	width: 100%;
 	position: fixed;
 	left: 0;
@@ -2385,10 +2382,10 @@ margin-top: 10px;
 	background-color: #c00005;
 	z-index: 11;
 	visibility: hidden;
+	padding: 0px 8%;
 }
 .error-content {
-	width: 40%;
-	height: 58px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 19px 0 19px 38px;
 	vertical-align: middle;
@@ -2400,7 +2397,7 @@ margin-top: 10px;
 	background-position: left;
 }
 #error-content {
-	width: calc(100% - 22px);
+	width: calc(100% - 32px);
 	float: left;
 }
 .error-close {

@@ -9,6 +9,12 @@
         </div>
       <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
     </div>
+    <h1 class="title">{{curso.orientacion}}</h1>
+    <div class="tag-nivel">{{curso.nivel}}</div>
+    <div class="tag-tipo">{{curso.tipo}}</div>
+    <div class='plan' ng-click="openUrl('{{plan.url}}');" ng-repeat="plan in curso.planes track by $index">
+      {{plan.nombre}}
+    </div>
     <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
     <div class="listAndMap-wrapper">
       <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
@@ -16,7 +22,7 @@
     </div>
     <div class="results-wrapper">
       <div id="list_container">
-        <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos track by $index">
+        <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos">
           {{stablishment.nombre}}
         </div>
       </div>

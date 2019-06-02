@@ -4,27 +4,27 @@
         <div class="rombo_amarillo_derecha"></div>
         <div class="form">
           <div class="title section">Buscar establecimiento</div>
-          <input type="text" id="search_input" class="clickable" ng-model="filters.nombre" ng-change="onSearchChange()" />
+          <input type="text" id="search_input" class="clickable" ng-model="filters_centros.nombre" ng-change="onSearchChange()" />
           <ion-item class="subsis">
             <div class="title"> Subsistema </div>
             <!-- TODO: Ver porqué el span que se genera no permite saltar de línea -->
             <div class="section-center">
-              <ion-toggle ng-model="filters.subsis.CEIP" ng-change="onSearchChange()">
+              <ion-toggle ng-model="filters_centros.subsis.CEIP" ng-change="onSearchChange()">
                 Inicial y Primaria
               </ion-toggle>
             </div>
             <div class="section-center">
-              <ion-toggle ng-model="filters.subsis.CES" ng-change="onSearchChange()">
+              <ion-toggle ng-model="filters_centros.subsis.CES" ng-change="onSearchChange()">
                 Secundaria
               </ion-toggle>
             </div>
             <div class="section-center">
-              <ion-toggle ng-model="filters.subsis.CETP" ng-change="onSearchChange()">
+              <ion-toggle ng-model="filters_centros.subsis.CETP" ng-change="onSearchChange()">
                 Técnico Profesional
               </ion-toggle>
             </div>
             <div class="section-center">
-              <ion-toggle ng-model="filters.subsis.CFE" ng-change="onSearchChange()">
+              <ion-toggle ng-model="filters_centros.subsis.CFE" ng-change="onSearchChange()">
                 Formación en Educación
               </ion-toggle>
             </div>

@@ -144,9 +144,10 @@
          });
          if ( markerCounter ) {
            var bounds = new L.LatLngBounds(bounds_arr);
-           map.invalidateSize();
            map.fitBounds(bounds);
+          map.setZoom( map.getZoom() + 3 );
            //Resize de map en caso que se requiera
+           //map.invalidateSize();
          }
        });
      }else{
