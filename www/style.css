@@ -2586,9 +2586,6 @@ ion-header-bar {
 		/*overflow: auto;*/
   }
 
-  #SearchQueResults, #SearchDondeResults {
-    width: 500px;
-  }
 	.full #SearchQueResults {
 		margin: 0 calc(50% - 250px);
 		width: 500px;

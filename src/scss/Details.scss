@@ -14,7 +14,12 @@ $spacingSmall: 10px;
 .Shaded {
   box-shadow: 0 3px 4px rgba(0, 0, 0, .11);
 }
-
+strong {
+  text-align: right;
+}
+.Accordion__Item > span:first-child {
+  min-width: 60px;
+}
 .Icon {
   align-items: center;
   color: $dark-blue;
@@ -61,7 +66,6 @@ $spacingSmall: 10px;
   color: $black;
   // Make room for the app-header
   margin-top: 154px;
-  width: 100vw !important;
 
   &__Header {
     position: relative;
@@ -70,7 +74,7 @@ $spacingSmall: 10px;
   &__Info {
     bottom: -14px;
     left: $spacing;
-    position: absolute;
+    position: relative;
     z-index: 2;
   }
 
@@ -92,12 +96,12 @@ $spacingSmall: 10px;
     background: white;
     border-radius: 8px;
     display: flex;
-    height: 140px;
+    height: 20vh;
     justify-content: center;
     margin-bottom: 12px;
     padding: 24px;
     position: relative;
-    width: 160px;
+    width: 42%;
   }
 
   &__Depto {
@@ -115,8 +119,12 @@ $spacingSmall: 10px;
     margin: 32px 0;
     padding: 0 $spacing;
     text-transform: capitalize;
+    float: left;
   }
-
+  &__Data {
+    width: 100%;
+    float: left;
+  }
   &__DataItem {
     border-bottom: 1px solid $light-gray;
     display: flex;

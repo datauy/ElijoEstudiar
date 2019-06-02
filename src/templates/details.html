@@ -34,217 +34,218 @@
   <div class="add_to_fav_icon_detail clickable" ng-click="add_to_fav('{{establecimiento.id}}')">
     Agregar a favoritos
   </div>
+  <div id="modal_map_container" class="modal_map_container" >
+      <leaflet id="secondary_map" data-tap-disabled="true" defaults="modal_map.defaults" center="modal_map.center" markers="modal_map.markers" ng-if="modal_map"></leaflet>
+  </div>
+  <div class="form">
+    <div class="Details section">
+      <div class="Details__Header section">
+        <div class="Details__Info">
+          <div class="Shaded Details__Image">
+            <img
+              alt="{{establecimiento.imagenes.alt || establecimiento.title.toLowerCase()}}"
+              src="{{establecimiento.imagenes.src}}"
+            >
+          </div>
 
-  <div class="Details">
-    <div class="Details__Header">
-      <div class="Details__Info">
-        <div class="Shaded Details__Image">
-          <img
-            alt="{{establecimiento.imagenes.alt || establecimiento.title.toLowerCase()}}"
-            src="{{establecimiento.imagenes.src}}"
-          >
+          <span class="Details__Depto">{{establecimiento.departamento}}</span>
         </div>
+      </div>
 
-        <span class="Details__Depto">{{establecimiento.departamento}}</span>
-      </div>
-      <div class="Details__Map">
-        <leaflet id="secondary_map" data-tap-disabled="true" defaults="modal_map.defaults" center="modal_map.center" markers="modal_map.markers" ng-if="modal_map"></leaflet>
-      </div>
+      <h1 class="Details__Title">{{establecimiento.title.toLowerCase()}}</h1>
+
+      <ul class="Details__Data">
+        <li ng-if=!!establecimiento.direccion class="Details__DataItem">
+          <svg class="Icon Icon--Stroked">
+            <use xlink:href="#map-pin-icon" />
+          </svg>
+          {{establecimiento.direccion.toLowerCase()}}
+        </li>
+        <li ng-if=!!establecimiento.web class="Details__DataItem">
+          <svg class="Icon Icon--Stroked">
+            <use xlink:href="#external-link-icon" />
+          </svg>
+          <a class="Link" ng-click="openWebsite('{{establecimiento.web}}')">Sitio Web</a>
+        </li>
+        <li ng-if=!!establecimiento.correo class="Details__DataItem">
+          <svg class="Icon">
+            <use xlink:href="#mail-icon" />
+          </svg>
+          <a class="Link" href="mailto:{{establecimiento.correo}}">{{establecimiento.correo}}</a>
+        </li>
+        <!-- TODO: example data missing -->
+        <!-- <li ng-if=!!establecimiento.horario class="Details__DataItem"> -->
+        <li ng-if=true class="Details__DataItem">
+          <svg class="Icon">
+            <use xlink:href="#clock-icon" />
+          </svg>
+          <div class="Details__DataItem__Group">
+            <span class="Details__DataItem__Title">Lunes a Viernes</span>
+            <span class="Details__DataItem__Value">8:30 - 19:30</span>
+          </div>
+        </li>
+        <li ng-if=!!establecimiento.telefono class="Details__DataItem">
+          <svg class="Icon Icon--Stroked">
+            <use xlink:href="#phone-icon" />
+          </svg>
+          <!-- These should be links -->
+          <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Creating_a_phone_link -->
+          {{establecimiento.telefono}}
+        </li>
+      </ul>
+
+      <p ng-if=establecimiento.descripcion class="Details__Description">
+        {{establecimiento.descripcion}}
+      </p>
+
+      <ion-list class="Details__Items">
+        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('oferta')" ng-class="{Details__Item--Active: isGroupShown('oferta')}">
+          Oferta
+          <span ng-class="isGroupShown('oferta') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+        </ion-item>
+
+        <ion-item class="Details__Item" ng-show="isGroupShown('oferta')">
+          <ul class="Unstyled">
+            <li class="Accordion__Item">
+              <span>
+                Categoría
+                <svg class="Icon Icon--Small">
+                  <use xlink:href="#info-icon" />
+                </svg>
+              </span>
+              <strong>Tiempo extendido</strong>
+            </li>
+            <li class="Accordion__Item">
+              <span>Grados</span>
+              <strong>1º Ciclo Básico a 6º Bachillerato</strong>
+            </li>
+            <li class="Accordion__Item">
+              <span>Turnos</span>
+              <strong>Matutino, Vespertino, Nocturno</strong>
+            </li>
+            <li class="Accordion__Item">
+              <span>Comparte local c/otros centros</span>
+              <strong>CEIP 12</strong>
+            </li>
+            <li class="Accordion__Item">
+              <span>Bilingüe</span>
+              <strong>Si</strong>
+            </li>
+            <li class="Accordion__Item">
+              <span>
+                Modalidades
+                <svg class="Icon Icon--Small">
+                  <use xlink:href="#info-icon" />
+                </svg>
+              </span>
+              <strong>Presencial</strong>
+            </li>
+            <li class="Accordion__Item">
+              <span>Convenios</span>
+              <strong>UDELAR</strong>
+            </li>
+          </ul>
+        </ion-item>
+
+        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('cursos')" ng-class="{Details__Item--Active: isGroupShown('cursos')}">
+          Cursos
+          <span ng-class="isGroupShown('cursos') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+        </ion-item>
+
+        <ion-item class="Details__Item" ng-show="isGroupShown('cursos')">
+          <ul class="Unstyled">
+            <li class="Accordion__SubItem__Container">
+              <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-1')">
+                <div class="Accordion__SubItem__Header">
+                  <span class="Accordion__SubItem__Title">Ciclo Básico, 1º año</span>
+                  <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
+                </div>
+                <span ng-class="isSubGroupShown('cursos-1') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+              </ion-item>
+
+              <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-1')">
+                <ul class="Unstyled">
+                  <li class="Accordion__SubItem__Item">Matutino</li>
+                  <li class="Accordion__SubItem__Item">Matutino extendido</li>
+                  <li class="Accordion__SubItem__Item">Vespertino</li>
+                </ul>
+              </ion-item>
+            </li>
+            <li class="Accordion__SubItem__Container">
+              <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-2')">
+                <div class="Accordion__SubItem__Header">
+                  <span class="Accordion__SubItem__Title">Ciclo Básico, 2º año</span>
+                  <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
+                </div>
+                <span ng-class="isSubGroupShown('cursos-2') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+              </ion-item>
+
+              <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-2')">
+                <ul class="Unstyled">
+                  <li class="Accordion__SubItem__Item">Matutino</li>
+                  <li class="Accordion__SubItem__Item">Matutino extendido</li>
+                  <li class="Accordion__SubItem__Item">Vespertino</li>
+                </ul>
+              </ion-item>
+            </li>
+          </ul>
+        </ion-item>
+
+        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('especial')" ng-class="{Details__Item--Active: isGroupShown('especial')}">
+          Educación Especial
+          <span ng-class="isGroupShown('especial') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+        </ion-item>
+
+        <ion-item class="Details__Item" ng-show="isGroupShown('especial')">
+          <ul class="Unstyled">
+            <li class="Accordion__Item">
+              <span>
+                Clases especiales
+                <svg class="Icon Icon--Small">
+                  <use xlink:href="#info-icon" />
+                </svg>
+              </span>
+              <span class="ion-checkmark"></span>
+            </li>
+            <li class="Accordion__Item">
+              <span>
+                Profesores/as especiales
+                <svg class="Icon Icon--Small">
+                  <use xlink:href="#info-icon" />
+                </svg>
+              </span>
+              <span class="ion-checkmark"></span>
+            </li>
+            <li class="Accordion__Item">
+              <span>
+                Intérprete LSU
+                <svg class="Icon Icon--Small">
+                  <use xlink:href="#info-icon" />
+                </svg>
+              </span>
+              <span class="ion-checkmark"></span>
+            </li>
+            <li class="Accordion__Item">
+              <span>
+                Acompañante terapéutico
+                <svg class="Icon Icon--Small">
+                  <use xlink:href="#info-icon" />
+                </svg>
+              </span>
+              <span class="ion-checkmark"></span>
+            </li>
+            <li class="Accordion__Item">
+              <span>
+                Centro Mandela
+                <svg class="Icon Icon--Small">
+                  <use xlink:href="#info-icon" />
+                </svg>
+              </span>
+              <span class="ion-checkmark"></span>
+            </li>
+          </ul>
+        </ion-item>
+      </ion-list>
     </div>
-
-    <h1 class="Details__Title">{{establecimiento.title.toLowerCase()}}</h1>
-
-    <ul class="Details__Data">
-      <li ng-if=!!establecimiento.direccion class="Details__DataItem">
-        <svg class="Icon Icon--Stroked">
-          <use xlink:href="#map-pin-icon" />
-        </svg>
-        {{establecimiento.direccion.toLowerCase()}}
-      </li>
-      <li ng-if=!!establecimiento.web class="Details__DataItem">
-        <svg class="Icon Icon--Stroked">
-          <use xlink:href="#external-link-icon" />
-        </svg>
-        <a class="Link" ng-click="openWebsite('{{establecimiento.web}}')">Sitio Web</a>
-      </li>
-      <li ng-if=!!establecimiento.correo class="Details__DataItem">
-        <svg class="Icon">
-          <use xlink:href="#mail-icon" />
-        </svg>
-        <a class="Link" href="mailto:{{establecimiento.correo}}">{{establecimiento.correo}}</a>
-      </li>
-      <!-- TODO: example data missing -->
-      <!-- <li ng-if=!!establecimiento.horario class="Details__DataItem"> -->
-      <li ng-if=true class="Details__DataItem">
-        <svg class="Icon">
-          <use xlink:href="#clock-icon" />
-        </svg>
-        <div class="Details__DataItem__Group">
-          <span class="Details__DataItem__Title">Lunes a Viernes</span>
-          <span class="Details__DataItem__Value">8:30 - 19:30</span>
-        </div>
-      </li>
-      <li ng-if=!!establecimiento.telefono class="Details__DataItem">
-        <svg class="Icon Icon--Stroked">
-          <use xlink:href="#phone-icon" />
-        </svg>
-        <!-- These should be links -->
-        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Creating_a_phone_link -->
-        {{establecimiento.telefono}}
-      </li>
-    </ul>
-
-    <p ng-if=establecimiento.descripcion class="Details__Description">
-      {{establecimiento.descripcion}}
-    </p>
-
-    <ion-list class="Details__Items">
-      <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('oferta')" ng-class="{Details__Item--Active: isGroupShown('oferta')}">
-        Oferta
-        <span ng-class="isGroupShown('oferta') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
-      </ion-item>
-
-      <ion-item class="Details__Item" ng-show="isGroupShown('oferta')">
-        <ul class="Unstyled">
-          <li class="Accordion__Item">
-            <span>
-              Categoría
-              <svg class="Icon Icon--Small">
-                <use xlink:href="#info-icon" />
-              </svg>
-            </span>
-            <strong>Tiempo extendido</strong>
-          </li>
-          <li class="Accordion__Item">
-            <span>Grados</span>
-            <strong>1º Ciclo Básico a 6º Bachillerato</strong>
-          </li>
-          <li class="Accordion__Item">
-            <span>Turnos</span>
-            <strong>Matutino, Vespertino, Nocturno</strong>
-          </li>
-          <li class="Accordion__Item">
-            <span>Comparte local c/otros centros</span>
-            <strong>CEIP 12</strong>
-          </li>
-          <li class="Accordion__Item">
-            <span>Bilingüe</span>
-            <strong>Si</strong>
-          </li>
-          <li class="Accordion__Item">
-            <span>
-              Modalidades
-              <svg class="Icon Icon--Small">
-                <use xlink:href="#info-icon" />
-              </svg>
-            </span>
-            <strong>Presencial</strong>
-          </li>
-          <li class="Accordion__Item">
-            <span>Convenios</span>
-            <strong>UDELAR</strong>
-          </li>
-        </ul>
-      </ion-item>
-
-      <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('cursos')" ng-class="{Details__Item--Active: isGroupShown('cursos')}">
-        Cursos
-        <span ng-class="isGroupShown('cursos') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
-      </ion-item>
-
-      <ion-item class="Details__Item" ng-show="isGroupShown('cursos')">
-        <ul class="Unstyled">
-          <li class="Accordion__SubItem__Container">
-            <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-1')">
-              <div class="Accordion__SubItem__Header">
-                <span class="Accordion__SubItem__Title">Ciclo Básico, 1º año</span>
-                <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
-              </div>
-              <span ng-class="isSubGroupShown('cursos-1') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
-            </ion-item>
-
-            <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-1')">
-              <ul class="Unstyled">
-                <li class="Accordion__SubItem__Item">Matutino</li>
-                <li class="Accordion__SubItem__Item">Matutino extendido</li>
-                <li class="Accordion__SubItem__Item">Vespertino</li>
-              </ul>
-            </ion-item>
-          </li>
-          <li class="Accordion__SubItem__Container">
-            <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-2')">
-              <div class="Accordion__SubItem__Header">
-                <span class="Accordion__SubItem__Title">Ciclo Básico, 2º año</span>
-                <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
-              </div>
-              <span ng-class="isSubGroupShown('cursos-2') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
-            </ion-item>
-
-            <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-2')">
-              <ul class="Unstyled">
-                <li class="Accordion__SubItem__Item">Matutino</li>
-                <li class="Accordion__SubItem__Item">Matutino extendido</li>
-                <li class="Accordion__SubItem__Item">Vespertino</li>
-              </ul>
-            </ion-item>
-          </li>
-        </ul>
-      </ion-item>
-
-      <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('especial')" ng-class="{Details__Item--Active: isGroupShown('especial')}">
-        Educación Especial
-        <span ng-class="isGroupShown('especial') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
-      </ion-item>
-
-      <ion-item class="Details__Item" ng-show="isGroupShown('especial')">
-        <ul class="Unstyled">
-          <li class="Accordion__Item">
-            <span>
-              Clases especiales
-              <svg class="Icon Icon--Small">
-                <use xlink:href="#info-icon" />
-              </svg>
-            </span>
-            <span class="ion-checkmark"></span>
-          </li>
-          <li class="Accordion__Item">
-            <span>
-              Profesores/as especiales
-              <svg class="Icon Icon--Small">
-                <use xlink:href="#info-icon" />
-              </svg>
-            </span>
-            <span class="ion-checkmark"></span>
-          </li>
-          <li class="Accordion__Item">
-            <span>
-              Intérprete LSU
-              <svg class="Icon Icon--Small">
-                <use xlink:href="#info-icon" />
-              </svg>
-            </span>
-            <span class="ion-checkmark"></span>
-          </li>
-          <li class="Accordion__Item">
-            <span>
-              Acompañante terapéutico
-              <svg class="Icon Icon--Small">
-                <use xlink:href="#info-icon" />
-              </svg>
-            </span>
-            <span class="ion-checkmark"></span>
-          </li>
-          <li class="Accordion__Item">
-            <span>
-              Centro Mandela
-              <svg class="Icon Icon--Small">
-                <use xlink:href="#info-icon" />
-              </svg>
-            </span>
-            <span class="ion-checkmark"></span>
-          </li>
-        </ul>
-      </ion-item>
-    </ion-list>
   </div>
 </ion-modal-view>
