@@ -54,6 +54,9 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     if ( ApiObject.filters.que.tipoId != ApiObject.filters.que.id ) {
       params.orientacion = ApiObject.filters.que.id;
     }
+    else {
+      params.orientacion = 'all';
+    }
 
     return params;
   }

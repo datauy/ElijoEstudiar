@@ -6,7 +6,7 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
     oferta: false,
     datos: false,
     otros: false
-  }
+  };
   $scope.$on("$ionicView.beforeEnter", function() {
     document.getElementById("form_container").style.height = 'initial';
 
@@ -40,9 +40,12 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
     } else {
       $scope.shownChild = item;
     }
-  }
+  };
 
   $scope.isSubGroupShown = function(item) {
     return $scope.shownChild === item;
-  }
+  };
+  $scope.go_back = function() {
+    window.history.back();
+  };
 }]);

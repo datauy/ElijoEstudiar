@@ -27,6 +27,10 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     };
     $scope.curso = {};
 
+    /*$scope.$on("$ionicView.loaded", function() {
+      console.log('VIEW LOADED');
+      console.log(ApiService.filters);
+    });*/
     $scope.$on("$ionicView.beforeEnter", function() {
       $scope.map = MapService.modal_map;
       // TODO: Acomodar bien
@@ -36,18 +40,16 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         console.log('NO HAY API?');
         var filters = ApiService.filters;
         if ( !filters ) {
-          console.log('NO HAY API');
           //Saco parámetros de la URL
-          console.log($state.params);
           // TODO: ACOMODAR PARÁMETROS
           var params = {
             edad: $state.params.edad,
             ultimo_nivel_aprobado: $state.params.ultimo_nivel_aprobado,
-            tipo: $state.params.tipoId,
+            tipo: $state.params.tipo,
             turnos: $state.params.turnos,
             // TODO: Donde debieran de ser lat / long
-            ubicacion: $state.params.donde,
-            orientacion: $state.params.queId
+            ubicacion: $state.params.ubicacion,
+            orientacion: $state.params.orientacion
           }
           // TODO: Resolver cómo se levantan los datos
           var search_str = params.edad != 'all' ? params.edad+' años, ' : '';
@@ -55,15 +57,31 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           search_str += params.orientacion != 'all' ? params.orientacion+', ' : '';
           search_str += 'En mapa, ';
           search_str += params.turnos != 'all' ? $state.params.turnos : '';
+          if (params.ubicacion) {
+            var ubica = params.ubicacion.split(',');
+            filters = {
+              donde: {
+                lat: ubica[0],
+                long: ubica[1],
+              }
+            }
+          }
           $scope.params = params;
           $scope.search_str = search_str;
+          console.log('NO HAY API');
+          console.log(params);
         }
         else {
-          var search_str = filters.edad != '' ? filters.edad+' años, ' : '' +
-            filters.ultimo_nivel_aprobado != '' ? filters.ultimo_nivel_aprobado+', ' : ''+
-            filters.queId != '' ? filters.queId+', ' : ''+
-            filters.donde.nombre != '' ? filters.donde.nombre+', ' : ''+
-            filters.turnos != '' ? filters.turnos : '';
+          console.log('HAY API');
+          console.log(filters);
+          var search_str = filters.edad != '' ? filters.edad+' años, ' : '' ;
+            search_str += filters.ultimo_nivel_aprobado != '' ? filters.ultimo_nivel_aprobado+', ' : '';
+            for (var k in filters.turnos){
+              if ( filters.turnos[k] === 1 ) {
+                search_str += k+", ";
+              }
+            }
+            search_str += filters.donde.nombre != '' ? filters.donde.nombre : 'Sin ubicación';
             $scope.search_str = search_str;
         }
         ApiService.getCursosByFilters($scope.params).then(function (response) {
@@ -71,37 +89,35 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           $scope.cursos = response.cursos;
           console.log($scope.cursos);
           //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
+          // TODO: Arreglar en backend CEIP tema de tipos de curso para jardines
+          $scope.curso = {
+            planes: {},
+            nivel: $scope.cursos[0].field_nivel,
+            tipo: $scope.cursos[0].field_tipo_curso,
+            orientacion: $scope.cursos[0].field_orientaci_n
+          };
+          //Filtro Plan Año?
           $scope.cursos.forEach(function(current_curso){
-            console.log(current_curso.field_nivel);
-            /*$scope.curso.año = current_curso.año;
-            $scope.curso.nivel = current_curso.field_nivel;
-            //// TODO: corregir ORIENTACIONES PARA TODOS EN BACKEND
-            $scope.curso.tipo = current_curso.field_tipo_curso;
-            $scope.curso.orientaci_n = current_curso.field_orientaci_n ? current_curso.field_orientaci_n : current_curso.field_tipo_curso;
-            $scope.curso.planes[curso.plan] = {
-              oferta: curso.oferta,
-              nombre: curso.plan,
+            var pid = current_curso.año+'-'+current_curso.plan;
+            $scope.curso.planes[pid] = {
+              oferta: current_curso.oferta,
+              nombre: current_curso.plan,
+              año: current_curso.año,
               url:  '#'
-            };*/
+            };
           });
           console.log($scope.curso);
           $scope.establecimientos = response.establecimientos;
           // TODO: Arreglar con los parámetros
           if ( filters ){
-            console.log('HAY DONDE');
             MapService.loadPinsLayer(response.establecimientos, $scope, filters.donde);
           }
           else {
-            console.log('NO HAY DONDE');
             MapService.loadPinsLayer(response.establecimientos, $scope);
           }
           document.getElementById("modal-page").style.display="none";
         });
       }
-    });
-    $scope.$on("$ionicView.loaded", function() {
-      console.log('VIEW LOADED');
-      console.log(ApiService.filters);
     });
     /*$scope.$on("$ionicView.loaded", function() {
       document.getElementById("map_wrapper").style.display="none";
@@ -135,6 +151,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         //MapService.invalidateSize();
       });
     }
+
     $scope.searchSelect = function(id){
       $state.go( "app.centro", {"id": id} );
     }
@@ -175,6 +192,10 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.openUrl = function(url) {
       // TODO: Agregar funcion
       console.log('Open: '+url);
+    }
+    $scope.selectPlan = function() {
+      // TODO: Agregar funcion
+      console.log('Filter plans');
     }
   }
 ]);

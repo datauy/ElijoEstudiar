@@ -29,7 +29,7 @@
   </svg>
 
   <div class="rombo_amarillo_chico"></div>
-  <div class="back_arrow clickable" ng-click="close_modal()"></div>
+  <div class="back_arrow clickable" ng-click="go_back()"></div>
 
   <div class="add_to_fav_icon_detail clickable" ng-click="add_to_fav('{{establecimiento.id}}')">
     Agregar a favoritos
@@ -99,7 +99,7 @@
       </p>
 
       <ion-list class="Details__Items">
-        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('oferta')" ng-class="{Details__Item--Active: isGroupShown('oferta')}">
+        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('oferta')">
           Oferta
           <span ng-class="isGroupShown('oferta') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
         </ion-item>
@@ -147,7 +147,7 @@
           </ul>
         </ion-item>
 
-        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('cursos')" ng-class="{Details__Item--Active: isGroupShown('cursos')}">
+        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('cursos')">
           Cursos
           <span ng-class="isGroupShown('cursos') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
         </ion-item>
@@ -191,7 +191,7 @@
           </ul>
         </ion-item>
 
-        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('especial')" ng-class="{Details__Item--Active: isGroupShown('especial')}">
+        <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup('especial')">
           Educación Especial
           <span ng-class="isGroupShown('especial') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
         </ion-item>

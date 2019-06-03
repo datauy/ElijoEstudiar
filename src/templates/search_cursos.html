@@ -9,11 +9,15 @@
         </div>
       <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
     </div>
-    <h1 class="title">{{curso.orientacion}}</h1>
-    <div class="tag-nivel">{{curso.nivel}}</div>
-    <div class="tag-tipo">{{curso.tipo}}</div>
-    <div class='plan' ng-click="openUrl('{{plan.url}}');" ng-repeat="plan in curso.planes track by $index">
-      {{plan.nombre}}
+    <h1 class="title curso section">{{curso.orientacion}}</h1>
+    <div class="centered">
+      <div class="tag-nivel curso_tag">{{curso.nivel}}</div>
+      <div class="tag-tipo curso_tag">{{curso.tipo}}</div>
+    </div>
+    <div class='sub-section plan' ng-repeat="plan in curso.planes track by $index">
+      <ion-toggle ng-model="filter.plan" ng-change="selectPlan()">
+      </ion-toggle>
+      <a ng-click="openUrl('{{plan.url}}');" >{{plan.nombre}}</a>
     </div>
     <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
     <div class="listAndMap-wrapper">

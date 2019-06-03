@@ -8,6 +8,12 @@ img {
 ion-nav-view {
 	background-color: #000;
 }
+a {
+	cursor: pointer;
+}
+.centered {
+	text-align: center;
+}
 .main.view-container {
 	position: relative;
 	float: left;
@@ -749,6 +755,11 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	width: 100%;
 	float: left;
 }
+.sub-section {
+	margin-top: 18px;
+	width: 100%;
+	float: left;
+}
 .subsistema_title{
 	position: relative;
 	top: 0;
@@ -801,12 +812,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	padding-top: 9px;
 	width: 90%;
 	height: 22px;
-
   font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
   letter-spacing: 0.5px;
   color: #000000;
 }
@@ -1197,6 +1203,7 @@ body {
 }
 .item-toggle .toggle {
 	left: 16px;
+	cursor: pointer;
 }
 .toggle .track {
 	width: 46px;
@@ -1213,6 +1220,9 @@ body {
 	height: 18px;
 	background-color: #d5d5d5;
 	box-shadow: none;
+	position: relative;
+	top: 3px;
+	left: 3px;
 }
 .toggle input:checked + .track .handle {
 	background-color: #4a90e2;
@@ -1435,194 +1445,6 @@ body {
   -webkit-border-radius: 50%;
   border-radius: 50%;
   position: relative;
-}
-
-#report-list-scroll{
-  display: none;
-  background-color: #e8eeec;
-  width: 100%;
-  height: 40%;
-  position: absolute;
-  bottom: 105px;
-  top: auto;
-  border-top-color: #adb9b8;
-  border-top-style: solid;
-  border-top-width: 2px;
-}
-
-#offline-report-list-scroll{
-  background-color: #e8eeec;
-  width: 100%;
-  height: auto;
-  max-height: 40%;
-  min-height: 20%;
-  position: absolute;
-  bottom: 105px;
-  top: auto;
-  border-top-color: #adb9b8;
-  border-top-style: solid;
-  border-top-width: 2px;
-}
-
-#offline-report-list-scroll h3{
-  font-size: 18px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 10px;
-  margin-bottom: -10px;
-}
-
-#offline-report-list-scroll h3 a{
-  font-size: 20px;
-  color: #0078A8;
-  text-align: center;
-}
-
-.report-in-list-actions a{
-  font-size: 18px;
-  margin-right: 15px;
-  color: #0078A8;
-}
-
-.offline-pending{
-  text-align: center;
-
-}
-
-#report-list{
-  background-color: #e8eeec;
-  height: 40%;
-}
-
-#report-list-offline{
-  background-color: #e8eeec;
-  height: 40%;
-}
-
-.list{
-}
-
-.report-list-header{
-  margin-top: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-bottom-color: #adb9b8;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-}
-
-.report-list-header h2{
-  font-size:20px;
-  font-weight: bold;
-  color: #231f20;
-}
-
-.report-list-header p{
-  text-align: justify;
-  color: #231f20;
-}
-
-.report-inside-list{
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 100%;
-  height: auto;
-  /*border-bottom-color: #adb9b8;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;*/
-  overflow:auto;
-}
-
-.report-inside-list-offline{
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 100%;
-  height: auto;
-  /*border-bottom-color: #adb9b8;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;*/
-  overflow:auto;
-}
-
-.report-inside-list-active{
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 100%;
-  height: auto;
-  border-bottom-color: #adb9b8;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  overflow:auto;
-  background-color: #FFFFFF;
-}
-
-.report-in-list-icon{
-  background-repeat:   no-repeat;
-  background-position: center center;
-  width: 20%;
-  height: 60px;
-  position: relative;
-  float: left;
-}
-
-.report-in-list-icon-offline{
-  background-repeat:   no-repeat;
-  background-position: center center;
-  width: 20%;
-  height: 60px;
-  position: relative;
-  float: left;
-}
-
-.report-in-list-info {
-    margin-left: 15px;
-    width: 70%;
-    position: relative;
-    float: left;
-    height: auto;
-}
-
-.report-in-list-title{
-  font-size: 15px;
-  text-transform: uppercase;
-  color: #6f8383;
-  margin-bottom: 0px;
-}
-
-.report-in-list-category{
-  font-size: 13px;
-  color: #000000;
-  margin-bottom: 0px;
-}
-
-.report-in-list-date{
-  font-size: 11px;
-  color: #6f8383;
-  margin-bottom: 15px;
-  font-style: italic;
-  float: left;
-}
-
-.report-in-list-actions{
-  font-size: 11px;
-  color: #6f8383;
-  margin-bottom: 15px;
-  margin-right: 10px;
-  float: right;
-}
-
-.report-mini-icons{
-  float: left;
-  margin-left: 10px;
-}
-
-.report-mini-icon{
-  width: auto;
-  margin-left: 7px;
-  float: left;
 }
 
 .top-bar-imm{
@@ -2556,7 +2378,22 @@ ion-header-bar {
 .fa-youtube-play {
   background-image: url(/img/ic-youtube.svg), none;
 }
-
+/* Search */
+/* TODO: PASAR A SCSS!!! */
+.curso.title {
+	font-size: 16px;
+	letter-spacing: 0.5px;
+}
+.plan .item-toggle {
+	width: 50%;
+	float: left;
+	text-align: right;
+}
+.plan a {
+	width: 50%;
+	float: left;
+	padding: 10px;
+}
 /********************************************************************
 ***************             MEDIA QUERIES             ***************
 ********************************************************************/
