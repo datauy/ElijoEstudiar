@@ -65,8 +65,8 @@
                   <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos">
                     <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
                     <div class="curso_tag_wrapper">
-                      <div class='curso_tag' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="str in curso.tag">
-                        {{str}}
+                      <div class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
+                        {{tag.nombre}}
                       </div>
                     </div>
                   </div>

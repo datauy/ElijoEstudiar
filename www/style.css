@@ -811,7 +811,6 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	padding-left: 14px;
 	padding-top: 9px;
 	width: 90%;
-	height: 22px;
   font-size: 16px;
   letter-spacing: 0.5px;
   color: #000000;
@@ -826,27 +825,22 @@ background-image:    url(./img/rombo_azul_chico.svg);
 }
 
 .curso_tag{
-	max-width: 48%;
+	max-width: calc(50% - 8px);
 	min-height: 18px;
   border-radius: 7px;
-  background-color: #eeeeee;
-
+  background-color: #4a90e2;
 	font-size: 9px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
 	letter-spacing: 0.3px;
 	text-align: center;
-	color: #4a90e2;
+	color: #fff;
 	display: inline-block;
 	margin-right: 8px;
-	padding-left: 13px;
-	padding-right: 13px;
-
-	padding-top: 3px;
+	padding: 3px 18px;
+	line-height: 1.25;
 }
-
+.curso_tag.tag-nivel {
+	background-color: #4acee2;
+}
 #full_search_str{
 	overflow: hidden;
 	text-overflow: ellipsis;
