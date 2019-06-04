@@ -13,6 +13,10 @@ a {
 }
 .centered {
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 }
 .main.view-container {
 	position: relative;
@@ -837,6 +841,10 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	margin-right: 8px;
 	padding: 3px 18px;
 	line-height: 1.25;
+	height: initial;
+	font-weight: normal;
+	width: inherit;
+	border: none;
 }
 .curso_tag.tag-nivel {
 	background-color: #4acee2;
@@ -1052,12 +1060,13 @@ background-image:    url(./img/rombo_azul_chico.svg);
   height: 19px;
   object-fit: contain;
 	background-size:     contain;
-background-repeat:   no-repeat;
-background-position: center center;
-background-image:    url(./img/back_arrow.svg);
-position: absolute;
-top: 26px;
-left: 24px;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	background-image:    url(./img/back_arrow.svg);
+	position: absolute;
+	top: 26px;
+	left: 24px;
+	z-index: 4;
 }
 
 .add_to_fav_icon_detail{

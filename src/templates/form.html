@@ -61,13 +61,16 @@
             <div id="SearchQueResults">
               <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
                 <div class='subsistema_container' ng-repeat="subsistema in form.SearchQueResults track by $index">
-                  <div class="subsistema_title">{{subsistema.subsis}}</div>
-                  <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos">
+                  <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{subsistema.subsis}}")'>
+                    {{subsistema.subsis}}
+                    <span ng-class='isGroupShown("{{subsistema.subsis}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
+                  </ion-item>
+                  <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos" ng-show='isGroupShown("{{subsistema.subsis}}")'>
                     <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
                     <div class="curso_tag_wrapper">
-                      <div class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
+                      <button class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
                         {{tag.nombre}}
-                      </div>
+                      </button>
                     </div>
                   </div>
                 </div>

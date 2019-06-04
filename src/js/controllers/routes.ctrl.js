@@ -22,7 +22,6 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
       });
     }
   });
-
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
       $scope.shownGroup[group] = false;
@@ -44,8 +43,5 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
 
   $scope.isSubGroupShown = function(item) {
     return $scope.shownChild === item;
-  };
-  $scope.go_back = function() {
-    window.history.back();
   };
 }]);

@@ -3,7 +3,7 @@ pmb_im.controllers.controller('AbsController',
 function($scope,$cordovaInAppBrowser) {
 
   $scope.show_error = "hidden";
-
+  
   $scope.openWebsite = function(url) {
     var options = {
       location: 'no',
@@ -24,4 +24,7 @@ function($scope,$cordovaInAppBrowser) {
   $scope.errorClose = function() {
     document.getElementById("error").style.visibility="hidden";
   }
+  $scope.go_back = function() {
+    window.history.back();
+  };
 }]);

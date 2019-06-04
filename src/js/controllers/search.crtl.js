@@ -34,10 +34,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.$on("$ionicView.beforeEnter", function() {
       $scope.map = MapService.modal_map;
       // TODO: Acomodar bien
-      console.log('BEFORE ENTER');
       if ( $state.current.name == "app.search_cursos_result" || $state.current.name == "app.search_cursos") {
         ModalService.openModal('buscando', 'loading');
-        console.log('NO HAY API?');
         var filters = ApiService.filters;
         if ( !filters ) {
           //Saco parámetros de la URL
@@ -68,12 +66,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           }
           $scope.params = params;
           $scope.search_str = search_str;
-          console.log('NO HAY API');
-          console.log(params);
         }
         else {
-          console.log('HAY API');
-          console.log(filters);
           var search_str = filters.edad != '' ? filters.edad+' años, ' : '' ;
             search_str += filters.ultimo_nivel_aprobado != '' ? filters.ultimo_nivel_aprobado+', ' : '';
             for (var k in filters.turnos){
@@ -85,13 +79,11 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
             $scope.search_str = search_str;
         }
         ApiService.getCursosByFilters($scope.params).then(function (response) {
-          console.log('VUELVE DE CURSOS');
           $scope.cursos = response.cursos;
-          console.log($scope.cursos);
           //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
           // TODO: Arreglar en backend CEIP tema de tipos de curso para jardines
           $scope.curso = {
-            planes: {},
+            planes: [],
             nivel: $scope.cursos[0].field_nivel,
             tipo: $scope.cursos[0].field_tipo_curso,
             orientacion: $scope.cursos[0].field_orientaci_n
@@ -99,14 +91,13 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           //Filtro Plan Año?
           $scope.cursos.forEach(function(current_curso){
             var pid = current_curso.año+'-'+current_curso.plan;
-            $scope.curso.planes[pid] = {
+            $scope.curso.planes.push({
               oferta: current_curso.oferta,
               nombre: current_curso.plan,
               año: current_curso.año,
               url:  '#'
-            };
+            });
           });
-          console.log($scope.curso);
           $scope.establecimientos = response.establecimientos;
           // TODO: Arreglar con los parámetros
           if ( filters ){
@@ -141,8 +132,6 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       if( search_str.length >= 3 ){
         params.nombre = search_str;
       }
-      console.log($scope.filters_centros);
-      console.log(params);
       // TODO: Ordenar en API falta location
       ApiService.searchEstablecimiento(params).then(function (response) {
         $scope.establecimientos = response.data.establecimientos;
@@ -183,15 +172,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     }
 
     $scope.editSearch = function(){
-      console.log('HISTORY');
-      //$ionicSlideBoxDelegate.previous();
-      //$ionicHistory.goBack()
-
       $state.go( "app.cursos" );
-    }
-    $scope.openUrl = function(url) {
-      // TODO: Agregar funcion
-      console.log('Open: '+url);
     }
     $scope.selectPlan = function() {
       // TODO: Agregar funcion

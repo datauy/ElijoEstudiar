@@ -62,10 +62,16 @@ pmb_im.services.factory('ModalService', [ function() {
   modalOBJ.activateLoading = function(container, style) {
     var cont = document.getElementById( container );
     var loading = document.getElementById("loading-mini");
-    loading.className = style;
+    if ( loading !== null ){
+      loading.className = style;
+      loading.style.display="block";
+    }
+    else {
+      var loading = document.createElement("div");
+      loading.id = "loading-mini";
+      loading.innerHTML = '<img src="img/small_loading1.gif" alt="Loading">';
+    }
     cont.parentNode.insertBefore( loading, cont.nextSibling );
-    loading.style.display="block";
-    console.log("Loading open");
   }
   /*$scope.go_to_map = function(){
     $state.go("app.map");

@@ -14,6 +14,13 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, ErrorService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
 
+    $scope.shownGroup = {
+      CEIP:true,
+      CES:true,
+      CETP:true,
+      CFE:true
+    };
+
     if ( ApiService.filters != null ) {
       $scope.form = ApiService.filters;
     }
@@ -195,5 +202,15 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       };
       document.getElementById("modal-page").style.display="none";
     }
+    $scope.toggleGroup = function(group) {
+      if ($scope.isGroupShown(group)) {
+        $scope.shownGroup[group] = false;
+      } else {
+        $scope.shownGroup[group] = true;
+      }
+    };
+    $scope.isGroupShown = function(group) {
+      return $scope.shownGroup[group];
+    };
   }
 ]);
