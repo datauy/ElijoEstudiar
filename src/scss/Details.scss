@@ -159,6 +159,8 @@ strong {
   }
 
   &__Items {
+    float: left;
+    width: 100%;
     // Overwrite ionic’s default style
     & > .list {
       padding: 0;
@@ -230,19 +232,23 @@ strong {
     justify-content: space-between;
 
     &__Header {
-      display: flex;
-      flex-direction: column;
+      float: left;
+      width: 100%;
     }
 
     &__Title {
       font-size: 16px;
       line-height: 1.2;
+      float: left;
+      width: 100%;
     }
 
     &__Subtitle {
       color: $gray;
       font-size: 14px;
       line-height: 1.36;
+      width: 100%;
+      float: left;
     }
 
     &__Container {

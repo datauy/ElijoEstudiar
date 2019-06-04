@@ -142,6 +142,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     }
 
     $scope.searchSelect = function(id){
+      //Guardo el curso elejido
+      ApiService.curso = $scope.curso;
       $state.go( "app.centro", {"id": id} );
     }
 

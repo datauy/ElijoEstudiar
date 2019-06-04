@@ -7,6 +7,7 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
     datos: false,
     otros: false
   };
+  $scope.cursos = [];
   $scope.$on("$ionicView.beforeEnter", function() {
     document.getElementById("form_container").style.height = 'initial';
 
@@ -14,9 +15,16 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
       //$scope.openModal('buscando', 'loading');
       ApiService.getEstablecimientoById($state.params.id).then(function (response) {
         // TODO: pasar en la API!!!
-        response.data.establecimientos[0].id = $state.current.name;
+        //response.data.establecimientos[0].id = $state.current.name;
         $scope.establecimiento = response.data.establecimientos[0];
+        //Levantar cursos async
+        console.log($scope.establecimiento);
         $scope.modal_map = MapService.modal_map;
+        //Levantar cursos
+        ApiService.getCursosByFilters({centro: $state.params.id}).then(function (response) {
+          $scope.cursos = response.cursos;
+          console.log($scope.cursos);
+        });
         MapService.getMarker(response.data.establecimientos[0]);
         document.getElementById("modal-page").style.display="none";
       });

@@ -11,7 +11,7 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
 
   ApiObject.filters = null;
   ApiObject.formScope = {};
-  ApiObject.lastSearchResponseEstablecimientos = null;
+  ApiObject.curso = null;
 
   ApiObject.searchQueEstudiar = function(str){
     return $http.get(apiURL + 'search/' + str);

@@ -153,37 +153,28 @@
 
         <ion-item class="Details__Item" ng-show="isGroupShown('cursos')">
           <ul class="Unstyled">
-            <li class="Accordion__SubItem__Container">
-              <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-1')">
+            <li class="Accordion__SubItem__Container" ng-repeat="curso in cursos">
+              <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-{{$index}}')">
                 <div class="Accordion__SubItem__Header">
-                  <span class="Accordion__SubItem__Title">Ciclo Básico, 1º año</span>
-                  <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
+                  <span class="Accordion__SubItem__Title">{{curso['field_orientaci_n']}}, {{curso['año']}}º año</span>
+                  <span class="Accordion__SubItem__Subtitle">
+                    {{curso.field_catgor_a != "" && curso.field_catgor_a != null ? curso.field_catgor_a+', ' : '' }}
+                    {{curso.field_duraci_n != "" && curso.field_duraci_n != null ? curso.field_duraci_n+', ' : '' }}
+                    {{curso.field_modalidad != "" && curso.field_modalidad != null ? curso.field_modalidad+', ' : '' }}
+                    {{curso.field_titulaci_n != "" && curso.field_titulaci_n != null ? curso.field_titulaci_n+', ' : '' }}
+                    <a ng-click="openWebsite('{{curso.planUrl}}');" >{{curso.plan != '' ? 'Plan '+curso.plan : ''}}</a>
+                  </span>
+                  <button class="tag-tipo curso_tag" ng-click="openWebsite('{{curso.tipoUrl}}');">{{curso.field_tipo_curso}}</button>
+                  <button class="tag-nivel curso_tag" ng-click="openWebsite('{{curso.nivelUrl}}');">{{curso.field_nivel}}</button>
                 </div>
-                <span ng-class="isSubGroupShown('cursos-1') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
+                <span ng-class="isSubGroupShown('cursos-{{$index}}') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
               </ion-item>
-
-              <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-1')">
+              {{pos = $index;""}}
+              <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-{{pos}}')" ng-repeat="oferta in curso.oferta">
                 <ul class="Unstyled">
-                  <li class="Accordion__SubItem__Item">Matutino</li>
-                  <li class="Accordion__SubItem__Item">Matutino extendido</li>
-                  <li class="Accordion__SubItem__Item">Vespertino</li>
-                </ul>
-              </ion-item>
-            </li>
-            <li class="Accordion__SubItem__Container">
-              <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-2')">
-                <div class="Accordion__SubItem__Header">
-                  <span class="Accordion__SubItem__Title">Ciclo Básico, 2º año</span>
-                  <span class="Accordion__SubItem__Subtitle">Anual, Presencial, <a href="#" class="Link">Plan 2006</a></span>
-                </div>
-                <span ng-class="isSubGroupShown('cursos-2') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
-              </ion-item>
-
-              <ion-item class="Details__Item" ng-show="isSubGroupShown('cursos-2')">
-                <ul class="Unstyled">
-                  <li class="Accordion__SubItem__Item">Matutino</li>
-                  <li class="Accordion__SubItem__Item">Matutino extendido</li>
-                  <li class="Accordion__SubItem__Item">Vespertino</li>
+                  <li class="Accordion__SubItem__Item" ng-repeat="turno in oferta.turnos">
+                    {{turno}}
+                  </li>
                 </ul>
               </ion-item>
             </li>
