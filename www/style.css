@@ -882,14 +882,12 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	position: relative;
 }
 #map_wrapper{
-	position: absolute;
 	width: calc(100% + 80px);
 	margin-left: -40px;
 	height: 360px;
 	visibility: hidden;
 }
 #map_container{
-		position: absolute;
 		top: 0;
 		left: 0;
     width: 100%;
