@@ -30,7 +30,7 @@
 
   <div class="rombo_amarillo_chico"></div>
 
-  <div class="add_to_fav_icon_detail clickable" ng-click="add_to_fav('{{establecimiento.id}}')">
+  <div class="add_to_fav_icon_detail clickable" ng-click="add_to_fav('{{centro.id}}')">
     Agregar a favoritos
   </div>
   <div id="modal_map_container" class="modal_map_container" >
@@ -42,38 +42,38 @@
         <div class="Details__Info">
           <div class="Shaded Details__Image">
             <img
-              alt="{{establecimiento.imagenes.alt || establecimiento.title.toLowerCase()}}"
-              src="{{establecimiento.imagenes.src}}"
+              alt="{{centro.imagenes.alt || centro.title.toLowerCase()}}"
+              src="{{centro.imagenes.src}}"
             >
           </div>
 
-          <span class="Details__Depto">{{establecimiento.departamento}}</span>
+          <span class="Details__Depto">{{centro.departamento}}</span>
         </div>
       </div>
 
-      <h1 class="Details__Title">{{establecimiento.title.toLowerCase()}}</h1>
+      <h1 class="Details__Title">{{centro.title.toLowerCase()}}</h1>
 
       <ul class="Details__Data">
-        <li ng-if=!!establecimiento.direccion class="Details__DataItem">
+        <li ng-if=!!centro.direccion class="Details__DataItem">
           <svg class="Icon Icon--Stroked">
             <use xlink:href="#map-pin-icon" />
           </svg>
-          {{establecimiento.direccion.toLowerCase()}}
+          {{centro.direccion.toLowerCase()}}
         </li>
-        <li ng-if=!!establecimiento.web class="Details__DataItem">
+        <li ng-if=!!centro.web class="Details__DataItem">
           <svg class="Icon Icon--Stroked">
             <use xlink:href="#external-link-icon" />
           </svg>
-          <a class="Link" ng-click="openWebsite('{{establecimiento.web}}')">Sitio Web</a>
+          <a class="Link" ng-click="openWebsite('{{centro.web}}')">Sitio Web</a>
         </li>
-        <li ng-if=!!establecimiento.correo class="Details__DataItem">
+        <li ng-if=!!centro.correo class="Details__DataItem">
           <svg class="Icon">
             <use xlink:href="#mail-icon" />
           </svg>
-          <a class="Link" href="mailto:{{establecimiento.correo}}">{{establecimiento.correo}}</a>
+          <a class="Link" href="mailto:{{centro.correo}}">{{centro.correo}}</a>
         </li>
         <!-- TODO: example data missing -->
-        <!-- <li ng-if=!!establecimiento.horario class="Details__DataItem"> -->
+        <!-- <li ng-if=!!centro.horario class="Details__DataItem"> -->
         <li ng-if=true class="Details__DataItem">
           <svg class="Icon">
             <use xlink:href="#clock-icon" />
@@ -83,18 +83,18 @@
             <span class="Details__DataItem__Value">8:30 - 19:30</span>
           </div>
         </li>
-        <li ng-if=!!establecimiento.telefono class="Details__DataItem">
+        <li ng-if=!!centro.telefono class="Details__DataItem">
           <svg class="Icon Icon--Stroked">
             <use xlink:href="#phone-icon" />
           </svg>
           <!-- These should be links -->
           <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Creating_a_phone_link -->
-          {{establecimiento.telefono}}
+          {{centro.telefono}}
         </li>
       </ul>
 
-      <p ng-if=establecimiento.descripcion class="Details__Description">
-        {{establecimiento.descripcion}}
+      <p ng-if=centro.descripcion class="Details__Description">
+        {{centro.descripcion}}
       </p>
 
       <ion-list class="Details__Items">
@@ -105,28 +105,31 @@
 
         <ion-item class="Details__Item" ng-show="isGroupShown('oferta')">
           <ul class="Unstyled">
-            <li class="Accordion__Item">
+            <li class="Accordion__Item" ng-if=centro.categor_a>
               <span>
                 Categoría
                 <svg class="Icon Icon--Small">
                   <use xlink:href="#info-icon" />
                 </svg>
               </span>
-              <strong>Tiempo extendido</strong>
+              <strong>{{centro.oferta.categoria}}</strong>
             </li>
-            <li class="Accordion__Item">
-              <span>Grados</span>
-              <strong>1º Ciclo Básico a 6º Bachillerato</strong>
+            <li class="Accordion__Item" ng-repeat="nivel in centro.oferta.niveles">
+              <span>Grados {{nivel.nombre}}:</span>
+              <strong>
+                <span>{{ nivel.grados }} </span>
+              </strong>
             </li>
+
             <li class="Accordion__Item">
               <span>Turnos</span>
-              <strong>Matutino, Vespertino, Nocturno</strong>
+              <strong>{{centro.oferta.turnos}}</strong>
             </li>
-            <li class="Accordion__Item">
+            <li class="Accordion__Item" ng-if=centro.comparte>
               <span>Comparte local c/otros centros</span>
               <strong>CEIP 12</strong>
             </li>
-            <li class="Accordion__Item">
+            <li class="Accordion__Item" ng-if=centro.bilingue>
               <span>Bilingüe</span>
               <strong>Si</strong>
             </li>
@@ -137,9 +140,9 @@
                   <use xlink:href="#info-icon" />
                 </svg>
               </span>
-              <strong>Presencial</strong>
+              <strong>{{centro.oferta.modalidades}}</strong>
             </li>
-            <li class="Accordion__Item">
+            <li class="Accordion__Item" ng-if=centro.convenios>
               <span>Convenios</span>
               <strong>UDELAR</strong>
             </li>

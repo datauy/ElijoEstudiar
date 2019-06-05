@@ -16,15 +16,55 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
       ApiService.getEstablecimientoById($state.params.id).then(function (response) {
         // TODO: pasar en la API!!!
         //response.data.establecimientos[0].id = $state.current.name;
-        $scope.establecimiento = response.data.establecimientos[0];
+        $scope.centro = response.data.establecimientos[0];
         //Levantar cursos async
-        console.log($scope.establecimiento);
         $scope.modal_map = MapService.modal_map;
         //Levantar cursos
+        var ficha = {
+          cat: [],
+          mod: ["Presencial"],
+          turnos: [],
+          niveles: {}
+        };
         ApiService.getCursosByFilters({centro: $state.params.id}).then(function (response) {
+          response.cursos.forEach(function(curso){
+            if ( curso.field_modalidad && ficha.mod.indexOf(modalidad) == -1 ){
+              console.log('Modalidad:'+modalidad);
+              ficha.mod.push(modalidad);
+            }
+            if ( curso.field_catgor_a && ficha.cat.indexOf(curso.field_catgor_a) == -1 ){
+              ficha.cat.push(curso.field_catgor_a);
+            }
+            curso.oferta[0].turnos.forEach(function(turno){
+              if ( ficha.turnos.indexOf(turno) == -1 ){
+                ficha.turnos.push(turno);
+              }
+            });
+            if (ficha.niveles.hasOwnProperty(curso.field_nivel)){
+              if ( ficha.niveles[curso.field_nivel].indexOf(curso['año']) == -1 ) {
+                ficha.niveles[curso.field_nivel].push(curso['año']);
+              }
+            }
+            else {
+              ficha.niveles[curso.field_nivel] = [ curso['año'] ];
+            }
+          });
+          $scope.centro.oferta = {
+            turnos: ficha.turnos.join(', '),
+            modalidades: ficha.mod.join(', '),
+            categoria: ficha.cat.join(', '),
+            niveles: [],
+          }
+          for ( var n in ficha.niveles ){
+            $scope.centro.oferta.niveles.push({
+              nombre: n,
+              grados: ficha.niveles[n].join('ᵒ, ')+'ᵒ'
+            });
+          }
           $scope.cursos = response.cursos;
           console.log($scope.cursos);
         });
+        console.log($scope.centro);
         MapService.getMarker(response.data.establecimientos[0]);
         document.getElementById("modal-page").style.display="none";
       });
