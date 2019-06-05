@@ -29,7 +29,6 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
         ApiService.getCursosByFilters({centro: $state.params.id}).then(function (response) {
           response.cursos.forEach(function(curso){
             if ( curso.field_modalidad && ficha.mod.indexOf(modalidad) == -1 ){
-              console.log('Modalidad:'+modalidad);
               ficha.mod.push(modalidad);
             }
             if ( curso.field_catgor_a && ficha.cat.indexOf(curso.field_catgor_a) == -1 ){

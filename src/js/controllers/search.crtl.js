@@ -141,12 +141,6 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       });
     }
 
-    $scope.searchSelect = function(id){
-      //Guardo el curso elejido
-      ApiService.curso = $scope.curso;
-      $state.go( "app.centro", {"id": id} );
-    }
-
     $scope.select_option = function(optionId){
       //// TODO: mejorar?
       var x = document.getElementsByClassName("options");
@@ -170,6 +164,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     }
 
     $scope.openDetailsModal = function(id) {
+      //Guardo el curso elejido
+      ApiService.curso = $scope.curso;
       $state.go( "app.centro", {"id": id} );
     }
 
