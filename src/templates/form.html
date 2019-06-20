@@ -66,12 +66,15 @@
                     <span ng-class='isGroupShown("{{subsistema.subsis}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
                   </ion-item>
                   <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos" ng-show='isGroupShown("{{subsistema.subsis}}")'>
-                    <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
-                    <div class="curso_tag_wrapper">
-                      <button class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
-                        {{tag.nombre}}
-                      </button>
+                    <div class="curso_title_wrapper">
+                      <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
+                      <button class="form_next_button primary_button info" ng-click="openWebsite({{curso.url}}); $event.stopPropagation();">+info</button>
                     </div>
+                      <div class="curso_tag_wrapper">
+                        <button class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
+                          {{tag.nombre}}
+                        </button>
+                      </div>
                   </div>
                 </div>
               </ion-scroll>
@@ -99,7 +102,7 @@
         		<!--<div class="plan estudiar_title">¿Cuál es tu plan?</div>
         		<input type="text" class="cual estudiar_input" />-->
           </div>
-          <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
+          <button class="form_next_button primary_button" ng-click="next()">Continuar</button>
           <button class="form_back_button" ng-click="previous()">Volver a comenzar</button>
         </div>
 	    </ion-slide>

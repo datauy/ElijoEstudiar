@@ -26,7 +26,14 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       ubicacion: ""
     };
     $scope.curso = {};
-
+    $scope.shownGroup = {
+      planes: false,
+      años: false
+    };
+    $scope.dinamic_filters = {
+      planes: {},
+      "años": {}
+    }
     /*$scope.$on("$ionicView.loaded", function() {
       console.log('VIEW LOADED');
       console.log(ApiService.filters);
@@ -34,7 +41,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.$on("$ionicView.beforeEnter", function() {
       $scope.map = MapService.modal_map;
       // TODO: Acomodar bien
-      if ( $state.current.name == "app.search_cursos_result" || $state.current.name == "app.search_cursos") {
+      if ( $state.current.name == "app.search_cursos_result" ) {
         ModalService.openModal('buscando', 'loading');
         var filters = ApiService.filters;
         if ( !filters ) {
@@ -52,7 +59,6 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           // TODO: Resolver cómo se levantan los datos
           var search_str = params.edad != 'all' ? params.edad+' años, ' : '';
           search_str += params.ultimo_nivel_aprobado != 'all' ? params.ultimo_nivel_aprobado+', ' : '';
-          search_str += params.orientacion != 'all' ? params.orientacion+', ' : '';
           search_str += 'En mapa, ';
           search_str += params.turnos != 'all' ? $state.params.turnos : '';
           if (params.ubicacion) {
@@ -83,21 +89,57 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
           // TODO: Arreglar en backend CEIP tema de tipos de curso para jardines
           $scope.curso = {
-            planes: [],
+            data: {
+              planes: {options:{}},
+              "años": {options:{}}
+            },
             nivel: $scope.cursos[0].field_nivel,
             tipo: $scope.cursos[0].field_tipo_curso,
             orientacion: $scope.cursos[0].field_orientaci_n
           };
-          //Filtro Plan Año?
+          //Filtros dinámicos?
           $scope.cursos.forEach(function(current_curso){
             var pid = current_curso.año+'-'+current_curso.plan;
-            $scope.curso.planes.push({
-              oferta: current_curso.oferta,
-              nombre: current_curso.plan,
-              año: current_curso.año,
-              url:  '#'
-            });
+            if ( $scope.curso.data.planes.options[current_curso.plan] === undefined ){
+              $scope.curso.data.planes.options[current_curso.plan] = {
+                nombre: current_curso.plan,
+                oferta: current_curso.oferta,
+              };
+              if (current_curso.url) {
+                $scope.curso.data.planes.options[current_curso.plan].url = current_curso.url;
+              }
+              $scope.dinamic_filters.planes[current_curso.plan] = true;
+            }
+            if ( $scope.curso.data.años.options[current_curso.año] === undefined ){
+              $scope.curso.data.años.options[current_curso.año] = {
+                nombre: current_curso.año,
+                oferta: current_curso.oferta,
+              };
+              $scope.dinamic_filters.años[current_curso.año] = true;
+            }
           });
+          console.log($scope.curso);
+          if ( Object.entries($scope.curso.data.planes.options).length === 0 ) {
+            delete $scope.curso.data.planes;
+          }
+          else {
+            $scope.curso.data.planes = {
+              nombre: "Planes",
+              key: "planes",
+              options: Object.values($scope.curso.data.planes.options)
+            };
+          }
+          if ( Object.entries($scope.curso.data.años.options).length === 0 ) {
+            delete $scope.curso.data.años;
+          }
+          else {
+            $scope.curso.data.años = {
+              nombre: "Años",
+              key: "años",
+              options: Object.values($scope.curso.data.años.options)
+            };
+          }
+          console.log($scope.curso);
           $scope.establecimientos = response.establecimientos;
           // TODO: Arreglar con los parámetros
           if ( filters ){
@@ -106,6 +148,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           else {
             MapService.loadPinsLayer(response.establecimientos, $scope);
           }
+          document.getElementById("map_wrapper").style.display="none";
           document.getElementById("modal-page").style.display="none";
         });
       }
@@ -175,6 +218,21 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.selectPlan = function() {
       // TODO: Agregar funcion
       console.log('Filter plans');
+    }
+    // TODO: Pasar a servicios
+    $scope.toggleGroup = function(group) {
+      if ($scope.isGroupShown(group)) {
+        $scope.shownGroup[group] = false;
+      } else {
+        $scope.shownGroup[group] = true;
+      }
+    }
+    $scope.isGroupShown = function(group) {
+      return $scope.shownGroup[group];
+    }
+    $scope.selectFilter = function(option) {
+      console.log(option);
+      console.log($scope.dinamic_filters);
     }
   }
 ]);
