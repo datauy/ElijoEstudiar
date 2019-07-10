@@ -58,7 +58,7 @@
             <div class="title">¿Qué querés estudiar?</div>
             <input type="text" id="que_estudiar" class="clickable" ng-model="form.searchQue" ng-change="onSearchChangeQue()" />
             <div class="button_listado_completo clickable" ng-click="listAllQueEstudiar()">Ver listado completo</div>
-            <div id="SearchQueResults">
+            <div id="SearchQueResults" class="animate-down">
               <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
                 <div class='subsistema_container' ng-repeat="subsistema in form.SearchQueResults track by $index">
                   <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{subsistema.subsis}}")'>
@@ -81,7 +81,7 @@
             </div>
           </div>
       		<div class="section donde">
-            <div class="title">¿Dónde vivís?</div>
+            <div class="title">¿Cerca de dónde?</div>
             <input id="donde_estudiar" type="text" class="donde estudiar_input clickable" ng-model="form.searchDonde" ng-change="onSearchChangeDonde()" />
             <div class="show-map clickable" ng-click="openModal('modal-map', 'ubicacion')"></div>
             <div id="SearchDondeResults">

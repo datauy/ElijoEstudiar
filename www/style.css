@@ -24,15 +24,31 @@ button {
 	text-transform: uppercase;
 	cursor: pointer;
 }
-/*div {
-	animation: bounceDown 0.5s cubic-bezier(.5,0.05,1,.5);
+div {
+	-webkit-transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.animate-down {
+	-webkit-animation: bounceDown ease-in 1;
+  animation: bounceDown ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 750ms;
+  animation-duration: 750ms;
 }
 @keyframes bounceDown {
-	to {
-		opacity: 0.1;
-		transform: translate(0, 100%);
-	}
-}*/
+	0% {
+    -webkit-transform: translate3d(0,-20%,0);
+  }
+
+  50% {
+    -webkit-transform: translate3d(0,30%,0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0,0,0);
+  }
+}
 .centered {
 	text-align: center;
 	display: flex;
@@ -564,6 +580,7 @@ color: #122254;
 
 .form input.estudiar_input{
 	width: calc(100% - 40px);
+	padding-left: 40px;
 }
 
 .listAndMap-wrapper{

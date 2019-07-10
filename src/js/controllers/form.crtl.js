@@ -13,7 +13,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   '$ionicScrollDelegate',
   function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, ErrorService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
-
+    $scope.locLastSearch = '';
     $scope.shownGroup = {
       CEIP:true,
       CES:true,
@@ -42,7 +42,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         "nocturno":1
       };
       $scope.form.SearchQueResults = {};
-      $scope.form.SearchDondeResults = {};
+      $scope.form.SearchDondeResults = [];
       $scope.form.searchQue = "";
       $scope.form.searchDonde = "";
     }
@@ -134,16 +134,29 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       //delete previous selection
       $scope.form.donde = {};
       var search = document.getElementById("donde_estudiar");
-      var search_str = search.value.trim();
+      var search_str = search.value.trim().toUpperCase();
       if(search_str.length>=3){
         ModalService.activateLoading('donde_estudiar', 'mini');
-        ApiService.searchDondeEstudiar(search_str).then(function (response) {
-          //console.log(response);
-          $scope.form.SearchDondeResults = response.data;
-          document.getElementById("SearchDondeResults").style.display = "block";
+        //Si no está vacío y no cambió las primeras letras
+        if ( $scope.form.SearchDondeResults.length > 0 && search_str.includes($scope.locLastSearch) ) {
+          //Reverse por problemas de modificación de índices
+          for (i = $scope.form.SearchDondeResults.length - 1; i >= 0; --i) {
+            if ( !$scope.form.SearchDondeResults[i].nombre.includes(search_str) ) {
+              $scope.form.SearchDondeResults.splice(i, 1);
+            }
+          }
           document.getElementById("loading-mini").style.display = "none";
-        });
-      }else{
+        }
+        else {
+          ApiService.searchDondeEstudiar(search_str).then(function (response) {
+            $scope.form.SearchDondeResults = response.data;
+            document.getElementById("SearchDondeResults").style.display = "block";
+            document.getElementById("loading-mini").style.display = "none";
+          });
+        }
+        $scope.locLastSearch = search_str;
+      }
+      else{
         $scope.hideSearchDondeResults();
       }
     }
@@ -201,6 +214,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         "long": longlat[1]
       };
       document.getElementById("modal-page").style.display="none";
+      document.getElementById("SearchDondeResults").style.display = "none";
     }
     $scope.toggleGroup = function(group) {
       if ($scope.isGroupShown(group)) {
