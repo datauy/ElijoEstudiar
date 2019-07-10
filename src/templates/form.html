@@ -11,40 +11,63 @@
             <!--<div class="edad_text">{{form.edad}}</div>-->
             <div ng-click="sumarEdad();" class="edad_mas">+</div>
           </div>
-          <div class="title">Último nivel aprobado</div>
-          <div class="ultimoNivelControls">
-            <div ng-click="selectUltimoNivel('ninguno');" id="ninguno" class="nivel_ninguno nivel">
-              <div class="nivel_punto" style="display:none;"></div>
-              <div class="nivel_title">Ninguno</div>
+          <div id="queEstudieWrapper">
+            <div class="title">Último nivel aprobado</div>
+            <input type="text" id="queEstudie" class="clickable" ng-model="form.searchqueEstudie" ng-change="onSearchChangeQue('queEstudie')" />
+            <div id="queEstudieResults" class="animate-down searchQueResults">
+              <ion-scroll id="queEstudieResults_scroll" scrollX="false" scrollY="true">
+                <div class='subsistema_container' ng-repeat="subsistema in form.queEstudieResults track by $index">
+                  <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{subsistema.subsis}}")'>
+                    {{subsistema.subsis}}
+                    <span ng-class='isGroupShown("{{subsistema.subsis}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
+                  </ion-item>
+                  <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}},'queEstudie')" ng-repeat="curso in subsistema.cursos" ng-show='isGroupShown("{{subsistema.subsis}}")'>
+                    <div class="curso_title_wrapper">
+                      <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
+                    </div>
+                      <!--<div class="curso_tag_wrapper">
+                        <button class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
+                          {{tag.nombre}}
+                        </button>
+                      </div>-->
+                  </div>
+                </div>
+              </ion-scroll>
             </div>
-            <div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel hidden">
-              <div class="nivel_punto"></div>
-              <div class="nivel_title">Primaria</div>
+            <!--<div class="ultimoNivelControls">
+              <div ng-click="selectUltimoNivel('ninguno');" id="ninguno" class="nivel_ninguno nivel">
+                <div class="nivel_punto" style="display:none;"></div>
+                <div class="nivel_title">Ninguno</div>
+              </div>
+              <div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel hidden">
+                <div class="nivel_punto"></div>
+                <div class="nivel_title">Primaria</div>
+              </div>
+              <div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">
+                <div class="nivel_punto"></div>
+                <div class="nivel_title">Media básica</div>
+              </div>
+              <div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">
+                <div class="nivel_punto"></div>
+                <div class="nivel_title">Media superior</div>
+              </div>
+              <div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">
+                <div class="nivel_punto"></div>
+                <div class="nivel_title">Terciaria</div>
+              </div>
             </div>
-            <div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">
-              <div class="nivel_punto"></div>
-              <div class="nivel_title">Media básica</div>
-            </div>
-            <div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">
-              <div class="nivel_punto"></div>
-              <div class="nivel_title">Media superior</div>
-            </div>
-            <div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">
-              <div class="nivel_punto"></div>
-              <div class="nivel_title">Terciaria</div>
-            </div>
+            <div class="rombo_azul"></div>
+            <div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
+            <select ng-model="form.ultimo_anio_aprobado" class="ultimoAnioAprobado_select clickable">
+              <option value="" disabled selected>Selecciona un año</option>
+              <option>Primer año</option>
+              <option>Segundo año</option>
+              <option>Tercer año</option>
+              <option>Cuarto año</option>
+              <option>Quinto año</option>
+              <option>Sexto año</option>
+            </select>-->
           </div>
-          <div class="rombo_azul"></div>
-          <!--<div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
-          <select ng-model="form.ultimo_anio_aprobado" class="ultimoAnioAprobado_select clickable">
-            <option value="" disabled selected>Selecciona un año</option>
-            <option>Primer año</option>
-            <option>Segundo año</option>
-            <option>Tercer año</option>
-            <option>Cuarto año</option>
-            <option>Quinto año</option>
-            <option>Sexto año</option>
-          </select>-->
         </div>
         <!-- TODO: Estaba mal armado el html, según el diseño el botón tien que ir debajo, hice un very hot fix :) -->
         <button class="form_next_button primary_button full-width clickable" ng-click="next()">Continuar</button>
@@ -54,20 +77,20 @@
         <div class="rombo_amarillo_derecha"></div>
         <div class="rombo_azul_chico"></div>
         <div class="form">
-          <div id="que" class="section que">
+          <div id="queEstudiarWrapper" class="section que">
             <div class="title">¿Qué querés estudiar?</div>
-            <input type="text" id="que_estudiar" class="clickable" ng-model="form.searchQue" ng-change="onSearchChangeQue()" />
+            <input type="text" id="queEstudiar" class="clickable" ng-model="form.searchqueEstudiar" ng-change="onSearchChangeQue('queEstudiar')" />
             <div class="button_listado_completo clickable" ng-click="listAllQueEstudiar()">Ver listado completo</div>
-            <div id="SearchQueResults" class="animate-down">
-              <ion-scroll id="searchResults_scroll" scrollX="false" scrollY="true">
-                <div class='subsistema_container' ng-repeat="subsistema in form.SearchQueResults track by $index">
+            <div id="queEstudiarResults" class="animate-down searchQueResults">
+              <ion-scroll id="queEstudiarResults_scroll" scrollX="false" scrollY="true">
+                <div class='subsistema_container' ng-repeat="subsistema in form.queEstudiarResults track by $index">
                   <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{subsistema.subsis}}")'>
                     {{subsistema.subsis}}
                     <span ng-class='isGroupShown("{{subsistema.subsis}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
                   </ion-item>
-                  <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}})" ng-repeat="curso in subsistema.cursos" ng-show='isGroupShown("{{subsistema.subsis}}")'>
+                  <div class='subsistema_curso clickable' ng-click="selectQueEstudiarItem({{curso}}, 'queEstudiar')" ng-repeat="curso in subsistema.cursos" ng-show='isGroupShown("{{subsistema.subsis}}")'>
                     <div class="curso_title_wrapper">
-                      <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
+                      <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}}, 'queEstudiar')">{{curso.nombre}}</div>
                       <button class="form_next_button primary_button info" ng-click="openWebsite({{curso.url}}); $event.stopPropagation();">+info</button>
                     </div>
                       <div class="curso_tag_wrapper">

@@ -28,6 +28,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
       $scope.form = {};
       $scope.form.edad = 16;
+      $scope.form.SearchQueEstudieResults = {};
       $scope.form.ultimo_nivel_aprobado = "primaria";
       $scope.form.ultimo_anio_aprobado = "";
       $scope.form.plan = "";
@@ -88,36 +89,36 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       document.getElementById(idTurno).classList.toggle('selected');;
     }
 
-    $scope.onSearchChangeQue = function(){
+    $scope.onSearchChangeQue = function(id){
       //delete previous selection
-      $scope.form.que = {};
-      var search = document.getElementById("que_estudiar");
+      //$scope.form.que = {};
+      var search = document.getElementById(id);
       var search_str = search.value.trim();
       if(search_str.length>=3){
-        ModalService.activateLoading('que_estudiar', 'mini');
+        ModalService.activateLoading(id, 'mini');
         ApiService.searchQueEstudiar(search_str).then(function (response) {
           //console.log(response);
-          $scope.form.SearchQueResults = response.data;
-          document.getElementById("SearchQueResults").style.display = "block";
+          $scope.form[id+'Results'] = response.data;
+          document.getElementById(id+"Results").style.display = "block";
           document.getElementById("loading-mini").style.display = "none";
         });
       }else{
-        $scope.hideSearchQueResults();
+        $scope.hideSearchQueResults(id);
       }
     }
 
-    $scope.hideSearchQueResults = function(){
-      var results = document.getElementById("SearchQueResults");
+    $scope.hideSearchQueResults = function(id){
+      var results = document.getElementById(id+"Results");
       results.style.display = "none";
       //Move back just in case
       document.getElementById("modal-page").style.display="none";
-      document.getElementById('que').appendChild(results);
+      document.getElementById(id+"Wrapper").appendChild(results);
     }
 
-    $scope.selectQueEstudiarItem = function(curso){
-      $scope.form.que = curso;
-      $scope.hideSearchQueResults();
-      $scope.form.searchQue = curso.nombre;
+    $scope.selectQueEstudiarItem = function(curso, id){
+      $scope.form[id] = curso;
+      $scope.hideSearchQueResults(id);
+      $scope.form['search'+id] = curso.nombre;
     }
 
     $scope.listAllQueEstudiar = function(){

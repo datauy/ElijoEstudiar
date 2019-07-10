@@ -28,6 +28,9 @@ div {
 	-webkit-transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+.scroll-view.scroll-y {
+	height: 100%;
+}
 .animate-down {
 	-webkit-animation: bounceDown ease-in 1;
   animation: bounceDown ease-in 1;
@@ -765,7 +768,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	float: left;
 	margin: 10px calc(50% - 59px) 0;
 }
-#SearchQueResults{
+.searchQueResults{
 	display: none;
 	width: calc(100% + 40px);
 	height: 50vh;
@@ -778,7 +781,9 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	margin-left: -20px;
 	margin-top: -30px;
 }
-
+#queEstudieResults.searchQueResults {
+	margin-top: 10px;
+}
 #SearchDondeResults{
 	display: none;
 	width: 100%;
@@ -837,7 +842,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	padding: 13px 0;
 	border-bottom: solid 2px #efefef;
 	margin: 0;
-	position: relative;
+	float: left;
 }
 .filters-wrapper .subsistema_title {
 	height: 41px;
@@ -2253,7 +2258,7 @@ margin-top: 10px;
 .inside_rectangle.full {
 	height: calc(100% - 40px);
 }
-.full #SearchQueResults {
+.full .searchQueResults {
 	height: calc(100% - 60px);
 	top: 30px;
 	width: calc(100% - 40px);
@@ -2498,7 +2503,7 @@ ion-header-bar {
 		/*overflow: auto;*/
   }
 
-	.full #SearchQueResults {
+	.full .searchQueResults {
 		margin: 0 calc(50% - 250px);
 		width: 500px;
 	}
