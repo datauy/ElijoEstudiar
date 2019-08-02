@@ -1,36 +1,6 @@
-pmb_im.services.factory('ModalService', [ function() {
+pmb_im.services.factory('ModalService', [ '$ionicModal', function($ionicModal) {
 
   var modalOBJ = {};
-  modalOBJ.activeModal = null;
-
-  modalOBJ.checkNoModalIsOpen = function() {
-    if(modalOBJ.activeModal){
-      modalOBJ.activeModal.hide();
-      modalOBJ.activeModal.remove();
-      modalOBJ.activeModal = null;
-    }
-  }
-  /*$scope.openDetailsModal = function(id){
-    $scope.openModal('buscando', 'loading');
-    ApiService.getEstablecimientoById(id).then(function (response) {
-      // TODO: Handle empty response, Pass Id in API not this:
-      response.data.establecimientos[0].id=id;
-      $scope.establecimiento = response.data.establecimientos[0];
-      $ionicModal.fromTemplateUrl('templates/details.html', {
-        scope: $scope,
-        hardwareBackButtonClose: true,
-        animation: 'none',
-        //focusFirstInput: true
-      }).then(function(modal) {
-        ModalService.checkNoModalIsOpen();
-        ModalService.activeModal = modal;
-        ModalService.activeModal.show();
-        $scope.modal_map = MapService.modal_map;
-        MapService.getMarker(response.data.establecimientos[0]);
-        document.getElementById("modal-page").style.display="none";
-      });
-    });
-  }*/
   /**
   * Función para abrir modal html
   */

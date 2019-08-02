@@ -1,50 +1,79 @@
 <ion-view title="ElijoEstudiar | Búsqueda" >
   <div class="rombo_amarillo_chico"></div>
   <div class="rombo_amarillo_derecha"></div>
-  <div class="form">
-    <div class="que section">
+  <div class="form {{ hasPrevias ? 'previas' : ''}}">
+    <div class="que section" ng-if="!hasPrevias">
       <div class="title">Esta es tu búsqueda</div>
       <div id="full_search_str" class="que estudiar_input clickable">
         {{search_str}}
         </div>
       <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
     </div>
+    <div class="title section" ng-if="hasPrevias">Para poder cursar:</div>
     <h1 class="title curso section">{{curso.orientacion}}</h1>
     <div class="centered">
       <button class="tag-tipo curso_tag" ng-click="openWebsite('{{curso.tipoUrl}}');">{{curso.tipo}}</button>
       <button class="tag-nivel curso_tag" ng-click="openWebsite('{{curso.nivelUrl}}');">{{curso.nivel}}</button>
     </div>
     <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
-    <div class="listAndMap-wrapper">
-      <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
-      <div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
-    </div>
-    <div class="results-wrapper">
-      <div id="list_container">
-        <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos">
-          {{stablishment.nombre}}
+    <div ng-if="!hasPrevias">
+      <div class="listAndMap-wrapper">
+        <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
+        <div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
+      </div>
+      <div class="results-wrapper">
+        <div id="list_container">
+          <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos">
+            {{stablishment.nombre}}
+          </div>
+        </div>
+        <div id="map_wrapper" >
+          <div id="map_container" >
+            <ion-view hide-nav-bar="true">
+              <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+            </ion-view>
+          </div>
         </div>
       </div>
-      <div id="map_wrapper" >
-        <div id="map_container" >
-          <ion-view hide-nav-bar="true">
-            <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
-          </ion-view>
+      <div class="filters-wrapper">
+        <h2 class="title curso section">Filtros adicionales</h2>
+        <div class='subsistema_container' ng-repeat="filters in curso.data track by filters.key">
+          <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{filters.key}}")'>
+            {{filters.nombre}}
+            <span ng-class='isGroupShown("{{filters.key}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
+          </ion-item>
+          <div class='subsistema_curso' ng-repeat="option in curso.data[filters.key].options" ng-show='isGroupShown("{{filters.key}}")'>
+            <ion-toggle ng-model="dinamic_filters[filters.key][option.nombre]" ng-change="selectFilter(option.nombre)">
+            </ion-toggle>
+            <a class="filter-option" ng-show='{{option.url ? 1 : 0}}' ng-click="openWebsite('{{option.url}}');">{{option.nombre}}</a>
+            <span class="filter-option" ng-show='{{option.url ? 0 : 1}}'>{{option.nombre}}</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="filters-wrapper">
-      <h2 class="title curso section">Filtros adicionales</h2>
-      <div class='subsistema_container' ng-repeat="filters in curso.data track by filters.key">
-        <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{filters.key}}")'>
-          {{filters.nombre}}
-          <span ng-class='isGroupShown("{{filters.key}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
-        </ion-item>
-        <div class='subsistema_curso' ng-repeat="option in curso.data[filters.key].options" ng-show='isGroupShown("{{filters.key}}")'>
-          <ion-toggle ng-model="dinamic_filters[filters.key][option.nombre]" ng-change="selectFilter(option.nombre)">
-          </ion-toggle>
-          <a class="filter-option" ng-show='{{option.url ? 1 : 0}}' ng-click="openWebsite('{{option.url}}');">{{option.nombre}}</a>
-          <span class="filter-option" ng-show='{{option.url ? 0 : 1}}'>{{option.nombre}}</span>
+    <div ng-if="hasPrevias">
+      <div class="title section">Con último tipo de curso aprobado</div>
+      <div class="title curso">{{ ultimo_aprobado }}</div>
+      <div class="title section">Es necesario cursar una de estas</div>
+      <div id="previas" class="animate-down section">
+        <div id="previas_scroll">
+          <div class='subsistema_container' ng-repeat="subsistema in previas track by $index">
+            <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{subsistema.subsis}}")'>
+              {{subsistema.subsis}}
+              <span ng-class='isGroupShown("{{subsistema.subsis}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
+            </ion-item>
+            <div class='subsistema_curso clickable' ng-click="selectPrevia({{curso}})" ng-repeat="curso in subsistema.cursos" ng-show='isGroupShown("{{subsistema.subsis}}")'>
+              <div class="curso_title_wrapper">
+                <div class="curso_nombre" ng-click="selectPrevia({{curso}})">{{curso.nombre}}</div>
+                <button class="form_next_button primary_button info" ng-click="openWebsite({{curso.url}}); $event.stopPropagation();">+info</button>
+              </div>
+                <div class="curso_tag_wrapper">
+                  <button class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
+                    {{tag.nombre}}
+                  </button>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

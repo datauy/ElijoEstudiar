@@ -28,19 +28,25 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     ApiObject.filters = filtersObject;
     return 1;
   }
-  ApiObject.createCursoSearchFromParams = function(){
+  ApiObject.createFilterParamsForGetRequest = function(){
     var params = {
       edad: ApiObject.filters.edad,
-      ultimo_nivel_aprobado: ApiObject.filters.ultimo_nivel_aprobado,
-      que: { tipoId: ApiObject.filters.tipo},
-      /*ultimo_anio_aprobado: ApiObject.filters.ultimo_anio_aprobado,
-      lugar: ApiObject.filters.lugar,*/
+      tipo: ApiObject.filters.queEstudiar.tipoId,
+      nivel: ApiObject.filters.queEstudiar.nivelId,
     };
-    var turnos = {};
-    for (var k in ApiObject.filters.turnos.split(",")){
-      turnos[k] = 1;
+    if (ApiObject.filters.queEstudie) {
+      params.aprobado_tipo = ApiObject.filters.queEstudie.tipoId;
+      params.aprobado_nivel = ApiObject.filters.queEstudie.nivelId;
     }
-    params.turnos = turnos;
+    var turnos = [];
+    for (var k in ApiObject.filters.turnos){
+      if ( ApiObject.filters.turnos[k] === 1 ) {
+        turnos.push(k);
+      }
+    }
+    if (turnos.length) {
+      params.turnos = turnos.join(",");
+    }
     /* TIENE QUE TRAER QUÉ
     if(ApiObject.filters.que!=""){
       params.queEstudiarId = ApiObject.filters.que.id;
@@ -51,63 +57,25 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
     if( ApiObject.filters.donde.lat != "undefined" ){
       params.ubicacion = ApiObject.filters.donde.lat+','+ApiObject.filters.donde.long;
     }
-    if ( ApiObject.filters.que.tipoId != ApiObject.filters.que.id ) {
-      params.orientacion = ApiObject.filters.que.id;
-    }
-    else {
-      params.orientacion = 'all';
+    if ( ApiObject.filters.queEstudiar.tipoId != ApiObject.filters.queEstudiar.id ) {
+      params.orientacion = ApiObject.filters.queEstudiar.id;
     }
 
     return params;
   }
-  ApiObject.createFilterParamsForGetRequest = function(){
-      var params = {
-        edad: ApiObject.filters.edad,
-        ultimo_nivel_aprobado: ApiObject.filters.ultimo_nivel_aprobado,
-        tipo: ApiObject.filters.que.tipoId,
-        /*ultimo_anio_aprobado: ApiObject.filters.ultimo_anio_aprobado,
-        lugar: ApiObject.filters.lugar,*/
-      };
-      var turnos = [];
-      for (var k in ApiObject.filters.turnos){
-        if ( ApiObject.filters.turnos[k] === 1 ) {
-          turnos.push(k);
-        }
-      }
-      if (turnos.length) {
-        params.turnos = turnos.join(",");
-      }
-      /* TIENE QUE TRAER QUÉ
-      if(ApiObject.filters.que!=""){
-        params.queEstudiarId = ApiObject.filters.que.id;
-        params.queEstudiarNombre = ApiObject.filters.que.nombre;
-        params.queEstudiarTagUno = ApiObject.filters.que.tag[0];
-        params.queEstudiarTagDos = ApiObject.filters.que.tag[1];
-      }*/
-      if( ApiObject.filters.donde.lat != "undefined" ){
-        params.ubicacion = ApiObject.filters.donde.lat+','+ApiObject.filters.donde.long;
-      }
-      if ( ApiObject.filters.que.tipoId != ApiObject.filters.que.id ) {
-        params.orientacion = ApiObject.filters.que.id;
-      }
 
-      return params;
+  ApiObject.getCursosByFilters = function(){
+    if( ApiObject.filters !== undefined && ApiObject.filters != null ){
+      parameters = ApiObject.createFilterParamsForGetRequest();
     }
-
-    ApiObject.getCursosByFilters = function(parameters){
-      console.log('Cursos BY FILTERS');
-      console.log(parameters);
-      if ( parameters === undefined ) {
-        console.log('Parameters undef');
-        if( ApiObject.filters != null ){
-          parameters = ApiObject.createFilterParamsForGetRequest();
-          console.log(parameters);
-        }
-        else {
-          return 0;
-        }
+    else {
+      return 0;
+    }
+    return $http.get(apiURL + 'cursos', {cache: false, params: parameters}).then(function (response) {
+      if (response.data.is_previa) {
+        return response.data;
       }
-      return $http.get(apiURL + 'cursos', {cache: false, params: parameters}).then(function (response) {
+      else {
         var result = {
           cursos: response.data
         }
@@ -129,15 +97,16 @@ pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http,
         });
         result.establecimientos = Object.values(est);
         return result;
-      });
-    }
+      }
+    });
+  }
 
-    ApiObject.getEstablecimientoById = function(id){
-        return $http.get(apiURL + 'establecimientos-por-id/'+id, {cache: false, params: {hash_id:Math.random()}});
-    }
-    /**
-     * Return the constructor function
-     */
-    return ApiObject;
+  ApiObject.getEstablecimientoById = function(id){
+      return $http.get(apiURL + 'establecimientos-por-id/'+id, {cache: false, params: {hash_id:Math.random()}});
+  }
+  /**
+   * Return the constructor function
+   */
+  return ApiObject;
 
 }]);

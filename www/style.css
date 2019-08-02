@@ -2463,6 +2463,7 @@ ion-header-bar {
 	font-size: 16px;
 	letter-spacing: 0.5px;
 	margin-top: 42px;
+	font-weight: bold;
 }
 .plan .item-toggle {
 	width: 50%;
@@ -2473,6 +2474,13 @@ ion-header-bar {
 	width: 50%;
 	float: left;
 	padding: 10px;
+}
+#previas {
+	max-height: 50vh;
+	overflow-y: scroll;
+}
+.previas .curso.title {
+	margin-top: 8px;
 }
 /********************************************************************
 ***************             MEDIA QUERIES             ***************

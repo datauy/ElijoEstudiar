@@ -12,14 +12,6 @@ var pmb_im = {
 
 pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete','leaflet-directive', 'pmb_im.controllers', 'pmb_im.services', 'ngCordova'])
 
-.constant('ApiImEndpoint', {
-  url: 'http://www.montevideo.gub.uy'
-})
-
-.constant('ApiDataEndpoint', {
-  url: 'http://backend.educacion.thor.datauy.org'
-})
-
 .directive('select',function(){ //same as "ngSelect"
     return {
         restrict: 'E',
@@ -128,7 +120,7 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
   })
   .state('app.search_cursos_result', {
     cache: false,
-    url: "busco/cursos/:edad/:ultimo_nivel_aprobado/:tipo/:turnos/:ubicacion/:orientacion",
+    url: "busco/cursos/:edad/:ultimo_aprobado/:tipo/:turnos/:ubicacion/:orientacion",
     views: {
       'menuContent' :{
         templateUrl: "templates/search_cursos.html",

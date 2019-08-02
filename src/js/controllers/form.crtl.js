@@ -124,9 +124,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.listAllQueEstudiar = function(){
       ModalService.openModal('buscando', 'loading');
       ApiService.searchQueEstudiar("all").then(function (response) {
-        //console.log(response);
-        $scope.form.SearchQueResults = response.data;
-        ModalService.openModal('full', 'SearchQueResults');
+        console.log(response);
+        $scope.form.queEstudiarResults = response.data;
+        ModalService.openModal('full', 'queEstudiarResults');
         document.getElementById("loading").style.display = "none";
       });
     }
@@ -148,8 +148,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
           }
           document.getElementById("loading-mini").style.display = "none";
         }
-        else {
+        else if (!$scope.isActiveSearch){
+          $scope.isActiveSearch = 1;
           ApiService.searchDondeEstudiar(search_str).then(function (response) {
+            $scope.isActiveSearch = 0;
             $scope.form.SearchDondeResults = response.data;
             document.getElementById("SearchDondeResults").style.display = "block";
             document.getElementById("loading-mini").style.display = "none";
@@ -173,8 +175,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
 	  $scope.next = function() {
-      if ( $ionicSlideBoxDelegate.currentIndex() == 1 && angular.equals($scope.form.que, {}) ) {
-        console.log('Error');
+      if ( $ionicSlideBoxDelegate.currentIndex() == 1 && angular.equals($scope.form.queEstudiar, {}) ) {
         ErrorService.showError('Por favor, seleccione un curso de la lista.')
       }
       else {
@@ -194,6 +195,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
           console.log("VUELVE DE UPDATE");
         });*/
         var params = ApiService.createFilterParamsForGetRequest();
+        console.log(params);
         $state.go( "app.search_cursos_result", params );
       }
     }
