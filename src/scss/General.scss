@@ -1,6 +1,12 @@
 body {
 	font-family: Nunito;
 }
+h1 {
+	font-size: 20px;
+	text-align: center;
+	margin: 28px 0;
+	line-height: 1.45;
+}
 img {
 	width: 100%;
 }
@@ -31,6 +37,7 @@ div {
 p {
 	margin: 14px 0;
 	float: left;
+	width: 100%;
 }
 ion-content {
 	float: left;
