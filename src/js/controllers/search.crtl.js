@@ -124,8 +124,12 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           $scope.dinamic_filters.planes[current_curso.plan] = true;
         }
         if ( $scope.curso.data.años.options[current_curso.año] === undefined ){
+          var title = current_curso.año;
+          if (current_curso.año == 0 ) {
+            title = 'Todos';
+          }
           $scope.curso.data.años.options[current_curso.año] = {
-            nombre: current_curso.año,
+            nombre: title,
             oferta: current_curso.oferta,
           };
           $scope.dinamic_filters.años[current_curso.año] = true;
@@ -224,7 +228,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         document.getElementById("map_wrapper").style.display="block";
         document.getElementById("map_wrapper").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
-        //MapService.invalidateSize("primary_map");
+        MapService.invalidateSize("primary_map");
       }
       if(optionId=="list"){
         document.getElementById("map_wrapper").style.display="none";

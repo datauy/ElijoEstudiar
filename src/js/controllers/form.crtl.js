@@ -160,6 +160,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         $scope.locLastSearch = search_str;
       }
       else{
+        $scope.isActiveSearch = 0;
         $scope.hideSearchDondeResults();
       }
     }

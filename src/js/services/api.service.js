@@ -1,6 +1,6 @@
-pmb_im.services.factory('ApiService', ['$http', 'ConfigService', function($http, ConfigService) {
+pmb_im.services.factory('ApiService', ['$http', function($http) {
 
-  var apiURL = ConfigService.baseURL + "/api/";
+  var apiURL = "/backend/api/";
 
 /**
    * Constructor, with class name

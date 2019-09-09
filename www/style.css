@@ -1,241 +1,4 @@
 /*EDUCACION*/
-body {
-	font-family: Nunito;
-}
-img {
-	width: 100%;
-}
-ion-nav-view {
-	background-color: #000;
-}
-a {
-	cursor: pointer;
-}
-button {
-	margin-top: 16px;
-	float: left;
-	width: 100%;
-	height: 58px;
-	border-radius: 5px;
-	font-size: 16px;
-	font-weight: bold;
-	letter-spacing: 2px;
-	text-align: center;
-	text-transform: uppercase;
-	cursor: pointer;
-}
-div {
-	-webkit-transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.scroll-view.scroll-y {
-	height: 100%;
-}
-.animate-down {
-	-webkit-animation: bounceDown ease-in 1;
-  animation: bounceDown ease-in 1;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-duration: 750ms;
-  animation-duration: 750ms;
-}
-@keyframes bounceDown {
-	0% {
-    -webkit-transform: translate3d(0,-20%,0);
-  }
-
-  50% {
-    -webkit-transform: translate3d(0,30%,0);
-  }
-
-  100% {
-    -webkit-transform: translate3d(0,0,0);
-  }
-}
-.centered {
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-}
-.main.view-container {
-	position: relative;
-	float: left;
-}
-.modal {
-	float: left;
-	position: relative;
-	display: flex;
-}
-.inside_rectangle{
-	width: 84%;
-  height: 403px;
-  border-radius: 6px;
-  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.12);
-  background-color: #ffffff;
-	position: relative;
-	float: left;
-	/*margin: 105px 8% 60px;*/
-}
-.slider-slide {
-	height: auto;
-}
-.slider-slides {
-	display: flex;
-}
-#loading {
-	font-size: 18px;
-	text-align: center;
-}
-
-.buscando img {
-  display: block;
-  margin: auto;
-  width: 15%;
-}
-
-#loading-mini {
-	float: left;
-	width: 56px;
-  height: 26px;
-  margin-left: -56px;
-	margin-top: 6px;
-}
-.buscando #loading {
-	width: 100%;
-}
-.buscando #loading img{
-	width: 20%;
-	margin: 35vh 40% 30px;
-}
-.buscando #loading::after {
-	content: 'Buscando';
-}
-.inside_rectangle.buscando {
-	background-image: url(./img/buscando.svg);
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	font-size: 18px;
-}
-.intro_rombo_azul{
-	width: 159.8px;
-  height: 166.2px;
-  object-fit: contain;
-	background-image:    url(./img/intro_rombo_azul.svg);
-	background-size:     100% 100%;
-	background-repeat:   no-repeat;
-	background-position: center center;
-	position: fixed;
-	left: 0;
-	top: 0;
-}
-
-.intro.inside_rectangle{
-	margin: 105px 8% 60px;
-	z-index: 2;
-}
-
-.intro_que_buscas{
-	width: 230px;
-	 height: 22px;
-	 font-size: 21px;
-	 font-weight: 300;
-	 font-style: normal;
-	 font-stretch: normal;
-	 line-height: 1.05;
-	 letter-spacing: normal;
-	 text-align: center;
-	 color: #322c3a;
-	 position: absolute;
-	 left: 50%;
-	 transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	 top: 103px;
-}
-
-.intro_informacion_sobre{
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	top: 134px;
-	width: 196px;
-	height: 22px;
-
-	font-size: 12px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.83;
-	letter-spacing: 2px;
-	text-align: center;
-	color: #322c3a;
-	text-transform: uppercase;
-}
-
-.intro_informacion_donde_button{
-	 width: 253px;
-   height: 58px;
-   border-radius: 4px;
-   background-color: #4a90e2;
-
-		font-size: 16px;
-		font-weight: normal;
-		font-style: normal;
-		font-stretch: normal;
-		line-height: 1.25;
-		letter-spacing: 0.5px;
-		text-align: center;
-		color: #ffffff;
-		display: flex;
-		justify-content: center; /* align horizontal */
-		align-items: center;
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-		top: 180px;
-}
-
-.intro_informacion_centro_button{
-	width: 253px;
-	height: 58px;
-	border-radius: 4px;
-	background-color: #4acee2;
-
-	 font-size: 16px;
-	 font-weight: normal;
-	 font-style: normal;
-	 font-stretch: normal;
-	 line-height: 1.25;
-	 letter-spacing: 0.5px;
-	 text-align: center;
-	 color: #ffffff;
-	 display: flex;
-	 justify-content: center; /* align horizontal */
-	 align-items: center;
-	 position: absolute;
-	 left: 50%;
-	 transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	 top: 254px;
-}
-
-.intro_rombo_amarillo{
-	width: 187px;
-  height: 216px;
-  object-fit: contain;
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	background-image:    url(./img/intro_rombo_amarillo.svg);
-background-size:     100% 100%;
-background-repeat:   no-repeat;
-background-position: center center;
-}
-
 .rombo_amarillo_chico{
 	width: 84px;
   height: 128px;
@@ -771,7 +534,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 .searchQueResults{
 	display: none;
 	width: calc(100% + 40px);
-	height: 50vh;
+	max-height: 50vh;
 	position: relative;
 	float: left;
 	border-radius: 6px;
@@ -780,6 +543,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	z-index: 1;
 	margin-left: -20px;
 	margin-top: -30px;
+	overflow-y: scroll;
 }
 #queEstudieResults.searchQueResults {
 	margin-top: 10px;
@@ -803,6 +567,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
 #searchDondeResults_scroll{
 	width: 100%;
   height: 200px;
+	overflow-y: scroll;
 }
 .show-map {
 	background-image: url(./img/mapa.svg);
@@ -834,8 +599,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
   font-size: 13px;
   letter-spacing: 0.4px;
   color: #ffffff;
-	padding-top: 9px;
-	padding-left: 14px;
+	padding: 8px 16px;
 }
 .subsistema_curso{
 	width: 100%;
@@ -882,57 +646,7 @@ background-image:    url(./img/rombo_azul_chico.svg);
   letter-spacing: 0.5px;
   color: #000000;
 }
-button.info {
-	width: 62px;
-	float: left;
-	font-size: 10px;
-	height: 18px;
-	margin-top: 9px;
-	margin-left: 12px;
-}
 
-.curso_tag_wrapper {
-	position: relative;
-	padding-left: 14px;
-	padding-top: 9px;
-	width: 100%;
-	height: 60px;
-}
-
-.curso_tag {
-	max-width: calc(50% - 8px);
-	min-height: 18px;
-  border-radius: 7px;
-  background-color: #4a90e2;
-	font-size: 9px;
-	letter-spacing: 0.3px;
-	text-align: center;
-	color: #fff;
-	display: inline-block;
-	margin-right: 8px;
-	padding: 3px 18px;
-	line-height: 1.25;
-	height: initial;
-	font-weight: normal;
-	width: inherit;
-	border: none;
-}
-.curso_tag.tag-nivel {
-	background-color: #4acee2;
-}
-#full_search_str{
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	float: left;
-	width: 100%;
-	text-align: center;
-	margin: 30px 0 10px;
-	border-bottom: solid 1px #4a90e2;
-	padding-bottom: 7px;
-	font-size: 13px;
-	color: #4a90e2;
-}
 [nav-view-transition="ios"][nav-view-direction="forward"],
 [nav-view-transition="ios"][nav-view-direction="back"] {
 	background-color: #fff;
@@ -956,7 +670,6 @@ button.info {
 	width: calc(100% + 80px);
 	margin-left: -40px;
 	height: 360px;
-	visibility: hidden;
 }
 #map_container{
 		top: 0;
@@ -966,7 +679,6 @@ button.info {
 }
 #list_container {
   width: 100%;
-  height: 360px;
 	overflow-y: auto;
 }
 .filters-wrapper {
@@ -1124,20 +836,6 @@ button.info {
 }
 
 /*DETAILS*/
-
-.back_arrow{
-	width: 19px;
-  height: 19px;
-  object-fit: contain;
-	background-size:     contain;
-	background-repeat:   no-repeat;
-	background-position: center center;
-	background-image:    url(./img/back_arrow.svg);
-	position: absolute;
-	top: 26px;
-	left: 24px;
-	z-index: 4;
-}
 
 .add_to_fav_icon_detail{
 	width: 140px;
@@ -2223,240 +1921,6 @@ margin-top: 10px;
   margin-top: -30px;
 
 }
-#modal-page {
-	display: none;
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 10;
-}
-.modal-close {
-	width: 23px;
-  height: 23px;
-  object-fit: contain;
-	background-image:    url(./img/close.svg);
-	background-size:     100% 100%;
-	background-repeat:   no-repeat;
-	background-position: center center;
-	position: absolute;
-	right: 44px;
-	top: 64px;
-	z-index: 11;
-}
-.inside_rectangle.full,
-.inside_rectangle.modal-map {
-	width: calc(100% - 40px);
-	top: 42px;
-	z-index: 10;
-	padding: 64px 4%;
-	/* TODO:  Revisar tamaño del mapa*/
-	height: 608px;
-	margin: 0 20px;
-}
-.inside_rectangle.full {
-	height: calc(100% - 40px);
-}
-.full .searchQueResults {
-	height: calc(100% - 60px);
-	top: 30px;
-	width: calc(100% - 40px);
-  margin-left: 20px;
-  margin-top: 0;
-}
-.results-wrapper {
-	float: left;
-	width: 100%;
-}
-.info-curso {
-	height: 44px;
-	width: 52%;
-	margin: 24px 24% 0;
-	font-size: 12px;
-}
-#error {
-	width: 100%;
-	position: fixed;
-	left: 0;
-	top: 0;
-	background-color: #c00005;
-	z-index: 11;
-	visibility: hidden;
-	padding: 0px 8%;
-}
-.error-content {
-	width: 100%;
-	margin: 0 auto;
-	padding: 19px 0 19px 38px;
-	vertical-align: middle;
-	font-size: 15px;
-	color: #fff;
-	color: #fff;
-	background: url(./img/noun-warning.svg);
-	background-repeat: no-repeat;
-	background-position: left;
-}
-#error-content {
-	width: calc(100% - 32px);
-	float: left;
-}
-.error-close {
-	width: 22px;
-	height: 22px;
-	float: right;
-	background: url(./img/close.svg);
-	background-repeat: no-repeat;
-}
-
-
-/* Estilos del menú */
-.menu-icon {
-  cursor: pointer;
-  padding: 28px 20px;
-  margin-left: auto;
-  z-index: 5;
-	position: absolute;
-	right: 0;
-}
-
- .menu-icon .navicon {
-  background: black;
-  display: block;
-  height: 5px;
-  position: relative;
-  transition: background .2s ease-out;
-  width: 32px;
-}
-
- .menu-icon .navicon:before,
- .menu-icon .navicon:after {
-  background: black;
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  transition: all .2s ease-out;
-  width: 50%;
-}
-
-ion-header-bar {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.menu-icon .navicon:before {
-  top: 10px;
-}
-
- .menu-icon .navicon:after {
-  top: -10px;
-  left: 50%;
-}
-
-/* menu btn */
-
- .menu-btn {
-  display: none;
-}
-
- .menu-btn:checked ~ .menu {
-  max-height: 240px;
-}
-
- .menu-btn:checked ~ .menu-icon .navicon {
-  background: transparent;
-}
-
- .menu-btn:checked ~ .menu-icon .navicon:before {
-  background: white;
-  transform: rotate(-45deg);
-  width: 100%;
-}
-
- .menu-btn:checked ~ .menu-icon .navicon:after {
-  background: white;
-  transform: rotate(45deg);
-  width: 100%;
-  left: 0;
-}
-
- .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
- .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-  top: 0;
-}
-
-.menu-btn:checked ~ .navbar .navbar-wrapper {
-  display: flex;
-  flex-direction: column;
-  background-color: #4a90e2;
-  position: absolute;
-  padding-top: 65px;
-  z-index: 4;
-  margin-left: 5%;
-  width: 100%;
-}
-
-.navbar-items {
-  display: flex;
-  flex-direction: column;
-  padding-left: 20%;
-}
-
-.nav-item {
-  width: 100%;
-  font-size: 20px;
-  padding: 10px 0;
-}
-
-.nav-item a {
-  color: white;
-  text-decoration: none;
-}
-
-.navbar {
-  width: 100%;
-}
-
-.navbar-wrapper {
-  display: none;
-}
-
-.navbar {
-  position: absolute;
-  flex-direction: column;
-}
-
-.navbar-right {
-  margin-left: 0;
-}
-
-.nav-icon {
-  padding: 10% 0;
-  float: left;
-  position: relative;
-  padding-right: 5%;
-}
-.icon-color {
-  width: 32px;
-  height: 32px;
-  float: left;
-}
-.fa-facebook {
-  background-image: url(/img/ic-facebook.svg), none;
-}
-.fa-instagram {
-  background-image: url(/img/ic-instagram.svg), none;
-}
-.fa-linkedin {
-  background-image: url(/img/ic-linkedin.svg), none;
-}
-.fa-twitter {
-  background-image: url(/img/ic-twitter.svg), none;
-}
-.fa-youtube-play {
-  background-image: url(/img/ic-youtube.svg), none;
-}
 /* Search */
 /* TODO: PASAR A SCSS!!! */
 .curso.title {
@@ -2536,5 +2000,12 @@ ion-header-bar {
 	}
 	.main-details {
 		margin-top: 0;
+	}
+	.logo {
+    width: 50%;
+    margin: 14px 25% 0;
+	}
+	#intro-message {
+		margin: 40px 0;
 	}
 }

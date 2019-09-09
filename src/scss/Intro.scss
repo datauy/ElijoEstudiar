@@ -1,0 +1,85 @@
+.intro_rombo_azul{
+	width: 159.8px;
+  height: 166.2px;
+  object-fit: contain;
+	background-image:    url(../../img/intro_rombo_azul.svg);
+	background-size:     100% 100%;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	position: fixed;
+	left: 0;
+	top: 0;
+}
+.intro_rombo_amarillo{
+	width: 187px;
+  height: 216px;
+  object-fit: contain;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background-image:    url(../../img/intro_rombo_amarillo.svg);
+  background-size:     100% 100%;
+  background-repeat:   no-repeat;
+  background-position: center center;
+}
+.intro.inside_rectangle{
+	margin: 105px 8% 60px;
+	z-index: 2;
+  padding: 38px;
+}
+.logo {
+  width: 20%;
+  margin: 14px 40% 0;
+}
+#intro-message {
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: #322c3a;
+  margin: 40px 25%;
+  float: left;
+}
+.intro_que_buscas{
+	width: 100%;
+  font-size: 21px;
+  line-height: 1.05;
+  text-align: center;
+  color: #322c3a;
+  float: left;
+}
+
+.intro_informacion_sobre{
+  font-size: 12px;
+	line-height: 1.83;
+	letter-spacing: 2px;
+	text-align: center;
+	color: #322c3a;
+	text-transform: uppercase;
+  width: 100%;
+  float: left;
+  margin: 9px 0 27px;
+}
+.intro button {
+	width: 252px;
+  height: 58px;
+  border-radius: 4px;
+	font-size: 16px;
+  font-weight: normal;
+	line-height: 1.25;
+	letter-spacing: 0.5px;
+	text-align: center;
+	color: #ffffff;
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center;
+	margin: 16px calc(50% - 126px);
+	text-transform: none;
+  border: none;
+}
+.intro_informacion_donde{
+  background-color: #4a90e2;
+}
+
+.intro_informacion_centro{
+	background-color: #4acee2;
+}
