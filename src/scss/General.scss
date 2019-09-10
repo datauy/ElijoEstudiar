@@ -102,7 +102,7 @@ ion-content {
 	content: 'Buscando';
 }
 .inside_rectangle.buscando {
-	background-image: url(./img/buscando.svg);
+	background-image: url(../../img/buscando.svg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -127,9 +127,9 @@ ion-content {
 	background-size:     contain;
 	background-repeat:   no-repeat;
 	background-position: center center;
-	background-image:    url(./img/back_arrow.svg);
+	background-image:    url(../../img/back_arrow.svg);
 	position: absolute;
-	top: 26px;
+	top: 24px;
 	left: 24px;
 	z-index: 4;
 }
@@ -203,7 +203,7 @@ button.info {
 	width: 23px;
   height: 23px;
   object-fit: contain;
-	background-image:    url(./img/close.svg);
+	background-image:    url(../../img/close.svg);
 	background-size:     100% 100%;
 	background-repeat:   no-repeat;
 	background-position: center center;
@@ -260,7 +260,7 @@ button.info {
 	font-size: 15px;
 	color: #fff;
 	color: #fff;
-	background: url(./img/noun-warning.svg);
+	background: url(../../img/noun-warning.svg);
 	background-repeat: no-repeat;
 	background-position: left;
 }
@@ -272,7 +272,7 @@ button.info {
 	width: 22px;
 	height: 22px;
 	float: right;
-	background: url(./img/close.svg);
+	background: url(../../img/close.svg);
 	background-repeat: no-repeat;
 }
 
@@ -280,11 +280,11 @@ button.info {
 
 .menu-icon {
   cursor: pointer;
-  padding: 28px 20px;
   margin-left: auto;
-  z-index: 5;
+  z-index: 6;
 	position: absolute;
-	right: 0;
+	right: 24px;
+	top: 33px;
 }
 
  .menu-icon .navicon {
@@ -360,29 +360,42 @@ ion-header-bar {
   flex-direction: column;
   background-color: #4a90e2;
   position: absolute;
-  padding-top: 65px;
-  z-index: 4;
+  z-index: 5;
   margin-left: 5%;
-  width: 100%;
+  height: 100vh;
 }
-
+.navbar-links {
+	height: calc(90vh - 126px);
+	margin: 63px 20%;
+}
 .navbar-items {
   display: flex;
   flex-direction: column;
-  padding-left: 20%;
+  margin: 63px 20%;
+	width: 80%;
+	margin-left: 20%;
 }
 
 .nav-item {
   width: 100%;
   font-size: 20px;
   padding: 10px 0;
+	margin: 32px 0;
+	float: left;
 }
 
 .nav-item a {
   color: white;
   text-decoration: none;
 }
-
+.nav-item.active a {
+	color: #ffdd6e;
+}
+.nav-item.active::after {
+	width: 58px;
+	height: 1px;
+	border: solid 2px #ffdd6e;
+}
 .navbar {
   width: 100%;
 }
@@ -395,13 +408,9 @@ ion-header-bar {
   position: absolute;
   flex-direction: column;
 }
-
 .navbar-right {
-  margin-left: 0;
 }
-
 .nav-icon {
-  padding: 10% 0;
   float: left;
   position: relative;
   padding-right: 5%;
@@ -412,17 +421,17 @@ ion-header-bar {
   float: left;
 }
 .fa-facebook {
-  background-image: url(/img/ic-facebook.svg), none;
+  background-image: url(../../img/fb.svg), none;
 }
 .fa-instagram {
-  background-image: url(/img/ic-instagram.svg), none;
+  background-image: url(../../img/ic-instagram.svg), none;
 }
 .fa-linkedin {
-  background-image: url(/img/ic-linkedin.svg), none;
+  background-image: url(../../img/ic-linkedin.svg), none;
 }
 .fa-twitter {
-  background-image: url(/img/ic-twitter.svg), none;
+  background-image: url(../../img/tw.svg), none;
 }
 .fa-youtube-play {
-  background-image: url(/img/ic-youtube.svg), none;
+  background-image: url(/../..img/ic-youtube.svg), none;
 }
