@@ -138,7 +138,26 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
       },
     }
   })
-
+  .state('app.sobre', {
+    cache: false,
+    url: "sobre-el-proyecto",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/sobre.html",
+        controller : "IntroCtrl"
+      }
+    }
+  })
+  .state('app.preguntas', {
+    cache: false,
+    url: "preguntas-frecuentes",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/preguntas.html",
+        controller : "IntroCtrl"
+      }
+    }
+  })
 // if none of the above states are matched, use this as the fallback
 $urlRouterProvider.otherwise('intro');
 

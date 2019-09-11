@@ -392,10 +392,12 @@ ion-header-bar {
   color: white;
   text-decoration: none;
 }
-.nav-item.active a {
+
+.nav-item a:hover,
+.nav-item a.active {
 	color: #ffdd6e;
 }
-.nav-item.active a::after {
+.nav-item a.active::after {
 	width: 58px;
 	height: 1px;
 	border: solid 1px #ffdd6e;

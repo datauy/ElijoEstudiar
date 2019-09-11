@@ -16,22 +16,22 @@
         <nav class="navbar-items navbar-links">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <a class="nav-link" ng-click="menu_link_open()" href="#/inicio">Inicio</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" ng-click="menu_link_open()" href="#/cursos">Dónde estudiar</a>
+              <a ui-sref="app.intro" ui-sref-active="active" class="nav-link" ng-click="menu_link_open()">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-click="menu_link_open()" href="#/centros">Centro de estudio</a>
+              <a class="nav-link" ng-click="menu_link_open()" ui-sref="app.cursos" ui-sref-active="active">Qué/Dónde estudiar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-click="menu_link_open()" href="#">Sobre el proyecto</a>
+              <a class="nav-link" ng-click="menu_link_open()" ui-sref="app.search_centros" ui-sref-active="active">Centros de estudio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-click="menu_link_open()" href="#">Derechos del estudiante</a>
+              <a class="nav-link" ng-click="menu_link_open()" ui-sref="app.sobre" ui-sref-active="active">Sobre el proyecto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-click="menu_link_open()" href="#">Ayuda</a>
+              <a class="nav-link" ng-click="menu_link_open()" href="https://derechosdelestudiante.edu.uy">Derechos del estudiante</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" ng-click="menu_link_open()" ui-sref="app.preguntas" ui-sref-active="active">Preguntas Frecuentes</a>
             </li>
           </ul>
         </nav>
