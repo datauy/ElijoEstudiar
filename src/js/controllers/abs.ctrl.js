@@ -1,9 +1,9 @@
 pmb_im.controllers.controller('AbsController',
-['$scope','$cordovaInAppBrowser',
-function($scope,$cordovaInAppBrowser) {
+['$scope','$cordovaInAppBrowser','$ionicHistory',
+function($scope,$cordovaInAppBrowser, $ionicHistory) {
 
   $scope.show_error = "hidden";
-  
+
   $scope.openWebsite = function(url) {
     var options = {
       location: 'no',
@@ -25,6 +25,10 @@ function($scope,$cordovaInAppBrowser) {
     document.getElementById("error").style.visibility="hidden";
   }
   $scope.go_back = function() {
-    window.history.back();
+    //window.history.back();
+    $ionicHistory.goBack();
   };
+  $scope.menu_link_open = function() {
+    document.getElementById("menu-btn").checked = false;
+  }
 }]);

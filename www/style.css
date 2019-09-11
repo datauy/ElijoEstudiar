@@ -722,9 +722,6 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	position: relative;
 	float: left;
 }
-.scroll-content {
-	position: relative;
-}
 .menu-content.pane{
 	overflow-y: auto;
   /*overflow: overlay !important;*/
