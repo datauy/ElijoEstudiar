@@ -19,17 +19,19 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.filters_centros = {
       nombre: "",
       subsis: {
-      CEIP:true,
-      CES:true,
-      CETP:true,
-      CFE:true
+        "Primaria":true,
+        "Secundaria":true,
+        "UTU":true,
+        "Formación en educación":true
       },
       ubicacion: ""
     };
     $scope.curso = {};
     $scope.shownGroup = {
-      planes: false,
-      años: false
+      "Primaria":false,
+      "Secundaria":false,
+      "UTU":false,
+      "Formación en educación":false
     };
     $scope.dinamic_filters = {
       planes: {},

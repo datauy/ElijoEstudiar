@@ -6,10 +6,9 @@
         <div class="form">
           <div class="title section">Tu edad</div>
           <div class="edad_controls">
-            <div ng-click="restarEdad();" class="edad_menos">-</div>
+            <div ng-click="restarEdad();" class="edad edad_menos">-</div>
             <input type="text" class="edad_text" ng-model="form.edad" maxlength="2"/>
-            <!--<div class="edad_text">{{form.edad}}</div>-->
-            <div ng-click="sumarEdad();" class="edad_mas">+</div>
+            <div ng-click="sumarEdad();" class="edad edad_mas">+</div>
           </div>
           <div id="queEstudieWrapper">
             <div class="title">Último nivel aprobado</div>
@@ -17,7 +16,8 @@
             <div id="queEstudieResults" class="animate-down searchQueResults">
               <ion-scroll id="queEstudieResults_scroll" scrollX="false" scrollY="true">
                 <div class='subsistema_container' ng-repeat="subsistema in form.queEstudieResults track by $index">
-                  <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{subsistema.subsis}}")'>
+                  <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup(subsistema.subsis)'>
+                  <!-- ng-mouseover="shownGroup_glance(subsis)" ng-mouseleave="shownGroup_close(subsis)" -->
                     {{subsistema.subsis}}
                     <span ng-class='isGroupShown("{{subsistema.subsis}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
                   </ion-item>
@@ -25,48 +25,11 @@
                     <div class="curso_title_wrapper">
                       <div class="curso_nombre" ng-click="selectQueEstudiarItem({{curso}})">{{curso.nombre}}</div>
                     </div>
-                      <!--<div class="curso_tag_wrapper">
-                        <button class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
-                          {{tag.nombre}}
-                        </button>
-                      </div>-->
                   </div>
                 </div>
               </ion-scroll>
+              <span class="result-empty" ng-if="!form.queEstudieResults.length">No hay resultados con esas palabras</span>
             </div>
-            <!--<div class="ultimoNivelControls">
-              <div ng-click="selectUltimoNivel('ninguno');" id="ninguno" class="nivel_ninguno nivel">
-                <div class="nivel_punto" style="display:none;"></div>
-                <div class="nivel_title">Ninguno</div>
-              </div>
-              <div ng-click="selectUltimoNivel('primaria');" id="primaria" class="nivel_primaria nivel hidden">
-                <div class="nivel_punto"></div>
-                <div class="nivel_title">Primaria</div>
-              </div>
-              <div ng-click="selectUltimoNivel('secundaria');" id="secundaria" class="nivel_secundaria nivel hidden">
-                <div class="nivel_punto"></div>
-                <div class="nivel_title">Media básica</div>
-              </div>
-              <div ng-click="selectUltimoNivel('terceario');" id="terceario" class="nivel_terceario nivel hidden">
-                <div class="nivel_punto"></div>
-                <div class="nivel_title">Media superior</div>
-              </div>
-              <div ng-click="selectUltimoNivel('universitario');" id="universitario" class="nivel_universitario nivel hidden">
-                <div class="nivel_punto"></div>
-                <div class="nivel_title">Terciaria</div>
-              </div>
-            </div>
-            <div class="rombo_azul"></div>
-            <div class="ultimoAnioAprobado_title">¿Último año aprobado?</div>
-            <select ng-model="form.ultimo_anio_aprobado" class="ultimoAnioAprobado_select clickable">
-              <option value="" disabled selected>Selecciona un año</option>
-              <option>Primer año</option>
-              <option>Segundo año</option>
-              <option>Tercer año</option>
-              <option>Cuarto año</option>
-              <option>Quinto año</option>
-              <option>Sexto año</option>
-            </select>-->
           </div>
         </div>
         <!-- TODO: Estaba mal armado el html, según el diseño el botón tien que ir debajo, hice un very hot fix :) -->
@@ -101,6 +64,7 @@
                   </div>
                 </div>
               </ion-scroll>
+              <span class="result-empty" ng-if="!form.queEstudiarResults.length">No hay resultados con esas palabras</span>
             </div>
           </div>
       		<div class="section donde">
@@ -113,6 +77,7 @@
                   <div class="donde_title" ng-click="selectDondeEstudiarItem({{donde}})">{{donde.nombre}}</div>
                 </div>
               </ion-scroll>
+              <span class="result-empty" ng-if="!form.SearchDondeResults.length">No hay resultados con esas palabras</span>
             </div>
           </div>
           <div class="section turno">

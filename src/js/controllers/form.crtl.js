@@ -15,10 +15,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   $ionicScrollDelegate) {
     $scope.locLastSearch = '';
     $scope.shownGroup = {
-      CEIP:true,
-      CES:true,
-      CETP:true,
-      CFE:true
+      "Primaria":false,
+      "Secundaria":false,
+      "UTU":false,
+      "Formación en educación":false
     };
 
     if ( ApiService.filters != null ) {
