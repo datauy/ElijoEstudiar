@@ -79,6 +79,9 @@
 	margin: 0;
 	float: left;
 }
+.subsistema_curso:hover {
+	background: $light-gray;
+}
 /******** CURSOS STEP 2 **************/
 .turnos-wrapper{
 	width: 100%;
@@ -111,27 +114,27 @@
 
 }
 .turno_matutino{
-	background-image:    url(./img/matutino_off.svg);
+	background-image:    url(../..//matutino_off.svg);
 }
 
 .turno_matutino.selected{
-	background-image:    url(./img/matutino.svg);
+	background-image:    url(../..//matutino.svg);
 }
 
 .turno_vespertino{
-	background-image:    url(./img/vespertino_off.svg);
+	background-image:    url(../..//vespertino_off.svg);
 }
 
 .turno_vespertino.selected{
-	background-image:    url(./img/vespertino.svg);
+	background-image:    url(../..//vespertino.svg);
 }
 
 .turno_nocturno{
-	background-image:    url(./img/nocturno_off.svg);
+	background-image:    url(../..//nocturno_off.svg);
 }
 
 .turno_nocturno.selected{
-	background-image:    url(./img/nocturno.svg);
+	background-image:    url(../..//nocturno.svg);
 }
 
 .rombo_amarillo_derecha{
@@ -144,14 +147,14 @@
 	 background-size:     contain;
  background-repeat:   no-repeat;
  background-position: center center;
- background-image:    url(./img/rombo_amarillo_derecha.svg);
+ background-image:    url(../../img/rombo_amarillo_derecha.svg);
 }
 
 #edit_search_button{
  background-size:     16px 13px;
  background-repeat:   no-repeat;
  background-position: 10px 8px;
- background-image:    url(./img/icono_editar_busqueda.svg);
+ background-image:    url(../../img/icono_editar_busqueda.svg);
  padding-left: 27px;
  text-align: left;
 }
@@ -160,7 +163,7 @@
  background-size:     14px 18px;
  background-repeat:   no-repeat;
  background-position: 10px 6px;
- background-image:    url(./img/icono_ver_mapa.svg);
+ background-image:    url(../../img/icono_ver_mapa.svg);
  padding-left: 35px;
  text-align: left;
 }
@@ -169,7 +172,7 @@
  background-size:     17px 9px;
  background-repeat:   no-repeat;
  background-position: 9px 11px;
- background-image:    url(./img/icono_ver_listado.svg);
+ background-image:    url(../../img/icono_ver_listado.svg);
  padding-left: 35px;
  text-align: left;
 }
@@ -226,7 +229,7 @@
 	overflow-y: scroll;
 }
 .show-map {
-	background-image: url(./img/mapa.svg);
+	background-image: url(../../img/mapa.svg);
 	width: 40px;
 	height: 40px;
 	position: relative;

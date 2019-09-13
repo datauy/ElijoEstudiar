@@ -3,6 +3,7 @@ $black: #030303;
 $gray: #737373;
 $dark-blue: #4a90e2;
 $bright-blue: #4acee2;
+$light-blue: #EBF4FE;
 $light-gray: #f4f4f4;
 $brown-grey: #9b9b9b;
 
@@ -199,7 +200,9 @@ strong {
     padding: $spacing;
     border-top: 1px solid white;
   }
-
+  &__Header:hover {
+    background: #4acee2 !important;
+  }
   &__Item {
     align-items: center;
     display: flex;
