@@ -1,4 +1,4 @@
-<ion-view title="ElijoEstudiar" hide-nav-bar="true" class="">
+<ion-view title="ElijoEstudiar" hide-nav-bar="false" class="">
   <ion-content scroll="false">
 	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
 	    <ion-slide>
@@ -12,7 +12,7 @@
             <div ng-click="sumarEdad();" class="edad edad_mas">+</div>
           </div>
           <div id="queEstudieWrapper">
-            <div class="title">Último nivel aprobado</div>
+            <div class="title">¿Qué es lo último que cursaste?</div>
             <input type="text" id="queEstudie" class="clickable" ng-model="form.searchqueEstudie" ng-change="onSearchChangeQue('queEstudie')" />
             <div id="queEstudieResults" class="animate-down searchQueResults">
               <ion-scroll id="queEstudieResults_scroll" scrollX="false" scrollY="true">
@@ -32,9 +32,8 @@
               <span class="result-empty" ng-if="!form.queEstudieResults.length">No hay resultados con esas palabras</span>
             </div>
           </div>
+          <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
         </div>
-        <!-- TODO: Estaba mal armado el html, según el diseño el botón tien que ir debajo, hice un very hot fix :) -->
-        <button class="form_next_button primary_button full-width clickable" ng-click="next()">Continuar</button>
 	    </ion-slide>
 	    <ion-slide>
         <div class="rombo_amarillo_chico"></div>

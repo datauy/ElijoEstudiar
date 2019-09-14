@@ -37,6 +37,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       planes: {},
       "años": {}
     }
+    document.getElementById("back_arrow").style.display = "block";
     /*$scope.$on("$ionicView.loaded", function() {
       console.log('VIEW LOADED');
       console.log(ApiService.filters);

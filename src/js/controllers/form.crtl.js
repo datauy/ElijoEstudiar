@@ -47,7 +47,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form.searchQue = "";
       $scope.form.searchDonde = "";
     }
-
+    document.getElementById("back_arrow").style.display = "block";
     $scope.$on("$ionicView.loaded", function() {
       $scope.map = MapService.modal_map;
       //// TODO: Cargar datos en caso que sea de editar búsqueda
@@ -176,7 +176,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
 	  $scope.next = function() {
-      if ( $ionicSlideBoxDelegate.currentIndex() == 1 && angular.equals($scope.form.queEstudiar, {}) ) {
+      if ( $ionicSlideBoxDelegate.currentIndex() == 1 && ( typeof $scope.form.queEstudiar === 'undefined' || angular.equals($scope.form.queEstudiar, {}) ) ) {
+        console.log('ERROR!!!!!');
         ErrorService.showError('Por favor, seleccione un curso de la lista.')
       }
       else {

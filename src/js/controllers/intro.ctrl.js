@@ -8,9 +8,7 @@ pmb_im.controllers.controller('IntroCtrl', ['$scope', '$state',
   function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ModalService) {
 
     $scope.$on("$ionicView.beforeEnter", function() {
-      var backArrow = document.getElementById("back_arrow");
-      backArrow.parentNode.removeChild(backArrow);
-      console.log("BAck removed");
+      document.getElementById("back_arrow").style.display = "none";
     });
 
 

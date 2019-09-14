@@ -11,7 +11,7 @@
 	width: 100.8px;
   height: 157.6px;
   object-fit: contain;
-	background-image:    url(../../img/rombo_amarillo.svg);
+	background-image:    url(/img/rombo_amarillo.svg);
 	background-size:     100% 100%;
 	background-repeat:   no-repeat;
 	background-position: center center;
@@ -30,7 +30,7 @@
 	width: 90px;
   height: 94.3px !important;
   object-fit: contain !important;
-	background-image:    url(../../img/rombo_edad.svg);
+	background-image:    url(/img/rombo_edad.svg);
 	background-size:     100% 100%;
 	background-repeat:   no-repeat;
 	position: absolute;
@@ -48,7 +48,7 @@
 	width: 40.4px;
 	height: 40.4px;
 	object-fit: contain;
-	background-image:    url(../../img/polygon.svg);
+	background-image:    url(/img/polygon.svg);
 	background-size:     100% 100%;
 	background-repeat:   no-repeat;
 	background-position: center center;
@@ -114,27 +114,27 @@
 
 }
 .turno_matutino{
-	background-image:    url(../..//matutino_off.svg);
+	background-image:    url(/img/matutino_off.svg);
 }
 
 .turno_matutino.selected{
-	background-image:    url(../..//matutino.svg);
+	background-image:    url(/img/matutino.svg);
 }
 
 .turno_vespertino{
-	background-image:    url(../..//vespertino_off.svg);
+	background-image:    url(/img/vespertino_off.svg);
 }
 
 .turno_vespertino.selected{
-	background-image:    url(../..//vespertino.svg);
+	background-image:    url(/img/vespertino.svg);
 }
 
 .turno_nocturno{
-	background-image:    url(../..//nocturno_off.svg);
+	background-image:    url(/img/nocturno_off.svg);
 }
 
 .turno_nocturno.selected{
-	background-image:    url(../..//nocturno.svg);
+	background-image:    url(/img/nocturno.svg);
 }
 
 .rombo_amarillo_derecha{
@@ -147,14 +147,14 @@
 	 background-size:     contain;
  background-repeat:   no-repeat;
  background-position: center center;
- background-image:    url(../../img/rombo_amarillo_derecha.svg);
+ background-image:    url(/img/rombo_amarillo_derecha.svg);
 }
 
 #edit_search_button{
  background-size:     16px 13px;
  background-repeat:   no-repeat;
  background-position: 10px 8px;
- background-image:    url(../../img/icono_editar_busqueda.svg);
+ background-image:    url(/img/icono_editar_busqueda.svg);
  padding-left: 27px;
  text-align: left;
 }
@@ -163,7 +163,7 @@
  background-size:     14px 18px;
  background-repeat:   no-repeat;
  background-position: 10px 6px;
- background-image:    url(../../img/icono_ver_mapa.svg);
+ background-image:    url(/img/icono_ver_mapa.svg);
  padding-left: 35px;
  text-align: left;
 }
@@ -172,7 +172,7 @@
  background-size:     17px 9px;
  background-repeat:   no-repeat;
  background-position: 9px 11px;
- background-image:    url(../../img/icono_ver_listado.svg);
+ background-image:    url(/img/icono_ver_listado.svg);
  padding-left: 35px;
  text-align: left;
 }
@@ -207,6 +207,11 @@
 #queEstudieResults.searchQueResults {
 	margin-top: 10px;
 }
+#queEstudieWrapper {
+	margin-bottom: 36px;
+  float: left;
+  width: 100%;
+}
 #SearchDondeResults{
 	display: none;
 	width: 100%;
@@ -229,7 +234,7 @@
 	overflow-y: scroll;
 }
 .show-map {
-	background-image: url(../../img/mapa.svg);
+	background-image: url(/img/mapa.svg);
 	width: 40px;
 	height: 40px;
 	position: relative;
