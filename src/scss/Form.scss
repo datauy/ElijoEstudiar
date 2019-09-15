@@ -1,0 +1,145 @@
+/*Form step 1*/
+.form-pagina {
+  width: 60%;
+  padding: 0 10%;
+  margin: 36px 20%;
+	float: left;
+	z-index: 1;
+}
+
+.rombo_amarillo{
+	width: 100.8px;
+  height: 157.6px;
+  object-fit: contain;
+	background-image:    url(/img/rombo_amarillo.svg);
+	background-size:     100% 100%;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.edad_controls{
+	width: 194px;
+  height: 94.3px;
+	position: relative;
+	float: left;
+	margin: 40px calc(50% - 97px);
+}
+.edad_text{
+	width: 90px;
+  height: 94.3px !important;
+  object-fit: contain !important;
+	background-image:    url(/img/rombo_edad.svg);
+	background-size:     100% 100%;
+	background-repeat:   no-repeat;
+	position: absolute;
+	left: 52px;
+	top: 0px;
+	font-size: 27px !important;
+	font-weight: bold !important;
+	text-align: center !important;
+	color: #ffffff !important;
+	border: 0 !important;
+	cursor: pointer;
+  padding: 0 !important;
+}
+.edad {
+	width: 40.4px;
+	height: 40.4px;
+	object-fit: contain;
+	background-image:    url(/img/polygon.svg);
+	background-size:     100% 100%;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	position: absolute;
+	font-size: 21px;
+	font-weight: bold;
+	letter-spacing: 0.7px;
+	text-align: center;
+	color: #ffffff;
+	cursor: pointer;
+}
+.edad_menos {
+	left: 0px;
+	top: 29px;
+  padding-top: 5.5px;
+  padding-left: 1px;
+}
+.edad_mas {
+ right: 0px;
+ top: 29px;
+ padding-top: 6.5px;
+ padding-left: 2px;
+}
+.subsistema_curso{
+	width: 100%;
+	padding: 13px 0;
+	border-bottom: solid 2px #efefef;
+	margin: 0;
+	float: left;
+}
+.subsistema_curso:hover {
+	background: $light-gray;
+}
+/******** CURSOS STEP 2 **************/
+.turnos-wrapper{
+	width: 100%;
+	text-align:center;
+	padding-left: 10px;
+}
+
+.turnos{
+	z-index: 99999;
+	width: 32%;
+	min-width: 82px;
+  height: 13vh;
+  object-fit: contain;
+	margin-right: 10px;
+  display: inline-block;
+	background-size: 118px 90px;
+	background-repeat:   no-repeat;
+	background-position: center;
+	font-size: 12px;
+	letter-spacing: 0.3px;
+	text-align: center;
+	padding-top: 105px;
+	cursor: pointer;
+	font-weight: normal;
+	color: #bec1cb;
+ }
+.turnos.selected{
+	font-weight: 600;
+	color: #122254;
+
+}
+.turno_matutino{
+	background-image:    url(/img/matutino_off.svg);
+}
+
+.turno_matutino.selected{
+	background-image:    url(/img/matutino.svg);
+}
+
+.turno_vespertino{
+	background-image:    url(/img/vespertino_off.svg);
+}
+
+.turno_vespertino.selected{
+	background-image:    url(/img/vespertino.svg);
+}
+
+.turno_nocturno{
+	background-image:    url(/img/nocturno_off.svg);
+}
+
+.turno_nocturno.selected{
+	background-image:    url(/img/nocturno.svg);
+}
+.turno_completo{
+	background-image:    url(/img/completo_off.svg);
+}
+
+.turno_completo.selected{
+	background-image:    url(/img/completo.svg);
+}

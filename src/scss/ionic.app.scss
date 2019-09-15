@@ -27,7 +27,9 @@ $ionicons-font-path: "../../lib/ionic/release/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 // Include styles for templates
-@import "Details";
-@import "Search";
+@import "Variables";
 @import "General";
 @import "Intro";
+@import "Form";
+@import "Search";
+@import "Details";

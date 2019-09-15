@@ -40,7 +40,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form.turnos = {
         "matutino":1,
         "vespertino":1,
-        "nocturno":1
+        "nocturno":1,
+        "completo":1,
       };
       $scope.form.SearchQueResults = {};
       $scope.form.SearchDondeResults = [];

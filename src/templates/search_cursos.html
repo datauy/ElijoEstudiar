@@ -10,12 +10,14 @@
       <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
     </div>
     <div class="title section" ng-if="hasPrevias">Para poder cursar:</div>
-    <h1 class="title curso section">{{curso.orientacion}}</h1>
+    <div class="centered ">
+      <h1 class="title curso section clickable" ng-click="openWebsite(curso.urlTipo); $event.stopPropagation();">{{curso.orientacion}}</h1>
+      <button class="form_next_button primary_button info" ng-click="openWebsite(curso.urlTipo); $event.stopPropagation();">+info</button>
+    </div>
     <div class="centered">
       <button class="tag-tipo curso_tag" ng-click="openWebsite('{{curso.tipoUrl}}');">{{curso.tipo}}</button>
       <button class="tag-nivel curso_tag" ng-click="openWebsite('{{curso.nivelUrl}}');">{{curso.nivel}}</button>
     </div>
-    <button class="info-curso primary_button clickable form_next_button" ng-click="openWebsite(curso.url)">Más info del curso</button>
     <div ng-if="!hasPrevias">
       <div class="listAndMap-wrapper">
         <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
