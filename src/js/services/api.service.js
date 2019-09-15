@@ -22,12 +22,6 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
   ApiObject.searchEstablecimiento = function(parameters){
     return $http.get(apiURL + 'busca-establecimientos', {cache: false, params: parameters});//, {cache: false, params: {hash_id:Math.random()}});
   }
-  ApiObject.updateFilters = function(filtersObject){
-    console.log("Filters Updated");
-    console.log(filtersObject);
-    ApiObject.filters = filtersObject;
-    return 1;
-  }
   ApiObject.createFilterParamsForGetRequest = function(){
     var params = {
       edad: ApiObject.filters.edad,

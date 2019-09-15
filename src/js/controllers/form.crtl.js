@@ -177,7 +177,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
 	  $scope.next = function() {
       if ( $ionicSlideBoxDelegate.currentIndex() == 1 && ( typeof $scope.form.queEstudiar === 'undefined' || angular.equals($scope.form.queEstudiar, {}) ) ) {
-        console.log('ERROR!!!!!');
         ErrorService.showError('Por favor, seleccione un curso de la lista.')
       }
       else {
@@ -193,11 +192,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
     $scope.slideHasChanged = function(index){
       if(index==2){
-        ApiService.updateFilters($scope.form);/*.then(function (response) {
-          console.log("VUELVE DE UPDATE");
-        });*/
+        ApiService.filters = $scope.form
         var params = ApiService.createFilterParamsForGetRequest();
-        console.log(params);
         $state.go( "app.search_cursos_result", params );
       }
     }

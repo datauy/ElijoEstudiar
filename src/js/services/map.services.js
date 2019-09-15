@@ -32,11 +32,16 @@
   * Center map on user's current position
   */
   MapService.goToPlace = function(mapName,name,scope) {
-    leafletData.getMap(mapName).then(function(map) {map.invalidateSize();});
     $cordovaGeolocation
       .getCurrentPosition()
       .then(function(ubication) {
         MapService.createMarker(mapName,name,scope,[ubication.coords.latitude, ubication.coords.longitude]);
+        leafletData.getMap(mapName).then(function(map) {
+          map.invalidateSize();
+          map.on('click', function(e) {
+            MapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
+          });
+        });
      }, function(err) {
       leafletData.getMap(mapName).then(function(map) {
         map.invalidateSize();
@@ -55,23 +60,30 @@
           map.removeLayer(layer);
         }
       });
-      var htmlPopUp = "<a ng-click='ubicacion(["+position[0]+","+position[1]+"]);'>"+name+"</a>";
+      var htmlPopUp = "<button class='form_next_button primary_button clickable' ng-click='ubicacion(["+position[0]+","+position[1]+"]);'>"+name+"</button>";
       var compiled = $compile(htmlPopUp)(scope);
-      var marker = new L.marker(position, {
-        draggable: 'true'
-      }).bindPopup(compiled[0]).addTo(map).openPopup();
-      marker.on('dragend', function(event) {
+      var ubicaWrap = document.getElementById("ubica-confirm");
+      while (ubicaWrap.firstChild) {
+        ubicaWrap.removeChild(ubicaWrap.firstChild);
+      }
+      ubicaWrap.appendChild(compiled[0]);
+      var markerIcon = L.icon({
+        iconUrl: './img/oval.svg',
+        iconSize:     [37, 37], // size of the icon
+        iconAnchor:   [18.5, 18.5], // point of the icon which will correspond to marker's location
+        popupAnchor:  [0, -18.5] // point from which the popup should open relative to the iconAnchor
+      });
+      var marker = L.marker(position, {icon: markerIcon}).addTo(map);//.bindPopup(compiled[0]).addTo(map).openPopup();
+      /*marker.on('dragend', function(event) {
         var position = marker.getLatLng();
         var htmlPopUp = "<a ng-click='ubicacion(["+position.lat+","+position.lng+"]);'>"+name+"</a>";
-        var compiled = $compile(htmlPopUp)(scope);
+        document.getElementById("ubica-confirm").innerHTML = htmlPopUp;
+        //var compiled = $compile(htmlPopUp)(scope);
         marker.setLatLng(position, {
           draggable: 'true'
-        }).bindPopup(compiled[0]).addTo(map).openPopup();
-      });
+        }).addTo(map);//bindPopup(compiled[0]).addTo(map).openPopup();
+      });*/
       map.setView(position, 15);
-      map.on('click', function(e) {
-        MapService.createMarker(mapName,name,scope,[e.latlng.lat, e.latlng.lng]);
-      });
    });
   }
   MapService.centerMapOnCoords = function(lat,lng,zoom) {
@@ -93,24 +105,21 @@
          var markerCounter = 0;
          //Ubicación de usuario
          if (mainLocation !== undefined) {
-           console.log(mainLocation);
-           console.log('ENTRA MAIN');
            bounds_arr.push([mainLocation.lat, mainLocation.long]);
            var markerIcon = L.icon({
                  iconUrl: './img/oval.svg',
                  //shadowUrl: 'leaf-shadow.png',
-                 iconSize:     [35, 47], // size of the icon
+                 iconSize:     [37, 37], // size of the icon
                  //shadowSize:   [50, 64], // size of the shadow
-                 iconAnchor:   [17, 47], // point of the icon which will correspond to marker's location
+                 iconAnchor:   [18.5, 18.5], // point of the icon which will correspond to marker's location
                  //shadowAnchor: [4, 62],  // the same for the shadow
-                 popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
+                 popupAnchor:  [0, -18.5] // point from which the popup should open relative to the iconAnchor
              });
            var marker = L.marker([mainLocation.lat, mainLocation.long], {icon: markerIcon});
            marker.bindPopup("<b>Ubicación elegida</b>").openPopup();
            map.addLayer(marker);
            //map.setView([mainLocation.lat, mainLocation.long], 10);
          }
-         console.log('PASA MAIN');
          var markerIcon = L.icon({
            iconUrl: './img/blue_pin.svg',
            //shadowUrl: 'leaf-shadow.png',
@@ -143,6 +152,8 @@
            }
          });
          if ( markerCounter ) {
+           console.log("Fitting in map: ");
+           console.log(bounds_arr);
            var bounds = new L.LatLngBounds(bounds_arr);
            map.fitBounds(bounds);
           //map.setZoom( map.getZoom() - 3 );

@@ -29,13 +29,11 @@ function($scope, $state, $cordovaInAppBrowser, $ionicHistory, $ionicSlideBoxDele
     if ( typeof $ionicSlideBoxDelegate.currentIndex() === 'undefined' ) {
       $ionicHistory.goBack();
     }
+    else if( $ionicSlideBoxDelegate.currentIndex() > 0 ) {
+      $ionicSlideBoxDelegate.previous();
+    }
     else {
-      if( $ionicSlideBoxDelegate.currentIndex() > 0 ) {
-        $ionicSlideBoxDelegate.previous();
-      }
-      else {
-        $state.go( 'app.intro' );
-      }
+      $state.go( 'app.intro' );
     }
 
     console.log('I back');

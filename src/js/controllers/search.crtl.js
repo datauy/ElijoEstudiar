@@ -67,7 +67,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
                 long: ubica[1],
             }
           }
-          ApiService.updateFilters(filters);
+          ApiService.filters = filters;
           // TODO: Resolver cómo se levantan los datos
           var search_str = $state.params.edad != 'all' ? $state.params.edad+' años, ' : '';
           search_str += $state.params.ultimo_nivel_aprobado != 'all' ? $state.params.ultimo_aprobado+', ' : '';
@@ -94,9 +94,12 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           else {
             $scope.showCentros(response);
           }
-          document.getElementById("map_wrapper").style.display="none";
+          //  document.getElementById("map_wrapper").style.display="none";
           document.getElementById("modal-page").style.display="none";
         });
+      }
+      else if ( $state.current.name == 'app.search_centros' ) {
+        $scope.map = MapService.modal_map;
       }
     });
 
@@ -228,7 +231,6 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       selected.className = "options option_"+ optionId;
       if(optionId=="map"){
         document.getElementById("map_wrapper").style.position="relative";
-        document.getElementById("map_wrapper").style.display="block";
         document.getElementById("map_wrapper").style.visibility="visible";
         document.getElementById("list_container").style.display="none";
         MapService.invalidateSize("primary_map");
