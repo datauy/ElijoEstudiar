@@ -12,7 +12,7 @@
             <div ng-click="sumarEdad();" class="edad edad_mas">+</div>
           </div>
           <div id="queEstudieWrapper">
-            <div class="title">¿Qué es lo último que cursaste?</div>
+            <div class="title">¿Qué es lo último que terminaste de cursar?</div>
             <input type="text" id="queEstudie" class="clickable" ng-model="form.searchqueEstudie" ng-change="onSearchChangeQue('queEstudie')" />
             <div id="queEstudieResults" class="animate-down searchQueResults">
               <ion-scroll id="queEstudieResults_scroll" scrollX="false" scrollY="true">
@@ -33,9 +33,8 @@
             </div>
           </div>
           <div class="info-message info-page">
-            Seleccioná el último nivel o curso que terminaste de cursar (no importa si debés materias o exámenes mientras puedas pasar de año/acceder al siguiente nivel).
-            Con esta información podemos mostrarte si ya podés acceder al curso que elijas a continuación, o si es necesario cursar previas.
-            Si tenés dudas sobre el nivel al que podés acceder, podés consultar en tu centro de estudio, o en <a target="_blank" href="http://derechosdelestudiante.edu.uy">DerechosDeEstudiantes.edu.uy</a>.
+            No importa si debés materias o exámenes mientras puedas pasar de año/acceder al siguiente nivel.
+            Si tenés dudas podés consultar en <a href="#/centros">tu centro de estudio</a>, o en <a target="_blank" href="http://derechosdelestudiante.edu.uy">DerechosDeEstudiantes.edu.uy</a>.
           </div>
           <button class="form_next_button primary_button clickable" ng-click="next()">Continuar</button>
         </div>
