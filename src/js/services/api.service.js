@@ -98,6 +98,11 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
   ApiObject.getEstablecimientoById = function(id){
       return $http.get(apiURL + 'establecimientos-por-id/'+id, {cache: false, params: {hash_id:Math.random()}});
   }
+  ApiObject.getCursos4Centro = function(id){
+    return $http.get(apiURL + 'cursos', {cache: false, params: {centro: id} } ).then(function (response) {
+      return { cursos: response.data };
+    });
+  }
   /**
    * Return the constructor function
    */

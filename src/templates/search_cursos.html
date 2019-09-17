@@ -2,13 +2,6 @@
   <div class="rombo_amarillo_chico"></div>
   <div class="rombo_amarillo_derecha"></div>
   <div class="form {{ hasPrevias ? 'previas' : ''}}">
-    <div class="que section" ng-if="!hasPrevias">
-      <div class="title">Esta es tu búsqueda</div>
-      <div id="full_search_str" class="que">
-        {{search_str}}
-        </div>
-      <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
-    </div>
     <div class="title section" ng-if="hasPrevias">Para poder cursar:</div>
     <div class="centered ">
       <h1 class="title curso section clickable" ng-click="openWebsite(curso.urlTipo); $event.stopPropagation();">{{curso.orientacion}}</h1>
@@ -19,6 +12,12 @@
       <button class="tag-nivel curso_tag" ng-click="openWebsite('{{curso.nivelUrl}}');">{{curso.nivel}}</button>
     </div>
     <div ng-if="!hasPrevias">
+      <div class="que section">
+        <div id="full_search_str" class="que">
+          {{search_str}}
+        </div>
+        <div class="button_listado_completo clickable" ng-click="editSearch()">Editar búsqueda</div>
+      </div>
       <div class="listAndMap-wrapper">
         <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
         <div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>

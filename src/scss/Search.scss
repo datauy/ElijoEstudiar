@@ -39,7 +39,7 @@
 }
 
 .button_listado_completo{
-	width: 118px;
+	width: 140px;
   height: 29px;
   border-radius: 5px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.11);
@@ -47,9 +47,13 @@
 	font-size: 11px;
 	text-align: center;
 	color: #122254;
-	padding-top: 7px;
+	padding: 7px 10px 7px 26px;
 	float: left;
-	margin: 10px calc(50% - 59px) 0;
+	margin: 10px calc(50% - 70px) 0;
+  background-image: url(/img/lapicito.svg);
+  background-size: 16px 13px;
+  background-repeat: no-repeat;
+  background-position: 8px 10px;
 }
 .searchQueResults{
 	display: none;

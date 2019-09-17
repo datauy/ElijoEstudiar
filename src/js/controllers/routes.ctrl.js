@@ -26,7 +26,7 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
           turnos: [],
           niveles: {}
         };
-        ApiService.getCursosByFilters({centro: $state.params.id}).then(function (response) {
+        ApiService.getCursos4Centro($state.params.id).then(function (response) {
           response.cursos.forEach(function(curso){
             if ( curso.field_modalidad && ficha.mod.indexOf(modalidad) == -1 ){
               ficha.mod.push(modalidad);

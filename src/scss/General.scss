@@ -6,6 +6,10 @@ h1 {
 	text-align: center;
 	margin: 28px 0;
 	line-height: 1.45;
+	font-family: Nunito;
+}
+h3 {
+	font-family: Nunito;
 }
 img {
 	width: 100%;
@@ -54,6 +58,17 @@ ion-content {
 .scroll-view.scroll-y {
 	/*height: 100%;*/
 	overflow: hidden;
+}
+.info-message {
+	float: left;
+	background: url(/img/info.svg);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-position: 0 0;
+	padding: 0 24px;
+	text-align: justify;
+	line-height: 1.46;
+	font-size: 13px;
 }
 .animate-down {
 	-webkit-animation: bounceDown ease-in 1;
@@ -111,7 +126,7 @@ ion-content {
 	content: 'Buscando';
 }
 .inside_rectangle.buscando {
-	background-image: url(../../img/buscando.svg);
+	background-image: url(/img/buscando.svg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -136,7 +151,7 @@ ion-content {
 	background-size:     contain;
 	background-repeat:   no-repeat;
 	background-position: center center;
-	background-image:    url(../../img/back_arrow.svg);
+	background-image:    url(/img/back_arrow.svg);
 	position: absolute;
 	top: 24px;
 	left: 24px;
@@ -212,7 +227,7 @@ button.info {
 	width: 23px;
   height: 23px;
   object-fit: contain;
-	background-image:    url(../../img/close.svg);
+	background-image:    url(/img/close.svg);
 	background-size:     100% 100%;
 	background-repeat:   no-repeat;
 	background-position: center center;
@@ -269,7 +284,7 @@ button.info {
 	font-size: 15px;
 	color: #fff;
 	color: #fff;
-	background: url(../../img/noun-warning.svg);
+	background: url(/img/noun-warning.svg);
 	background-repeat: no-repeat;
 	background-position: left;
 	float: left;
@@ -282,7 +297,7 @@ button.info {
 	width: 22px;
 	height: 22px;
 	float: right;
-	background: url(../../img/close.svg);
+	background: url(/img/close.svg);
 	background-repeat: no-repeat;
 }
 
@@ -442,19 +457,19 @@ ion-header-bar {
   float: left;
 }
 .fa-facebook {
-  background-image: url(../../img/fb.svg), none;
+  background-image: url(/img/fb.svg), none;
 }
 .fa-instagram {
-  background-image: url(../../img/ic-instagram.svg), none;
+  background-image: url(/img/ic-instagram.svg), none;
 }
 .fa-linkedin {
-  background-image: url(../../img/ic-linkedin.svg), none;
+  background-image: url(/img/ic-linkedin.svg), none;
 }
 .fa-twitter {
-  background-image: url(../../img/tw.svg), none;
+  background-image: url(/img/tw.svg), none;
 }
 .fa-youtube-play {
-  background-image: url(/../..img/ic-youtube.svg), none;
+  background-image: url(/img/ic-youtube.svg), none;
 }
 .scroll-content {
 	position: relative;
