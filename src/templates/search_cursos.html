@@ -2,7 +2,7 @@
   <div class="rombo_amarillo_chico"></div>
   <div class="rombo_amarillo_derecha"></div>
   <div class="form {{ hasPrevias ? 'previas' : ''}}">
-    <div class="title section" ng-if="hasPrevias">Para poder cursar:</div>
+    <div class="title section" ng-if="hasPrevias">Querés cursar:</div>
     <div class="centered ">
       <h1 class="title curso section clickable" ng-click="openWebsite(curso.urlTipo); $event.stopPropagation();">{{curso.orientacion}}</h1>
       <button class="form_next_button primary_button info" ng-click="openWebsite(curso.urlTipo); $event.stopPropagation();">+info</button>
@@ -18,6 +18,7 @@
         </div>
         <div class="button_listado_completo editar-busqueda clickable" ng-click="editSearch()">Editar búsqueda</div>
       </div>
+      <div class="info-message info-page">Éstos son los resultados para tu búsqueda, usando los términos listados arriba.</div>
       <div class="listAndMap-wrapper">
         <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
         <div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
@@ -53,9 +54,11 @@
       </div>
     </div>
     <div ng-if="hasPrevias">
-      <div class="title section">Con último tipo de curso aprobado</div>
+      <div class="title section">Tu último curso completado es:</div>
       <div class="title curso">{{ ultimo_aprobado }}</div>
-      <div class="title">Es necesario cursar una de estas</div>
+      <div class="info-message info-page">
+        Según el último curso completado que elegiste, creemos que tendrías que completar una de las previas que se muestran a continuación para cursar {{curso.orientacion}}.
+        Si tenés dudas sobre el nivel al que podés acceder, podés consultar en <a href="#/centros">tu centro de estudio</a>, o en <a target="_blank" href="http://derechosdelestudiante.edu.uy">DerechosDeEstudiantes.edu.uy</a>.</div>
       <div id="previas" class="animate-down section">
         <div id="previas_scroll">
           <div class='subsistema_container' ng-repeat="subsistema in previas track by $index">
