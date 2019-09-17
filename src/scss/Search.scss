@@ -50,9 +50,15 @@
 	padding: 7px 10px 7px 26px;
 	float: left;
 	margin: 10px calc(50% - 70px) 0;
-  background-image: url(/img/lapicito.svg);
-  background-size: 16px 13px;
+  background-image: url(/img/listado-info.svg);
   background-repeat: no-repeat;
+  background-size: 11px 8px;
+  background-position: 8px 13px;
+}
+.editar-busqueda {
+  width: 118px;
+  margin: 10px calc(50% - 59px) 0;
+  background-size: 16px 13px;
   background-position: 8px 10px;
 }
 .searchQueResults{
