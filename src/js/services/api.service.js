@@ -103,6 +103,11 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
       return { cursos: response.data };
     });
   }
+  ApiObject.getSoporte4Centro = function(id){
+    return $http.get(apiURL + 'soportes', {cache: false, params: {centro: id} } ).then(function (response) {
+      return response.data;
+    });
+  }
   /**
    * Return the constructor function
    */

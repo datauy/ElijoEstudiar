@@ -2,8 +2,9 @@
 .Shaded {
   box-shadow: 0 3px 4px rgba(0, 0, 0, .11);
 }
-strong {
+.Accordion__Item strong {
   text-align: right;
+  min-width: 74px;
 }
 .Accordion__Item > span:first-child {
   min-width: 60px;

@@ -55,7 +55,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
               tipoId: $state.params.tipo,
               id: $state.params.orientacion
             },
-            queEstudie: {tipoId: $state.params.ultimo_aprobado},
+            queEstudie: {tipoId: $state.params.aprobado_tipo},
           }
           if ($state.params.turnos) {
             filters.turnos = $state.params.turnos.split(",");
@@ -70,14 +70,14 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           ApiService.filters = filters;
           // TODO: Resolver cómo se levantan los datos
           var search_str = $state.params.edad != 'all' ? $state.params.edad+' años, ' : '';
-          search_str += $state.params.ultimo_nivel_aprobado != 'all' ? $state.params.ultimo_aprobado+', ' : '';
+          search_str += ($state.params.aprobado_tipo !== 'undefined' && $state.params.aprobado_tipo != 'all') ? $state.params.aprobado_tipo+', ' : '';
           search_str += 'En mapa, ';
           search_str += $state.params.turnos != 'all' ? $state.params.turnos : '';
           $scope.search_str = search_str;
         }
         else {
           var search_str = filters.edad != '' ? filters.edad+' años, ' : '' ;
-            search_str += filters.ultimo_aprobado != '' ? filters.ultimo_aprobado+', ' : '';
+            search_str += (filters.ultimo_aprobado !== 'undefined' && filters.ultimo_aprobado != '') ? filters.ultimo_aprobado+', ' : '';
             for (var k in filters.turnos){
               if ( filters.turnos[k] === 1 ) {
                 search_str += k+", ";

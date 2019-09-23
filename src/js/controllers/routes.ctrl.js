@@ -8,6 +8,7 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
     otros: false
   };
   $scope.cursos = [];
+  $scope.soportes = [];
   $scope.$on("$ionicView.beforeEnter", function() {
     document.getElementById("form_container").style.height = 'initial';
 
@@ -26,6 +27,7 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
           turnos: [],
           niveles: {}
         };
+        MapService.getMarker(response.data.establecimientos[0]);
         ApiService.getCursos4Centro($state.params.id).then(function (response) {
           response.cursos.forEach(function(curso){
             if ( curso.field_modalidad && ficha.mod.indexOf(modalidad) == -1 ){
@@ -63,8 +65,11 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
           $scope.cursos = response.cursos;
           console.log($scope.cursos);
         });
+        ApiService.getSoporte4Centro($state.params.id).then(function (response) {
+          console.log(response);
+          $scope.soportes = response;
+        });
         console.log($scope.centro);
-        MapService.getMarker(response.data.establecimientos[0]);
         document.getElementById("modal-page").style.display="none";
       });
     }
