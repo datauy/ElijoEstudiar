@@ -1,4 +1,4 @@
-<ion-modal-view title="ElijoEstudiar | Centro" class="details_modal">
+<ion-view title="ElijoEstudiar | Centro" class="details_modal">
   <!-- Icons -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="map-pin-icon" viewBox="0 0 20 24">
@@ -38,7 +38,7 @@
   </div>
   <div class="form">
     <div class="Details section">
-      <div class="Details__Header section">
+      <div class="Details__Header">
         <div class="Details__Info">
           <div class="Shaded Details__Image">
             <img
@@ -127,7 +127,7 @@
             </li>
             <li class="Accordion__Item" ng-if=centro.comparte>
               <span>Comparte local c/otros centros</span>
-              <strong>CEIP 12</strong>
+              <strong>Si</strong>
             </li>
             <li class="Accordion__Item" ng-if=centro.bilingue>
               <span>Bilingüe</span>
@@ -184,7 +184,11 @@
           </ul>
         </ion-item>
 
-        <ion-item class="Details__Item" ng-repeat="soporte in soportes">
+        <ion-item class="Details__Item soporte-{{soporte.key}}" ng-repeat="soporte in soportes">
+          <ion-item class="disclaimer" ng-if="soporte.key == 'inclusivas'" class="Details__Item">
+            <div class="disclaimer-main">Otros recursos generales</div>
+            <div class="disclaimer-sec">(no propios del centro de estudio)</div>
+          </ion-item>
           <ion-item class="Details__Item Accordion__Header" ng-click="toggleGroup(soporte.key)">
             {{soporte.nombre}}
             <span ng-class="isGroupShown(soporte.key) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
@@ -207,4 +211,5 @@
       </ion-list>
     </div>
   </div>
-</ion-modal-view>
+  <div class="rombo_azul"></div>
+</ion-view>

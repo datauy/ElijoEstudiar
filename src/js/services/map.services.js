@@ -167,28 +167,33 @@
    }
 
    MapService.getMarker = function(establecimiento){
-     L.Map.prototype.panToOffset = function (latlng, offset, options) {
+     /*L.Map.prototype.panToOffset = function (latlng, offset, options) {
          var x = this.latLngToContainerPoint(latlng).x - offset[0]
          var y = this.latLngToContainerPoint(latlng).y - offset[1]
          var point = this.containerPointToLatLng([x, y])
          return this.setView(point, 18, { pan: options })
-     }
+     }*/
      leafletData.getMap("secondary_map").then(function(map) {
            var markerIcon = L.icon({
-                 iconUrl: './img/pin.svg',
-                 //shadowUrl: 'leaf-shadow.png',
-                 iconSize:     [35, 47], // size of the icon
-                 //shadowSize:   [50, 64], // size of the shadow
-                 iconAnchor:   [17, 47], // point of the icon which will correspond to marker's location
-                 //shadowAnchor: [4, 62],  // the same for the shadow
-                 popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
-             });
-           var marker = L.marker([establecimiento.lat, establecimiento.long], {icon: markerIcon});
+             iconUrl: './img/pin.svg',
+             //shadowUrl: 'leaf-shadow.png',
+             iconSize:     [35, 47], // size of the icon
+             //shadowSize:   [50, 64], // size of the shadow
+             iconAnchor:   [17, 47], // point of the icon which will correspond to marker's location
+             //shadowAnchor: [4, 62],  // the same for the shadow
+             popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
+           });
+           var latlng = [establecimiento.lat, establecimiento.long];
+           var marker = L.marker( latlng, {icon: markerIcon});
            marker.bindPopup("<b>"+establecimiento.title+"</b>").openPopup();
            map.addLayer(marker);
-           var paddingX = 0;//window.innerWidth / 4;
-           map.setZoom(16);
-           map.panToOffset([establecimiento.lat, establecimiento.long],[paddingX,25],{});
+           var paddingX = window.innerWidth / 3;
+           //map.setZoom(16);
+           //map.panToOffset([establecimiento.lat, establecimiento.long],[paddingX,25],{});
+           var x = map.latLngToContainerPoint(latlng).x - 1;// - paddingX;
+           var y = map.latLngToContainerPoint(latlng).y - 0.5 ;
+           var point = map.containerPointToLatLng([x, y]);
+           map.setView(point, 13);
      });
    }
    MapService.invalidateSize = function(mapName) {

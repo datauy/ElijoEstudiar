@@ -58,6 +58,7 @@
 
   &__Header {
     position: relative;
+    width: 50%;
   }
 
   &__Info {
@@ -85,14 +86,16 @@
     background: white;
     border-radius: 8px;
     display: flex;
-    height: 20vh;
+    height: 21vh;
     justify-content: center;
     margin-bottom: 12px;
-    padding: 24px;
     position: relative;
-    width: 42%;
+    width: 100%;
   }
-
+  &__Image img {
+    max-height: 100%;
+    width: auto;
+  }
   &__Depto {
     background: white;
     border-radius: 4px;
@@ -150,6 +153,7 @@
   &__Items {
     float: left;
     width: 100%;
+    margin-top: 56px;
     // Overwrite ionic’s default style
     & > .list {
       padding: 0;
@@ -258,4 +262,18 @@
       padding: $spacingSmall $spacing;
     }
   }
+}
+
+.disclaimer {
+  height: 112px;
+  text-align: center;
+  padding: 36px;
+  background: transparent;
+  border: none;
+}
+.disclaimer-main {
+  font-size: 20px;
+}
+.disclaimer-sec {
+  font-size: 13px;
 }
