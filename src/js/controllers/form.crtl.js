@@ -14,12 +14,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, ErrorService, $ionicSlideBoxDelegate,
   $ionicScrollDelegate) {
     $scope.locLastSearch = '';
-    $scope.shownGroup = {
-      "Primaria":false,
-      "Secundaria":false,
-      "UTU":false,
-      "Formación en educación":false
-    };
 
     if ( ApiService.filters != null ) {
       $scope.form = ApiService.filters;
@@ -54,7 +48,15 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       //// TODO: Cargar datos en caso que sea de editar búsqueda
       console.log($state.params);
     });
-
+    $scope.resetGroups = function() {
+      $scope.shownGroup = {
+        "Primaria":false,
+        "Secundaria":false,
+        "UTU":false,
+        "Formación en educación":false
+      };
+    }
+    $scope.resetGroups();
     $scope.restarEdad = function(){
       if(parseInt($scope.form.edad) > 4){
         $scope.form.edad = parseInt($scope.form.edad) - 1;
@@ -100,6 +102,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
         ApiService.searchQueEstudiar(search_str).then(function (response) {
           //console.log(response);
           $scope.form[id+'Results'] = response.data;
+          $scope.resetGroups();
           document.getElementById(id+"Results").style.display = "block";
           document.getElementById("loading-mini").style.display = "none";
         });
@@ -109,6 +112,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
     $scope.hideSearchQueResults = function(id){
+      $scope.resetGroups();
       var results = document.getElementById(id+"Results");
       results.style.display = "none";
       //Move back just in case
