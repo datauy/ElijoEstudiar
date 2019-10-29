@@ -1,13 +1,142 @@
-<ion-view title="Sobre ElijoEstudiar" hide-nav-bar="true">
+oy<ion-view title="Sobre el proyecto" hide-nav-bar="true">
   <ion-content scroll="false">
     <div class="intro_rombo_azul"></div>
     <div class="intro_rombo_amarillo"></div>
     <div class="intro inside_rectangle">
       <img class ="logo" src="img/elijo_estudiar.svg" />
-      <h1>Sobre Elijo Estudiar</h1>
-      <div id="intro-message">
-        <p>¡Hola! 👋 Esta herramienta fue creada para ayudarte a buscar dónde y cómo empezar o seguir estudiando en Educación pública Inicial, Primaria, Secundaria, UTU y Formación en Educación.</p>
-        <p>Completando tus datos y preferencias, te podemos mostrar información de cursos, centros de estudio cerca de vos, información de los centros, previaturas y más.</p>
+      
+      <h2>Origen</h2>
+
+      <p>
+      El proyecto Elijo Estudiar comienza con la presentación de la idea por parte de <a href="https://www.datauy.org/">DATA Uruguay</a> al llamado del fondo de la <a href="https://altec.lat/">Alianza Latinoamericana para la Tecnología Cívica (ALTEC)</a>, una alianza entre <a href="http://www.avina.net/avina/">Avina</a> y <a href="https://luminategroup.com/">Luminate</a> en 2017. El mismo es seleccionado y comienza el proceso de desarrollo y acompañamiento del proyecto, junto a <a href="https://altec.lat/6-paises-y-11-proyectos-altec2017-impulsan-el-cambio-social-en-america-latina/">otros 10 proyectos de tecnología cívica de América Latina</a>.
+      </p>
+      <p>
+      Localmente, el proyecto genera su primera alianza con <a href="https://www.unicef.org/uruguay/spanish/">UNICEF Uruguay</a>, con quiénes DATA Uruguay ya había colaborado en otro proyecto de educación (ver “Antecedentes”). Se concreta con la autorización de <a href="https://www.anep.edu.uy/codicen">CODICEN</a> para la participación de <a href="https://www.anep.edu.uy/">ANEP</a> y los subsistemas (<a href="http://www.ceip.edu.uy/">CEIP</a>, <a href="https://www.ces.edu.uy/">CES</a>, <a href="https://www.utu.edu.uy/">CETP</a> y <a href="http://www.cfe.edu.uy/">CFE</a>) que proveen los conocimientos, datos y retroalimentación para el diseño e implementación del proyecto.
+      </p>
+      
+      <h2>Objetivos</h2>
+
+      <p>
+      El proyecto se propone ofrecer una manera simple y rica de visualizar información y datos existentes de gran utilidad, pero dispersos en distintas áreas de gestión y no necesariamente accesibles para el público en general. En ese proceso, el proyecto también ordena la información -usualmente de gestión y orientada al uso interno- de maneras que permiten presentarla en una lógica orientada al usuario/a.
+      </p>
+      <p>
+      De forma secundaria, se procura también disponibilizar la mayor cantidad de información en formatos abiertos, para fomentar el reuso de la misma en otras iniciativas.
+      </p>
+      <p>
+      Por último, pero no menos importante, se busca establecer vínculos entre los actores involucrados bajo los principios del gobierno abierto, fomentando la adopción de éstas prácticas entre los actores y con otros a futuro.
+      </p>
+      
+      <h2>Antecedentes</h2>
+
+      <p>
+      DATA Uruguay ha trabajado junto a diversas organizaciones aliadas en una serie de herramientas de temáticas como salud, servicios públicos, derechos humanos y sostenibilidad, entre otros temas (por más detalles consultar <a href="https://datauy.org/">sitio web</a> o <a href="https://drive.google.com/open?id=1oPDSaUWg_cR9TxxdhleIS2ZcucI2XazJ-aCkOaa6o2s">Dossier DATA Uruguay</a>). 
+      </p>
+      <p>
+      Entre ellas se cuenta <a href="http://derechosdelestudiante.edu.uy/">Derechos del Estudiante</a>, un proyecto en colaboración con UNICEF Uruguay, el Consejo de Educación Secundaria (CES) y el Consejo de Educación Técnico Profesional (CETP). En el mismo se listan derechos de estudiantes de secundaria y CETP, y se proveen mecanismos de consulta que a su vez dejan públicamente las respuestas para facilitar el acceso a ese conocimiento.
+      </p>
+      <p>
+      Éste primer proyecto relacionado con educación, así como la alianza con UNICEF Uruguay sentó las bases de la idea inicial y del trabajo posterior de este proyecto con nuevos aliados a través de ANEP.
+      </p>
+      
+      <h2>Datos abiertos que utiliza la aplicación</h2>
+
+      <p>
+      Los datos utilizados en esta aplicación se encuentran disponibles para su reutilización a través del <a href="https://catalogodatos.gub.uy/">Catálogo Nacional de Datos Abiertos</a> de AGESIC y otras fuentes, como <a href="http://opendefinition.org/od/2.1/es/">datos abiertos</a>, en formatos abiertos.
+      </p>
+      
+      <ul>
+      <li><a href="https://catalogodatos.gub.uy/dataset?organization=anep&q=ANEP">ANEP - Centros educativos y oferta educativa</a>
+      <li><a href="http://www.ine.gub.uy/web/guest/338">INE - Mapas vectoriales</a> (departamentos)
+      <li><a href="https://catalogodatos.gub.uy/dataset/localidades-del-uruguay">IDE.uy - Localidades de Uruguay</a>
+      </li><a href="https://catalogodatos.gub.uy/dataset/data-diccionario-de-sinonimos-elijo-estudiar">Diccionario de sinónimos Elijo Estudiar</a>
+      </ul>
+      
+      <h3>Otros datos</h3>
+
+      <ul>
+      <li>Banasevich, Isabel et al. <em>Liceos del Uruguay</em>. Montevideo: CES, 2008.
+      </li>
+      </ul>
+
+      <p>
+      Los organismos estatales del sector público recogen, producen, reproducen y difunden datos para cumplir con su función pública. Incorporar la publicación de datos públicos en formatos abiertos abre la puerta a la posibilidad de que los mismos sean reutilizados en nuevos proyectos, que puedan combinarse con otras fuentes de datos y generar nuevas aplicaciones desarrolladas por el gobierno, por la sociedad civil, organizaciones, empresas o ciudadanos en general.
+      </p>
+      
+      <h2>Procesamiento de datos</h2>
+
+      <p>
+      Los análisis y visualizaciones provistos por esta aplicación son realizados por DATA Uruguay. Estas operaciones están disponibles para consulta a través del <a href="https://github.com/datauy/ElijoEstudiar/">código de la aplicación disponible en GitHub</a>, así como el resto del código fuente. De cualquier manera se detallan a continuación algunas definiciones clave para el procesamiento de los datos y presentación de resultados.
+      </p>
+
+      <h3>Turnos</h3>
+
+      <p>
+      La herramienta procura evitar ocultar a los/as usuarios/as información erróneamente, por lo que se aplica una política de filtros, donde si la certeza es baja, se opta por incluir información en los resultados, en lugar de excluirla. A modo de ejemplo; contamos con filtros para turnos que son “Matutino”, “Vespertino”, “Nocturno” y “Completo/Extendido”, que sirven para la enorme mayoría de la información disponible. Sin embargo, existen otros turnos que no están asociados al horario como por ejemplo “Rural”. En una búsqueda por filtrando únicamente a turno “Matutino”, se mostrarán también en los resultados, aquellos turnos que no sean “Matutino”, pero tampoco “Vespertino”, “Nocturno” y “Completo/Extendido”, de forma de evitar infomración que podría ser útil.
+      </p>
+      
+      <h3>Filtros</h3>
+
+      <p>
+      De la misma forma, se procura siempre ofrecer resultados a la búsqueda, así sea que ésto implique ampliar el criterio. Si por ejemplo se está buscando un curso específico en una localidad donde no está disponible, el resultado no será nulo, sino que se mostrarán las opciones disponibles en otras partes del país.
+      </p>
+      
+      <h3>Correcciones ortográficas</h3>
+
+      <p>
+      Los datos fuente originales, por diversas causas relacionadas con el origen y archivo de los mismos en sistemas antiguos, están disponiobles únicamente en mayúsculas y sin el uso de tildes. Para proveer una mejor experiencia de usuario, se adaptaron éstas bases originales para corregir éstos defectos y algunas correcciones ortográficas. Aunque se tomaron los máximos recaudos para evitar introducir errores en éste proceso, recomendamos utilizar para procesamientos los datos originales, enlazados en la sección “Datos abiertos que utiliza la aplicación” de este documento. Los datos reprocesados  igualmente se encuentran disponibles en el Catálogo Nacional de Datos Abiertos.
+      </p>
+      
+      <h3>Diccionario de sinónimos</h3>
+
+      <p>
+      Para facilitar búsquedas de cursos y niveles, se elaboró un <a href="https://catalogodatos.gub.uy/dataset/data-diccionario-de-sinonimos-elijo-estudiar">diccionario de palabras</a> que se usan coloquialmente para referirse a éstos, lo que permite etiquetarlos y ofrecerlos como resultado cuando se utilizan esas palabras. Por ejemplo, la palabras “tercero” ofrecerá tanto “Escuela común” (CEIP) como “Ciclo básico” (CES) entre sus resultados.
+      </p>
+      
+      <h3>Previaturas</h3>
+
+      <p>
+      En los datos abiertos que utiliza la aplicación, se incluyen las previaturas que permiten acceder a cada curso. Como una forma de facilitar las consultas, usamos esta información para sugerirle a los/as usuarios/as qué previas se deben cursar para un curso, cuando la persona no tiene los requerimientos necesarios. Ésta información se brinda como ayuda, pero pueden existir otras opciones o cambios en las previaturas. Ante dudas sobre el nivel al que es posible acceder, se recomienda consultar en los centros de estudio, o en <a href="http://derechosdeestudiantes.edu.uy">DerechosDeEstudiantes.edu.uy</a>.
+      </p>
+      <p>
+      El árbol de previaturas generado a partir de esta información se encuentra disponibles en el Catálogo Nacional de Datos Abiertos.
+      </p>
+      
+      <h2>Disponibilidad del código como software libre</h2>
+
+      <p>
+      DATA Uruguay incentiva la reutilización de este software para cualquier propósito, brindándolo bajo licencia GPLv3 para que otras organizaciones, gobiernos, empresas o ciudadanos puedan sacar provecho del trabajo aquí realizado.
+      </p>
+      <p>
+      <a href="https://github.com/datauy/ElijoEstudiar/">https://github.com/datauy/ElijoEstudiar/</a>
+      </p>
+      
+      <h2>Contacto</h2>
+
+      <p>
+      En caso de consultas sobre la aplicación, DATA Uruguay o contactos de prensa puede dirigirse a <a href="mailto:contacto@datauy.org">contacto@datauy.org</a>. También estamos disponibles a través de nuestras cuentas de <a href="https://twitter.com/datauy">Twitter</a>, <a href="https://www.facebook.com/DATAUruguay/">Facebook</a> e <a href="https://www.instagram.com/datauy/">Instagram</a>.
+      </p>
+      <p>
+      Como la mayoría de los proyectos que trabajan con datos abiertos y software libre, la retroalimentación de los usuarios es una herramienta fundamental para la mejora de los datos y su tratamiento, por lo que agradecemos e incentivamos la recepción de ideas, sugerencias o correcciones.
+      </p>
+      <p>
+      En la <a href="http://data.org.uy">web de DATA</a> puede encontrarse un kit de prensa de la organización conteniendo material gráfico, así como un kit de prensa del proyecto.
+      </p>
+      
+      <h2>Términos y condiciones</h2>
+
+      <p>
+      La prestación de este servicio tiene carácter gratuito para los usuarios. Los usuarios se obligan a hacer buen uso del sitio web y de sus contenidos, respetando la normativa nacional vigente, las buenas costumbres y el orden público, comprometiéndose en todos los casos a no causar daños al mismo ni a ningún tercero. A tal efecto, el Usuario se abstendrá de utilizar cualquiera de los servicios con fines o efectos ilícitos, prohibidos en los presentes Términos y condiciones, lesivos de los derechos e intereses de terceros, o que de cualquier forma puedan dañar, inutilizar, sobrecargar, deteriorar o impedir la normal utilización de los servicios, documentos y toda clase de contenidos en cualquier equipo informático o de otros Usuarios.
+      </p>
+      <p>
+      Para asegurarnos de que la aplicación esté acorde a las necesidades de nuestros usuarios, e intentar mejorarla utilizamos Google Analytics para recolectar información sobre cómo se utiliza. Google Analytics almacena información como qué páginas ha visitado, cuánto tiempo ha navegado en las mismas, cómo llegó a la página, qué elementos clikea e información sobre qué navegador utiliza. Su dirección IP es enmascarada (parcialmente almacenada) y la información personal sólo es reportada en forma no individualizada (agregada). No permitimos a Google usar o compartir nuestros datos analíticos para ningún propósito además de proveernos de información analítica y recomendamos que todo usuario de Google Analytics siga la misma política.
+      </p>
+      
+      <h2>Lenguaje inclusivo</h2>
+
+      <p>
+      En la elaboración de este material se ha buscado que el lenguaje no invisibilice ni discrimine a las mujeres y a la vez que el uso reiterado de “ /o”, “/a”, “los y las”, etcétera, no dificulte la lectura. En la página 9 de la siguiente publicación se puede encontrar recomendaciones al respecto: <a href="http://www.inmujeres.gub.uy/innovaportal/file/21498/1/15guia_de_lenguaje_inclusivo.pdf">Guía de Lenguaje Inclusivo - INMUJERES</a>.
+      </p>
+      
       </div>
     </div>
   </ion-content>
