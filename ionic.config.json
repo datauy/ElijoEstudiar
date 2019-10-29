@@ -9,7 +9,7 @@
     },
     {
       "path": "/backend",
-      "proxyUrl": "https://elijo-estudiar-backend.development.datauy.org"
+      "proxyUrl": "https://backend.elijoestudiar.uy"
     }
   ],
   "gulpStartupTasks": [
