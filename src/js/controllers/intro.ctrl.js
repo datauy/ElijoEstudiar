@@ -11,6 +11,9 @@ pmb_im.controllers.controller('IntroCtrl', ['$scope', '$state',
       if ( $state.current.name == "app.intro" ) {
         document.getElementById("back_arrow").style.display = "none";
       }
+      else {
+        document.getElementById("back_arrow").style.display = "block";
+      }
     });
 
 
