@@ -8,7 +8,9 @@ pmb_im.controllers.controller('IntroCtrl', ['$scope', '$state',
   function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, LocationsService, ModalService) {
 
     $scope.$on("$ionicView.beforeEnter", function() {
-      document.getElementById("back_arrow").style.display = "none";
+      if ( $state.current.name == "app.intro" ) {
+        document.getElementById("back_arrow").style.display = "none";
+      }
     });
 
 
