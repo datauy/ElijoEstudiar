@@ -49,6 +49,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       console.log($state.params);
     });
     $scope.resetGroups = function() {
+      console.log("RESET GROUPS");
       $scope.shownGroup = {
         "Primaria":false,
         "Secundaria":false,
@@ -181,6 +182,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
 
 	  $scope.next = function() {
+      $scope.resetGroups();
       if ( $ionicSlideBoxDelegate.currentIndex() == 1 && ( typeof $scope.form.queEstudiar === 'undefined' || angular.equals($scope.form.queEstudiar, {}) ) ) {
         ErrorService.showError('Por favor, seleccione un curso de la lista.')
       }
@@ -191,6 +193,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 	  };
 
 	  $scope.previous = function() {
+      $scope.resetGroups();
       ErrorService.hideError();
 	    $ionicSlideBoxDelegate.previous();
 	  };
@@ -223,9 +226,12 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       document.getElementById("SearchDondeResults").style.display = "none";
     }
     $scope.toggleGroup = function(group) {
+      console.log($scope.shownGroup);
       if ($scope.isGroupShown(group)) {
+        console.log("Grupo mostrado: "+group );
         $scope.shownGroup[group] = false;
       } else {
+        console.log("Grupo oculto: "+group );
         $scope.shownGroup[group] = true;
       }
     };

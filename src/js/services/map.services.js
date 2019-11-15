@@ -104,7 +104,8 @@
          var bounds_arr = [];
          var markerCounter = 0;
          //Ubicación de usuario
-         if (mainLocation !== undefined) {
+         if (mainLocation.lat != 'undefined') {
+           console.log('Entra a main location');
            bounds_arr.push([mainLocation.lat, mainLocation.long]);
            var markerIcon = L.icon({
                  iconUrl: './img/oval.svg',
@@ -132,8 +133,13 @@
          establecimientos.forEach(function(feature){
            if(feature.lat && feature.lon){
              markerCounter = markerCounter + 1;
-             //Only bound to first 4
-             if ( markerCounter < 5 ) {
+             //Only bound to first 4 if is set main location
+             if (mainLocation.lat != 'undefined') {
+               if ( markerCounter < 5 ) {
+                 bounds_arr.push([feature.lat, feature.lon]);
+               }
+             }
+             else {
                bounds_arr.push([feature.lat, feature.lon]);
              }
              var marker = L.marker([feature.lat, feature.lon], {icon: markerIcon});
