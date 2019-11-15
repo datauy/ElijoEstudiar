@@ -16,7 +16,7 @@
             <input type="text" id="queEstudie" class="clickable" ng-model="form.searchqueEstudie" ng-change="onSearchChangeQue('queEstudie')" />
             <div id="queEstudieResults" class="animate-down searchQueResults">
               <ion-scroll id="queEstudieResults_scroll" scrollX="false" scrollY="true">
-                <div class='subsistema_container' ng-repeat="subsistema in form.queEstudieResults track by $index">
+                <div class='subsistema_container' ng-repeat="subsistema in form.queEstudieResults">
                   <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup(subsistema.subsis)'>
                   <!-- ng-mouseover="shownGroup_glance(subsis)" ng-mouseleave="shownGroup_close(subsis)" -->
                     {{subsistema.subsis}}
@@ -50,7 +50,7 @@
             <div class="button_listado_completo clickable" ng-click="listAllQueEstudiar()">Ver listado completo</div>
             <div id="queEstudiarResults" class="animate-down searchQueResults">
               <ion-scroll id="queEstudiarResults_scroll" scrollX="false" scrollY="true">
-                <div class='subsistema_container' ng-repeat="subsistema in form.queEstudiarResults track by $index">
+                <div class='subsistema_container' ng-repeat="subsistema in form.queEstudiarResults">
                   <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{subsistema.subsis}}")'>
                     {{subsistema.subsis}}
                     <span ng-class='isGroupShown("{{subsistema.subsis}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
