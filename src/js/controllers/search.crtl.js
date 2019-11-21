@@ -19,7 +19,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.filters_centros = {
       nombre: "",
       subsis: {
-        "Primaria":true,
+        "Inicial - Primaria":true,
         "Secundaria":true,
         "UTU":true,
         "Formación en educación":true
@@ -28,7 +28,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     };
     $scope.curso = {};
     $scope.shownGroup = {
-      "Primaria":false,
+      "Inicial - Primaria":false,
       "Secundaria":false,
       "UTU":false,
       "Formación en educación":false

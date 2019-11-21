@@ -2,6 +2,15 @@ pmb_im.controllers.controller('AbsController',
 ['$scope','$state','$cordovaInAppBrowser','$ionicHistory', '$ionicSlideBoxDelegate',
 function($scope, $state, $cordovaInAppBrowser, $ionicHistory, $ionicSlideBoxDelegate) {
 
+  document.getElementById('menu-share-fb').href = "https://www.facebook.com/sharer/sharer.php?u="+window.location.href;
+  document.getElementById('menu-share-tw').href = "https://twitter.com/share?url="+window.location.href;
+  document.getElementById('footer-share-fb').href = "https://www.facebook.com/sharer/sharer.php?u="+window.location.href;
+  document.getElementById('footer-share-tw').href = "https://twitter.com/share?url="+window.location.href;
+  document.getElementById('menu-share-fb').target = "_blank";
+  document.getElementById('menu-share-tw').target = "_blank";
+  document.getElementById('footer-share-fb').target = "_blank";
+  document.getElementById('footer-share-tw').target = "_blank";
+
   $scope.show_error = "hidden";
 
   $scope.openWebsite = function(url) {

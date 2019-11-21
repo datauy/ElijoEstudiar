@@ -98,7 +98,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       //$scope.form.que = {};
       var search = document.getElementById(id);
       var search_str = search.value.trim();
-      if(search_str.length>=3){
+      if( search_str.length >= 3 ){
         ModalService.activateLoading(id, 'mini');
         ApiService.searchQueEstudiar(search_str).then(function (response) {
           //console.log(response);
@@ -108,6 +108,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
           document.getElementById("loading-mini").style.display = "none";
         });
       }else{
+        $scope.form[id] = {};
         $scope.hideSearchQueResults(id);
       }
     }
