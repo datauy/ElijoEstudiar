@@ -15,26 +15,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   $ionicScrollDelegate) {
     $scope.locLastSearch = '';
 
-    if ( ApiService.filters != null ) {
-      $scope.form = ApiService.filters;
-    }
-    else {
-
-      $scope.form = {};
-      $scope.form.edad = 16;
-      $scope.form.SearchQueEstudieResults = {};
-      $scope.form.plan = "";
-      //$scope.form.lugar = "";
-      $scope.form.depto = "";
-      $scope.form.localidad = "";
-      $scope.form.que = {};
-      $scope.form.donde = {};
-      $scope.resetTurnos();
-      $scope.form.SearchQueResults = {};
-      $scope.form.SearchDondeResults = [];
-      $scope.form.searchQue = "";
-      $scope.form.searchDonde = "";
-    }
     document.getElementById("back_arrow").style.display = "block";
     $scope.$on("$ionicView.loaded", function() {
       $scope.map = MapService.modal_map;
@@ -222,5 +202,27 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.isGroupShown = function(group) {
       return $scope.shownGroup[group];
     };
+
+    if ( ApiService.filters != null ) {
+      $scope.form = ApiService.filters;
+    }
+    else {
+
+      $scope.form = {};
+      $scope.form.edad = 16;
+      $scope.form.SearchQueEstudieResults = {};
+      $scope.form.plan = "";
+      //$scope.form.lugar = "";
+      $scope.form.depto = "";
+      $scope.form.localidad = "";
+      $scope.form.que = {};
+      $scope.form.donde = {};
+      $scope.resetTurnos();
+      $scope.form.SearchQueResults = {};
+      $scope.form.SearchDondeResults = [];
+      $scope.form.searchQue = "";
+      $scope.form.searchDonde = "";
+    }
+    
   }
 ]);
