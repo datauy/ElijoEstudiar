@@ -60,13 +60,13 @@
           </svg>
           {{centro.direccion.toLowerCase()}}
         </li>
-        <li ng-if=!!centro.web class="Details__DataItem">
+        <li ng-if=false class="Details__DataItem">
           <svg class="Icon Icon--Stroked">
             <use xlink:href="#external-link-icon" />
           </svg>
           <a class="Link" ng-click="openWebsite('{{centro.web}}')">Sitio Web</a>
         </li>
-        <li ng-if=!!centro.correo class="Details__DataItem">
+        <li ng-if=false class="Details__DataItem">
           <svg class="Icon">
             <use xlink:href="#mail-icon" />
           </svg>
