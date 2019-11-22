@@ -4,8 +4,8 @@
   <div class="form {{ hasPrevias ? 'previas' : ''}}">
     <div class="title section" ng-if="hasPrevias">Querés cursar:</div>
     <div class="centered ">
-      <h1 class="title curso section clickable" ng-click="openWebsite(curso.urlTipo); $event.stopPropagation();">{{curso.orientacion}}</h1>
-      <button class="form_next_button primary_button info" ng-click="openWebsite(curso.urlTipo); $event.stopPropagation();">+info</button>
+      <h1 class="title curso section clickable" ng-click="openWebsite('{{curso.urlTipo}}'); $event.stopPropagation();">{{curso.orientacion}}</h1>
+      <button class="form_next_button primary_button info" ng-click="openWebsite('{{curso.urlTipo}}'); $event.stopPropagation();">+info</button>
     </div>
     <div class="centered">
       <button class="tag-tipo curso_tag" ng-click="openWebsite('{{curso.tipoUrl}}');">{{curso.tipo}}</button>
@@ -69,10 +69,10 @@
             <div class='subsistema_curso clickable' ng-click="selectPrevia({{curso}})" ng-repeat="curso in subsistema.cursos" ng-show='isGroupShown("{{subsistema.subsis}}")'>
               <div class="curso_title_wrapper">
                 <div class="curso_nombre" ng-click="selectPrevia({{curso}})">{{curso.nombre}}</div>
-                <button class="form_next_button primary_button info" ng-click="openWebsite({{curso.url}}); $event.stopPropagation();">+info</button>
+                <button class="form_next_button primary_button info" ng-click="openWebsite('{{curso.url}}'); $event.stopPropagation();">+info</button>
               </div>
                 <div class="curso_tag_wrapper">
-                  <button class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite({{tag.url}}); $event.stopPropagation();" ng-repeat="tag in curso.tag">
+                  <button class='curso_tag tag-{{tag.tipo}}' ng-click="openWebsite('{{tag.url}}'); $event.stopPropagation();" ng-repeat="tag in curso.tag">
                     {{tag.nombre}}
                   </button>
                 </div>

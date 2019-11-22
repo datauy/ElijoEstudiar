@@ -103,9 +103,10 @@
          })
          var bounds_arr = [];
          var markerCounter = 0;
+         var cluster = 0;
          //Ubicación de usuario
-         if (mainLocation.lat != 'undefined') {
-           console.log('Entra a main location');
+         if ( mainLocation !== undefined && mainLocation.lat != 'undefined') {
+           cluster = 1;
            bounds_arr.push([mainLocation.lat, mainLocation.long]);
            var markerIcon = L.icon({
                  iconUrl: './img/oval.svg',
@@ -134,7 +135,7 @@
            if(feature.lat && feature.lon){
              markerCounter = markerCounter + 1;
              //Only bound to first 4 if is set main location
-             if (mainLocation.lat != 'undefined') {
+             if ( cluster ) {
                if ( markerCounter < 5 ) {
                  bounds_arr.push([feature.lat, feature.lon]);
                }
@@ -158,11 +159,9 @@
            }
          });
          if ( markerCounter ) {
-           console.log("Fitting in map: ");
-           console.log(bounds_arr);
            var bounds = new L.LatLngBounds(bounds_arr);
            map.fitBounds(bounds);
-          //map.setZoom( map.getZoom() - 3 );
+           //map.setZoom( map.getZoom() - 5 );
            //Resize de map en caso que se requiera
            //map.invalidateSize();
          }

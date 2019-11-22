@@ -1,6 +1,6 @@
 pmb_im.controllers.controller('AbsController',
-['$scope','$state','$cordovaInAppBrowser','$ionicHistory', '$ionicSlideBoxDelegate',
-function($scope, $state, $cordovaInAppBrowser, $ionicHistory, $ionicSlideBoxDelegate) {
+['$scope','$state','$cordovaInAppBrowser','$ionicHistory', '$ionicSlideBoxDelegate', 'ErrorService',
+function($scope, $state, $cordovaInAppBrowser, $ionicHistory, $ionicSlideBoxDelegate, ErrorService) {
 
   document.getElementById('menu-share-fb').href = "https://www.facebook.com/sharer/sharer.php?u="+window.location.href;
   document.getElementById('menu-share-tw').href = "https://twitter.com/share?url="+window.location.href;
@@ -14,6 +14,10 @@ function($scope, $state, $cordovaInAppBrowser, $ionicHistory, $ionicSlideBoxDele
   $scope.show_error = "hidden";
 
   $scope.openWebsite = function(url) {
+    if ( url == 'undefined' || url == '' ) {
+      ErrorService.showError('Aún no hay información accesible');
+      return;
+    }
     var options = {
       location: 'no',
       clearcache: 'yes',
@@ -34,18 +38,17 @@ function($scope, $state, $cordovaInAppBrowser, $ionicHistory, $ionicSlideBoxDele
     document.getElementById("error").style.visibility="hidden";
   }
   $scope.go_back = function() {
-    console.log("going back?"+$ionicSlideBoxDelegate.currentIndex());
     if ( typeof $ionicSlideBoxDelegate.currentIndex() === 'undefined' ) {
-      $ionicHistory.goBack();
+      window.history.go(-1);
+      return;
     }
     else if( $ionicSlideBoxDelegate.currentIndex() > 0 ) {
       $ionicSlideBoxDelegate.previous();
+      return;
     }
     else {
       $state.go( 'app.intro' );
     }
-
-    console.log('I back');
   };
   $scope.menu_link_open = function() {
     document.getElementById("menu-btn").checked = false;

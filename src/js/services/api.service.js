@@ -13,6 +13,9 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
   ApiObject.formScope = {};
   ApiObject.curso = null;
 
+  ApiObject.getTipoName = function(tipoId){
+    return $http.get(apiURL + 'tipo/' + tipoId);
+  }
   ApiObject.searchQueEstudiar = function(str){
     return $http.get(apiURL + 'search/' + str);
   }
@@ -32,6 +35,9 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
       params.aprobado_tipo = ApiObject.filters.queEstudie.tipoId;
       params.aprobado_nivel = ApiObject.filters.queEstudie.nivelId;
     }
+    else {
+      params.aprobado_tipo = params.aprobado_nivel = 'all';
+    }
     var turnos = [];
     for (var k in ApiObject.filters.turnos){
       if ( ApiObject.filters.turnos[k] === 1 ) {
@@ -48,8 +54,11 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
       params.queEstudiarTagUno = ApiObject.filters.que.tag[0];
       params.queEstudiarTagDos = ApiObject.filters.que.tag[1];
     }*/
-    if( ApiObject.filters.donde.lat != "undefined" ){
+    if( ApiObject.filters.donde !== undefined && ApiObject.filters.donde != null && ApiObject.filters.donde.lat != "undefined" ){
       params.ubicacion = ApiObject.filters.donde.lat+','+ApiObject.filters.donde.long;
+    }
+    else {
+      params.ubicacion = 'all';
     }
     if ( ApiObject.filters.queEstudiar.tipoId != ApiObject.filters.queEstudiar.id ) {
       params.orientacion = ApiObject.filters.queEstudiar.id;
@@ -74,21 +83,23 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
           cursos: response.data
         }
         var est = {};
-        response.data.forEach(function(curso) {
-          for ( var k in curso.oferta ){
-            if (curso.oferta.hasOwnProperty(k)) {
-              if ( !est.hasOwnProperty(k) ) {
-                est[k] = {
-                  nombre: curso.oferta[k].nombre,
-                  lat: curso.oferta[k].lat,
-                  lon: curso.oferta[k].long,
-                  id: curso.oferta[k].id,
+        if ( response.data.length ) {
+          response.data.forEach(function(curso) {
+            for ( var k in curso.oferta ){
+              if (curso.oferta.hasOwnProperty(k)) {
+                if ( !est.hasOwnProperty(k) ) {
+                  est[k] = {
+                    nombre: curso.oferta[k].nombre,
+                    lat: curso.oferta[k].lat,
+                    lon: curso.oferta[k].long,
+                    id: curso.oferta[k].id,
+                  }
                 }
+                //est[k][curso.año]
               }
-              //est[k][curso.año]
             }
-          }
-        });
+          });
+        }
         result.establecimientos = Object.values(est);
         return result;
       }

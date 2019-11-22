@@ -23,20 +23,13 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form = {};
       $scope.form.edad = 16;
       $scope.form.SearchQueEstudieResults = {};
-      $scope.form.ultimo_nivel_aprobado = "primaria";
-      $scope.form.ultimo_anio_aprobado = "";
       $scope.form.plan = "";
       //$scope.form.lugar = "";
       $scope.form.depto = "";
       $scope.form.localidad = "";
       $scope.form.que = {};
       $scope.form.donde = {};
-      $scope.form.turnos = {
-        "matutino":1,
-        "vespertino":1,
-        "nocturno":1,
-        "completo":1,
-      };
+      $scope.resetTurnos();
       $scope.form.SearchQueResults = {};
       $scope.form.SearchDondeResults = [];
       $scope.form.searchQue = "";
@@ -46,10 +39,16 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.$on("$ionicView.loaded", function() {
       $scope.map = MapService.modal_map;
       //// TODO: Cargar datos en caso que sea de editar búsqueda
-      console.log($state.params);
     });
+    $scope.resetTurnos = function() {
+      $scope.form.turnos = {
+        "matutino":1,
+        "vespertino":1,
+        "nocturno":1,
+        "completo":1,
+      };
+    }
     $scope.resetGroups = function() {
-      console.log("RESET GROUPS");
       $scope.shownGroup = {
         "Primaria":false,
         "Secundaria":false,
@@ -68,22 +67,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form.edad = parseInt($scope.form.edad) + 1;
     };
 
-    $scope.selectUltimoNivel = function(idNivel){
-      var x = document.getElementsByClassName("nivel");
-      var i;
-      for (i = 0; i < x.length; i++) {
-          x[i].className = "nivel_"+x[i].id +" nivel hidden";
-          x[i].childNodes[1].style.display = "block";
-          x[i].childNodes[3].style.display = "none";
-      }
-      var selected = document.getElementById(idNivel);
-      selected.className = "nivel_"+selected.id +" nivel";
-      selected.childNodes[1].style.display = "none";
-      selected.childNodes[3].style.display = "block";
-      $scope.form.ultimo_nivel_aprobado = idNivel;
-    }
-
     $scope.select_turno = function(idTurno){
+      if ( $scope.form.turnos === undefined ) {
+        $scope.resetTurnos();
+      }
       if ($scope.form.turnos[idTurno]) {
         $scope.form.turnos[idTurno] = 0;
       }
@@ -131,7 +118,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.listAllQueEstudiar = function(){
       ModalService.openModal('buscando', 'loading');
       ApiService.searchQueEstudiar("all").then(function (response) {
-        console.log(response);
         $scope.form.queEstudiarResults = response.data;
         ModalService.openModal('full', 'queEstudiarResults');
         document.getElementById("loading").style.display = "none";
@@ -146,7 +132,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       if(search_str.length>=3){
         ModalService.activateLoading('donde_estudiar', 'mini');
         //Si no está vacío y no cambió las primeras letras
-        if ( $scope.form.SearchDondeResults.length > 0 && search_str.includes($scope.locLastSearch) ) {
+        if ( $scope.form.SearchDondeResults !== undefined && $scope.form.SearchDondeResults.length > 0 && search_str.includes($scope.locLastSearch) ) {
           //Reverse por problemas de modificación de índices
           for (i = $scope.form.SearchDondeResults.length - 1; i >= 0; --i) {
             if ( !$scope.form.SearchDondeResults[i].nombre.includes(search_str) ) {
@@ -227,12 +213,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       document.getElementById("SearchDondeResults").style.display = "none";
     }
     $scope.toggleGroup = function(group) {
-      console.log($scope.shownGroup);
       if ($scope.isGroupShown(group)) {
-        console.log("Grupo mostrado: "+group );
         $scope.shownGroup[group] = false;
       } else {
-        console.log("Grupo oculto: "+group );
         $scope.shownGroup[group] = true;
       }
     };
