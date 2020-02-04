@@ -10,11 +10,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
   'DBService',
   'ErrorService',
   '$ionicSlideBoxDelegate',
-  '$ionicScrollDelegate',
-  function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, ErrorService, $ionicSlideBoxDelegate,
-  $ionicScrollDelegate) {
+  function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, LocationsService, ModalService, ApiService, MapService, DBService, ErrorService, $ionicSlideBoxDelegate) {
     $scope.locLastSearch = '';
-
+    ErrorService.hideError();
     document.getElementById("back_arrow").style.display = "block";
     $scope.$on("$ionicView.loaded", function() {
       $scope.map = MapService.modal_map;
@@ -223,6 +221,6 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form.searchQue = "";
       $scope.form.searchDonde = "";
     }
-    
+
   }
 ]);

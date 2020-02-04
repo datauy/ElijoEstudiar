@@ -398,7 +398,7 @@ ion-header-bar {
 	width: 95%;
 }
 .navbar-links {
-	height: calc(90vh - 126px);
+	/*height: calc(90vh - 126px);*/
 	margin: 63px 20%;
 }
 .navbar-items {
@@ -406,6 +406,7 @@ ion-header-bar {
   flex-direction: column;
 	width: 80%;
 	margin-left: 20%;
+	margin-bottom: 30px;
 }
 
 .nav-item {

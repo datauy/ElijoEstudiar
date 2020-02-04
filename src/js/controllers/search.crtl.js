@@ -10,11 +10,12 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
   'MapService',
   'DBService',
   '$ionicSlideBoxDelegate',
-  '$ionicScrollDelegate',
+  'ErrorService',
   '$ionicHistory',
   function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, ModalService, LocationsService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
-  $ionicScrollDelegate, $ionicHistory) {
+  ErrorService, $ionicHistory) {
 
+    ErrorService.hideError();
     $scope.establecimientos = null;
     $scope.filters_centros = {
       nombre: "",
@@ -164,7 +165,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       }
       $scope.establecimientos = response.establecimientos;
       // TODO: Arreglar con los parámetros
-      if ( ApiService.filters.donde !== undefined ){
+      console.log(ApiService.filters);
+      if ( ApiService.filters.donde !== undefined && Object.entries(ApiService.filters.donde).length !== 0 ){
         MapService.loadPinsLayer(response.establecimientos, $scope, ApiService.filters.donde);
       }
       else {

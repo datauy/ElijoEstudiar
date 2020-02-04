@@ -35,7 +35,7 @@ function($scope, $state, $cordovaInAppBrowser, $ionicHistory, $ionicSlideBoxDele
     document.getElementById("modal-page").style.display="none";
   }
   $scope.errorClose = function() {
-    document.getElementById("error").style.visibility="hidden";
+    ErrorService.hideError();
   }
   $scope.go_back = function() {
     if ( typeof $ionicSlideBoxDelegate.currentIndex() === 'undefined' ) {

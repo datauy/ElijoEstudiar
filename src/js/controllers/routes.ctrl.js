@@ -1,4 +1,4 @@
-pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiService', 'MapService', function($scope, $state, ApiService, MapService) {
+pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiService', 'MapService', 'ErrorService', function($scope, $state, ApiService, MapService, ErrorService) {
 
   $scope.params = null;
   $scope.shownGroup = {
@@ -74,6 +74,7 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
       });
     }
   });
+  ErrorService.hideError();
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
       $scope.shownGroup[group] = false;

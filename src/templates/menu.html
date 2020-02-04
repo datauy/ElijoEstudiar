@@ -1,8 +1,5 @@
-<ion-title>Elijo Estudiar | Inicio</ion-title>
-<ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content scroll="true">
-    <!--<ion-nav-bar class="bar-stable">
-    </ion-nav-bar>-->
+<ion-content scroll="true" overflow-scroll="true">
+  <nav>
     <div id="error">
       <div class="error-content">
         <div id="error-content"></div>
@@ -12,7 +9,6 @@
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
     <div class="navbar">
-
       <div class="navbar-wrapper">
         <nav class="navbar-items navbar-links">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -53,28 +49,28 @@
       </div>
     </div>
     <div id="back_arrow" class="clickable" ng-click="go_back()"></div>
-    <div id="form_container">
-      <ion-nav-view class="main" name="menuContent">
-      </ion-nav-view>
+  </nav>
+  <div id="form_container">
+    <ion-nav-view class="main" name="menuContent">
+    </ion-nav-view>
+  </div>
+  <div id="modal-page">
+    <div id="modal-page-close" ng-click="modalPageClose()" class="modal-close clickable"></div>
+    <div id="modal-page-content" class="inside_rectangle">
+      <div id="loading" style="display: none;"><img src="img/loading.gif" alt="Loading"></div>
     </div>
-    <div id="modal-page">
-      <div id="modal-page-close" ng-click="modalPageClose()" class="modal-close clickable"></div>
-      <div id="modal-page-content" class="inside_rectangle">
-        <div id="loading" style="display: none;"><img src="img/loading.gif" alt="Loading"></div>
-      </div>
+  </div>
+  <div id="loading-mini" style="display: none;"><img src="img/small_loading1.gif" alt="Loading"></div>
+  <div id="foot_container">
+    <div class="footer_share">Compartir</div>
+    <div class="footer_share_wrapper">
+      <a id="footer-share-fb" class="fb-share footer_fb clickable"></a>
+      <a id="footer-share-tw" class="tw-share footer_tw clickable"></a>
     </div>
-    <div id="loading-mini" style="display: none;"><img src="img/small_loading1.gif" alt="Loading"></div>
-    <div id="foot_container">
-      <div class="footer_share">Compartir</div>
-      <div class="footer_share_wrapper">
-        <a id="footer-share-fb" class="fb-share footer_fb clickable"></a>
-        <a id="footer-share-tw" class="tw-share footer_tw clickable"></a>
-      </div>
-      <div class="footer_credits">UN PROYECTO DE</div>
-      <div class="footer_logos_wrapper">
-        <div ng-click="openWebsite('https://www.anep.edu.uy')" class="footer_anep clickable"></div>
-        <div ng-click="openWebsite('https://datauy.org')" class="footer_data clickable"></div>
-      </div>
+    <div class="footer_credits">UN PROYECTO DE</div>
+    <div class="footer_logos_wrapper">
+      <div ng-click="openWebsite('https://www.anep.edu.uy')" class="footer_anep clickable"></div>
+      <div ng-click="openWebsite('https://datauy.org')" class="footer_data clickable"></div>
     </div>
-  </ion-side-menu-content>
-</ion-side-menus>
+  </div>
+</ion-content>
