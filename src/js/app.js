@@ -120,7 +120,7 @@ pmb_im.app = angular.module('pmb_im', ['ionic','ionic.wizard','ion-autocomplete'
   })
   .state('app.search_cursos_result', {
     cache: false,
-    url: "busco/cursos/:edad/:aprobado_tipo/:turnos/:ubicacion/:tipo/:orientacion",
+    url: "busco/cursos/:edad/:aprobado/:aprobado_tipo/:turnos/:ubicacion/:tipo/:orientacion",
     views: {
       'menuContent' :{
         templateUrl: "templates/search_cursos.html",

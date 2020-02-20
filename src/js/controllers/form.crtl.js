@@ -20,10 +20,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     });
     $scope.resetTurnos = function() {
       $scope.form.turnos = {
-        "matutino":1,
-        "vespertino":1,
-        "nocturno":1,
-        "completo":1,
+        "matutino":"selected",
+        "vespertino":"selected",
+        "nocturno":"selected",
+        "completo":"selected",
       };
     }
     $scope.resetGroups = function() {
@@ -49,13 +49,12 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       if ( $scope.form.turnos === undefined ) {
         $scope.resetTurnos();
       }
-      if ($scope.form.turnos[idTurno]) {
-        $scope.form.turnos[idTurno] = 0;
+      if ( $scope.form.turnos[idTurno] == "selected" ) {
+        $scope.form.turnos[idTurno] = "unselected";
       }
       else {
-        $scope.form.turnos[idTurno] = 1;
+        $scope.form.turnos[idTurno] = "selected";
       }
-      document.getElementById(idTurno).classList.toggle('selected');;
     }
 
     $scope.onSearchChangeQue = function(id){
@@ -90,7 +89,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.selectQueEstudiarItem = function(curso, id){
       $scope.form[id] = curso;
       $scope.hideSearchQueResults(id);
-      $scope.form['search'+id] = curso.nombre;
+      $scope.form['search'+id].nombre = curso.nombre;
     }
 
     $scope.listAllQueEstudiar = function(){
@@ -183,7 +182,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       document.getElementById("donde_estudiar").value = "Ubicado en mapa"
       $scope.form.donde = {
         "departamento": "NA",
-        "nombre": "Localizado en mapa",
+        "nombre": "Ubicado en mapa",
         "lat": longlat[0],
         "long": longlat[1]
       };
@@ -205,10 +204,8 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form = ApiService.filters;
     }
     else {
-
       $scope.form = {};
       $scope.form.edad = 16;
-      $scope.form.SearchQueEstudieResults = {};
       $scope.form.plan = "";
       //$scope.form.lugar = "";
       $scope.form.depto = "";
@@ -216,10 +213,9 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       $scope.form.que = {};
       $scope.form.donde = {};
       $scope.resetTurnos();
+      $scope.form.SearchQueEstudieResults = {};
       $scope.form.SearchQueResults = {};
       $scope.form.SearchDondeResults = [];
-      $scope.form.searchQue = "";
-      $scope.form.searchDonde = "";
     }
 
   }

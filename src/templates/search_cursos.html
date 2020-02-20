@@ -4,12 +4,12 @@
   <div class="form {{ hasPrevias ? 'previas' : ''}}">
     <div class="title section" ng-if="hasPrevias">Querés cursar:</div>
     <div class="centered ">
-      <h1 class="title curso section clickable" ng-click="openWebsite('{{curso.urlTipo}}'); $event.stopPropagation();">{{curso.orientacion}}</h1>
-      <button class="form_next_button primary_button info" ng-click="openWebsite('{{curso.urlTipo}}'); $event.stopPropagation();">+info</button>
+      <h1 class="title curso section clickable" ng-click="openWeb('curso'); $event.stopPropagation();">{{curso.orientacion}}</h1>
+      <button class="form_next_button primary_button info" on-tap="openWeb('curso'); $event.stopPropagation();">+info</button>
     </div>
     <div class="centered">
-      <button class="tag-tipo curso_tag" ng-click="openWebsite('{{curso.tipoUrl}}');">{{curso.tipo}}</button>
-      <button class="tag-nivel curso_tag" ng-click="openWebsite('{{curso.nivelUrl}}');">{{curso.nivel}}</button>
+      <button class="tag-tipo curso_tag" ng-click="openWeb('tipo'); $event.stopPropagation();">{{curso.tipo}}</button>
+      <button class="tag-nivel curso_tag" ng-click="openWeb('nivel'); $event.stopPropagation();">{{curso.nivel}}</button>
     </div>
     <div ng-if="!hasPrevias">
       <div class="que section">
@@ -45,7 +45,7 @@
             <span ng-class='isGroupShown("{{filters.key}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
           </ion-item>
           <div class='subsistema_curso' ng-repeat="option in curso.data[filters.key].options" ng-show='isGroupShown("{{filters.key}}")'>
-            <ion-toggle ng-model="dinamic_filters[filters.key][option.nombre]" ng-change="selectFilter(option.nombre)">
+            <ion-toggle ng-model="dinamic_filters[filters.key][option.nombre]" ng-change="selectFilter(filters.key)">
             </ion-toggle>
             <a class="filter-option" ng-show='{{option.url ? 1 : 0}}' ng-click="openWebsite('{{option.url}}');">{{option.nombre}}</a>
             <span class="filter-option" ng-show='{{option.url ? 0 : 1}}'>{{option.nombre}}</span>
@@ -55,7 +55,7 @@
     </div>
     <div ng-if="hasPrevias">
       <div class="title section">Tu último curso completado es:</div>
-      <div class="title curso">{{ ultimo_aprobado }}</div>
+      <div class="title curso">{{ ApiService.filters.queEstudie.nombre }}</div>
       <div class="info-message info-page">
         Según el último curso completado que elegiste, creemos que tendrías que completar una de las previas que se muestran a continuación para cursar {{curso.orientacion}}.
         Si tenés dudas sobre el nivel al que podés acceder, podés consultar en <a href="#/centros">tu centro de estudio</a>, o en <a target="_blank" href="http://derechosdelestudiante.edu.uy">DerechosDeEstudiantes.edu.uy</a>.</div>

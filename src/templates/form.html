@@ -12,7 +12,7 @@
           </div>
           <div id="queEstudieWrapper">
             <div class="title">¿Qué es lo último que terminaste de cursar?</div>
-            <input type="text" id="queEstudie" class="clickable" ng-model="form.searchqueEstudie" ng-change="onSearchChangeQue('queEstudie')" />
+            <input type="text" id="queEstudie" class="clickable" ng-model="form.searchqueEstudie.nombre" ng-change="onSearchChangeQue('queEstudie')" />
             <div id="queEstudieResults" class="animate-down searchQueResults">
               <ion-scroll id="queEstudieResults_scroll" scrollX="false" scrollY="true">
                 <div class='subsistema_container' ng-repeat="subsistema in form.queEstudieResults">
@@ -45,7 +45,7 @@
         <div class="form">
           <div id="queEstudiarWrapper" class="section que">
             <div class="title">¿Qué querés estudiar?</div>
-            <input type="text" id="queEstudiar" class="clickable" ng-model="form.searchqueEstudiar" ng-change="onSearchChangeQue('queEstudiar')" />
+            <input type="text" id="queEstudiar" class="clickable" ng-model="form.searchqueEstudiar.nombre" ng-change="onSearchChangeQue('queEstudiar')" />
             <div class="button_listado_completo clickable" ng-click="listAllQueEstudiar()">Ver listado completo</div>
             <div id="queEstudiarResults" class="animate-down searchQueResults">
               <ion-scroll id="queEstudiarResults_scroll" scrollX="false" scrollY="true">
@@ -89,10 +89,10 @@
           <div class="section turno">
         		<div class="title">Turno</div>
             <div class="turnos-wrapper">
-              <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino selected">Matutino</div>
-          		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino selected">Vespertino</div>
-          		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno selected">Nocturno</div>
-              <div id="completo" ng-click="select_turno('completo')" class="turnos turno_completo selected">Completo/Extendido</div>
+              <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino {{form.turnos.matutino}}">Matutino</div>
+          		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino {{form.turnos.vespertino}}">Vespertino</div>
+          		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno {{form.turnos.nocturno}}">Nocturno</div>
+              <div id="completo" ng-click="select_turno('completo')" class="turnos turno_completo {{form.turnos.completo}}">Completo/Extendido</div>
             </div>
         		<!--<div class="plan estudiar_title">¿Cuál es tu plan?</div>
         		<input type="text" class="cual estudiar_input" />-->
