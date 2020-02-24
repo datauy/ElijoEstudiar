@@ -203,9 +203,13 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     if ( ApiService.filters != null ) {
       $scope.form = ApiService.filters;
       //Inputs
-      $scope.form.searchqueEstudie = ApiService.filters.queEstudie.nombre;
+      if ( ApiService.filters.queEstudie ) {
+        $scope.form.searchqueEstudie = ApiService.filters.queEstudie.nombre;
+      }
+      if ( ApiService.filters.donde ) {
+        $scope.form.searchDonde = ApiService.filters.donde.nombre;
+      }
       $scope.form.searchqueEstudiar = ApiService.filters.queEstudiar.nombre;
-      $scope.form.searchDonde = ApiService.filters.donde.nombre;
     }
     else {
       $scope.form = {};

@@ -91,7 +91,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         }
         ApiService.getCursosByFilters().then(function (response) {
           var search_str = ApiService.filters.edad != '' ? ApiService.filters.edad+' años, ' : '' ;
-          search_str += (ApiService.filters.queEstudie.nombre !== undefined && ApiService.filters.queEstudie.nombre != '') ? ApiService.filters.queEstudie.nombre+', ' : 'sin previas, ';
+          search_str += ( ApiService.filters.queEstudie !== undefined && Object.entries(ApiService.filters.queEstudie).length !== 0 && ApiService.filters.queEstudie.nombre !== undefined && ApiService.filters.queEstudie.nombre != '') ? ApiService.filters.queEstudie.nombre+', ' : 'sin previas, ';
           for (var k in ApiService.filters.turnos){
             if ( ApiService.filters.turnos[k] == "selected" ) {
               search_str += k+", ";

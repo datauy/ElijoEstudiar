@@ -58,7 +58,7 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
       params.queEstudiarTagUno = ApiObject.filters.que.tag[0];
       params.queEstudiarTagDos = ApiObject.filters.que.tag[1];
     }*/
-    if( ApiObject.filters.donde !== undefined && ApiObject.filters.donde != null && ApiObject.filters.donde.lat != "undefined" ){
+    if( ApiObject.filters.donde !== undefined && Object.entries(ApiObject.filters.donde).length !== 0 ){
       params.ubicacion = ApiObject.filters.donde.lat+','+ApiObject.filters.donde.long;
     }
     else {
