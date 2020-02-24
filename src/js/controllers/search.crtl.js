@@ -10,11 +10,12 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
   'MapService',
   'DBService',
   '$ionicSlideBoxDelegate',
-  '$ionicScrollDelegate',
+  'ErrorService',
   '$ionicHistory',
   function($scope, $state, $cordovaGeolocation, $stateParams, $ionicPlatform, $ionicPopup, $ionicModal, ModalService, LocationsService, ApiService, MapService, DBService, $ionicSlideBoxDelegate,
-  $ionicScrollDelegate, $ionicHistory) {
+  ErrorService, $ionicHistory) {
 
+    ErrorService.hideError();
     $scope.establecimientos = null;
     $scope.filters_centros = {
       nombre: "",
@@ -34,8 +35,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       "Formación en educación":false
     };
     $scope.dinamic_filters = {
-      planes: {},
-      "años": {}
+      plan: {},
+      "año": {}
     }
     document.getElementById("back_arrow").style.display = "block";
     /*$scope.$on("$ionicView.loaded", function() {
@@ -47,50 +48,77 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       if ( $state.current.name == "app.search_cursos_result" ) {
         ModalService.openModal('buscando', 'loading');
         var filters = ApiService.filters;
-        if ( filters == null ) {
+        if ( filters == null || ('queEstudiar' in ApiService.filters) && ApiService.filters.queEstudiar.id != $state.params.orientacion) {
           //Saco parámetros de la URL
           var filters = {
             edad: $state.params.edad,
             queEstudiar: {
               tipoId: $state.params.tipo,
               id: $state.params.orientacion
-            },
-            queEstudie: {tipoId: $state.params.aprobado_tipo},
+            }
+          };
+          ApiService.getTagName($state.params.orientacion).then(function (response) {
+            filters.queEstudiar.nombre = response.data[0].name;
+          });
+          if ( $state.params.aprobado != 'all') {
+            filters.queEstudie = {
+              tipoId: $state.params.aprobado_tipo,
+              id: $state.params.aprobado
+            };
           }
-          if ( $state.params.aprobado_tipo != 'all' ) {
-            ApiService.getTipoName($state.params.aprobado_tipo).then(function (response) {
-              filters.ultimo_aprobado = response.data[0].name;
+          if ( $state.params.aprobado != 'all' ) {
+            ApiService.getTagName($state.params.aprobado).then(function (response) {
+              filters.queEstudie.nombre = response.data[0].name;
             });
           }
-          if ($state.params.turnos) {
-            filters.turnos = $state.params.turnos.split(",");
+          filters.turnos = {};
+          if ( $state.params.turnos != 'all' ) {
+            $state.params.turnos.split(",").map(function(turno){
+              filters.turnos[turno] = "selected";
+            });
           }
-          if ($state.params.ubicacion) {
+          if ( $state.params.ubicacion != 'all' ) {
             var ubica = $state.params.ubicacion.split(',');
             if ( !isNaN(ubica[0]) && !isNaN(ubica[1]) ) {
               filters.donde = {
                 lat: ubica[0],
                 long: ubica[1],
+                nombre: "Ubicado en mapa"
               }
-              filters.donde.name = "Ubicado en mapa";
             }
           }
           ApiService.filters = filters;
         }
         ApiService.getCursosByFilters().then(function (response) {
           var search_str = ApiService.filters.edad != '' ? ApiService.filters.edad+' años, ' : '' ;
-          search_str += (ApiService.filters.ultimo_aprobado !== undefined && ApiService.filters.ultimo_aprobado != '') ? ApiService.filters.ultimo_aprobado+', ' : 'sin previas, ';
+          search_str += ( ApiService.filters.queEstudie !== undefined && Object.entries(ApiService.filters.queEstudie).length !== 0 && ApiService.filters.queEstudie.nombre !== undefined && ApiService.filters.queEstudie.nombre != '') ? ApiService.filters.queEstudie.nombre+', ' : 'sin previas, ';
           for (var k in ApiService.filters.turnos){
-            if ( ApiService.filters.turnos[k] === 1 ) {
+            if ( ApiService.filters.turnos[k] == "selected" ) {
               search_str += k+", ";
             }
           }
           search_str += (ApiService.filters.donde !== undefined && ApiService.filters.donde.nombre !== undefined && ApiService.filters.donde.nombre != '') ? ApiService.filters.donde.nombre : 'sin ubicación';
           $scope.search_str = search_str;
+          //CURSO
+          $scope.cursos = response.cursos;
+          //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
+          $scope.curso = {
+            subsis: $scope.cursos[0].field_sub_sistema,
+            nivel: $scope.cursos[0].field_nivel,
+            tipo: $scope.cursos[0].field_tipo_curso,
+            orientacion: $scope.cursos[0].field_orientaci_n,
+            urlNivel: $scope.cursos[0].tags.tag[1].url,
+            urlTipo: $scope.cursos[0].tags.tag[0].url,
+            url: $scope.cursos[0].tags.url
+          };
           if (response.is_previa) {
             $scope.showPrevias(response);
           }
           else {
+            $scope.curso.data = {
+              plan: {options:{}},
+              "año": {options:{}}
+            };
             $scope.showCentros(response);
           }
           //  document.getElementById("map_wrapper").style.display="none";
@@ -104,79 +132,75 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
 
     $scope.showCentros = function(response) {
       $scope.map = MapService.modal_map;
-      $scope.cursos = response.cursos;
-      //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
-      $scope.curso = {
-        data: {
-          planes: {options:{}},
-          "años": {options:{}}
-        },
-        nivel: $scope.cursos[0].field_nivel,
-        tipo: $scope.cursos[0].field_tipo_curso,
-        orientacion: $scope.cursos[0].field_orientaci_n
-      };
       //Filtros dinámicos?
       if ( $scope.cursos.length ) {
         $scope.cursos.forEach(function(current_curso){
           var pid = current_curso.año+'-'+current_curso.plan;
-          if ( $scope.curso.data.planes.options[current_curso.plan] === undefined ){
-            $scope.curso.data.planes.options[current_curso.plan] = {
+          if ( $scope.curso.data.plan.options[current_curso.plan] === undefined ){
+            $scope.curso.data.plan.options[current_curso.plan] = {
               nombre: current_curso.plan,
               oferta: current_curso.oferta,
             };
             if (current_curso.url) {
-              $scope.curso.data.planes.options[current_curso.plan].url = current_curso.url;
+              $scope.curso.data.plan.options[current_curso.plan].url = current_curso.url;
             }
-            $scope.dinamic_filters.planes[current_curso.plan] = true;
+            $scope.dinamic_filters.plan[current_curso.plan] = true;
           }
-          if ( $scope.curso.data.años.options[current_curso.año] === undefined ){
+          if ( $scope.curso.data.año.options[current_curso.año] === undefined ){
             var title = current_curso.año;
             if (current_curso.año == 0 ) {
               title = 'Todos';
             }
-            $scope.curso.data.años.options[current_curso.año] = {
+            $scope.curso.data.año.options[current_curso.año] = {
               nombre: title,
               oferta: current_curso.oferta,
             };
-            $scope.dinamic_filters.años[current_curso.año] = true;
+            $scope.dinamic_filters.año[current_curso.año] = true;
           }
         });
       }
-      if ( Object.entries($scope.curso.data.planes.options).length === 0 ) {
-        delete $scope.curso.data.planes;
+      if ( Object.entries($scope.curso.data.plan.options).length === 0 ) {
+        delete $scope.curso.data.plan;
       }
       else {
-        $scope.curso.data.planes = {
+        $scope.curso.data.plan = {
           nombre: "Planes",
-          key: "planes",
-          options: Object.values($scope.curso.data.planes.options)
+          key: "plan",
+          options: Object.values($scope.curso.data.plan.options)
         };
       }
-      if ( Object.entries($scope.curso.data.años.options).length === 0 ) {
-        delete $scope.curso.data.años;
+      if ( Object.entries($scope.curso.data.año.options).length === 0 ) {
+        delete $scope.curso.data.año;
       }
       else {
-        $scope.curso.data.años = {
+        $scope.curso.data.año = {
           nombre: "Años",
-          key: "años",
-          options: Object.values($scope.curso.data.años.options)
+          key: "año",
+          options: Object.values($scope.curso.data.año.options)
         };
       }
       $scope.establecimientos = response.establecimientos;
       // TODO: Arreglar con los parámetros
-      if ( ApiService.filters.donde !== undefined ){
+      if ( ApiService.filters.donde !== undefined && Object.entries(ApiService.filters.donde).length !== 0 ){
         MapService.loadPinsLayer(response.establecimientos, $scope, ApiService.filters.donde);
       }
       else {
         MapService.loadPinsLayer(response.establecimientos, $scope);
       }
     }
+    /*$scope.$on("$ionicView.loaded", function() {
+    document.getElementById("map_wrapper").style.display="none";
+  });*/
     /**Función de previas */
     $scope.showPrevias = function(response) {
       $scope.hasPrevias = 1;
       $scope.previas = response.list;
-      $scope.ultimo_aprobado = response.tipo_aprobado;
-      $scope.curso = response.curso;
+      if ( response.aprobado != 'all' ) {
+        //ApiService.getTagName(response.aprobado).then(function (response) {
+        $scope.aprobado = response.aprobado;
+        //});
+      }
+    }
       /*$state.go('app.previas');
       $ionicModal.fromTemplateUrl('templates/previas.html', {
         scope: $scope,
@@ -187,10 +211,6 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         modal.show();
         document.getElementById("modal-page").style.display="none";
       });*/
-    }
-    /*$scope.$on("$ionicView.loaded", function() {
-      document.getElementById("map_wrapper").style.display="none";
-    });*/
     // TODO: Manejador dinámico de ofertas
     $scope.onSearchChange = function(){
       ModalService.activateLoading('search_input', 'mini');
@@ -250,10 +270,6 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.editSearch = function(){
       $state.go( "app.cursos" );
     }
-    $scope.selectPlan = function() {
-      // TODO: Agregar funcion
-      console.log('Filter plans');
-    }
     // TODO: Pasar a servicios
     $scope.toggleGroup = function(group) {
       if ($scope.isGroupShown(group)) {
@@ -265,10 +281,25 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.isGroupShown = function(group) {
       return $scope.shownGroup[group];
     }
-    $scope.selectFilter = function(option) {
-      console.log(option);
-      console.log($scope.dinamic_filters);
+    //Selecciona un filtro dinámico, falta generalizar
+    $scope.selectFilter = function(key) {
+      var active = [];
+      for (var k in $scope.dinamic_filters[key]){
+        if ( $scope.dinamic_filters[key][k] == true ) {
+          active.push(k);
+        }
+      }
+      var ests = {};
+      $scope.cursos.forEach(function(current_curso){
+        if ( active.includes(current_curso[key]) ) {
+          current_curso.oferta.forEach(function(est){
+            ests[est.id] = est;
+          });
+        }
+      });
+      $scope.establecimientos = Object.values(ests);
     }
+    //Selecciona una previa del listado en página de previas
     $scope.selectPrevia = function(curso) {
       // TODO: Cambiar a función local?
       ApiService.filters.queEstudiar.id = curso.id;
@@ -276,6 +307,34 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       ApiService.filters.queEstudiar.nivelId = curso.nivelId;
       var params = ApiService.createFilterParamsForGetRequest();
       $state.go( "app.search_cursos_result", params );
+    }
+    $scope.openWeb = function(type) {
+      if ( type == "curso" ) {
+        url = $scope.curso.url;
+      }
+      else if (type == "tipo") {
+        url = $scope.curso.urlTipo;
+      }
+      else {
+        switch ($scope.curso.subsis) {
+          case 'Inicial - Primaria':
+            url = "http://www.ceip.edu.uy/";
+            break;
+          case 'Secundaria':
+            url = "https://www.ces.edu.uy/";
+            break;
+          case 'UTU':
+            url = "https://www.utu.edu.uy/";
+            break;
+          case 'Formación en educación':
+            url = "http://www.cfe.edu.uy/";
+            break;
+          default:
+            url = "https://www.anep.edu.uy/";
+        }
+        //url = $scope.curso.urlNivel;
+      }
+      $scope.openWebsite(url);
     }
   }
 ]);

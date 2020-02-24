@@ -196,13 +196,13 @@
           <ion-item class="Details__Item" ng-show="isGroupShown(soporte.key)">
             <ul class="Unstyled">
               <li class="Accordion__Item" ng-repeat="plan in soporte.planes">
-                <span>
+                <a class="nav-link" href="{{plan.web}}" target="_blank">
                   {{plan.nombre}}
-                  <svg class="Icon Icon--Small">
+                  <svg class="Icon Icon--Small info">
                     <use xlink:href="#info-icon" />
                   </svg>
-                </span>
-                <span class="{{ plan.en_centro ? 'ion-checkmark' : '' }}"></span>
+                  <span class="{{ plan.en_centro ? 'ion-checkmark' : '' }}"></span>
+                </a>
               </li>
             </ul>
           </ion-item>

@@ -1,5 +1,4 @@
 <ion-view title="ElijoEstudiar" hide-nav-bar="false" class="">
-  <ion-content scroll="false">
 	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
 	    <ion-slide>
         <div class="rombo_amarillo"></div>
@@ -90,10 +89,10 @@
           <div class="section turno">
         		<div class="title">Turno</div>
             <div class="turnos-wrapper">
-              <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino selected">Matutino</div>
-          		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino selected">Vespertino</div>
-          		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno selected">Nocturno</div>
-              <div id="completo" ng-click="select_turno('completo')" class="turnos turno_completo selected">Completo/Extendido</div>
+              <div id="matutino" ng-click="select_turno('matutino')" class="turnos turno_matutino {{form.turnos.matutino}}">Matutino</div>
+          		<div id="vespertino" ng-click="select_turno('vespertino')" class="turnos turno_vespertino {{form.turnos.vespertino}}">Vespertino</div>
+          		<div id="nocturno" ng-click="select_turno('nocturno')" class="turnos turno_nocturno {{form.turnos.nocturno}}">Nocturno</div>
+              <div id="completo" ng-click="select_turno('completo')" class="turnos turno_completo {{form.turnos.completo}}">Completo/Extendido</div>
             </div>
         		<!--<div class="plan estudiar_title">¿Cuál es tu plan?</div>
         		<input type="text" class="cual estudiar_input" />-->
@@ -108,5 +107,4 @@
       <leaflet data-tap-disabled="true" id="ubicacion_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
       <div id="ubica-confirm"></div>
     </div>
-  </ion-content>
 </ion-view>

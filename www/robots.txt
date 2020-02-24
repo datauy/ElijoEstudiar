@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /docs/
+Disallow: /dist/
+
+Sitemap: https://elijoestudiar.edu.uy/sitemap.xml

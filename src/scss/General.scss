@@ -211,11 +211,15 @@ button.info {
 	height: initial;
 	min-height: 29px;
 	font-weight: normal;
-	width: inherit;
+	width: initial;
 	border: none;
 }
 .curso_tag.tag-nivel {
 	background-color: #4acee2;
+}
+.curso_tag.tag-subsis {
+	 background-color: #ffdd6e;
+	 color: #000;
 }
 #modal-page {
 	display: none;
@@ -262,6 +266,8 @@ button.info {
 .results-wrapper {
 	float: left;
 	width: 100%;
+	max-height: 34rem;
+	overflow-y: auto;
 }
 .info-curso {
 	height: 44px;
@@ -398,7 +404,7 @@ ion-header-bar {
 	width: 95%;
 }
 .navbar-links {
-	height: calc(90vh - 126px);
+	/*height: calc(90vh - 126px);*/
 	margin: 63px 20%;
 }
 .navbar-items {
@@ -406,6 +412,7 @@ ion-header-bar {
   flex-direction: column;
 	width: 80%;
 	margin-left: 20%;
+	margin-bottom: 30px;
 }
 
 .nav-item {

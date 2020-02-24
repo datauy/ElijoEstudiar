@@ -13,8 +13,8 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
   ApiObject.formScope = {};
   ApiObject.curso = null;
 
-  ApiObject.getTipoName = function(tipoId){
-    return $http.get(apiURL + 'tipo/' + tipoId);
+  ApiObject.getTagName = function(tagId){
+    return $http.get(apiURL + 'tag/' + tagId);
   }
   ApiObject.searchQueEstudiar = function(str){
     return $http.get(apiURL + 'search/' + str);
@@ -33,19 +33,23 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
     };
     if (ApiObject.filters.queEstudie) {
       params.aprobado_tipo = ApiObject.filters.queEstudie.tipoId;
-      params.aprobado_nivel = ApiObject.filters.queEstudie.nivelId;
+      params.aprobado = ApiObject.filters.queEstudie.id;
     }
     else {
-      params.aprobado_tipo = params.aprobado_nivel = 'all';
+      params.aprobado_tipo = 'all';
+      params.aprobado = 'all';
     }
     var turnos = [];
     for (var k in ApiObject.filters.turnos){
-      if ( ApiObject.filters.turnos[k] === 1 ) {
+      if ( ApiObject.filters.turnos[k] == "selected" ) {
         turnos.push(k);
       }
     }
     if (turnos.length) {
       params.turnos = turnos.join(",");
+    }
+    else {
+      params.turnos = 'all';
     }
     /* TIENE QUE TRAER QUÉ
     if(ApiObject.filters.que!=""){
@@ -54,7 +58,7 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
       params.queEstudiarTagUno = ApiObject.filters.que.tag[0];
       params.queEstudiarTagDos = ApiObject.filters.que.tag[1];
     }*/
-    if( ApiObject.filters.donde !== undefined && ApiObject.filters.donde != null && ApiObject.filters.donde.lat != "undefined" ){
+    if( ApiObject.filters.donde !== undefined && Object.entries(ApiObject.filters.donde).length !== 0 ){
       params.ubicacion = ApiObject.filters.donde.lat+','+ApiObject.filters.donde.long;
     }
     else {
@@ -63,7 +67,6 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
     if ( ApiObject.filters.queEstudiar.tipoId != ApiObject.filters.queEstudiar.id ) {
       params.orientacion = ApiObject.filters.queEstudiar.id;
     }
-
     return params;
   }
 

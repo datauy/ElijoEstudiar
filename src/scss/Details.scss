@@ -24,7 +24,7 @@
 
   &--Small {
     height: 16px;
-    width: 16px;
+    width: 22px;
   }
 }
 
@@ -276,4 +276,19 @@
 }
 .disclaimer-sec {
   font-size: 13px;
+}
+
+.soporte-inclusivas,
+.soporte-dispositivos {
+  .Accordion__Item {
+    a {
+      display: inline-flex;
+      color: initial;
+      text-decoration: none;
+      align-items: center;
+    }
+    svg {
+      margin-left: 10px;
+    }
+  }
 }

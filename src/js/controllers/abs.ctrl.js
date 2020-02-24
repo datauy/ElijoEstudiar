@@ -35,16 +35,19 @@ function($scope, $state, $cordovaInAppBrowser, $ionicHistory, $ionicSlideBoxDele
     document.getElementById("modal-page").style.display="none";
   }
   $scope.errorClose = function() {
-    document.getElementById("error").style.visibility="hidden";
+    ErrorService.hideError();
   }
-  $scope.go_back = function() {
-    if ( typeof $ionicSlideBoxDelegate.currentIndex() === 'undefined' ) {
+  $scope.go_back = function(ctl) {
+    if ( $state.current.name == "app.search_cursos_result" ) {
+      $ionicSlideBoxDelegate.slide(1);
+      $state.go( 'app.cursos' );
+    }
+    else if ( typeof $ionicSlideBoxDelegate.currentIndex() === 'undefined' ) {
       window.history.go(-1);
       return;
     }
     else if( $ionicSlideBoxDelegate.currentIndex() > 0 ) {
       $ionicSlideBoxDelegate.previous();
-      return;
     }
     else {
       $state.go( 'app.intro' );
