@@ -8,7 +8,6 @@ pmb_im.services.factory('ErrorService', ['$http','$ionicPopup', '$ionicScrollDel
       document.getElementById("error").style.visibility="visible";
     },
     hideError: function (message) {
-      console.log('Ejecuta hide');
       $ionicScrollDelegate.scrollTop();
       document.getElementById("error").style.visibility="hidden";
     }

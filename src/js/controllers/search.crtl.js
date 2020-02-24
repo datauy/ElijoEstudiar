@@ -48,18 +48,23 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       if ( $state.current.name == "app.search_cursos_result" ) {
         ModalService.openModal('buscando', 'loading');
         var filters = ApiService.filters;
-        if ( filters == null ) {
+        if ( filters == null || ('queEstudiar' in ApiService.filters) && ApiService.filters.queEstudiar.id != $state.params.orientacion) {
           //Saco parámetros de la URL
           var filters = {
             edad: $state.params.edad,
             queEstudiar: {
               tipoId: $state.params.tipo,
               id: $state.params.orientacion
-            },
-            queEstudie: {
+            }
+          };
+          ApiService.getTagName($state.params.orientacion).then(function (response) {
+            filters.queEstudiar.nombre = response.data[0].name;
+          });
+          if ( $state.params.aprobado != 'all') {
+            filters.queEstudie = {
               tipoId: $state.params.aprobado_tipo,
               id: $state.params.aprobado
-            },
+            };
           }
           if ( $state.params.aprobado != 'all' ) {
             ApiService.getTagName($state.params.aprobado).then(function (response) {
@@ -67,12 +72,12 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
             });
           }
           filters.turnos = {};
-          if ($state.params.turnos) {
+          if ( $state.params.turnos != 'all' ) {
             $state.params.turnos.split(",").map(function(turno){
               filters.turnos[turno] = "selected";
             });
           }
-          if ($state.params.ubicacion) {
+          if ( $state.params.ubicacion != 'all' ) {
             var ubica = $state.params.ubicacion.split(',');
             if ( !isNaN(ubica[0]) && !isNaN(ubica[1]) ) {
               filters.donde = {
@@ -98,10 +103,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           $scope.cursos = response.cursos;
           //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
           $scope.curso = {
-            data: {
-              plan: {options:{}},
-              "año": {options:{}}
-            },
+            subsis: $scope.cursos[0].field_sub_sistema,
             nivel: $scope.cursos[0].field_nivel,
             tipo: $scope.cursos[0].field_tipo_curso,
             orientacion: $scope.cursos[0].field_orientaci_n,
@@ -113,6 +115,10 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
             $scope.showPrevias(response);
           }
           else {
+            $scope.curso.data = {
+              plan: {options:{}},
+              "año": {options:{}}
+            };
             $scope.showCentros(response);
           }
           //  document.getElementById("map_wrapper").style.display="none";
@@ -190,9 +196,9 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
       $scope.hasPrevias = 1;
       $scope.previas = response.list;
       if ( response.aprobado != 'all' ) {
-        ApiService.getTagName(response.aprobado).then(function (response) {
-          $scope.filters.queEstudie.nombre = response.data[0].name;
-        });
+        //ApiService.getTagName(response.aprobado).then(function (response) {
+        $scope.aprobado = response.aprobado;
+        //});
       }
     }
       /*$state.go('app.previas');
@@ -310,7 +316,23 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         url = $scope.curso.urlTipo;
       }
       else {
-        url = $scope.curso.urlNivel;
+        switch ($scope.curso.subsis) {
+          case 'Inicial - Primaria':
+            url = "http://www.ceip.edu.uy/";
+            break;
+          case 'Secundaria':
+            url = "https://www.ces.edu.uy/";
+            break;
+          case 'UTU':
+            url = "https://www.utu.edu.uy/";
+            break;
+          case 'Formación en educación':
+            url = "http://www.cfe.edu.uy/";
+            break;
+          default:
+            url = "https://www.anep.edu.uy/";
+        }
+        //url = $scope.curso.urlNivel;
       }
       $scope.openWebsite(url);
     }

@@ -8,8 +8,9 @@
       <button class="form_next_button primary_button info" on-tap="openWeb('curso'); $event.stopPropagation();">+info</button>
     </div>
     <div class="centered">
-      <button class="tag-tipo curso_tag" ng-click="openWeb('tipo'); $event.stopPropagation();">{{curso.tipo}}</button>
+      <button class="tag-subsis curso_tag" ng-click="openWeb('subsis'); $event.stopPropagation();">{{curso.subsis}}</button>
       <button class="tag-nivel curso_tag" ng-click="openWeb('nivel'); $event.stopPropagation();">{{curso.nivel}}</button>
+      <button class="tag-tipo curso_tag" ng-click="openWeb('tipo'); $event.stopPropagation();">{{curso.tipo}}</button>
     </div>
     <div ng-if="!hasPrevias">
       <div class="que section">
@@ -37,7 +38,7 @@
           </div>
         </div>
       </div>
-      <div class="filters-wrapper">
+      <div class="filters-wrapper" ng-if="curso.data">
         <h2 class="title curso section">Filtros adicionales</h2>
         <div class='subsistema_container' ng-repeat="filters in curso.data track by filters.key">
           <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{filters.key}}")'>
@@ -55,7 +56,7 @@
     </div>
     <div ng-if="hasPrevias">
       <div class="title section">Tu último curso completado es:</div>
-      <div class="title curso">{{ ApiService.filters.queEstudie.nombre }}</div>
+      <div class="title curso">{{ aprobado }}</div>
       <div class="info-message info-page">
         Según el último curso completado que elegiste, creemos que tendrías que completar una de las previas que se muestran a continuación para cursar {{curso.orientacion}}.
         Si tenés dudas sobre el nivel al que podés acceder, podés consultar en <a href="#/centros">tu centro de estudio</a>, o en <a target="_blank" href="http://derechosdelestudiante.edu.uy">DerechosDeEstudiantes.edu.uy</a>.</div>

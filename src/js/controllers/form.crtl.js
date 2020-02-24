@@ -89,7 +89,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     $scope.selectQueEstudiarItem = function(curso, id){
       $scope.form[id] = curso;
       $scope.hideSearchQueResults(id);
-      $scope.form['search'+id].nombre = curso.nombre;
+      $scope.form['search'+id] = curso.nombre;
     }
 
     $scope.listAllQueEstudiar = function(){
@@ -202,6 +202,10 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
 
     if ( ApiService.filters != null ) {
       $scope.form = ApiService.filters;
+      //Inputs
+      $scope.form.searchqueEstudie = ApiService.filters.queEstudie.nombre;
+      $scope.form.searchqueEstudiar = ApiService.filters.queEstudiar.nombre;
+      $scope.form.searchDonde = ApiService.filters.donde.nombre;
     }
     else {
       $scope.form = {};
