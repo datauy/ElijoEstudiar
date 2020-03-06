@@ -177,6 +177,10 @@
     &__Title {
       color: white;
     }
+    &.item {
+      a {
+      }
+    }
   }
 }
 
@@ -218,6 +222,23 @@
         flex-shrink: 0;
         margin-left: 4px;
       }
+    }
+    a {
+      width: 100%;
+      display: inline-flex;
+      color: initial;
+      text-decoration: none;
+      align-items: center;
+    }
+    svg {
+      margin-left: 10px;
+    }
+    ion-icon {
+      position: absolute;
+      right: 18px;
+    }
+    span {
+      max-width: calc(100% - 60px);
     }
   }
 
@@ -276,19 +297,4 @@
 }
 .disclaimer-sec {
   font-size: 13px;
-}
-
-.soporte-inclusivas,
-.soporte-dispositivos {
-  .Accordion__Item {
-    a {
-      display: inline-flex;
-      color: initial;
-      text-decoration: none;
-      align-items: center;
-    }
-    svg {
-      margin-left: 10px;
-    }
-  }
 }

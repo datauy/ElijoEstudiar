@@ -197,11 +197,11 @@
             <ul class="Unstyled">
               <li class="Accordion__Item" ng-repeat="plan in soporte.planes">
                 <a class="nav-link" href="{{plan.web}}" target="_blank">
-                  {{plan.nombre}}
+                  <span>{{plan.nombre}}</span>
                   <svg class="Icon Icon--Small info">
                     <use xlink:href="#info-icon" />
                   </svg>
-                  <span class="{{ plan.en_centro ? 'ion-checkmark' : '' }}"></span>
+                  <ion-icon class="{{ plan.en_centro || soporte.key == 'inclusivas' ? 'ion-checkmark' : 'ion-close' }}"></ion-icon>
                 </a>
               </li>
             </ul>
