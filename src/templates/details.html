@@ -159,7 +159,7 @@
             <li class="Accordion__SubItem__Container" ng-repeat="curso in cursos">
               <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-{{$index}}')">
                 <div class="Accordion__SubItem__Header">
-                  <span class="Accordion__SubItem__Title">{{curso['field_orientaci_n']}}, {{curso['año']}}º año</span>
+                  <span class="Accordion__SubItem__Title">{{curso['field_orientaci_n']}}, {{curso['grado']}}</span>
                   <span class="Accordion__SubItem__Subtitle">
                     {{curso.field_catgor_a != "" && curso.field_catgor_a != null ? curso.field_catgor_a+', ' : '' }}
                     {{curso.field_duraci_n != "" && curso.field_duraci_n != null ? curso.field_duraci_n+', ' : '' }}

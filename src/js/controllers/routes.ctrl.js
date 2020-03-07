@@ -49,6 +49,9 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
             else {
               ficha.niveles[curso.field_nivel] = [ curso['año'] ];
             }
+            var cln = curso.field_nivel;
+            var cl = {cln: [curso['año']]};
+            curso.grado = $scope.getLevels(cl).grados;
           });
           $scope.centro.oferta = {
             turnos: ficha.turnos.join(', '),
@@ -56,25 +59,40 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
             categoria: ficha.cat.join(', '),
             niveles: [],
           }
-          for ( var n in ficha.niveles ){
-            $scope.centro.oferta.niveles.push({
-              nombre: n,
-              grados: ficha.niveles[n].join('ᵒ, ')+'ᵒ'
-            });
-          }
+          $scope.centro.oferta.niveles.push($scope.getLevels(ficha.niveles));
           $scope.cursos = response.cursos;
-          console.log($scope.cursos);
         });
         ApiService.getSoporte4Centro($state.params.id).then(function (response) {
-          console.log(response);
           $scope.soportes = response;
         });
-        console.log($scope.centro);
         document.getElementById("modal-page").style.display="none";
       });
     }
   });
-  ErrorService.hideError();
+  $scope.getLevels = function(niveles) {
+    for ( var n in niveles ){
+      var levels = '';
+      grados = niveles[n].sort();
+      console.log(grados);
+      if ( !grados[0] ) {
+        grados.shift();
+        levels = "Completo";
+      }
+      if ( grados.length ) {
+        levels += levels ? ', ' : '';
+        if ( n == 'Educación Inicial') {
+          levels += grados.join(' años, ')+' años';
+        }
+        else {
+          levels += grados.join('ᵒ, ')+'ᵒ';
+        }
+      }
+      return {
+        nombre: n,
+        grados: levels
+      };
+    }
+  }
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
       $scope.shownGroup[group] = false;
@@ -97,4 +115,5 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
   $scope.isSubGroupShown = function(item) {
     return $scope.shownChild === item;
   };
+  ErrorService.hideError();
 }]);
