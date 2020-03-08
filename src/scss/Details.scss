@@ -258,6 +258,13 @@
       line-height: 1.2;
       float: left;
       width: 100%;
+      a {
+        display: flex;
+        color: #030303;
+      }
+      svg {
+        margin-left: 4px;
+      }
     }
 
     &__Subtitle {
@@ -266,6 +273,7 @@
       line-height: 1.36;
       width: 100%;
       float: left;
+      margin: 2px 0 5px;
     }
 
     &__Container {
@@ -297,4 +305,8 @@
 }
 .disclaimer-sec {
   font-size: 13px;
+}
+.curso-tags {
+  float: left;
+  width: 100%;
 }

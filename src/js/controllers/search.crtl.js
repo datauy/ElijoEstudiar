@@ -65,8 +65,6 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
               tipoId: $state.params.aprobado_tipo,
               id: $state.params.aprobado
             };
-          }
-          if ( $state.params.aprobado != 'all' ) {
             ApiService.getTagName($state.params.aprobado).then(function (response) {
               filters.queEstudie.nombre = response.data[0].name;
             });
@@ -335,6 +333,11 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         //url = $scope.curso.urlNivel;
       }
       $scope.openWebsite(url);
+    }
+    $scope.next = function() {
+      ApiService.filters.queEstudie = {};
+      var params = ApiService.createFilterParamsForGetRequest();
+      $state.go( "app.search_cursos_result", params );
     }
   }
 ]);

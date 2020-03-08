@@ -116,6 +116,12 @@
 	top: 40px;
 }
 /********** SEARCH CURSOS ****************/
+.listAndMap-wrapper{
+	width: 100%;
+	text-align: center;
+	float: left;
+	margin: 22px 0;
+}
 .filters-wrapper .subsistema_title {
 	height: 41px;
 	font-size: 16px;
@@ -170,6 +176,9 @@
   float: left;
 }
 /* Search */
+.cursos-result .info-message {
+	margin-bottom: 20px;
+}
 .curso.title {
 	font-size: 16px;
 	letter-spacing: 0.5px;
@@ -181,6 +190,9 @@ h1.curso.title {
   width: auto;
   max-width: calc(100% - 74px);
   margin-top: 24px;
+}
+.curso button.info {
+	margin-top: -2px;
 }
 .plan .item-toggle {
 	width: 50%;
@@ -198,4 +210,16 @@ h1.curso.title {
 }
 .previas .curso.title {
 	margin-top: 8px;
+}
+.previas-block {
+	margin-top: 20px;
+	text-align: center;
+}
+.previas-block .section {
+	margin-top: 12px;
+}
+.previas-block .next.primary_button {
+	max-width: 380px;
+  margin: 60px auto 22px;
+  float: unset;
 }

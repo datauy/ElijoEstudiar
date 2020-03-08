@@ -73,8 +73,7 @@ pmb_im.controllers.controller('routesController', ['$scope', '$state', 'ApiServi
     for ( var n in niveles ){
       var levels = '';
       grados = niveles[n].sort();
-      console.log(grados);
-      if ( !grados[0] ) {
+      if ( !grados[0] || grados[0] == "0" ) {
         grados.shift();
         levels = "Completo";
       }
