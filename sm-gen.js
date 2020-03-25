@@ -17,9 +17,9 @@ function getCentros() {
   return new Promise((resolve, reject) => {
     request('http://backend.elijoestudiar.uy/api/centros-ids', { json: true }, (err, res, body) => {
       if (err) { reject(err); }
-      for ( var nid in body ) {
-        if (body.hasOwnProperty(nid)) {
-          urls.push( base_url + "centro/" + nid);
+      for ( var key in body ) {
+        if (body.hasOwnProperty(key)) {
+          urls.push( base_url + "centro/" + body[key].nid);
         }
       }
       resolve(body);
@@ -56,7 +56,6 @@ function writeApis() {
 }
 
 crawler.on('crawlstart', () => {
-  sitemap.addURL(base_url+'busco/cursos/all/all/all/all/all/244/245');
   sitemap.addURL(base_url+'centros');
   sitemap.addURL(base_url+'cursos');
   sitemap.addURL(base_url+'intro');
@@ -77,7 +76,8 @@ catch (error) {
 }
 // register event listeners
 generator.on('done', () => {
-  // sitemaps created
+  // sitemap created
+  console.error('sitemap created');
 });
 
 // start the crawler

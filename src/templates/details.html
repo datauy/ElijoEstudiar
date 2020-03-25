@@ -172,7 +172,7 @@
                     {{curso.field_duraci_n != "" && curso.field_duraci_n != null ? curso.field_duraci_n+', ' : '' }}
                     {{curso.field_modalidad != "" && curso.field_modalidad != null ? curso.field_modalidad+', ' : '' }}
                     {{curso.field_titulaci_n != "" && curso.field_titulaci_n != null ? curso.field_titulaci_n+', ' : '' }}
-                    <a ng-click="openWebsite('{{curso.planUrl}}');" >{{curso.plan != '' ? 'Plan '+curso.plan : ''}}</a>
+                    <a ng-click="openWebsite('{{curso.url}}');" >{{curso.plan != '' ? 'Plan '+curso.plan : ''}}</a>
                   </span>
                   <div class="curso-tags">
                     <button class="tag-tipo curso_tag" ng-click="openWebsite('{{curso.tags.tag[0].url}}');">{{curso.field_tipo_curso}}</button>

@@ -16,8 +16,13 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
   ApiObject.getTagName = function(tagId){
     return $http.get(apiURL + 'tag/' + tagId);
   }
-  ApiObject.searchQueEstudiar = function(str){
-    return $http.get(apiURL + 'search/' + str);
+  ApiObject.searchQueEstudiar = function(str, edad){
+    if ( edad ) {
+      return $http.get(apiURL + 'search/' + str, {cache: false, params: {"edad": edad} });
+    }
+    else {
+      return $http.get(apiURL + 'search/' + str);
+    }
   }
   ApiObject.searchDondeEstudiar = function(str){
     return $http.get(apiURL + 'ubicaciones?nombre=' + str);//, {cache: false, params: {hash_id:Math.random()}});
@@ -113,7 +118,7 @@ pmb_im.services.factory('ApiService', ['$http', function($http) {
       return $http.get(apiURL + 'establecimientos-por-id/'+id, {cache: false, params: {hash_id:Math.random()}});
   }
   ApiObject.getCursos4Centro = function(id){
-    return $http.get(apiURL + 'cursos', {cache: false, params: {centro: id} } ).then(function (response) {
+    return $http.get(apiURL + 'cursos4centro/' + id, { cache: false } ).then(function (response) {
       return { cursos: response.data };
     });
   }
