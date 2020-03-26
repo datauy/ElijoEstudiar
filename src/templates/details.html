@@ -159,16 +159,25 @@
             <li class="Accordion__SubItem__Container" ng-repeat="curso in cursos">
               <ion-item class="Details__Item Accordion__SubItem" ng-click="toggleSubGroup('cursos-{{$index}}')">
                 <div class="Accordion__SubItem__Header">
-                  <span class="Accordion__SubItem__Title">{{curso['field_orientaci_n']}}, {{curso['año']}}º año</span>
+                  <span class="Accordion__SubItem__Title">
+                    <a ng-click="openWebsite('{{curso.tags.url}}');">
+                      {{curso['field_orientaci_n']}}, {{curso['grado']}}
+                      <svg class="Icon Icon--Small info">
+                        <use xlink:href="#info-icon" />
+                      </svg>
+                    </a>
+                  </span>
                   <span class="Accordion__SubItem__Subtitle">
                     {{curso.field_catgor_a != "" && curso.field_catgor_a != null ? curso.field_catgor_a+', ' : '' }}
                     {{curso.field_duraci_n != "" && curso.field_duraci_n != null ? curso.field_duraci_n+', ' : '' }}
                     {{curso.field_modalidad != "" && curso.field_modalidad != null ? curso.field_modalidad+', ' : '' }}
                     {{curso.field_titulaci_n != "" && curso.field_titulaci_n != null ? curso.field_titulaci_n+', ' : '' }}
-                    <a ng-click="openWebsite('{{curso.planUrl}}');" >{{curso.plan != '' ? 'Plan '+curso.plan : ''}}</a>
+                    <a ng-click="openWebsite('{{curso.url}}');" >{{curso.plan != '' ? 'Plan '+curso.plan : ''}}</a>
                   </span>
-                  <button class="tag-tipo curso_tag" ng-click="openWebsite('{{curso.tipoUrl}}');">{{curso.field_tipo_curso}}</button>
-                  <button class="tag-nivel curso_tag" ng-click="openWebsite('{{curso.nivelUrl}}');">{{curso.field_nivel}}</button>
+                  <div class="curso-tags">
+                    <button class="tag-tipo curso_tag" ng-click="openWebsite('{{curso.tags.tag[0].url}}');">{{curso.field_tipo_curso}}</button>
+                    <button class="tag-nivel curso_tag" ng-click="openWebsite('{{curso.tags.tag[1].url}}');">{{curso.field_nivel}}</button>
+                  </div>
                 </div>
                 <span ng-class="isSubGroupShown('cursos-{{$index}}') ? 'ion-ios-arrow-down' : 'ion-ios-arrow-forward'"></span>
               </ion-item>
@@ -197,11 +206,11 @@
             <ul class="Unstyled">
               <li class="Accordion__Item" ng-repeat="plan in soporte.planes">
                 <a class="nav-link" href="{{plan.web}}" target="_blank">
-                  {{plan.nombre}}
+                  <span>{{plan.nombre}}</span>
                   <svg class="Icon Icon--Small info">
                     <use xlink:href="#info-icon" />
                   </svg>
-                  <span class="{{ plan.en_centro ? 'ion-checkmark' : '' }}"></span>
+                  <ion-icon class="{{ plan.en_centro || soporte.key == 'inclusivas' ? 'ion-checkmark' : 'ion-close' }}"></ion-icon>
                 </a>
               </li>
             </ul>

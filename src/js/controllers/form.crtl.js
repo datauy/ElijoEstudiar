@@ -64,7 +64,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
       var search_str = search.value.trim();
       if( search_str.length >= 3 ){
         ModalService.activateLoading(id, 'mini');
-        ApiService.searchQueEstudiar(search_str).then(function (response) {
+        ApiService.searchQueEstudiar(search_str, $scope.form.edad).then(function (response) {
           //console.log(response);
           $scope.form[id+'Results'] = response.data;
           $scope.resetGroups();
@@ -213,7 +213,7 @@ pmb_im.controllers.controller('FormCtrl', ['$scope', '$state',
     }
     else {
       $scope.form = {};
-      $scope.form.edad = 16;
+      $scope.form.edad = 0;
       $scope.form.plan = "";
       //$scope.form.lugar = "";
       $scope.form.depto = "";
