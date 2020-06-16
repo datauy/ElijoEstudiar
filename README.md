@@ -232,7 +232,7 @@ En la web de DATA puede encontrarse un [kit de prensa de la organización](https
 
 ## 🤝 Contribuyendo
 
-Como la mayoría de los proyectos que trabajan con datos abiertos y software libre, la retroalimentación de los usuarios es una herramienta fundamental para la mejora de los datos y su tratamiento, por lo que agradecemos e incentivamos la recepción de ideas, sugerencias o correcciones.
+Como la mayoría de los proyectos que trabajan con datos abiertos y software libre, la retroalimentación de los usuarios es una herramienta fundamental para la mejora de los datos y su tratamiento, por lo que agradecemos e incentivamos la recepción de ideas, sugerencias o correcciones. Puedes escribirnos a devops@data.org.uy en caso que te interese colaborar de otra forma.
 
 <br>
 
