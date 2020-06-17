@@ -10,7 +10,7 @@
 <img  src="https://img.shields.io/github/last-commit/datauy/ElijoEstudiar">
 <img  src="https://img.shields.io/website?up_color=green&up_message=online&url=https%3A%2F%2Felijoestudiar.edu.uy%2F%23%2Fintro">
 <img  src="https://img.shields.io/badge/built%20with-ionic-blue">
-<img src="https://sonarcloud.io/api/project_badges/measure?project=datauy_ElijoEstudiar&metric=alert_status">
+<a href="https://sonarcloud.io/dashboard?id=datauy_ElijoEstudiar"><img src="https://sonarcloud.io/api/project_badges/measure?project=datauy_ElijoEstudiar&metric=alert_status"></a>
 </p>
 
 <p  align="center">
