@@ -10,6 +10,7 @@
 <img  src="https://img.shields.io/github/last-commit/datauy/ElijoEstudiar">
 <img  src="https://img.shields.io/website?up_color=green&up_message=online&url=https%3A%2F%2Felijoestudiar.edu.uy%2F%23%2Fintro">
 <img  src="https://img.shields.io/badge/built%20with-ionic-blue">
+ [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=datauy_ElijoEstudiar&metric=alert_status)](https://sonarcloud.io/dashboard?id=datauy_ElijoEstudiar)
 </p>
 
 <p  align="center">
