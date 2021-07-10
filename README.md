@@ -56,7 +56,7 @@ Entre ellas se cuenta Derechos del Estudiante, un proyecto en colaboración con 
 </details>
 <br>
 
-## :notebook: Guía de instalación y uso
+## :notebook: Guía de instalación y uso (v1.2.0)
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
