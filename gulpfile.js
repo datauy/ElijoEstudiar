@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
@@ -23,7 +23,6 @@ var paths = {
 /*gulp.task('bump', require('gulp-cordova-bump'));*/
 
 
-gulp.task('default', ['sass', 'templates', 'build']);
 
 gulp.task('sass', function(done) {
   gulp.src('src/scss/ionic.app.scss')
@@ -62,7 +61,7 @@ gulp.task('watch', function() {
   gulp.watch(paths.templates, ['templates']);
 });
 
-gulp.task('install', ['git-check'], function() {
+gulp.task('install', function() {
   return bower.commands.install()
     .on('log', function(data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
@@ -81,3 +80,5 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
+
+gulp.task('default', gulp.parallel('sass', 'templates', 'build'));
