@@ -23,7 +23,9 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
         "Inicial - Primaria":true,
         "Secundaria":true,
         "UTU":true,
-        "Formación en educación":true
+        "Formación en educación":true,
+        "UTEC":true,
+        "UDELAR":true
       },
       ubicacion: ""
     };
@@ -326,6 +328,12 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
             break;
           case 'Formación en educación':
             url = "http://www.cfe.edu.uy/";
+            break;
+          case 'UTEC':
+            url = "https://utec.edu.uy/";
+            break;
+          case 'UDELAR':
+            url = "http://udelar.edu.uy/";
             break;
           default:
             url = "https://www.anep.edu.uy/";

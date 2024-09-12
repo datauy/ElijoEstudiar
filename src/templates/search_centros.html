@@ -28,6 +28,16 @@
                 Formación en Educación
               </ion-toggle>
             </div>
+            <div class="section-center">
+              <ion-toggle ng-model="filters_centros.subsis['UTEC']" ng-change="onSearchChange()">
+                UTEC
+              </ion-toggle>
+            </div>
+            <div class="section-center">
+              <ion-toggle ng-model="filters_centros.subsis['UDELAR']" ng-change="onSearchChange()">
+                UDELAR
+              </ion-toggle>
+            </div>
           </ion-item>
           <div class="listAndMap-wrapper">
             <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
