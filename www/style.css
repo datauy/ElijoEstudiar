@@ -358,6 +358,26 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	display: inline-block;
 }
 
+.footer_utec{
+	background-size:     contain;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	background-image:    url(./img/utec.svg);
+	width: 108px;
+  height: 76px;
+	display: inline-block;
+}
+
+.footer_udelar{
+	background-size:     contain;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	background-image:    url(./img/udelar.svg);
+	width: 145px;
+  height: 49px;
+	display: inline-block;
+}
+
 .establecimientoMarker{
   width: 52px;
   height: 60px;
