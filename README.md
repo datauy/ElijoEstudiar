@@ -35,9 +35,9 @@ Este proyecto nace bajo la premisa de unificar la data disponible sobre cursos y
 
 ### :mag_right: Origen 
 
-El proyecto Elijo Estudiar comienza con la presentación de la idea por parte de DATA Uruguay al llamado del fondo de la Alianza Latinoamericana para la Tecnología Cívica (ALTEC), una alianza entre Avina y Luminate en 2017. El mismo es seleccionado y comienza el proceso de desarrollo y acompañamiento del proyecto, junto a otros 10 proyectos de tecnología cívica de América Latina.
+El proyecto Elijo Estudiar comienza con la presentación de la idea por parte de Data Uruguay al llamado del fondo de la Alianza Latinoamericana para la Tecnología Cívica (ALTEC), una alianza entre Avina y Luminate en 2017. El mismo es seleccionado y comienza el proceso de desarrollo y acompañamiento del proyecto, junto a otros 10 proyectos de tecnología cívica de América Latina.
 
-Localmente, el proyecto genera su primera alianza con UNICEF Uruguay, con quiénes DATA Uruguay ya había colaborado en otro proyecto de educación (ver “Antecedentes”). Se concreta con la autorización de CODICEN para la participación de ANEP y los subsistemas (CEIP, CES, CETP y CFE) que proveen los conocimientos, datos y retroalimentación para el diseño e implementación del proyecto.
+Localmente, el proyecto genera su primera alianza con UNICEF Uruguay, con quiénes Data Uruguay ya había colaborado en otro proyecto de educación (ver “Antecedentes”). Se concreta con la autorización de CODICEN para la participación de ANEP y los subsistemas (CEIP, CES, CETP y CFE) que proveen los conocimientos, datos y retroalimentación para el diseño e implementación del proyecto.
 
 ### Objetivos  
 El proyecto se propone ofrecer una manera simple y rica de visualizar información y datos existentes de gran utilidad, pero dispersos en distintas áreas de gestión y no necesariamente accesibles para el público en general. En ese proceso, el proyecto también ordena la información -usualmente de gestión y orientada al uso interno- de maneras que permiten presentarla en una lógica orientada al usuario/a.
@@ -48,7 +48,7 @@ Por último, pero no menos importante, se busca establecer vínculos entre los a
 
 ### Antecedentes
 
-DATA Uruguay ha trabajado junto a diversas organizaciones aliadas en una serie de herramientas de temáticas como salud, servicios públicos, derechos humanos y sostenibilidad, entre otros temas (por más detalles consultar sitio web o Dossier DATA Uruguay).
+Data Uruguay ha trabajado junto a diversas organizaciones aliadas en una serie de herramientas de temáticas como salud, servicios públicos, derechos humanos y sostenibilidad, entre otros temas (por más detalles consultar sitio web o Dossier Data Uruguay).
 
 Entre ellas se cuenta Derechos del Estudiante, un proyecto en colaboración con UNICEF Uruguay, el Consejo de Educación Secundaria (CES) y el Consejo de Educación Técnico Profesional (CETP). En el mismo se listan derechos de estudiantes de secundaria y CETP, y se proveen mecanismos de consulta que a su vez dejan públicamente las respuestas para facilitar el acceso a ese conocimiento.
 
@@ -172,7 +172,7 @@ Los organismos estatales del sector público recogen, producen, reproducen y dif
 
 ## :memo: Procesamiento de datos
 
-Los análisis y visualizaciones provistos por esta aplicación son realizados por DATA Uruguay. Estas operaciones están disponibles para consulta a través del código de la aplicación disponible en GitHub, así como el resto del código fuente. De cualquier manera se detallan a continuación algunas definiciones clave para el procesamiento de los datos y presentación de resultados.
+Los análisis y visualizaciones provistos por esta aplicación son realizados por Data Uruguay. Estas operaciones están disponibles para consulta a través del código de la aplicación disponible en GitHub, así como el resto del código fuente. De cualquier manera se detallan a continuación algunas definiciones clave para el procesamiento de los datos y presentación de resultados.
 
 <details><summary><b>Turnos</b></summary>
 
@@ -225,7 +225,7 @@ www.datauy.org
   
 ##  :e-mail: Contacto
 
-En caso de consultas sobre la aplicación, DATA Uruguay o contactos de prensa puede dirigirse a contacto@datauy.org. También estamos disponibles a través de nuestras cuentas de [Twitter](https://twitter.com/datauy), [Facebook](https://facebook.com/datauruguay) e [Instagram](https://instagram.com/datauy).
+En caso de consultas sobre la aplicación, Data Uruguay o contactos de prensa puede dirigirse a contacto@datauy.org. También estamos disponibles a través de nuestras cuentas de [Twitter](https://twitter.com/datauy), [Facebook](https://facebook.com/datauruguay) e [Instagram](https://instagram.com/datauy).
 
 En la web de DATA puede encontrarse un [kit de prensa de la organización](https://data.org.uy/kit-de-prensa/) conteniendo material gráfico, así como un [kit de prensa del proyecto](https://drive.google.com/drive/folders/1loD6xY_Hza2GpW-YVreDa8PqXRCUPLrN).
 
@@ -241,7 +241,7 @@ Como la mayoría de los proyectos que trabajan con datos abiertos y software lib
 
 ### Disponibilidad del código como software libre 
 
-DATA Uruguay incentiva la reutilización de este software para cualquier propósito, brindándolo bajo licencia [GPLv3](https://github.com/datauy/ElijoEstudiar/blob/master/LICENSE) para que otras organizaciones, gobiernos, empresas o ciudadanos puedan sacar provecho del trabajo aquí realizado.
+Data Uruguay incentiva la reutilización de este software para cualquier propósito, brindándolo bajo licencia [GPLv3](https://github.com/datauy/ElijoEstudiar/blob/master/LICENSE) para que otras organizaciones, gobiernos, empresas o ciudadanos puedan sacar provecho del trabajo aquí realizado.
 
 :octocat:  https://github.com/datauy/ElijoEstudiar/
 
