@@ -233,15 +233,6 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	margin-bottom: 11px;
 }
 
-#foot_container{
-	 position: relative;
-	 bottom: 0;
-	 width: 100%;
-	 height: 298px;
-	 background-color: #4a90e2;
-	 float: left;
-}
-
 #form_container{
 	float: left;
 	position: relative;
@@ -259,6 +250,17 @@ background-image:    url(./img/rombo_azul_chico.svg);
 }
 /*End form*/
 
+#foot_container{
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #4a90e2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
 
 .footer_share{
 	width: 100px;
@@ -271,18 +273,10 @@ background-image:    url(./img/rombo_azul_chico.svg);
   line-height: 3.5;
   letter-spacing: normal;
   color: #ffffff;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	top: 30px;
 	text-align: center;
 }
 
 .footer_share_wrapper{
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	top: 107px;
 	text-align: center;
 	width: 130px;
   height: 32px;
@@ -320,21 +314,14 @@ background-image:    url(./img/rombo_azul_chico.svg);
   line-height: 7;
   letter-spacing: 5.9px;
   color: #ffffff;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	top: 142px;
 	text-align: center;
 }
 
 .footer_logos_wrapper{
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%); /*or  transform: translateX(-50%);*/
-	top: 212px;
-	text-align: center;
-	width: 250px;
-	height: 38px;
+	display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 30px;
 }
 
 .footer_anep{
@@ -344,8 +331,6 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	background-image:    url(./img/anep.svg);
 	width: 98px;
   height: 36px;
-	display: inline-block;
-	margin-right: 38px;
 }
 
 .footer_data{
@@ -355,7 +340,6 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	background-image:    url(./img/data.svg);
 	width: 108px;
   height: 52px;
-	display: inline-block;
 }
 
 .footer_utec{
@@ -365,7 +349,6 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	background-image:    url(./img/utec.svg);
 	width: 108px;
   height: 76px;
-	display: inline-block;
 }
 
 .footer_udelar{
@@ -375,7 +358,6 @@ background-image:    url(./img/rombo_azul_chico.svg);
 	background-image:    url(./img/udelar.svg);
 	width: 145px;
   height: 49px;
-	display: inline-block;
 }
 
 .establecimientoMarker{
@@ -1509,6 +1491,9 @@ margin-top: 10px;
 	}
 }
 @media (max-width: 680px){
+  .footer_logos_wrapper {
+    flex-direction: column;
+  }
   .form{
     padding: 0;
 		width: calc(100% - 80px);
