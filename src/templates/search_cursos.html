@@ -19,37 +19,40 @@
         </div>
         <div class="button_listado_completo editar-busqueda clickable" ng-click="editSearch()">Editar búsqueda</div>
       </div>
-      <div class="listAndMap-wrapper">
-        <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
-        <div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
-      </div>
-      <div class="info-message">Éstos son los resultados para tu búsqueda, usando los términos listados arriba.</div>
-      <div class="results-wrapper">
-        <div id="list_container">
-          <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos">
-            {{stablishment.nombre}}
+      <div class="info-message" ng-if="!curso">No hay resultados para la búsqueda, usando los términos listados arriba.</div>
+      <div ng-if="curso">
+        <div class="listAndMap-wrapper">
+          <div id="list" ng-click="select_option('list')" class="options option_list">Listado</div>
+          <div id="map" ng-click="select_option('map')" class="options option_map_off">Mapa</div>
+        </div>
+        <div class="info-message">Éstos son los resultados para tu búsqueda, usando los términos listados arriba.</div>
+        <div class="results-wrapper">
+          <div id="list_container">
+            <div class='establecimiento clickable' ng-click="openDetailsModal('{{stablishment.id}}');" ng-repeat="stablishment in establecimientos">
+              {{stablishment.nombre}}
+            </div>
+          </div>
+          <div id="map_wrapper" >
+            <div id="map_container" >
+              <ion-view hide-nav-bar="true">
+                <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+              </ion-view>
+            </div>
           </div>
         </div>
-        <div id="map_wrapper" >
-          <div id="map_container" >
-            <ion-view hide-nav-bar="true">
-              <leaflet data-tap-disabled="true" id="primary_map" defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
-            </ion-view>
-          </div>
-        </div>
-      </div>
-      <div class="filters-wrapper" ng-if="curso.data">
-        <h2 class="title curso section">Filtros adicionales</h2>
-        <div class='subsistema_container' ng-repeat="filters in curso.data track by filters.key">
-          <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{filters.key}}")'>
-            {{filters.nombre}}
-            <span ng-class='isGroupShown("{{filters.key}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
-          </ion-item>
-          <div class='subsistema_curso' ng-repeat="option in curso.data[filters.key].options" ng-show='isGroupShown("{{filters.key}}")'>
-            <ion-toggle ng-model="dinamic_filters[filters.key][option.nombre]" ng-change="selectFilter(filters.key)">
-            </ion-toggle>
-            <a class="filter-option" ng-show='{{option.url ? 1 : 0}}' ng-click="openWebsite('{{option.url}}');">{{option.nombre}}</a>
-            <span class="filter-option" ng-show='{{option.url ? 0 : 1}}'>{{option.nombre}}</span>
+        <div class="filters-wrapper" ng-if="curso.data">
+          <h2 class="title curso section">Filtros adicionales</h2>
+          <div class='subsistema_container' ng-repeat="filters in curso.data track by filters.key">
+            <ion-item class="subsistema_title Accordion__Header" ng-click='toggleGroup("{{filters.key}}")'>
+              {{filters.nombre}}
+              <span ng-class='isGroupShown("{{filters.key}}") ? "ion-ios-arrow-down" : "ion-ios-arrow-forward"'></span>
+            </ion-item>
+            <div class='subsistema_curso' ng-repeat="option in curso.data[filters.key].options" ng-show='isGroupShown("{{filters.key}}")'>
+              <ion-toggle ng-model="dinamic_filters[filters.key][option.nombre]" ng-change="selectFilter(filters.key)">
+              </ion-toggle>
+              <a class="filter-option" ng-show='{{option.url ? 1 : 0}}' ng-click="openWebsite('{{option.url}}');">{{option.nombre}}</a>
+              <span class="filter-option" ng-show='{{option.url ? 0 : 1}}'>{{option.nombre}}</span>
+            </div>
           </div>
         </div>
       </div>

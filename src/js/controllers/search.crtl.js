@@ -48,9 +48,11 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.$on("$ionicView.beforeEnter", function() {
       // TODO: Acomodar bien
       if ( $state.current.name == "app.search_cursos_result" ) {
+        console.log("SEARCH CURSOS");
         ModalService.openModal('buscando', 'loading');
         var filters = ApiService.filters;
         if ( filters == null || ('queEstudiar' in ApiService.filters) && ApiService.filters.queEstudiar.id != $state.params.orientacion) {
+          console.log("SEARCH CURSOS RARO 1");
           //Saco parámetros de la URL
           var filters = {
             edad: $state.params.edad,
@@ -89,6 +91,7 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           }
           ApiService.filters = filters;
         }
+        console.log("SEARCH CURSOS SIGUE");
         ApiService.getCursosByFilters().then(function (response) {
           var search_str = ApiService.filters.edad != '' ? ApiService.filters.edad+' años, ' : '' ;
           search_str += ( ApiService.filters.queEstudie !== undefined && Object.entries(ApiService.filters.queEstudie).length !== 0 && ApiService.filters.queEstudie.nombre !== undefined && ApiService.filters.queEstudie.nombre != '') ? ApiService.filters.queEstudie.nombre+', ' : 'sin previas, ';
@@ -99,27 +102,34 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
           }
           search_str += (ApiService.filters.donde !== undefined && ApiService.filters.donde.nombre !== undefined && ApiService.filters.donde.nombre != '') ? ApiService.filters.donde.nombre : 'sin ubicación';
           $scope.search_str = search_str;
-          //CURSO
-          $scope.cursos = response.cursos;
-          //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
-          $scope.curso = {
-            subsis: $scope.cursos[0].field_sub_sistema,
-            nivel: $scope.cursos[0].field_nivel,
-            tipo: $scope.cursos[0].field_tipo_curso,
-            orientacion: $scope.cursos[0].field_orientaci_n,
-            urlNivel: $scope.cursos[0].tags.tag[1].url,
-            urlTipo: $scope.cursos[0].tags.tag[0].url,
-            url: $scope.cursos[0].tags.url
-          };
-          if (response.is_previa) {
-            $scope.showPrevias(response);
+          console.log("SEARCH CURSOS CURSOS BY FILTER");
+          
+          if (response.cursos.length > 0 ) {
+            //CURSO
+            $scope.cursos = response.cursos;
+            //Como si fueran el mismo CURSO, quitar en múltiples SOLO CES?
+            $scope.curso = {
+              subsis: $scope.cursos[0].field_sub_sistema,
+              nivel: $scope.cursos[0].field_nivel,
+              tipo: $scope.cursos[0].field_tipo_curso,
+              orientacion: $scope.cursos[0].field_orientaci_n,
+              urlNivel: $scope.cursos[0].tags.tag[1].url,
+              urlTipo: $scope.cursos[0].tags.tag[0].url,
+              url: $scope.cursos[0].tags.url
+            };
+            if (response.is_previa) {
+              $scope.showPrevias(response);
+            }
+            else {
+              $scope.curso.data = {
+                plan: {options:{}},
+                "año": {options:{}}
+              };
+              $scope.showCentros(response);
+            }
           }
           else {
-            $scope.curso.data = {
-              plan: {options:{}},
-              "año": {options:{}}
-            };
-            $scope.showCentros(response);
+            $scope.curso = false;
           }
           //  document.getElementById("map_wrapper").style.display="none";
           document.getElementById("modal-page").style.display="none";
@@ -133,6 +143,8 @@ pmb_im.controllers.controller('SearchCtrl', ['$scope', '$state',
     $scope.showCentros = function(response) {
       $scope.map = MapService.modal_map;
       //Filtros dinámicos?
+      console.log("CURSOS", $scope.cursos);
+      
       if ( $scope.cursos.length ) {
         $scope.cursos.forEach(function(current_curso){
           var pid = current_curso.año+'-'+current_curso.plan;
